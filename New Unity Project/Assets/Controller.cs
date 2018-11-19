@@ -29,59 +29,56 @@ public class Controller : MonoBehaviour
     void FixedUpdate()
     {
         Vector3 vDir = ViewingDirection();
-
-        transform.forward = new Vector3(vDir.x, 0, vDir.z);
+        vDir = new Vector3(vDir.x, 0, vDir.z);
+        
         Debug.DrawRay(transform.position, vDir, Color.blue);
-
+        vDir.Normalize();
+        transform.forward = vDir;
 
         float speed;
         if (_rb.velocity == Vector3.zero)
         {
             {
                 speed = ForwardSpeed;
-                Debug.Log("Not Moving");
             }
         }
         else
         {
             Debug.DrawRay(transform.position, _rb.velocity, Color.red);
-            vDir.y = 0;
-            float d = Vector3.Dot(vDir.normalized, _rb.velocity.normalized);
-            Debug.Log(d);
+            float d = Vector3.Dot(vDir, _rb.velocity.normalized);
             if (d < StrafeCutoff && d > -StrafeCutoff)
             {
                 speed = StrafeSpeed;
-                Debug.Log("Strafing");
             }
             else if (d < -StrafeCutoff)
             {
-                Debug.Log("Backwards");
                 speed = BackwardSpeed;
             }
             else
             {
-                Debug.Log("Forward");
                 speed = ForwardSpeed;
             }
         }
-        
+        Vector3 v = Vector3.zero;
+
         if (Input.GetKey(Forward))
         {
-            _rb.AddForce(Vector3.forward* speed, ForceMode.Acceleration);
+            v += Vector3.forward;
         }
-        else if (Input.GetKey(Backward))
+        if (Input.GetKey(Backward))
         {
-            _rb.AddForce(Vector3.back * speed, ForceMode.Acceleration);
+            v += Vector3.back;
         }
-        else if (Input.GetKey(Left))
+        if (Input.GetKey(Left))
         {
-            _rb.AddForce(Vector3.left* speed, ForceMode.Acceleration);
+            v += Vector3.left;
         }
-        else if (Input.GetKey(Right))
+        if (Input.GetKey(Right))
         {
-            _rb.AddForce(Vector3.right * speed, ForceMode.Acceleration);
+            v += Vector3.right;
         }
-        
+        _rb.AddForce(v * speed, ForceMode.Acceleration);
+
     }
 
     Vector3 ViewingDirection()
@@ -89,9 +86,9 @@ public class Controller : MonoBehaviour
         Vector3 mousePos = Input.mousePosition;
         Ray r = c.ScreenPointToRay(mousePos);
         RaycastHit info;
-        if(Physics.Raycast(r, out info, 1000, 1 << 9))
+        if (Physics.Raycast(r, out info, 1000, 1 << 9))
         {
-            return info.point-transform.position;
+            return info.point - transform.position; //Position only because the camera is not a child object 
         }
         return -Vector3.one;
     }
