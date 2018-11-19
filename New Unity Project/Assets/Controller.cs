@@ -64,24 +64,26 @@ public class Controller : MonoBehaviour
                 speed = ForwardSpeed;
             }
         }
-        
+        Vector3 v = Vector3.zero;
+
         if (Input.GetKey(Forward))
         {
-            _rb.AddForce(Vector3.forward* speed, ForceMode.Acceleration);
+            v += Vector3.forward;
         }
-        else if (Input.GetKey(Backward))
+        if (Input.GetKey(Backward))
         {
-            _rb.AddForce(Vector3.back * speed, ForceMode.Acceleration);
+            v += Vector3.back;
         }
-        else if (Input.GetKey(Left))
+        if (Input.GetKey(Left))
         {
-            _rb.AddForce(Vector3.left* speed, ForceMode.Acceleration);
+            v += Vector3.left;
         }
-        else if (Input.GetKey(Right))
+        if (Input.GetKey(Right))
         {
-            _rb.AddForce(Vector3.right * speed, ForceMode.Acceleration);
+            v += Vector3.right;
         }
-        
+        _rb.AddForce(v * speed, ForceMode.Acceleration);
+
     }
 
     Vector3 ViewingDirection()
@@ -89,9 +91,9 @@ public class Controller : MonoBehaviour
         Vector3 mousePos = Input.mousePosition;
         Ray r = c.ScreenPointToRay(mousePos);
         RaycastHit info;
-        if(Physics.Raycast(r, out info, 1000, 1 << 9))
+        if (Physics.Raycast(r, out info, 1000, 1 << 9))
         {
-            return info.point-transform.position;
+            return info.point - transform.position;
         }
         return -Vector3.one;
     }
