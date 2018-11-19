@@ -29,10 +29,11 @@ public class Controller : MonoBehaviour
     void FixedUpdate()
     {
         Vector3 vDir = ViewingDirection();
-
-        transform.forward = new Vector3(vDir.x, 0, vDir.z);
+        vDir = new Vector3(vDir.x, 0, vDir.z);
+        
         Debug.DrawRay(transform.position, vDir, Color.blue);
-
+        vDir.Normalize();
+        transform.forward = vDir;
 
         float speed;
         if (_rb.velocity == Vector3.zero)
@@ -44,8 +45,7 @@ public class Controller : MonoBehaviour
         else
         {
             Debug.DrawRay(transform.position, _rb.velocity, Color.red);
-            vDir.y = 0;
-            float d = Vector3.Dot(vDir.normalized, _rb.velocity.normalized);
+            float d = Vector3.Dot(vDir, _rb.velocity.normalized);
             if (d < StrafeCutoff && d > -StrafeCutoff)
             {
                 speed = StrafeSpeed;
