@@ -39,7 +39,6 @@ public class Controller : MonoBehaviour
         {
             {
                 speed = ForwardSpeed;
-                Debug.Log("Not Moving");
             }
         }
         else
@@ -47,20 +46,16 @@ public class Controller : MonoBehaviour
             Debug.DrawRay(transform.position, _rb.velocity, Color.red);
             vDir.y = 0;
             float d = Vector3.Dot(vDir.normalized, _rb.velocity.normalized);
-            Debug.Log(d);
             if (d < StrafeCutoff && d > -StrafeCutoff)
             {
                 speed = StrafeSpeed;
-                Debug.Log("Strafing");
             }
             else if (d < -StrafeCutoff)
             {
-                Debug.Log("Backwards");
                 speed = BackwardSpeed;
             }
             else
             {
-                Debug.Log("Forward");
                 speed = ForwardSpeed;
             }
         }
@@ -93,7 +88,7 @@ public class Controller : MonoBehaviour
         RaycastHit info;
         if (Physics.Raycast(r, out info, 1000, 1 << 9))
         {
-            return info.point - transform.position;
+            return info.point - transform.position; //Position only because the camera is not a child object 
         }
         return -Vector3.one;
     }
