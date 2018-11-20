@@ -12,7 +12,7 @@ public class CameraViewLock : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void LateUpdate () {
         transform.position = target.position + distance;
 	}
 }

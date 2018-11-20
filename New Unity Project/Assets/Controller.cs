@@ -77,7 +77,7 @@ public class Controller : MonoBehaviour
         {
             v += Vector3.right;
         }
-        _rb.AddForce(v * speed, ForceMode.Acceleration);
+        _rb.AddForce(v.normalized * speed, ForceMode.Acceleration);
 
     }
 
