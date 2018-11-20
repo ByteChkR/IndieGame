@@ -305,8 +305,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   owner: 0
-  abilities: []
-  abilityKeyBindings: 
+  abilities:
+  - Name: 
+    Description: 
+    icon: {fileID: 0}
+    abilityInstance: {fileID: 0}
+  - Name: 
+    Description: 
+    icon: {fileID: 0}
+    abilityInstance: {fileID: 0}
+  abilityKeyBindings: 4301000044010000
 --- !u!1 &365264905
 GameObject:
   m_ObjectHideFlags: 0

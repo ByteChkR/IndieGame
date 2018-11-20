@@ -25,7 +25,8 @@ public abstract class AbstractAbilityInstance : MonoBehaviour
     }
 }
 
-public abstract class AbstractAbility : MonoBehaviour
+[System.Serializable]
+public class AbstractAbility
 {
 
     public string Name;
@@ -35,7 +36,7 @@ public abstract class AbstractAbility : MonoBehaviour
 
     public virtual void Fire(int dummy)
     {
-        AbstractAbilityInstance a = Instantiate(abilityInstance);
+        AbstractAbilityInstance a = GameObject.Instantiate(abilityInstance);
         a.RegisterSource(dummy);
     }
 
