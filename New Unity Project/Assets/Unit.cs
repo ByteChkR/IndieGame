@@ -22,7 +22,10 @@ public abstract class AbstractEffect
 
 public class Unit : MonoBehaviour {
 
+    public static Dictionary<int, Unit> ActiveUnits = new Dictionary<int, Unit>();
+
     List<AbstractEffect> effects = new List<AbstractEffect>();
+    public Weapon weapon;
 
     public bool Stunned
     {
@@ -44,7 +47,7 @@ public class Unit : MonoBehaviour {
     {
         get
         {
-            float ret = UnitHealth;
+            float ret = _unitHealth;
             for (int i = 0; i < effects.Count; i++)
             {
                 if(effects[i].type == StatType.HP)
@@ -78,11 +81,11 @@ public class Unit : MonoBehaviour {
         }
     }
 
-    public float MoveSpeed
+    public float MoveSpeedMultiplicator
     {
         get
         {
-            float ret = MovementSpeed;
+            float ret = _moveSpeedMultiplicator;
             for (int i = 0; i < effects.Count; i++)
             {
                 if (effects[i].type == StatType.MOVESPEED)
@@ -95,6 +98,11 @@ public class Unit : MonoBehaviour {
             }
             return ret;
         }
+    }
+
+    public void ApplyDamage(float value)
+    {
+        _unitHealth -= value;
     }
     
 
@@ -111,10 +119,16 @@ public class Unit : MonoBehaviour {
         }
     }
 
-    public float UnitHealth;
-    public float ComboLimit;
+    [SerializeField]
+    float _unitHealth;
+
+    [SerializeField]
+    float _comboLimit;
+
     float _currentCombo;
-    public float MovementSpeed;
+
+    [SerializeField]
+    float _moveSpeedMultiplicator;
     bool _stun = false;
 
     public enum StatType
@@ -126,13 +140,28 @@ public class Unit : MonoBehaviour {
     }
 
 
-	// Use this for initialization
-	void Start () {
-		
+    public void ApplyEffects(List<AbstractEffect> effects)
+    {
+        this.effects.AddRange(effects);
+    }
+
+    private void Awake()
+    {
+        ActiveUnits.Add(gameObject.GetInstanceID(), this);
+    }
+
+    // Use this for initialization
+    void Start () {
+        weapon = GetComponentInChildren<Weapon>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
         RemoveInactive();
 	}
+
+    private void OnDestroy()
+    {
+        ActiveUnits.Remove(gameObject.GetInstanceID());
+    }
 }

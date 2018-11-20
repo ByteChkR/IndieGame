@@ -1,16 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 
 public abstract class AbstractAbilityInstance : MonoBehaviour
 {
+    [SerializeField]
+    protected List<AbstractEffect> onHitEffects;
     Dictionary<int, bool> players = new Dictionary<int, bool>();
-    int source;
-
-    public void RegisterSource(int dummy)
+    Unit source;
+    protected List<int> unitIDHit = new List<int>();
+    public virtual void RegisterSource(int dummy)
     {
-        source = dummy;
+        source = Unit.ActiveUnits[dummy];
     }
 
     public void RegisterPlayer(int dummy)
@@ -22,6 +25,22 @@ public abstract class AbstractAbilityInstance : MonoBehaviour
     public void UnregisterPlayer(int dummy)
     {
         players[dummy] = false;
+    }
+
+       public virtual void OnHit(int id)
+    {
+        Unit.ActiveUnits[id].ApplyEffects(onHitEffects);
+    }
+
+    private void Update()
+    {
+        List<int> unitHit = Physics.OverlapBox(source.weapon.transform.position, source.weapon.coll.size / 2, source.weapon.transform.rotation).Select(x => x.GetInstanceID()).ToList();
+        foreach (int hit in unitHit)
+        {
+            if (unitIDHit.Contains(hit)) continue;
+            unitIDHit.Add(hit);
+            OnHit(hit);
+        }
     }
 }
 
@@ -39,5 +58,7 @@ public class AbstractAbility
         AbstractAbilityInstance a = GameObject.Instantiate(abilityInstance);
         a.RegisterSource(dummy);
     }
+
+
 
 }
