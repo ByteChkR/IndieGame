@@ -67,16 +67,19 @@ public class AbstractAbility
     public Sprite icon;
     public AbstractAbilityInstance abilityInstance;
     public float cooldown;
+    public bool OnCooldown { get { return lastTimeUsed >= Time.realtimeSinceStartup - cooldown; } }
     float lastTimeUsed = float.MinValue;
-    public virtual void Fire(int dummy, Transform target = null)
+    public virtual bool Fire(int dummy, Transform target = null)
     {
-        if (lastTimeUsed <= Time.realtimeSinceStartup - cooldown)
+        if (!OnCooldown)
         {
             AbstractAbilityInstance a = GameObject.Instantiate(abilityInstance);
             a.RegisterSource(dummy);
             a.target = target;
             lastTimeUsed = Time.realtimeSinceStartup;
+            return true;
         }
+        return false;
         
     }
 

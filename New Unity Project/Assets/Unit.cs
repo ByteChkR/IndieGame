@@ -112,7 +112,13 @@ public class Unit : MonoBehaviour {
     {
         _currentCombo += change;
     }
-    
+
+    public delegate void FireAnimationEvent();
+    public FireAnimationEvent eventListener;
+    public void ReceiveAnimationEvent()
+    {
+        if(eventListener != null)eventListener();
+    }
 
     void RemoveInactive()
     {

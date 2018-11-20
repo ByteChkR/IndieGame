@@ -245,7 +245,7 @@ MonoBehaviour:
   - Name: CallingArtillery
     Description: 
     icon: {fileID: 0}
-    abilityInstance: {fileID: 114918355975680152, guid: 3839e4d08cc03394aba3b0b86e97831a,
+    abilityInstance: {fileID: 114551388014807028, guid: b393fa62583e670439ab0c5474344a6d,
       type: 2}
     cooldown: 3
   abilityKeyBindings: 0000000000000000
@@ -1113,6 +1113,7 @@ Animation:
   m_Animation: {fileID: 0}
   m_Animations:
   - {fileID: 7400000, guid: f983c376eabd13d408c9de8125295732, type: 2}
+  - {fileID: 7400000, guid: d76d2deaf75f4d146b5a54fd7435d6ee, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
@@ -1200,4 +1201,4 @@ Transform:
   - {fileID: 288145458}
   m_Father: {fileID: 0}
   m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 233.92374, z: 0}
