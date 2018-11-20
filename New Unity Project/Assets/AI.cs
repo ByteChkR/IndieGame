@@ -51,12 +51,12 @@ public class AI : MonoBehaviour {
             if(u.CurrentCombo == 3)
             {
                 //Special Attack
-                u.weapon.abilities[1].Fire(u.gameObject.GetInstanceID());
+                u.weapon.abilities[1].Fire(u.gameObject.GetInstanceID(), target);
                 u.ApplyCombo(-3);
             }
             else
             {
-                u.weapon.abilities[0].Fire(u.gameObject.GetInstanceID());
+                u.weapon.abilities[0].Fire(u.gameObject.GetInstanceID(), target);
                 u.ApplyCombo(1);
             }
         }

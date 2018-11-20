@@ -10,6 +10,7 @@ public abstract class AbstractAbilityInstance : MonoBehaviour
     protected Unit source;
     protected List<int> unitIDHit = new List<int>();
     BoxCollider specialCol;
+    public Transform target;
     bool HasSpecialCollider = false;
     private BoxCollider Hitbox
     {
@@ -67,12 +68,13 @@ public class AbstractAbility
     public AbstractAbilityInstance abilityInstance;
     public float cooldown;
     float lastTimeUsed = float.MinValue;
-    public virtual void Fire(int dummy)
+    public virtual void Fire(int dummy, Transform target = null)
     {
         if (lastTimeUsed <= Time.realtimeSinceStartup - cooldown)
         {
             AbstractAbilityInstance a = GameObject.Instantiate(abilityInstance);
             a.RegisterSource(dummy);
+            a.target = target;
             lastTimeUsed = Time.realtimeSinceStartup;
         }
         
