@@ -9,8 +9,8 @@ public class MeeleeAttack : AbstractAbilityInstance {
     private string _animationName;
     [SerializeField]
     private float _animationSpeed;
-
-    
+    [SerializeField]
+    private List<AbstractEffect> onHitEffects;
 
     bool initialized = false;
 	// Use this for initialization

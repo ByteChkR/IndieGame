@@ -2,21 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 [System.Serializable]
-public abstract class AbstractEffect
+public class AbstractEffect
 {
     public Unit.StatType type;
+    public float Strength;
+    public bool UseAsFlat = false;
     public float Duration;
-    public float timeActivated;
+    public float TimeActivated;
     public bool active
     {
         get
         {
-            return Time.realtimeSinceStartup < timeActivated + Duration;
+            return Time.realtimeSinceStartup < TimeActivated + Duration;
         }
     }
     public virtual float Apply(float value)
     {
-        return value;
+        return UseAsFlat ? value+Strength:value*Strength;
     }
 }
 

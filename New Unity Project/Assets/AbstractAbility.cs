@@ -6,8 +6,6 @@ using System.Linq;
 
 public abstract class AbstractAbilityInstance : MonoBehaviour
 {
-    [SerializeField]
-    protected List<AbstractEffect> onHitEffects;
     Dictionary<int, bool> players = new Dictionary<int, bool>();
     Unit source;
     protected List<int> unitIDHit = new List<int>();
@@ -27,9 +25,9 @@ public abstract class AbstractAbilityInstance : MonoBehaviour
         players[dummy] = false;
     }
 
-       public virtual void OnHit(int id)
+    public virtual void OnHit(int id)
     {
-        Unit.ActiveUnits[id].ApplyEffects(onHitEffects);
+
     }
 
     private void Update()
