@@ -28,7 +28,8 @@ public class Unit : MonoBehaviour {
 
     List<AbstractEffect> effects = new List<AbstractEffect>();
     public Weapon weapon;
-
+    public Animation UnitAnimation;
+    public Vector3 vDirNorm;
     public bool Stunned
     {
         get
@@ -106,6 +107,11 @@ public class Unit : MonoBehaviour {
     {
         _unitHealth -= value;
     }
+
+    public void ApplyCombo(float change)
+    {
+        _currentCombo += change;
+    }
     
 
     void RemoveInactive()
@@ -113,7 +119,11 @@ public class Unit : MonoBehaviour {
         List<int> inactive = new List<int>();
         for (int i = 0; i < effects.Count; i++)
         {
-            if (effects[i].active) inactive.Add(i);
+            if (effects[i].active)
+            {
+                inactive.Add(i);
+                
+            }
         }
         foreach (int i in inactive)
         {
@@ -155,6 +165,7 @@ public class Unit : MonoBehaviour {
     // Use this for initialization
     void Start () {
         weapon = GetComponentInChildren<Weapon>();
+        weapon.owner = gameObject.GetInstanceID();
 	}
 	
 	// Update is called once per frame

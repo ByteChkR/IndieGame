@@ -52,8 +52,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damage: 5
-  _animationName: MeeleeAttack
-  _animationSpeed: 1
+  _animationName: BasicWeaponSwing
+  _animationSpeed: 3
   onHitEffects:
   - type: 8
     Strength: 1

@@ -19,10 +19,12 @@ public class Weapon : MonoBehaviour {
 	void Update () {
         for (int i = 0; i < abilityKeyBindings.Count; i++)
         {
-            if (Input.GetKeyDown(abilityKeyBindings[i]))
+            if (Input.GetKey(abilityKeyBindings[i]))
             {
+                Debug.Log(abilities[i].Name);
                 abilities[i].Fire(owner);
             }
         }
 	}
+
 }

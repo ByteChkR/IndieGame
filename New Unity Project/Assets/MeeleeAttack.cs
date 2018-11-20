@@ -12,6 +12,8 @@ public class MeeleeAttack : AbstractAbilityInstance {
     [SerializeField]
     private List<AbstractEffect> onHitEffects;
 
+
+    bool started = false;
     bool initialized = false;
 	// Use this for initialization
 	void Start () {
@@ -24,7 +26,9 @@ public class MeeleeAttack : AbstractAbilityInstance {
         
 
         initialized = true;
-
+        source.UnitAnimation[_animationName].speed = _animationSpeed;
+        source.UnitAnimation.Play(_animationName, PlayMode.StopSameLayer);
+        started = true;
     }
 
     // Update is called once per frame
@@ -33,7 +37,11 @@ public class MeeleeAttack : AbstractAbilityInstance {
         {
             return;
         }
-        
+        if(started && !source.UnitAnimation.isPlaying)
+        {
+            started = false;
+            Destroy(this.gameObject);
+        }
 	}
 
     public override void OnHit(int id)

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(Rigidbody),typeof(Unit))]
 public class Controller : MonoBehaviour
 {
     public Camera c;
@@ -18,11 +18,13 @@ public class Controller : MonoBehaviour
     public float StrafeCutoff = 0.2f;
 
     private Rigidbody _rb;
+    Unit u;
 
     // Use this for initialization
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
+        u = GetComponent<Unit>();
     }
 
     // Update is called once per frame
@@ -30,9 +32,11 @@ public class Controller : MonoBehaviour
     {
         Vector3 vDir = ViewingDirection();
         vDir = new Vector3(vDir.x, 0, vDir.z);
-        
-        Debug.DrawRay(transform.position, vDir, Color.blue);
         vDir.Normalize();
+        u.vDirNorm = vDir;
+
+        Debug.DrawRay(transform.position, vDir*5, Color.blue);
+        
         transform.forward = vDir;
 
         float speed;

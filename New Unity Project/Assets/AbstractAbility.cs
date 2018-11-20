@@ -7,8 +7,17 @@ using System.Linq;
 public abstract class AbstractAbilityInstance : MonoBehaviour
 {
     Dictionary<int, bool> players = new Dictionary<int, bool>();
-    Unit source;
+    protected Unit source;
     protected List<int> unitIDHit = new List<int>();
+    BoxCollider specialCol;
+    bool HasSpecialCollider = false;
+    private BoxCollider Hitbox
+    {
+        get
+        {
+            return HasSpecialCollider ? specialCol : source.weapon.coll;
+        }
+    }
     public virtual void RegisterSource(int dummy)
     {
         source = Unit.ActiveUnits[dummy];
@@ -25,6 +34,12 @@ public abstract class AbstractAbilityInstance : MonoBehaviour
         players[dummy] = false;
     }
 
+    public void SetSpecialCollider(BoxCollider collider)
+    {
+        specialCol = collider;
+        HasSpecialCollider = true;
+    }
+
     public virtual void OnHit(int id)
     {
 
@@ -32,7 +47,7 @@ public abstract class AbstractAbilityInstance : MonoBehaviour
 
     private void Update()
     {
-        List<int> unitHit = Physics.OverlapBox(source.weapon.transform.position, source.weapon.coll.size / 2, source.weapon.transform.rotation).Select(x => x.GetInstanceID()).ToList();
+        List<int> unitHit = Physics.OverlapBox(Hitbox.center, Hitbox.size / 2, Hitbox.transform.rotation).Select(x => x.GetInstanceID()).ToList();
         foreach (int hit in unitHit)
         {
             if (unitIDHit.Contains(hit)) continue;
@@ -50,11 +65,17 @@ public class AbstractAbility
     public string Description;
     public Sprite icon;
     public AbstractAbilityInstance abilityInstance;
-
+    public float cooldown;
+    float lastTimeUsed = float.MinValue;
     public virtual void Fire(int dummy)
     {
-        AbstractAbilityInstance a = GameObject.Instantiate(abilityInstance);
-        a.RegisterSource(dummy);
+        if (lastTimeUsed <= Time.realtimeSinceStartup - cooldown)
+        {
+            AbstractAbilityInstance a = GameObject.Instantiate(abilityInstance);
+            a.RegisterSource(dummy);
+            lastTimeUsed = Time.realtimeSinceStartup;
+        }
+        
     }
 
 
