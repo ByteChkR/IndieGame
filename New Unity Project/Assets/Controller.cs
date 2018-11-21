@@ -25,6 +25,10 @@ public class Controller : MonoBehaviour, IController
     public float StrafeSpeed = 0.75f;
     public float StrafeCutoff = 0.2f;
 
+    public GameObject WinScreen;
+    public GameObject GameOverScreen;
+    public GameObject MenuCanvas;
+
     private Rigidbody _rb;
     Unit u;
 
@@ -92,6 +96,35 @@ public class Controller : MonoBehaviour, IController
         }
         _rb.AddForce(v.normalized * speed, ForceMode.Acceleration);
 
+        if(Input.GetKeyDown(KeyCode.K))
+        { 
+            if (MenuCanvas.activeSelf)
+            {
+                MenuCanvas.SetActive(false);
+                GameOverScreen.SetActive(false);
+                WinScreen.SetActive(false);
+            }
+            else
+            { 
+                MenuCanvas.SetActive(true);
+                GameOverScreen.SetActive(true);
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            if (MenuCanvas.activeSelf)
+            {
+                MenuCanvas.SetActive(false);
+                GameOverScreen.SetActive(false);
+                WinScreen.SetActive(false);
+            }
+            else
+            { 
+                MenuCanvas.SetActive(true);
+                WinScreen.SetActive(true);
+            }
+        }
     }
 
     Vector3 ViewingDirection()
