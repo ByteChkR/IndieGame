@@ -19,10 +19,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4506607318332298}
-  - component: {fileID: 114478836556578718}
   - component: {fileID: 33777163089101984}
   - component: {fileID: 23575962414904306}
   - component: {fileID: 65746270762519908}
+  - component: {fileID: 114478836556578718}
   m_Layer: 0
   m_Name: SejuR
   m_TagString: Untagged
@@ -95,7 +95,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 3, y: 1, z: 3}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114478836556578718
 MonoBehaviour:

@@ -18,10 +18,10 @@ public class AI : MonoBehaviour
         get
         {
             RaycastHit info;
-            bool hit = Physics.Raycast(transform.position + (target.position - transform.position).normalized, target.position - transform.position, out info, ActivationRange);
+            bool hit = Physics.Raycast(transform.position + (target.position - transform.position).normalized, target.position - transform.position, out info, float.MaxValue) && info.collider.gameObject.GetInstanceID() == target.gameObject.GetInstanceID();
             Debug.DrawRay(transform.position + (target.position - transform.position).normalized, target.position - transform.position);
-            distance2Target = hit ? info.distance : float.MaxValue;
-            return hit && info.collider.gameObject.GetInstanceID() == target.gameObject.GetInstanceID();
+            distance2Target = info.distance;
+            return hit && distance2Target <= ActivationRange;
         }
     }
     // Use this for initialization
@@ -40,35 +40,51 @@ public class AI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(CanSeeTarget +" : "+ (distance2Target));
         if (!CanSeeTarget)
         {
             return;
         }
 
-        if ((target.position - transform.position).magnitude > AttackRange)
+        if (u.stats.IsStunned)
         {
-            agent.SetDestination(target.position);
-            agent.isStopped = false;
+            u.agent.isStopped = true;
+            u.agent.velocity = Vector3.zero;
+            return;
+        }
+        if (distance2Target <= ActivationRange)
+        {
+            if (distance2Target > AttackRange)
+            {
+                agent.SetDestination(target.position);
+                agent.isStopped = false;
+            }
+            else
+            {
+
+                agent.isStopped = true;
+                if (!u.UnitAnimation.isPlaying)
+                {
+
+                    transform.forward = target.position - transform.position;
+                    if (u.stats.CurrentCombo >= 5)
+                    {
+                        //Special Attack
+                        u.SelectedWeapon.abilities[1].Fire(u.gameObject.GetInstanceID(), target.position);
+
+                    }
+                    else
+                    {
+                        u.SelectedWeapon.abilities[0].Fire(u.gameObject.GetInstanceID(), target.position);
+
+                    }
+                }
+            }
         }
         else
         {
             agent.isStopped = true;
         }
-        if (distance2Target <= AttackRange && !u.UnitAnimation.isPlaying)
-        {
-            agent.isStopped = true;
-            transform.forward = target.position - transform.position;
-            if (u.stats.CurrentCombo >= 5)
-            {
-                //Special Attack
-                u.SelectedWeapon.abilities[1].Fire(u.gameObject.GetInstanceID(), target.position);
-               
-            }
-            else
-            {
-                u.SelectedWeapon.abilities[0].Fire(u.gameObject.GetInstanceID(), target.position);
-                
-            }
-        }
+
     }
 }

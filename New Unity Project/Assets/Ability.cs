@@ -12,7 +12,7 @@ public class Ability : MonoBehaviour
     [SerializeField]
     protected BoxCollider _collider;
     protected bool Initialized = false;
-    private List<int> unitsHitSinceInit = new List<int>();
+    protected List<int> unitsHitSinceInit = new List<int>();
     // Use this for initialization
     void Start()
     {

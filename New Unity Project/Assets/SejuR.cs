@@ -27,7 +27,8 @@ public class SejuR : Ability
     // Update is called once per frame
     public override void Update()
     {
-
+        base.Update();
+        if (unitsHitSinceInit.Count > 0) Destroy(gameObject);
     }
 
     private void FixedUpdate()
@@ -38,6 +39,7 @@ public class SejuR : Ability
 
             TravelDistance -= speed;
         }
+        
         if (TravelDistance <= 0 || initTime + maxTime <= Time.realtimeSinceStartup) Destroy(gameObject);
     }
 

@@ -139,7 +139,14 @@ public class UnitStats
                     }
                     break;
                 case Unit.StatType.STUN:
-                    _stun = true;
+                    if (!effects[i].active && effects[i].InverseOnTimeout)
+                    {
+                        _stun = false;
+                    }
+                    else if (effects[i].active)
+                    {
+                        _stun = true;
+                    }
                     break;
                 default:
                     break;
