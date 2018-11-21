@@ -14,6 +14,8 @@ public class Ability : MonoBehaviour
     protected bool Initialized = false;
     protected List<int> unitsHitSinceInit = new List<int>();
     [SerializeField]
+    protected bool SelfStun = false;
+    [SerializeField]
     protected bool CheckCollisionsEveryFrame = true;
     // Use this for initialization
     void Start()
@@ -33,6 +35,7 @@ public class Ability : MonoBehaviour
         Source = Unit.ActiveUnits[source];
         Initialized = true;
         Source.AddAnimationTriggerListener(CollisionCheck);
+        
     }
 
     public virtual void OnHit(Unit target)

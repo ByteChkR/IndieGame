@@ -5,7 +5,7 @@ using UnityEngine;
 
 public interface IController
 {
-
+    void LockControls(bool locked);
     Vector3 VTarget { get; }
 }
 
@@ -15,7 +15,7 @@ public class Controller : MonoBehaviour, IController
     public Camera c;
     Vector3 target;
     public Vector3 VTarget { get { return target; } }
-
+    bool lockControls = false;
     public KeyCode Forward;
     public KeyCode Backward;
     public KeyCode Left;
@@ -39,9 +39,16 @@ public class Controller : MonoBehaviour, IController
         u = GetComponent<Unit>();
     }
 
+    public void LockControls(bool locked)
+    {
+        lockControls = locked;
+        _rb.velocity = Vector3.zero;
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (lockControls) return;
         Vector3 vDir = ViewingDirection();
         vDir = new Vector3(vDir.x, 0, vDir.z);
         target = transform.position + vDir;

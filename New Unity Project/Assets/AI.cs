@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
-public class AI : MonoBehaviour
+public class AI : MonoBehaviour, IController
 {
     public Vector3 VTarget { get { return target.position; } }
     public Transform target;
@@ -14,6 +14,12 @@ public class AI : MonoBehaviour
     float distance2Target;
     Unit u;
     public float Speed = 3.5f;
+    bool lockControls = false;
+    public void LockControls(bool locked)
+    {
+        lockControls = locked;
+        agent.velocity = Vector3.zero;
+    }
     bool CanSeeTarget
     {
         get
@@ -42,7 +48,7 @@ public class AI : MonoBehaviour
     void Update()
     {
         agent.speed = u.stats.CurrentMovementSpeed * Speed;
-        if (!CanSeeTarget)
+        if (!CanSeeTarget || lockControls)
         {
             return;
         }

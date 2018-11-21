@@ -172,10 +172,12 @@ public class Unit : MonoBehaviour
     public NavMeshAgent agent;
     int selectedWeapon = 0;
     public Weapon SelectedWeapon { get { return weapons[selectedWeapon]; } }
-    public enum TriggerType { CollisionCheck, Teleport };
+    public enum TriggerType { CollisionCheck, Teleport, ControlLock, ControlUnlock };
 
     public delegate void AnimationTrigger(TriggerType ttype);
     AnimationTrigger _trigger;
+
+    
 
     public void SwitchWeapon()
     {
@@ -191,10 +193,23 @@ public class Unit : MonoBehaviour
 
     void FireAnimationTrigger(TriggerType ttype)
     {
+        if(ttype == TriggerType.ControlLock)
+        {
+            LockControls(true);
+        }
+        else if(ttype == TriggerType.ControlUnlock)
+        {
+            LockControls(false);
+        }
         if (null != _trigger)
         {
             _trigger(ttype);
         }
+    }
+
+    void LockControls(bool locked)
+    {
+        controller.LockControls(locked);
     }
 
     public void AddAnimationTriggerListener(AnimationTrigger pTrigger)
