@@ -405,13 +405,13 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 309248726}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 1}
-  m_LocalScale: {x: 0.3, y: 0.33, z: 2.83}
+  m_LocalScale: {x: 0.29999998, y: 0.32999998, z: 2.83}
   m_Children: []
   m_Father: {fileID: 976230353}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 44.18208, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 13.3200035, z: 0}
 --- !u!114 &309248728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -436,10 +436,10 @@ MonoBehaviour:
   - Name: CallingArtillery
     Description: 
     icon: {fileID: 0}
-    abilityInstance: {fileID: 114429514252740634, guid: 284902b69e451264b8ab604608435a1e,
+    abilityInstance: {fileID: 114351747421703744, guid: d5bbe3d4e3b426f44880af83558a9655,
       type: 2}
     ComboCost: 0
-    cooldown: 3
+    cooldown: 0.6
   abilityKeyBindings: 4301000044010000
   coll: {fileID: 0}
 --- !u!65 &309248729
@@ -1124,6 +1124,7 @@ Animation:
   m_Animation: {fileID: 0}
   m_Animations:
   - {fileID: 7400000, guid: f983c376eabd13d408c9de8125295732, type: 2}
+  - {fileID: 7400000, guid: 538a8ee5395857c438b5e9d4fce0fa7e, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
@@ -1187,6 +1188,7 @@ MonoBehaviour:
   agent: {fileID: 0}
   AttackRange: 2
   ActivationRange: 10
+  Speed: 3.5
 --- !u!195 &1947696651
 NavMeshAgent:
   m_ObjectHideFlags: 0

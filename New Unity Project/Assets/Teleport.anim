@@ -2109,9 +2109,9 @@ AnimationClip:
   m_GenerateMotionCurves: 0
   m_Events:
   - time: 0.43333334
-    functionName: ReceiveAnimationEvent
+    functionName: FireAnimationTrigger
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
-    intParameter: 0
+    intParameter: 1
     messageOptions: 0

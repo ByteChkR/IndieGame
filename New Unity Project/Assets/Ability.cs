@@ -13,6 +13,8 @@ public class Ability : MonoBehaviour
     protected BoxCollider _collider;
     protected bool Initialized = false;
     protected List<int> unitsHitSinceInit = new List<int>();
+    [SerializeField]
+    protected bool CheckCollisionsEveryFrame = true;
     // Use this for initialization
     void Start()
     {
@@ -43,7 +45,12 @@ public class Ability : MonoBehaviour
     public virtual void Update()
     {
         if (!Initialized) return;
-        CheckCollisions();
+        if(CheckCollisionsEveryFrame)CheckCollisions();
+    }
+
+    public virtual void OnDestroy()
+    {
+        Source.RemoveAnimationTriggerListener(CollisionCheck);
     }
 
     void CollisionCheck(Unit.TriggerType ttype)
@@ -61,5 +68,6 @@ public class Ability : MonoBehaviour
         List<int> newUnits = unitsHit.Select(x => x).Where(x => !unitsHitSinceInit.Contains(x)).ToList();
         newUnits.ForEach(x => OnHit(Unit.ActiveUnits[x]));
         unitsHitSinceInit.AddRange(newUnits);
+        Debug.Log(newUnits.Count);
     }
 }
