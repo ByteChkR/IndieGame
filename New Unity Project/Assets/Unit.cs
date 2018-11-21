@@ -162,7 +162,6 @@ public class Unit : MonoBehaviour
     public UnitStats stats;
     private Weapon[] weapons = new Weapon[2];
     public Animation UnitAnimation;
-    public Vector3 vDirNorm;
     public NavMeshAgent agent;
     int selectedWeapon = 0;
     public Weapon SelectedWeapon { get { return weapons[selectedWeapon]; } }
@@ -171,6 +170,17 @@ public class Unit : MonoBehaviour
     public delegate void AnimationTrigger(TriggerType ttype);
     AnimationTrigger _trigger;
 
+    public void SwitchWeapon()
+    {
+        if (SelectedWeapon == weapons[0] && weapons[1] != null)
+        {
+            selectedWeapon = 1;
+        }
+        else if(weapons[0] != null)
+        {
+            selectedWeapon = 0;
+        }
+    }
 
     void FireAnimationTrigger(TriggerType ttype)
     {

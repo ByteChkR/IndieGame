@@ -46,7 +46,6 @@ public class Controller : MonoBehaviour, IController
         vDir = new Vector3(vDir.x, 0, vDir.z);
         target = transform.position + vDir;
         vDir.Normalize();
-        u.vDirNorm = vDir;
 
         Debug.DrawRay(transform.position, vDir * 5, Color.blue);
 
@@ -78,6 +77,10 @@ public class Controller : MonoBehaviour, IController
         }
         Vector3 v = Vector3.zero;
 
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            u.SwitchWeapon();
+        }
         if (Input.GetKey(Forward))
         {
             v += Vector3.forward;
