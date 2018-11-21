@@ -20,10 +20,10 @@ public class MeeleeAttack : Ability {
 	void Start () {
 		
 	}
-
+    
     public override void Initialize(int source, Vector3 target)
     {
-        _collider = Unit.ActiveUnits[source].weapon.coll;
+        _collider = Unit.ActiveUnits[source].SelectedWeapon.coll;
         base.Initialize(source, target);
         
         Source.UnitAnimation[_animationName].speed = _animationSpeed;

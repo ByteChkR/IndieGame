@@ -13,7 +13,6 @@ public class AI : MonoBehaviour
     public float ActivationRange;
     float distance2Target;
     Unit u;
-    bool sawTarget = false;
     bool CanSeeTarget
     {
         get
@@ -59,15 +58,15 @@ public class AI : MonoBehaviour
         {
             agent.isStopped = true;
             transform.forward = target.position - transform.position;
-            if (u.stats.CurrentCombo == 5)
+            if (u.stats.CurrentCombo >= 5)
             {
                 //Special Attack
-                u.weapon.abilities[1].Fire(u.gameObject.GetInstanceID(), target.position);
+                u.SelectedWeapon.abilities[1].Fire(u.gameObject.GetInstanceID(), target.position);
                
             }
             else
             {
-                u.weapon.abilities[0].Fire(u.gameObject.GetInstanceID(), target.position);
+                u.SelectedWeapon.abilities[0].Fire(u.gameObject.GetInstanceID(), target.position);
                 
             }
         }

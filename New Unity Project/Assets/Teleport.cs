@@ -26,12 +26,13 @@ public class Teleport : Ability {
         this.target = target;
         Source.UnitAnimation[_animationName].speed = _animationSpeed;
         Source.UnitAnimation.Play(_animationName, PlayMode.StopSameLayer);
-        
+        Source.AddAnimationTriggerListener(TriggerTeleport);
     }
 
-    public void TriggerTeleport()
+    public void TriggerTeleport(Unit.TriggerType triggerType)
     {
-        Source.eventListener -= TriggerTeleport;
+        if (triggerType != Unit.TriggerType.Teleport) return;
+        Source.RemoveAnimationTriggerListener(TriggerTeleport);
         RaycastHit info;
         Vector3 pos;
         if(Physics.Raycast(target, -transform.forward, out info, 1.5f))

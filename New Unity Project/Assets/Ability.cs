@@ -26,10 +26,11 @@ public class Ability : MonoBehaviour
             _collider = GetComponent<BoxCollider>();
         }
 
-        Debug.Assert(_collider != null, "Ability has no Collider");
+        //Debug.Assert(_collider != null, "Ability has no Collider");
 
         Source = Unit.ActiveUnits[source];
         Initialized = true;
+        Source.AddAnimationTriggerListener(CollisionCheck);
     }
 
     public virtual void OnHit(Unit target)
@@ -45,11 +46,18 @@ public class Ability : MonoBehaviour
         CheckCollisions();
     }
 
+    void CollisionCheck(Unit.TriggerType ttype)
+    {
+        if (ttype != Unit.TriggerType.CollisionCheck) return;
+        CheckCollisions();
+    }
+
     void CheckCollisions()
     {
-        List<int> unitsHit = Physics.OverlapBox(_collider.transform.position+_collider.center, _collider.size / 2, _collider.transform.rotation, 1 << 11)
-            .Select(x => x.gameObject.GetInstanceID())
-            .Where(x => x != Source.gameObject.GetInstanceID()).ToList();
+        if (_collider == null) return;
+        List<int> unitsHit = Physics.OverlapBox(_collider.transform.position + _collider.center, _collider.size / 2, _collider.transform.rotation, 1 << 11)
+        .Select(x => x.gameObject.GetInstanceID())
+        .Where(x => x != Source.gameObject.GetInstanceID()).ToList();
         List<int> newUnits = unitsHit.Select(x => x).Where(x => !unitsHitSinceInit.Contains(x)).ToList();
         newUnits.ForEach(x => OnHit(Unit.ActiveUnits[x]));
         unitsHitSinceInit.AddRange(newUnits);

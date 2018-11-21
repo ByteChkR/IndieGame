@@ -145,7 +145,7 @@ public class UnitStats
                     break;
             }
         }
-        for (int i = inactiveEffects.Count-1; i > 0; i--)
+        for (int i = inactiveEffects.Count - 1; i > 0; i--)
         {
             effects.RemoveAt(inactiveEffects[i]);
         }
@@ -160,11 +160,13 @@ public class Unit : MonoBehaviour
     public IController controller;
     public static Dictionary<int, Unit> ActiveUnits = new Dictionary<int, Unit>();
     public UnitStats stats;
-    public Weapon[] weapons;
+    private Weapon[] weapons = new Weapon[2];
     public Animation UnitAnimation;
     public Vector3 vDirNorm;
     public NavMeshAgent agent;
-    public enum TriggerType { CollisionCheck };
+    int selectedWeapon = 0;
+    public Weapon SelectedWeapon { get { return weapons[selectedWeapon]; } }
+    public enum TriggerType { CollisionCheck, Teleport };
 
     public delegate void AnimationTrigger(TriggerType ttype);
     AnimationTrigger _trigger;
