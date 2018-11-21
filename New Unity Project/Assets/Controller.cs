@@ -9,8 +9,8 @@ public interface IController
     Vector3 VTarget { get; }
 }
 
-[RequireComponent(typeof(Rigidbody),typeof(Unit))]
-public class Controller : MonoBehaviour , IController
+[RequireComponent(typeof(Rigidbody), typeof(Unit))]
+public class Controller : MonoBehaviour, IController
 {
     public Camera c;
     Vector3 target;
@@ -44,12 +44,12 @@ public class Controller : MonoBehaviour , IController
     {
         Vector3 vDir = ViewingDirection();
         vDir = new Vector3(vDir.x, 0, vDir.z);
-        target = vDir;
+        target = transform.position + vDir;
         vDir.Normalize();
         u.vDirNorm = vDir;
 
-        Debug.DrawRay(transform.position, vDir*5, Color.blue);
-        
+        Debug.DrawRay(transform.position, vDir * 5, Color.blue);
+
         transform.forward = vDir;
 
         float speed;

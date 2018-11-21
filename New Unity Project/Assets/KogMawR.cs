@@ -16,7 +16,8 @@ public class KogMawR : Ability {
     bool hit;
 
 	// Update is called once per frame
-	void Update () {
+	public override void Update ()
+    {
 
         hit = Physics.Raycast(new Ray(transform.position, Vector3.down), out info, 1000, 1 << 10);
         if ((hit && info.distance < 0.5f) || !hit) Destroy(gameObject);

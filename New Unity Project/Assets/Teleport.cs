@@ -14,7 +14,6 @@ public class Teleport : Ability {
     bool blinked = false;
 
     bool started = false;
-    bool initialized = false;
     Vector3 target;
 	// Use this for initialization
 	void Start () {
@@ -49,8 +48,8 @@ public class Teleport : Ability {
     }
 
     // Update is called once per frame
-    void Update () {
-        if (!initialized)
+    public override void Update () {
+        if (!Initialized)
         {
             return;
         }
