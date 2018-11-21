@@ -6,6 +6,7 @@ using System;
 public class Weapon : MonoBehaviour {
 
     public int owner;
+    public Unit oOwner;
     public List<AbstractAbility> abilities;
     public List<KeyCode> abilityKeyBindings;
     public BoxCollider coll;
@@ -15,14 +16,26 @@ public class Weapon : MonoBehaviour {
         coll = GetComponent<BoxCollider>();
 	}
 	
+    public void SetOwnerDUs(Unit pOwner)
+    {
+        oOwner = pOwner;
+        owner = pOwner.gameObject.GetInstanceID();
+    }
+
+    public void SetOwner(int unitId)
+    {
+        owner = unitId;
+        oOwner = Unit.ActiveUnits[owner];
+    }
+
 	// Update is called once per frame
 	void Update () {
         for (int i = 0; i < abilityKeyBindings.Count; i++)
         {
-            if (!Unit.ActiveUnits[owner].stats.IsStunned && Input.GetKey(abilityKeyBindings[i]))
+            if (!oOwner.stats.IsStunned && Input.GetKey(abilityKeyBindings[i]))
             {
-                Debug.Log(abilities[i].Name +" : " + Unit.ActiveUnits[owner].controller.VTarget);
-                abilities[i].Fire(owner, Unit.ActiveUnits[owner].controller.VTarget);
+                Debug.Log(abilities[i].Name +" : " + oOwner.controller.VTarget);
+                abilities[i].Fire(owner, oOwner.controller.VTarget);
             }
         }
 	}

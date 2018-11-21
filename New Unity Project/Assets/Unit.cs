@@ -160,19 +160,33 @@ public class Unit : MonoBehaviour
     public IController controller;
     public static Dictionary<int, Unit> ActiveUnits = new Dictionary<int, Unit>();
     public UnitStats stats;
-    public Weapon weapon;
+    public Weapon[] weapons;
     public Animation UnitAnimation;
     public Vector3 vDirNorm;
     public NavMeshAgent agent;
+    public enum TriggerType { CollisionCheck };
+
+    public delegate void AnimationTrigger(TriggerType ttype);
+    AnimationTrigger _trigger;
 
 
-    public delegate void FireAnimationEvent();
-    public FireAnimationEvent eventListener;
-    public void ReceiveAnimationEvent()
+    void FireAnimationTrigger(TriggerType ttype)
     {
-        if (eventListener != null) eventListener();
+        if (null != _trigger)
+        {
+            _trigger(ttype);
+        }
     }
 
+    public void AddAnimationTriggerListener(AnimationTrigger pTrigger)
+    {
+        _trigger += pTrigger;
+    }
+
+    public void RemoveAnimationTriggerListener(AnimationTrigger pTrigger)
+    {
+        _trigger -= pTrigger;
+    }
 
     public enum StatType
     {
@@ -190,15 +204,9 @@ public class Unit : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        weapon = GetComponentInChildren<Weapon>();
-        weapon.owner = gameObject.GetInstanceID();
+        weapons[0] = GetComponentInChildren<Weapon>();
+        weapons[0].SetOwnerDUs(this);
         controller = GetComponent<IController>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     private void FixedUpdate()
