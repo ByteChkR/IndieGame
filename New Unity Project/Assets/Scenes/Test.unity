@@ -436,7 +436,7 @@ MonoBehaviour:
   - Name: CallingArtillery
     Description: 
     icon: {fileID: 0}
-    abilityInstance: {fileID: 114478836556578718, guid: eb69fd3e7ea897a41abfb70ca7ce4fd7,
+    abilityInstance: {fileID: 114429514252740634, guid: 284902b69e451264b8ab604608435a1e,
       type: 2}
     ComboCost: 0
     cooldown: 3
@@ -1143,12 +1143,11 @@ MonoBehaviour:
     MaxHealth: 0
     MaxCombo: 0
     MaxMovementSpeed: 0
-    _baseHealth: 0
+    _currentHealth: 0
     _currentCombo: 0
     _currentMovementSpeed: 1
     _stun: 0
   UnitAnimation: {fileID: 976230354}
-  vDirNorm: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
 --- !u!1 &1947696649
 GameObject:
@@ -1224,12 +1223,11 @@ MonoBehaviour:
     MaxHealth: 100
     MaxCombo: 10
     MaxMovementSpeed: 10
-    _baseHealth: 0
+    _currentHealth: 0
     _currentCombo: 0
     _currentMovementSpeed: 1
     _stun: 0
   UnitAnimation: {fileID: 1947696653}
-  vDirNorm: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
 --- !u!111 &1947696653
 Animation:

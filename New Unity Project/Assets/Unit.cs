@@ -152,7 +152,7 @@ public class UnitStats
                     break;
             }
         }
-        for (int i = inactiveEffects.Count - 1; i > 0; i--)
+        for (int i = inactiveEffects.Count - 1; i >= 0; i--)
         {
             effects.RemoveAt(inactiveEffects[i]);
         }

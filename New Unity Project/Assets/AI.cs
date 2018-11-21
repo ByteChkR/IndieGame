@@ -13,6 +13,7 @@ public class AI : MonoBehaviour
     public float ActivationRange;
     float distance2Target;
     Unit u;
+    public float Speed = 3.5f;
     bool CanSeeTarget
     {
         get
@@ -40,7 +41,7 @@ public class AI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(CanSeeTarget +" : "+ (distance2Target));
+        agent.speed = u.stats.CurrentMovementSpeed * Speed;
         if (!CanSeeTarget)
         {
             return;
@@ -67,7 +68,7 @@ public class AI : MonoBehaviour
                 {
 
                     transform.forward = target.position - transform.position;
-                    if (u.stats.CurrentCombo >= 5)
+                    if (u.stats.CurrentCombo >= u.SelectedWeapon.abilities[1].ComboCost)
                     {
                         //Special Attack
                         u.SelectedWeapon.abilities[1].Fire(u.gameObject.GetInstanceID(), target.position);
