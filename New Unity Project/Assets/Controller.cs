@@ -7,7 +7,7 @@ using UnityEngine;
 public class Controller : MonoBehaviour
 {
     public Camera c;
-
+    
     public KeyCode Forward;
     public KeyCode Backward;
     public KeyCode Left;
@@ -16,6 +16,10 @@ public class Controller : MonoBehaviour
     public float BackwardSpeed = 0.5f;
     public float StrafeSpeed = 0.75f;
     public float StrafeCutoff = 0.2f;
+
+    public GameObject MenuCanvas;
+    public GameObject WinScreen;
+    public GameObject GameOver;
 
     private Rigidbody _rb;
     Unit u;
@@ -81,6 +85,17 @@ public class Controller : MonoBehaviour
         {
             v += Vector3.right;
         }
+        if(Input.GetKey(KeyCode.K))
+        {
+            MenuCanvas.SetActive(true);
+            GameOver.SetActive(true);
+        }
+        if (Input.GetKey(KeyCode.J))
+        {
+            MenuCanvas.SetActive(true);
+            WinScreen.SetActive(true);
+        }
+
         _rb.AddForce(v.normalized * speed, ForceMode.Acceleration);
 
     }
