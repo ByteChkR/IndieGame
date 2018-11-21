@@ -11,7 +11,7 @@ public class Teleport : AbstractAbilityInstance {
     private float _animationSpeed;
     [SerializeField]
     private List<AbstractEffect> onHitEffects;
-
+    bool blinked = false;
 
     bool started = false;
     bool initialized = false;
@@ -34,18 +34,20 @@ public class Teleport : AbstractAbilityInstance {
 
     public void TriggerTeleport()
     {
-        source.eventListener += TriggerTeleport;
+        source.eventListener -= TriggerTeleport;
         RaycastHit info;
         Vector3 pos;
-        if(Physics.Raycast(target.position, -target.forward, out info, 1f))
+        if(Physics.Raycast(target.position, -target.forward, out info, 1.5f))
         {
-            pos = target.position + target.forward * 1;
+            pos = target.position + target.forward * 1.5f;
         }
         else
         {
-            pos = target.position - target.forward * 1;
+            pos = target.position - target.forward * 1.5f;
         }
-        transform.position = pos;
+        source.transform.position = pos;
+        source.agent.isStopped = true;
+        blinked = true;
     }
 
     // Update is called once per frame
@@ -54,7 +56,7 @@ public class Teleport : AbstractAbilityInstance {
         {
             return;
         }
-        if(started && !source.UnitAnimation.isPlaying)
+        if(blinked && started && !source.UnitAnimation.isPlaying)
         {
             started = false;
             Destroy(this.gameObject);

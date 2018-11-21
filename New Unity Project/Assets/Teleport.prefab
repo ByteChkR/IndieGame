@@ -53,6 +53,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   _damage: 0
-  _animationName: BasicWeaponSwing
+  _animationName: Teleport
   _animationSpeed: 1
   onHitEffects: []

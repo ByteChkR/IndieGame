@@ -242,12 +242,12 @@ MonoBehaviour:
     abilityInstance: {fileID: 114594336571885322, guid: 6a2757239111ab143b4565c0e0482616,
       type: 2}
     cooldown: 1
-  - Name: CallingArtillery
+  - Name: Teleport
     Description: 
     icon: {fileID: 0}
     abilityInstance: {fileID: 114551388014807028, guid: b393fa62583e670439ab0c5474344a6d,
       type: 2}
-    cooldown: 3
+    cooldown: 5
   abilityKeyBindings: 0000000000000000
   coll: {fileID: 0}
 --- !u!23 &288145461
@@ -1024,6 +1024,7 @@ MonoBehaviour:
   weapon: {fileID: 0}
   UnitAnimation: {fileID: 976230354}
   vDirNorm: {x: 0, y: 0, z: 0}
+  agent: {fileID: 0}
   _unitHealth: 100
   _comboLimit: 10
   _moveSpeedMultiplicator: 0
@@ -1062,8 +1063,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 976230353}
-  AttackRange: 1
-  ActivationRange: 8
+  agent: {fileID: 0}
+  AttackRange: 2
+  ActivationRange: 10
 --- !u!195 &1947696651
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1099,6 +1101,7 @@ MonoBehaviour:
   weapon: {fileID: 0}
   UnitAnimation: {fileID: 1947696653}
   vDirNorm: {x: 0, y: 0, z: 0}
+  agent: {fileID: 0}
   _unitHealth: 100
   _comboLimit: 10
   _moveSpeedMultiplicator: 1

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 [System.Serializable]
 public class AbstractEffect
 {
@@ -30,6 +31,7 @@ public class Unit : MonoBehaviour {
     public Weapon weapon;
     public Animation UnitAnimation;
     public Vector3 vDirNorm;
+    public NavMeshAgent agent;
     public bool Stunned
     {
         get
