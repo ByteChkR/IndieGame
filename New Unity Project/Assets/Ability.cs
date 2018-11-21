@@ -5,27 +5,29 @@ using System.Linq;
 
 
 
-public class Ability : MonoBehaviour {
+public class Ability : MonoBehaviour
+{
 
     protected Unit Source;
     [SerializeField]
-    private BoxCollider _collider;
-    private bool Initialized = false;
+    protected BoxCollider _collider;
+    protected bool Initialized = false;
     private List<int> unitsHitSinceInit = new List<int>();
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start()
     {
-        if(_collider == null)
+
+    }
+
+    public virtual void Initialize(int source, Vector3 target)
+    {
+        if (_collider == null)
         {
             _collider = GetComponent<BoxCollider>();
         }
 
         Debug.Assert(_collider != null, "Ability has no Collider");
 
-    }
-	
-    public virtual void Initialize(int source, Vector3 target)
-    {
         Source = Unit.ActiveUnits[source];
         Initialized = true;
     }
@@ -36,16 +38,18 @@ public class Ability : MonoBehaviour {
     }
 
 
-	// Update is called once per frame
-	void Update ()
+    // Update is called once per frame
+    public virtual void Update()
     {
         if (!Initialized) return;
         CheckCollisions();
-	}
+    }
 
     void CheckCollisions()
     {
-        List<int> unitsHit = Physics.OverlapBox(_collider.center, _collider.size / 2, _collider.transform.rotation).Select(x => x.gameObject.GetInstanceID()).ToList();
+        List<int> unitsHit = Physics.OverlapBox(_collider.transform.position+_collider.center, _collider.size / 2, _collider.transform.rotation, 1 << 11)
+            .Select(x => x.gameObject.GetInstanceID())
+            .Where(x => x != Source.gameObject.GetInstanceID()).ToList();
         List<int> newUnits = unitsHit.Select(x => x).Where(x => !unitsHitSinceInit.Contains(x)).ToList();
         newUnits.ForEach(x => OnHit(Unit.ActiveUnits[x]));
         unitsHitSinceInit.AddRange(newUnits);

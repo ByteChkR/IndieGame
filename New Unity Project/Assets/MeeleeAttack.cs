@@ -16,7 +16,6 @@ public class MeeleeAttack : Ability {
 
 
     bool started = false;
-    bool initialized = false;
 	// Use this for initialization
 	void Start () {
 		
@@ -24,16 +23,18 @@ public class MeeleeAttack : Ability {
 
     public override void Initialize(int source, Vector3 target)
     {
-        
+        _collider = Unit.ActiveUnits[source].weapon.coll;
         base.Initialize(source, target);
         
         Source.UnitAnimation[_animationName].speed = _animationSpeed;
         Source.UnitAnimation.Play(_animationName, PlayMode.StopSameLayer);
+        started = true;
     }
 
     // Update is called once per frame
-    void Update () {
-        if (!initialized)
+    public override void Update () {
+        base.Update();
+        if (!Initialized)
         {
             return;
         }
@@ -49,7 +50,7 @@ public class MeeleeAttack : Ability {
     public override void OnHit(Unit target)
     {
         target.stats.ApplyValue(Unit.StatType.HP, -_damage);
-        target.stats.ApplyValue(Unit.StatType.COMBO, ComboGainPerHit);
+        Source.stats.ApplyValue(Unit.StatType.COMBO, ComboGainPerHit);
         base.OnHit(target);
     }
 
