@@ -51,12 +51,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 910453c632ab69a4bbc9575161df26ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _collider: {fileID: 0}
   _damage: 5
   _animationName: BasicWeaponSwing
   _animationSpeed: 3
-  onHitEffects:
-  - type: 8
-    Strength: 1
-    UseAsFlat: 1
-    Duration: 2
-    TimeActivated: 0
+  onHitEffects: []
+  ComboGainPerHit: 100

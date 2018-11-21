@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4506607318332298}
-  - component: {fileID: 114918355975680152}
+  - component: {fileID: 114371152656050242}
   - component: {fileID: 33777163089101984}
   - component: {fileID: 23575962414904306}
   - component: {fileID: 65746270762519908}
@@ -113,7 +113,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114918355975680152
+--- !u!114 &114371152656050242
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,8 +121,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1007788284920100}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bbe2728c5ef5c8149b18687384a8a911, type: 3}
+  m_Script: {fileID: 11500000, guid: ed37d2fcb5de75f4faed0ed3e847ea6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DistanceFromCaster: 8
-  startHeight: {x: 0, y: 25, z: 0}
+  _collider: {fileID: 0}
+  effects:
+  - type: 4
+    Strength: 0.5
+    UseAsFlat: 0
+    Duration: 1
+    TimeActivated: 0
+  Offset: {x: 0, y: 25, z: 0}

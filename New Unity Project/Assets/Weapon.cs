@@ -19,10 +19,10 @@ public class Weapon : MonoBehaviour {
 	void Update () {
         for (int i = 0; i < abilityKeyBindings.Count; i++)
         {
-            if (Input.GetKey(abilityKeyBindings[i]))
+            if (!Unit.ActiveUnits[owner].stats.IsStunned && Input.GetKey(abilityKeyBindings[i]))
             {
-                Debug.Log(abilities[i].Name);
-                abilities[i].Fire(owner);
+                Debug.Log(abilities[i].Name +" : " + Unit.ActiveUnits[owner].controller.VTarget);
+                abilities[i].Fire(owner, Unit.ActiveUnits[owner].controller.VTarget);
             }
         }
 	}

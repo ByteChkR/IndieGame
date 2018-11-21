@@ -6,7 +6,7 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class AI : MonoBehaviour
 {
-
+    public Vector3 VTarget { get { return target.position; } }
     public Transform target;
     public NavMeshAgent agent;
     public float AttackRange;
@@ -46,30 +46,29 @@ public class AI : MonoBehaviour
             return;
         }
 
-        if ((target.position-transform.position).magnitude > AttackRange)
+        if ((target.position - transform.position).magnitude > AttackRange)
         {
             agent.SetDestination(target.position);
             agent.isStopped = false;
         }
         else
-{
+        {
             agent.isStopped = true;
         }
         if (distance2Target <= AttackRange && !u.UnitAnimation.isPlaying)
         {
             agent.isStopped = true;
             transform.forward = target.position - transform.position;
-            if (u.CurrentCombo == 5)
+            if (u.stats.CurrentCombo == 5)
             {
                 //Special Attack
-                u.weapon.abilities[1].Fire(u.gameObject.GetInstanceID(), target);
-
-                u.ApplyCombo(-5);
+                u.weapon.abilities[1].Fire(u.gameObject.GetInstanceID(), target.position);
+               
             }
             else
             {
-                u.weapon.abilities[0].Fire(u.gameObject.GetInstanceID(), target);
-                u.ApplyCombo(1);
+                u.weapon.abilities[0].Fire(u.gameObject.GetInstanceID(), target.position);
+                
             }
         }
     }

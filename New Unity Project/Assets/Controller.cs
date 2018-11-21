@@ -3,10 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
+public interface IController
+{
+
+    Vector3 VTarget { get; }
+}
+
 [RequireComponent(typeof(Rigidbody),typeof(Unit))]
-public class Controller : MonoBehaviour
+public class Controller : MonoBehaviour , IController
 {
     public Camera c;
+    Vector3 target;
+    public Vector3 VTarget { get { return target; } }
 
     public KeyCode Forward;
     public KeyCode Backward;
@@ -32,6 +40,7 @@ public class Controller : MonoBehaviour
     {
         Vector3 vDir = ViewingDirection();
         vDir = new Vector3(vDir.x, 0, vDir.z);
+        target = vDir;
         vDir.Normalize();
         u.vDirNorm = vDir;
 

@@ -19,137 +19,126 @@ public class AbstractEffect
     }
     public virtual float Apply(float value)
     {
-        return UseAsFlat ? value+Strength:value*Strength;
+        return UseAsFlat ? value + Strength : value * Strength;
     }
 }
 
-public class Unit : MonoBehaviour {
+[System.Serializable]
+public class UnitStats
+{
+    [SerializeField]
+    private float MaxHealth;
+    [SerializeField]
+    private float MaxCombo;
+    [SerializeField]
+    private float MaxMovementSpeed;
+    [SerializeField]
+    private float _currentHealth;
+    [SerializeField]
+    private float _currentCombo;
+    [SerializeField]
+    private float _currentMovementSpeed;
+    [SerializeField]
+    private bool _stun = false;
+    public float CurrentHealth { get { return _currentHealth; } }
+    public float CurrentCombo { get { return _currentCombo; } }
+    public float CurrentMovementSpeed { get { return _currentMovementSpeed; } }
+    public bool IsStunned { get { return _stun; } }
+    private List<AbstractEffect> effects = new List<AbstractEffect>();
+   
 
+    public void AddEffect(AbstractEffect newEffect)
+    {
+        effects.Add(newEffect);
+    }
+
+    public void AddEffects(AbstractEffect[] newEffects)
+    {
+        foreach (AbstractEffect effect in newEffects)
+        {
+            AddEffect(effect);
+        }
+    }
+
+    public void ApplyValue(Unit.StatType stype, float value)
+    {
+        Debug.Log(System.Enum.GetName(typeof(Unit.StatType), stype) + ": changed by " + value);
+        switch (stype)
+        {
+            case Unit.StatType.HP:
+                _currentHealth += value;
+                break;
+            case Unit.StatType.COMBO:
+                _currentCombo += value;
+                break;
+            case Unit.StatType.MOVESPEED:
+                _currentMovementSpeed += value;
+                break;
+            case Unit.StatType.STUN:
+                _stun = value > 0;
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void Process()
+    {
+        List<int> inactiveEffects = new List<int>();
+        for (int i = 0; i < effects.Count; i++)
+        {
+            if (!effects[i].active)
+            {
+                inactiveEffects.Add(i);
+                continue;
+            }
+            
+            switch (effects[i].type)
+            {
+                case Unit.StatType.HP:
+                    _currentHealth = effects[i].Apply(_currentHealth);
+                    break;
+                case Unit.StatType.COMBO:
+                    _currentCombo = effects[i].Apply(_currentCombo);
+                    break;
+                case Unit.StatType.MOVESPEED:
+                    _currentMovementSpeed = effects[i].Apply(_currentMovementSpeed);
+                    break;
+                case Unit.StatType.STUN:
+                    _stun = true;
+                    break;
+                default:
+                    break;
+            }
+        }
+        for (int i = inactiveEffects.Count; i > 0; i--)
+        {
+            effects.RemoveAt(i);
+        }
+
+
+    }
+}
+
+[RequireComponent(typeof(IController))]
+public class Unit : MonoBehaviour
+{
+    public IController controller;
     public static Dictionary<int, Unit> ActiveUnits = new Dictionary<int, Unit>();
-
-    List<AbstractEffect> effects = new List<AbstractEffect>();
+    public UnitStats stats;
     public Weapon weapon;
     public Animation UnitAnimation;
     public Vector3 vDirNorm;
     public NavMeshAgent agent;
-    public bool Stunned
-    {
-        get
-        {
-            bool ret = false;
-            for (int i = 0; i < effects.Count; i++)
-            {
-                if(effects[i].type == StatType.STUN)
-                {
-                    ret = effects[i].Apply(0) > 0;
-                }
-            }
-            return ret;
-        }
-    }
 
-    public float Health
-    {
-        get
-        {
-            float ret = _unitHealth;
-            for (int i = 0; i < effects.Count; i++)
-            {
-                if(effects[i].type == StatType.HP)
-                {
-                    if (effects[i].active)
-                    {
-                        ret = effects[i].Apply(ret);
-                    }
-                }
-            }
-            return ret;
-        }
-    }
-
-    public float CurrentCombo
-    {
-        get
-        {
-            float ret = _currentCombo;
-            for (int i = 0; i < effects.Count; i++)
-            {
-                if (effects[i].type == StatType.COMBO)
-                {
-                    if (effects[i].active)
-                    {
-                        ret = effects[i].Apply(ret);
-                    }
-                }
-            }
-            return ret;
-        }
-    }
-
-    public float MoveSpeedMultiplicator
-    {
-        get
-        {
-            float ret = _moveSpeedMultiplicator;
-            for (int i = 0; i < effects.Count; i++)
-            {
-                if (effects[i].type == StatType.MOVESPEED)
-                {
-                    if (effects[i].active)
-                    {
-                        ret = effects[i].Apply(ret);
-                    }
-                }
-            }
-            return ret;
-        }
-    }
-
-    public void ApplyDamage(float value)
-    {
-        _unitHealth -= value;
-    }
-
-    public void ApplyCombo(float change)
-    {
-        _currentCombo += change;
-    }
 
     public delegate void FireAnimationEvent();
     public FireAnimationEvent eventListener;
     public void ReceiveAnimationEvent()
     {
-        if(eventListener != null)eventListener();
+        if (eventListener != null) eventListener();
     }
 
-    void RemoveInactive()
-    {
-        List<int> inactive = new List<int>();
-        for (int i = 0; i < effects.Count; i++)
-        {
-            if (effects[i].active)
-            {
-                inactive.Add(i);
-                
-            }
-        }
-        foreach (int i in inactive)
-        {
-            effects.RemoveAt(i);
-        }
-    }
-
-    [SerializeField]
-    float _unitHealth;
-
-    [SerializeField]
-    float _comboLimit;
-
-    float _currentCombo;
-
-    [SerializeField]
-    float _moveSpeedMultiplicator;
-    bool _stun = false;
 
     public enum StatType
     {
@@ -159,27 +148,29 @@ public class Unit : MonoBehaviour {
         STUN = 8
     }
 
-
-    public void ApplyEffects(List<AbstractEffect> effects)
-    {
-        this.effects.AddRange(effects);
-    }
-
     private void Awake()
     {
         ActiveUnits.Add(gameObject.GetInstanceID(), this);
     }
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         weapon = GetComponentInChildren<Weapon>();
         weapon.owner = gameObject.GetInstanceID();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        RemoveInactive();
-	}
+        controller = GetComponent<IController>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
+
+    private void FixedUpdate()
+    {
+        stats.Process();
+    }
 
     private void OnDestroy()
     {
