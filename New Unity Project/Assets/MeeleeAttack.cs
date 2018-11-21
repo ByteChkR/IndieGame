@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MeeleeAttack : AbstractAbilityInstance {
+public class MeeleeAttack : Ability {
     [SerializeField]
     private float _damage;
     [SerializeField]
@@ -11,6 +11,8 @@ public class MeeleeAttack : AbstractAbilityInstance {
     private float _animationSpeed;
     [SerializeField]
     private List<AbstractEffect> onHitEffects;
+    [SerializeField]
+    private float ComboGainPerHit = 100;
 
 
     bool started = false;
@@ -20,15 +22,13 @@ public class MeeleeAttack : AbstractAbilityInstance {
 		
 	}
 
-    public override void RegisterSource(int dummy)
+    public override void Initialize(int source, Vector3 target)
     {
-        base.RegisterSource(dummy);
         
-
-        initialized = true;
-        source.UnitAnimation[_animationName].speed = _animationSpeed;
-        source.UnitAnimation.Play(_animationName, PlayMode.StopSameLayer);
-        started = true;
+        base.Initialize(source, target);
+        
+        Source.UnitAnimation[_animationName].speed = _animationSpeed;
+        Source.UnitAnimation.Play(_animationName, PlayMode.StopSameLayer);
     }
 
     // Update is called once per frame
@@ -37,17 +37,20 @@ public class MeeleeAttack : AbstractAbilityInstance {
         {
             return;
         }
-        if(started && !source.UnitAnimation.isPlaying)
+        if(started && !Source.UnitAnimation.isPlaying)
         {
             started = false;
             Destroy(this.gameObject);
         }
 	}
 
-    public override void OnHit(int id)
+    
+
+    public override void OnHit(Unit target)
     {
-        Unit.ActiveUnits[id].ApplyDamage(_damage);
-        base.OnHit(id);
+        target.stats.ApplyValue(Unit.StatType.HP, -_damage);
+        target.stats.ApplyValue(Unit.StatType.COMBO, ComboGainPerHit);
+        base.OnHit(target);
     }
 
 

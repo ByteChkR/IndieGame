@@ -3,11 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
+public interface IController
+{
+
+    Vector3 VTarget { get; }
+}
+
 [RequireComponent(typeof(Rigidbody),typeof(Unit))]
-public class Controller : MonoBehaviour
+public class Controller : MonoBehaviour , IController
 {
     public Camera c;
-    
+    Vector3 target;
+    public Vector3 VTarget { get { return target; } }
+
     public KeyCode Forward;
     public KeyCode Backward;
     public KeyCode Left;
@@ -16,10 +24,6 @@ public class Controller : MonoBehaviour
     public float BackwardSpeed = 0.5f;
     public float StrafeSpeed = 0.75f;
     public float StrafeCutoff = 0.2f;
-
-    public GameObject MenuCanvas;
-    public GameObject WinScreen;
-    public GameObject GameOver;
 
     private Rigidbody _rb;
     Unit u;
@@ -36,6 +40,7 @@ public class Controller : MonoBehaviour
     {
         Vector3 vDir = ViewingDirection();
         vDir = new Vector3(vDir.x, 0, vDir.z);
+        target = vDir;
         vDir.Normalize();
         u.vDirNorm = vDir;
 
@@ -85,17 +90,6 @@ public class Controller : MonoBehaviour
         {
             v += Vector3.right;
         }
-        if(Input.GetKey(KeyCode.K))
-        {
-            MenuCanvas.SetActive(true);
-            GameOver.SetActive(true);
-        }
-        if (Input.GetKey(KeyCode.J))
-        {
-            MenuCanvas.SetActive(true);
-            WinScreen.SetActive(true);
-        }
-
         _rb.AddForce(v.normalized * speed, ForceMode.Acceleration);
 
     }

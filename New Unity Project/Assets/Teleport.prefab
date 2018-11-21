@@ -51,8 +51,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99c3ac82012ca9a4aabdd5550287eddc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  _collider: {fileID: 0}
   _damage: 0
   _animationName: Teleport
-  _animationSpeed: 1
+  _animationSpeed: 2
   onHitEffects: []

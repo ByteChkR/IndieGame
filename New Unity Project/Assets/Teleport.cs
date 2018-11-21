@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Teleport : AbstractAbilityInstance {
+public class Teleport : Ability {
     [SerializeField]
     private float _damage;
     [SerializeField]
@@ -15,38 +15,36 @@ public class Teleport : AbstractAbilityInstance {
 
     bool started = false;
     bool initialized = false;
+    Vector3 target;
 	// Use this for initialization
 	void Start () {
 		
 	}
 
-    public override void RegisterSource(int dummy)
+    public override void Initialize(int source, Vector3 target)
     {
-        base.RegisterSource(dummy);
+        base.Initialize(source, target);
+        this.target = target;
+        Source.UnitAnimation[_animationName].speed = _animationSpeed;
+        Source.UnitAnimation.Play(_animationName, PlayMode.StopSameLayer);
         
-
-        initialized = true;
-        source.eventListener += TriggerTeleport;
-        source.UnitAnimation[_animationName].speed = _animationSpeed;
-        source.UnitAnimation.Play(_animationName, PlayMode.StopSameLayer);
-        started = true;
     }
 
     public void TriggerTeleport()
     {
-        source.eventListener -= TriggerTeleport;
+        Source.eventListener -= TriggerTeleport;
         RaycastHit info;
         Vector3 pos;
-        if(Physics.Raycast(target.position, -target.forward, out info, 1.5f))
+        if(Physics.Raycast(target, -transform.forward, out info, 1.5f))
         {
-            pos = target.position + target.forward * 1.5f;
+            pos = target + transform.forward * 1.5f;
         }
         else
         {
-            pos = target.position - target.forward * 1.5f;
+            pos = target - transform.forward * 1.5f;
         }
-        source.transform.position = pos;
-        source.agent.isStopped = true;
+        Source.transform.position = pos;
+        Source.agent.isStopped = true;
         blinked = true;
     }
 
@@ -56,16 +54,12 @@ public class Teleport : AbstractAbilityInstance {
         {
             return;
         }
-        if(blinked && started && !source.UnitAnimation.isPlaying)
+        if(blinked && started && !Source.UnitAnimation.isPlaying)
         {
             started = false;
             Destroy(this.gameObject);
         }
 	}
-
-    public override void OnHit(int id)
-    {
-    }
 
 
 }

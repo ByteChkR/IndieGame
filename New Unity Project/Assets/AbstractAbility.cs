@@ -65,22 +65,23 @@ public class AbstractAbility
     public string Name;
     public string Description;
     public Sprite icon;
-    public AbstractAbilityInstance abilityInstance;
+    public Ability abilityInstance;
+    public float ComboCost;
     public float cooldown;
     public bool OnCooldown { get { return lastTimeUsed >= Time.realtimeSinceStartup - cooldown; } }
     float lastTimeUsed = float.MinValue;
-    public virtual bool Fire(int dummy, Transform target = null)
+    public virtual bool Fire(int dummy, Vector3 target = new Vector3())
     {
-        if (!OnCooldown)
+        if (!OnCooldown && Unit.ActiveUnits[dummy].stats.CurrentCombo >= ComboCost)
         {
-            AbstractAbilityInstance a = GameObject.Instantiate(abilityInstance);
-            a.RegisterSource(dummy);
-            a.target = target;
+            Unit.ActiveUnits[dummy].stats.ApplyValue(Unit.StatType.COMBO, -ComboCost);
+            Ability a = GameObject.Instantiate(abilityInstance, Unit.ActiveUnits[dummy].transform.position, Unit.ActiveUnits[dummy].transform.rotation);
+            a.Initialize(dummy, target);
             lastTimeUsed = Time.realtimeSinceStartup;
             return true;
         }
         return false;
-        
+
     }
 
 
