@@ -434,7 +434,7 @@ MonoBehaviour:
   - Name: CallingArtillery
     Description: 
     icon: {fileID: 0}
-    abilityInstance: {fileID: 114371152656050242, guid: 3839e4d08cc03394aba3b0b86e97831a,
+    abilityInstance: {fileID: 114478836556578718, guid: eb69fd3e7ea897a41abfb70ca7ce4fd7,
       type: 2}
     ComboCost: 0
     cooldown: 3
@@ -711,6 +711,10 @@ Prefab:
     - target: {fileID: 224210218074878956, guid: cf150dd538c10d54ebce27ab8d04724a,
         type: 2}
       propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1737150014552702, guid: cf150dd538c10d54ebce27ab8d04724a, type: 2}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1136,7 +1140,7 @@ MonoBehaviour:
     MaxMovementSpeed: 0
     _currentHealth: 0
     _currentCombo: 0
-    _currentMovementSpeed: 0
+    _currentMovementSpeed: 1
     _stun: 0
   weapon: {fileID: 0}
   UnitAnimation: {fileID: 976230354}
@@ -1218,7 +1222,7 @@ MonoBehaviour:
     MaxMovementSpeed: 10
     _currentHealth: 100
     _currentCombo: 0
-    _currentMovementSpeed: 10
+    _currentMovementSpeed: 1
     _stun: 0
   weapon: {fileID: 0}
   UnitAnimation: {fileID: 1947696653}

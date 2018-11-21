@@ -61,15 +61,15 @@ public class Controller : MonoBehaviour, IController
             float d = Vector3.Dot(vDir, _rb.velocity.normalized);
             if (d < StrafeCutoff && d > -StrafeCutoff)
             {
-                speed = StrafeSpeed;
+                speed = StrafeSpeed * u.stats.CurrentMovementSpeed;
             }
             else if (d < -StrafeCutoff)
             {
-                speed = BackwardSpeed;
+                speed = BackwardSpeed+u.stats.CurrentMovementSpeed;
             }
             else
             {
-                speed = ForwardSpeed;
+                speed = ForwardSpeed*u.stats.CurrentMovementSpeed;
             }
         }
         Vector3 v = Vector3.zero;

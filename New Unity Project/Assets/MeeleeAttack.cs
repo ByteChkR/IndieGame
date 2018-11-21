@@ -51,6 +51,7 @@ public class MeeleeAttack : Ability {
     {
         target.stats.ApplyValue(Unit.StatType.HP, -_damage);
         Source.stats.ApplyValue(Unit.StatType.COMBO, ComboGainPerHit);
+        target.stats.AddEffects(onHitEffects.ToArray());
         base.OnHit(target);
     }
 

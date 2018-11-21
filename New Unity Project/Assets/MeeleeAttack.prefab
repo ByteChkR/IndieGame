@@ -55,5 +55,12 @@ MonoBehaviour:
   _damage: 5
   _animationName: BasicWeaponSwing
   _animationSpeed: 3
-  onHitEffects: []
+  onHitEffects:
+  - type: 4
+    Strength: 0.1
+    UseAsFlat: 0
+    InverseOnTimeout: 1
+    Duration: 1
+    TimeActivated: 0
+    ApplyOnce: 1
   ComboGainPerHit: 100

@@ -8,8 +8,12 @@ public class AbstractEffect
     public Unit.StatType type;
     public float Strength;
     public bool UseAsFlat = false;
+    public bool InverseOnTimeout = false;
     public float Duration;
     public float TimeActivated;
+    public bool ApplyOnce = true;
+    bool appliedOnce = false;
+    bool inversed = false;
     public bool active
     {
         get
@@ -19,7 +23,17 @@ public class AbstractEffect
     }
     public virtual float Apply(float value)
     {
+        if (ApplyOnce && appliedOnce) return value;
+        appliedOnce = true;
         return UseAsFlat ? value + Strength : value * Strength;
+
+    }
+
+    public float Inverse(float value)
+    {
+        if (inversed) return value;
+        inversed = true;
+        return UseAsFlat ? value - Strength : value * 1 / Strength;
     }
 }
 
@@ -45,10 +59,11 @@ public class UnitStats
     public float CurrentMovementSpeed { get { return _currentMovementSpeed; } }
     public bool IsStunned { get { return _stun; } }
     private List<AbstractEffect> effects = new List<AbstractEffect>();
-   
+
 
     public void AddEffect(AbstractEffect newEffect)
     {
+        newEffect.TimeActivated = Time.realtimeSinceStartup;
         effects.Add(newEffect);
     }
 
@@ -89,20 +104,39 @@ public class UnitStats
         {
             if (!effects[i].active)
             {
+
                 inactiveEffects.Add(i);
-                continue;
+
+
             }
-            
+
             switch (effects[i].type)
             {
                 case Unit.StatType.HP:
-                    _currentHealth = effects[i].Apply(_currentHealth);
+                    if (!effects[i].active && effects[i].InverseOnTimeout)
+                    {
+                        _currentHealth = effects[i].Inverse(_currentHealth);
+                    }
+                    else if (effects[i].active) _currentHealth = effects[i].Apply(_currentHealth);
+
                     break;
                 case Unit.StatType.COMBO:
-                    _currentCombo = effects[i].Apply(_currentCombo);
+                    if (!effects[i].active && effects[i].InverseOnTimeout)
+                    {
+                        _currentCombo = effects[i].Inverse(_currentCombo);
+                    }
+                    else if (effects[i].active) _currentCombo = effects[i].Apply(_currentCombo);
+
                     break;
                 case Unit.StatType.MOVESPEED:
-                    _currentMovementSpeed = effects[i].Apply(_currentMovementSpeed);
+                    if (!effects[i].active && effects[i].InverseOnTimeout)
+                    {
+                        _currentMovementSpeed = effects[i].Inverse(_currentMovementSpeed);
+                    }
+                    else if (effects[i].active)
+                    {
+                        _currentMovementSpeed = effects[i].Apply(_currentMovementSpeed);
+                    }
                     break;
                 case Unit.StatType.STUN:
                     _stun = true;
@@ -111,9 +145,9 @@ public class UnitStats
                     break;
             }
         }
-        for (int i = inactiveEffects.Count; i > 0; i--)
+        for (int i = inactiveEffects.Count-1; i > 0; i--)
         {
-            effects.RemoveAt(i);
+            effects.RemoveAt(inactiveEffects[i]);
         }
 
 
