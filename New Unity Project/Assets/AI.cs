@@ -15,6 +15,8 @@ public class AI : MonoBehaviour, IController
     Unit u;
     public float Speed = 3.5f;
     bool lockControls = false;
+    Rigidbody _rb;
+    public Rigidbody rb { get { return _rb; } }
     public void LockControls(bool locked)
     {
         lockControls = locked;
@@ -35,6 +37,7 @@ public class AI : MonoBehaviour, IController
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        _rb = GetComponent<Rigidbody>();
         u = Unit.ActiveUnits[gameObject.GetInstanceID()];
         u.agent = agent;
     }

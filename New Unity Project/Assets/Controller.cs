@@ -7,6 +7,7 @@ public interface IController
 {
     void LockControls(bool locked);
     Vector3 VTarget { get; }
+    Rigidbody rb { get; }
 }
 
 [RequireComponent(typeof(Rigidbody), typeof(Unit))]
@@ -30,6 +31,7 @@ public class Controller : MonoBehaviour, IController
     public GameObject MenuCanvas;
 
     private Rigidbody _rb;
+    public Rigidbody rb { get { return _rb; } }
     Unit u;
 
     // Use this for initialization

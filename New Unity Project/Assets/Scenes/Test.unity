@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -620,7 +620,7 @@ Prefab:
         type: 2}
       propertyPath: abilities.Array.data[1].abilityInstance
       value: 
-      objectReference: {fileID: 114551388014807028, guid: b393fa62583e670439ab0c5474344a6d,
+      objectReference: {fileID: 114581013238943084, guid: 86e22808233aec14ea7f86662753cb12,
         type: 2}
     - target: {fileID: 111996268613663784, guid: 0bf0a0cb88542ed468c4543523f10b86,
         type: 2}
@@ -1845,7 +1845,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 976230353}
   agent: {fileID: 0}
-  AttackRange: 2
+  AttackRange: 1
   ActivationRange: 10
   Speed: 3.5
 --- !u!195 &1947696651
