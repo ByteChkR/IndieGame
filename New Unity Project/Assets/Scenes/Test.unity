@@ -1870,14 +1870,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats:
-    MaxHealth: 0
-    MaxCombo: 0
-    MaxMovementSpeed: 0
-    _currentHealth: 0
-    _currentCombo: 0
-    _currentMovementSpeed: 1
-    _stun: 0
-    _currentGold: 0
+    BaseHealth: 5
+    BaseMovementSpeed: 1
+    BaseCombo: 0
+    MaxHealth: 50
+    MaxCombo: 10
+    MaxMovementSpeed: 2
   UnitAnimation: {fileID: 976230354}
   agent: {fileID: 0}
   particleSystems: []
@@ -2192,14 +2190,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats:
-    MaxHealth: 100
+    BaseHealth: 5
+    BaseMovementSpeed: 1
+    BaseCombo: 0
+    MaxHealth: 50
     MaxCombo: 10
-    MaxMovementSpeed: 10
-    _currentHealth: 0
-    _currentCombo: 0
-    _currentMovementSpeed: 1
-    _stun: 0
-    _currentGold: 0
+    MaxMovementSpeed: 2
   UnitAnimation: {fileID: 1947696653}
   agent: {fileID: 0}
   particleSystems: []

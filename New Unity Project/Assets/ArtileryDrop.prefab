@@ -125,10 +125,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _collider: {fileID: 0}
+  SelfStun: 0
+  CheckCollisionsEveryFrame: 1
   effects:
   - type: 4
     Strength: 0.5
-    UseAsFlat: 0
+    InverseOnTimeout: 1
     Duration: 1
     TimeActivated: 0
+    ApplyOnce: 1
   Offset: {x: 0, y: 25, z: 0}
