@@ -241,6 +241,7 @@ public class Unit : MonoBehaviour
         pWeapon.transform.parent = weapons[selectedWeapon].transform.parent;
         pWeapon.transform.position = weapons[selectedWeapon].transform.position;
         pWeapon.transform.rotation = weapons[selectedWeapon].transform.rotation;
+        pWeapon.transform.localScale = weapons[selectedWeapon].transform.localScale;
 
         if (weapons[1] == null)
         {
