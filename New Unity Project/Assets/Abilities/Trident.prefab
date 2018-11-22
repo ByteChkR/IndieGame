@@ -52,5 +52,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _collider: {fileID: 0}
+  SelfStun: 0
+  CheckCollisionsEveryFrame: 1
+  collType: 0
   Angle: 45
   Projectile: {fileID: 1007788284920100, guid: 73bf2125c0dc30f4caf326ad32000293, type: 2}

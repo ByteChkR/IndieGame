@@ -67,15 +67,16 @@ MonoBehaviour:
   _collider: {fileID: 0}
   SelfStun: 0
   CheckCollisionsEveryFrame: 0
+  collType: 0
   _damage: 20
   _animationName: AOEStun
   _animationSpeed: 1
   onHitEffects:
   - type: 8
     Strength: 1
-    UseAsFlat: 1
     InverseOnTimeout: 1
     Duration: 5
     TimeActivated: 0
     ApplyOnce: 0
   hitboxSize: {x: 5, y: 2, z: 7}
+  InFrontOfPlayer: 1
