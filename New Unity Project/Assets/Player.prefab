@@ -47,6 +47,27 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1499655445665508
+GameObject:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4236129120033934}
+  - component: {fileID: 33603928921057322}
+  - component: {fileID: 23115699565751544}
+  - component: {fileID: 65727640220927810}
+  - component: {fileID: 114236821517423168}
+  - component: {fileID: 65375505064673104}
+  - component: {fileID: 54408363504919154}
+  m_Layer: 2
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1523658532706950
 GameObject:
   m_ObjectHideFlags: 0
@@ -77,11 +98,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4371401110584666}
-  - component: {fileID: 33421669759828870}
-  - component: {fileID: 23064197964895046}
-  - component: {fileID: 114507134278541094}
-  - component: {fileID: 65876336601301560}
-  - component: {fileID: 54063459352094298}
   m_Layer: 2
   m_Name: Weapon
   m_TagString: Untagged
@@ -131,6 +147,19 @@ Transform:
   m_Father: {fileID: 4065166884981214}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 34.29624, z: 0}
+--- !u!4 &4236129120033934
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1499655445665508}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4371401110584666}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4371401110584666
 Transform:
   m_ObjectHideFlags: 1
@@ -140,16 +169,17 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 0.29999998, y: 0.32999998, z: 2.83}
-  m_Children: []
+  m_Children:
+  - {fileID: 4236129120033934}
   m_Father: {fileID: 4065166884981214}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 13.3200035, z: 0}
---- !u!23 &23064197964895046
+  m_LocalEulerAnglesHint: {x: 0, y: 288.00003, z: 0}
+--- !u!23 &23115699565751544
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1993866894514744}
+  m_GameObject: {fileID: 1499655445665508}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -291,19 +321,19 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1523658532706950}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
---- !u!33 &33421669759828870
-MeshFilter:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1993866894514744}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &33530555851939552
 MeshFilter:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1148901469035072}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!33 &33603928921057322
+MeshFilter:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1499655445665508}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &33762294498202418
 MeshFilter:
@@ -312,12 +342,12 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1008444081963494}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &54063459352094298
+--- !u!54 &54408363504919154
 Rigidbody:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1993866894514744}
+  m_GameObject: {fileID: 1499655445665508}
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
@@ -354,18 +384,30 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &65876336601301560
+--- !u!65 &65375505064673104
 BoxCollider:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1993866894514744}
+  m_GameObject: {fileID: 1499655445665508}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0.00000011920929, y: 0, z: 0}
+--- !u!65 &65727640220927810
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1499655445665508}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &65999901271983888
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -390,6 +432,8 @@ Animation:
   m_Animations:
   - {fileID: 7400000, guid: f983c376eabd13d408c9de8125295732, type: 2}
   - {fileID: 7400000, guid: 538a8ee5395857c438b5e9d4fce0fa7e, type: 2}
+  - {fileID: 7400000, guid: d76d2deaf75f4d146b5a54fd7435d6ee, type: 2}
+  - {fileID: 7400000, guid: 7b8f8ff84de35b542b1c93f6dcee885b, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
@@ -415,6 +459,37 @@ MonoBehaviour:
   UnitAnimation: {fileID: 111996268613663784}
   agent: {fileID: 0}
   particleSystems: []
+--- !u!114 &114236821517423168
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1499655445665508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffa9b166186a8434aa2d1be75225fd2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  owner: 0
+  oOwner: {fileID: 0}
+  abilities:
+  - Name: Cleave Attack
+    Description: 
+    icon: {fileID: 0}
+    abilityInstance: {fileID: 114594336571885322, guid: 6a2757239111ab143b4565c0e0482616,
+      type: 2}
+    ComboCost: 0
+    cooldown: 1
+  - Name: CallingArtillery
+    Description: 
+    icon: {fileID: 0}
+    abilityInstance: {fileID: 114436595879807954, guid: da63a084048900f448c6731f9024082a,
+      type: 2}
+    ComboCost: 0
+    cooldown: 0.6
+  abilityKeyBindings: 4301000044010000
+  coll: {fileID: 0}
+  rb: {fileID: 0}
 --- !u!114 &114280270937398308
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -438,37 +513,6 @@ MonoBehaviour:
   WinScreen: {fileID: 0}
   GameOverScreen: {fileID: 0}
   MenuCanvas: {fileID: 0}
---- !u!114 &114507134278541094
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1993866894514744}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ffa9b166186a8434aa2d1be75225fd2e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  owner: 0
-  oOwner: {fileID: 0}
-  abilities:
-  - Name: Cleave Attack
-    Description: 
-    icon: {fileID: 0}
-    abilityInstance: {fileID: 114594336571885322, guid: 6a2757239111ab143b4565c0e0482616,
-      type: 2}
-    ComboCost: 0
-    cooldown: 1
-  - Name: CallingArtillery
-    Description: 
-    icon: {fileID: 0}
-    abilityInstance: {fileID: 114351747421703744, guid: 6ac038f11fb52c9489101df267723137,
-      type: 2}
-    ComboCost: 0
-    cooldown: 0.6
-  abilityKeyBindings: 4301000044010000
-  coll: {fileID: 0}
-  rb: {fileID: 0}
 --- !u!136 &136613476008400784
 CapsuleCollider:
   m_ObjectHideFlags: 1
