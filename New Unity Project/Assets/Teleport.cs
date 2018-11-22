@@ -48,7 +48,7 @@ public class Teleport : Ability {
             pos = target - transform.forward * 1.5f;
         }
         Source.transform.position = pos;
-        Source.agent.isStopped = true;
+        if(Source.agent != null)Source.agent.isStopped = true;
         blinked = true;
     }
 
