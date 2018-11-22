@@ -11,11 +11,13 @@ public class Weapon : MonoBehaviour
     public List<AbstractAbility> abilities;
     public List<KeyCode> abilityKeyBindings;
     public BoxCollider coll;
+    public Rigidbody rb;
 
     // Use this for initialization
     void Start()
     {
         coll = GetComponent<BoxCollider>();
+        rb = GetComponent<Rigidbody>();
     }
 
     public void SetOwnerDUs(Unit pOwner)
@@ -27,7 +29,21 @@ public class Weapon : MonoBehaviour
     public void SetOwner(int unitId)
     {
         owner = unitId;
-        oOwner = Unit.ActiveUnits[owner];
+        if(unitId >= 0) oOwner = Unit.ActiveUnits[owner];
+    }
+    
+    private void PreparePickup()
+    {
+        if (owner < 0)
+        { 
+            coll.size = new Vector3(3, 3, 3);
+            rb.useGravity = true;
+        }
+        else
+        { 
+            coll.size = new Vector3(1, 1, 1);
+            rb.useGravity = false;
+        }
     }
 
     // Update is called once per frame
