@@ -242,22 +242,26 @@ public class Unit : MonoBehaviour
         Debug.Log(pWeapon.owner);
 
 
+        
+        pWeapon.SetOwnerDUs(this);
+        pWeapon.PreparePickup();
+        pWeapon.transform.parent = weapons[selectedWeapon].transform.parent;
+        pWeapon.transform.position = weapons[selectedWeapon].transform.position;
+        pWeapon.transform.rotation = weapons[selectedWeapon].transform.rotation;
+        pWeapon.transform.localScale = weapons[selectedWeapon].transform.localScale;
+
         if (weapons[1] == null)
         {
             weapons[1] = pWeapon;
+            SwitchWeapon(); //Switch to new weapon
         }
         else
         {
             DropWeapon();
             weapons[selectedWeapon] = pWeapon;
+      
         }
-        pWeapon.SetOwnerDUs(this);
-        pWeapon.transform.parent = weapons[selectedWeapon].transform.parent;
-        pWeapon.transform.position = weapons[selectedWeapon].transform.position;
-        pWeapon.transform.rotation = weapons[selectedWeapon].transform.rotation;
-        pWeapon.transform.localScale = weapons[selectedWeapon].transform.localScale;
-        pWeapon.PreparePickup();
-        Debug.Log(pWeapon.owner);
+        
     }
 
     public void DropWeapon()
@@ -270,6 +274,7 @@ public class Unit : MonoBehaviour
 
     public void SwitchWeapon()
     {
+        int last = selectedWeapon;
         if (weapons[1] != null && selectedWeapon == 0)
         {
             selectedWeapon = 1;
@@ -278,6 +283,8 @@ public class Unit : MonoBehaviour
         {
             selectedWeapon = 0;
         }
+        weapons[last].gameObject.SetActive(false);
+        weapons[selectedWeapon].gameObject.SetActive(true);
         Debug.Log("selected weapon: " + selectedWeapon);
     }
 

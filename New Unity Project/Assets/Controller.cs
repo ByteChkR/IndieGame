@@ -47,6 +47,16 @@ public class Controller : MonoBehaviour, IController
         _rb.velocity = Vector3.zero;
     }
 
+    private void Update()
+    {
+
+        if (lockControls || u.stats.IsStunned) return;
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            u.SwitchWeapon();
+        }
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -86,10 +96,7 @@ public class Controller : MonoBehaviour, IController
         }
         Vector3 v = Vector3.zero;
 
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            u.SwitchWeapon();
-        }
+        
         if (Input.GetKey(Forward))
         {
             v += Vector3.forward;
