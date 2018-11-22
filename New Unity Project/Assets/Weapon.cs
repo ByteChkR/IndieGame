@@ -16,6 +16,7 @@ public class Weapon : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        Physics.IgnoreLayerCollision(12, 11);
         rb = GetComponent<Rigidbody>();
         coll = GetComponent<BoxCollider>();
     }
