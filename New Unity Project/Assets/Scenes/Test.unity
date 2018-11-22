@@ -620,7 +620,7 @@ Prefab:
         type: 2}
       propertyPath: abilities.Array.data[1].abilityInstance
       value: 
-      objectReference: {fileID: 114581013238943084, guid: 86e22808233aec14ea7f86662753cb12,
+      objectReference: {fileID: 114475344119778760, guid: dc11bfc4af621e84e8b3b222fbc9a4fb,
         type: 2}
     - target: {fileID: 111996268613663784, guid: 0bf0a0cb88542ed468c4543523f10b86,
         type: 2}
