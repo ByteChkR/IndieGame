@@ -216,6 +216,18 @@ public class Unit : MonoBehaviour
     AnimationTrigger _trigger;
 
     
+    public void PickupWeapon(Weapon pWeapon)
+    {
+        pWeapon.transform.parent = weapons[selectedWeapon].transform.parent;
+        DropWeapon();
+        weapons[selectedWeapon] = pWeapon;
+    }
+
+    public void DropWeapon()
+    {
+        weapons[selectedWeapon].transform.parent = null;
+    }
+
 
     public void SwitchWeapon()
     {
