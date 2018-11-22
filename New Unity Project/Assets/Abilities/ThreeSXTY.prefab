@@ -19,9 +19,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4334799433876266}
-  - component: {fileID: 114594336571885322}
+  - component: {fileID: 114436595879807954}
   m_Layer: 0
-  m_Name: MeeleeAttack
+  m_Name: ThreeSXTY
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -40,7 +40,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114594336571885322
+--- !u!114 &114436595879807954
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -48,26 +48,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1789416970732076}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 910453c632ab69a4bbc9575161df26ae, type: 3}
+  m_Script: {fileID: 11500000, guid: 23f6a6c68fa1f8b40a83f97f892ead0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _collider: {fileID: 0}
   SelfStun: 0
   CheckCollisionsEveryFrame: 1
-  KnockBackPower: 10
+  KnockBackPower: 0
   KnockBackMaxRange: 10
   KnockBackPowerOnMaxRange: 5
   InvertKnockback: 0
   MoreOnMaxRange: 0
   collType: 0
-  _damage: 5
-  _animationName: BasicWeaponSwing
-  _animationSpeed: 3
-  onHitEffects:
-  - type: 4
-    Strength: 0.1
-    InverseOnTimeout: 1
-    Duration: 1
-    TimeActivated: 0
-    ApplyOnce: 1
-  ComboGainPerHit: 1
+  _damage: 0
+  _animationName: ThreeSXTY
+  _animationSpeed: 2
+  onHitEffects: []

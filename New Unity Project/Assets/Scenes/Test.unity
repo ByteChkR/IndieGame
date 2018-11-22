@@ -577,7 +577,7 @@ Prefab:
     - target: {fileID: 111996268613663784, guid: 0bf0a0cb88542ed468c4543523f10b86,
         type: 2}
       propertyPath: m_Animations.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4065166884981214, guid: 0bf0a0cb88542ed468c4543523f10b86, type: 2}
       propertyPath: m_LocalPosition.x
@@ -620,7 +620,7 @@ Prefab:
         type: 2}
       propertyPath: abilities.Array.data[1].abilityInstance
       value: 
-      objectReference: {fileID: 114475344119778760, guid: dc11bfc4af621e84e8b3b222fbc9a4fb,
+      objectReference: {fileID: 114436595879807954, guid: da63a084048900f448c6731f9024082a,
         type: 2}
     - target: {fileID: 111996268613663784, guid: 0bf0a0cb88542ed468c4543523f10b86,
         type: 2}
@@ -631,6 +631,15 @@ Prefab:
         type: 2}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 111996268613663784, guid: 0bf0a0cb88542ed468c4543523f10b86,
+        type: 2}
+      propertyPath: m_Animations.Array.data[3]
+      value: 
+      objectReference: {fileID: 7400000, guid: 7b8f8ff84de35b542b1c93f6dcee885b, type: 2}
+    - target: {fileID: 4371401110584666, guid: 0bf0a0cb88542ed468c4543523f10b86, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 288.00003
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0bf0a0cb88542ed468c4543523f10b86, type: 2}

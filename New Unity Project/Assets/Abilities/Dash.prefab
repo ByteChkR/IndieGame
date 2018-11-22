@@ -55,9 +55,9 @@ MonoBehaviour:
   _collider: {fileID: 0}
   SelfStun: 1
   CheckCollisionsEveryFrame: 1
-  KnockBackPower: 10
-  KnockBackMaxRange: 10
-  KnockBackPowerOnMaxRange: 10
+  KnockBackPower: 100
+  KnockBackMaxRange: 2
+  KnockBackPowerOnMaxRange: 30
   InvertKnockback: 0
   MoreOnMaxRange: 0
   collType: 0
@@ -65,10 +65,10 @@ MonoBehaviour:
   _animationName: BasicWeaponSwing
   _animationSpeed: 1
   onHitEffects: []
-  hitboxSize: {x: 2, y: 0, z: 0}
+  hitboxSize: {x: 3, y: 0, z: 0}
   InFrontOfPlayer: 0
   DashDistance: 10
-  DashTime: 1
+  DashTime: 0.25
   animationCurve:
     serializedVersion: 2
     m_Curve:
@@ -93,6 +93,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  afterDashAbility: {fileID: 1789416970732076, guid: d5bbe3d4e3b426f44880af83558a9655,
+    type: 2}
 --- !u!135 &135239838652249528
 SphereCollider:
   m_ObjectHideFlags: 1
