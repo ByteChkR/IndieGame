@@ -7,7 +7,6 @@ public class AbstractEffect
 {
     public Unit.StatType type;
     public float Strength;
-    public bool UseAsFlat = false;
     public bool InverseOnTimeout = false;
     public float Duration;
     public float TimeActivated;
@@ -25,7 +24,7 @@ public class AbstractEffect
     {
         if (ApplyOnce && appliedOnce) return value;
         appliedOnce = true;
-        return UseAsFlat ? value + Strength : value * Strength;
+        return value + Strength;
 
     }
 
@@ -33,7 +32,7 @@ public class AbstractEffect
     {
         if (inversed) return value;
         inversed = true;
-        return UseAsFlat ? value - Strength : value * 1 / Strength;
+        return value - Strength;
     }
 }
 
@@ -41,27 +40,42 @@ public class AbstractEffect
 public class UnitStats
 {
     [SerializeField]
+    private float BaseHealth;
+    [SerializeField]
+    private float BaseMovementSpeed;
+    [SerializeField]
+    private float BaseCombo;
+
+
+
+    
+
+    [SerializeField]
     private float MaxHealth;
     [SerializeField]
     private float MaxCombo;
     [SerializeField]
     private float MaxMovementSpeed;
-    [SerializeField]
     private float _currentHealth;
-    [SerializeField]
     private float _currentCombo;
-    [SerializeField]
     private float _currentMovementSpeed;
-    [SerializeField]
     private bool _stun = false;
-    [SerializeField]
     private float _currentGold;
+
+
     public float CurrentHealth { get { return _currentHealth; } }
     public float CurrentCombo { get { return _currentCombo; } }
     public float CurrentMovementSpeed { get { return _currentMovementSpeed; } }
     public bool IsStunned { get { return _stun; } }
     private List<AbstractEffect> effects = new List<AbstractEffect>();
 
+
+    public void Init()
+    {
+        _currentMovementSpeed = BaseMovementSpeed;
+        _currentHealth = BaseHealth;
+        _currentCombo = BaseCombo;
+    }
 
     public void AddEffect(AbstractEffect newEffect)
     {
@@ -84,12 +98,15 @@ public class UnitStats
         {
             case Unit.StatType.HP:
                 _currentHealth += value;
+                _currentHealth = _currentHealth > MaxHealth ? MaxHealth : _currentHealth;
                 break;
             case Unit.StatType.COMBO:
                 _currentCombo += value;
+                _currentCombo = _currentCombo > MaxCombo ? MaxCombo : _currentCombo;
                 break;
             case Unit.StatType.MOVESPEED:
                 _currentMovementSpeed += value;
+                _currentMovementSpeed = _currentMovementSpeed > MaxMovementSpeed ? MaxMovementSpeed : _currentMovementSpeed;
                 break;
             case Unit.StatType.STUN:
                 _stun = value > 0;
@@ -284,6 +301,7 @@ public class Unit : MonoBehaviour
     private void Awake()
     {
         ActiveUnits.Add(gameObject.GetInstanceID(), this);
+        stats.Init();
     }
 
     // Use this for initialization

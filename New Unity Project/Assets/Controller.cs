@@ -62,7 +62,7 @@ public class Controller : MonoBehaviour, IController
         if (_rb.velocity == Vector3.zero)
         {
             {
-                speed = ForwardSpeed;
+                speed = ForwardSpeed * u.stats.CurrentMovementSpeed ;
             }
         }
         else
@@ -75,7 +75,7 @@ public class Controller : MonoBehaviour, IController
             }
             else if (d < -StrafeCutoff)
             {
-                speed = BackwardSpeed+u.stats.CurrentMovementSpeed;
+                speed = BackwardSpeed*u.stats.CurrentMovementSpeed;
             }
             else
             {
