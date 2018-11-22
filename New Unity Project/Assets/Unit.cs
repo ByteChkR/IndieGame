@@ -226,7 +226,7 @@ public class Unit : MonoBehaviour
     public void DropWeapon()
     {
         weapons[selectedWeapon].transform.parent = null;
-        weapons[selectedWeapon].SetOwner(-1);
+        weapons[selectedWeapon].SetOwner(weapons[selectedWeapon].gameObject.GetInstanceID());
     }
 
 
