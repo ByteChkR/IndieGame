@@ -17,7 +17,18 @@ public class Ability : MonoBehaviour
     protected bool SelfStun = false;
     [SerializeField]
     protected bool CheckCollisionsEveryFrame = true;
-    public enum ColliderTypes {None, Box, Sphere }
+    [SerializeField]
+    protected float KnockBackPower = 0;
+    [SerializeField]
+    protected float KnockBackMaxRange = 10;
+    [SerializeField]
+    protected float KnockBackPowerOnMaxRange = 5;
+    [SerializeField]
+    protected bool InvertKnockback = false;
+    [SerializeField]
+    protected bool MoreOnMaxRange = false;
+
+    public enum ColliderTypes { None, Box, Sphere }
     public ColliderTypes collType;
     // Use this for initialization
     void Start()
@@ -45,7 +56,14 @@ public class Ability : MonoBehaviour
 
     public virtual void OnHit(Unit target)
     {
-
+        if (KnockBackPower != 0)
+        {
+            Vector3 d = (target.transform.position - Source.transform.position);
+            d = InvertKnockback ? -d : d;
+            float deltaPower = MoreOnMaxRange ? -(KnockBackPower - KnockBackPowerOnMaxRange) : KnockBackPower - KnockBackPowerOnMaxRange;
+            float p = Mathf.Clamp01(d.magnitude / KnockBackMaxRange);
+            target.controller.rb.AddForce(d.normalized * (KnockBackPowerOnMaxRange + p * deltaPower), ForceMode.VelocityChange);
+        }
     }
 
 
