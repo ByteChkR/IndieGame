@@ -135,6 +135,10 @@ public class Controller : MonoBehaviour, IController
                 WinScreen.SetActive(true);
             }
         }
+        if(Input.GetKeyDown(KeyCode.E))
+        {
+            u.DropWeapon();
+        }
     }
 
     Vector3 ViewingDirection()
