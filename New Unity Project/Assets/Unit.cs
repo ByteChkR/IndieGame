@@ -48,7 +48,7 @@ public class UnitStats
 
 
 
-    
+
 
     [SerializeField]
     private float MaxHealth;
@@ -204,12 +204,13 @@ public class Unit : MonoBehaviour
 
     int selectedWeapon = 0;
     public Weapon SelectedWeapon { get { return weapons[selectedWeapon]; } }
-    public enum TriggerType {
+    public enum TriggerType
+    {
         CollisionCheck,
         Teleport,
         ControlLock,
         ControlUnlock,
-        
+
     };
 
     public delegate void AnimationTrigger(TriggerType ttype);
@@ -223,21 +224,22 @@ public class Unit : MonoBehaviour
 
     void OnCollisionStay(Collision coll)
     {
-        if(null != coll.collider.GetComponent<Weapon>())
+        Weapon w = null;
+        if (null != (w = (coll.collider.GetComponent<Weapon>())))
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E) && w.isOnGround)
             {
                 Debug.Log("pickup");
-                Debug.Log("weapon id " + coll.collider.GetComponent<Weapon>().gameObject.GetInstanceID());
-                PickupWeapon(coll.collider.GetComponent<Weapon>());
+                Debug.Log("weapon id " + w.GetInstanceID());
+                PickupWeapon(w);
             }
         }
     }
-    
+
     public void PickupWeapon(Weapon pWeapon)
     {
 
-        Debug.Log(pWeapon.owner);
+        Debug.Log(pWeapon.owner  == gameObject.GetInstanceID());
         pWeapon.transform.parent = weapons[selectedWeapon].transform.parent;
         pWeapon.transform.position = weapons[selectedWeapon].transform.position;
         pWeapon.transform.rotation = weapons[selectedWeapon].transform.rotation;
@@ -253,7 +255,6 @@ public class Unit : MonoBehaviour
             weapons[selectedWeapon] = pWeapon;
         }
         pWeapon.SetOwnerDUs(this);
-        Debug.Log(pWeapon.owner);
     }
 
     public void DropWeapon()
@@ -270,7 +271,7 @@ public class Unit : MonoBehaviour
         {
             selectedWeapon = 1;
         }
-        else if(weapons[0] != null)
+        else if (weapons[0] != null)
         {
             selectedWeapon = 0;
         }
@@ -281,7 +282,7 @@ public class Unit : MonoBehaviour
     {
         foreach (ParticleSystemEntry ps in particleSystems)
         {
-            if(ps.Key == key)
+            if (ps.Key == key)
             {
                 if (ps.Value.isStopped)
                 {
@@ -303,11 +304,11 @@ public class Unit : MonoBehaviour
 
     void FireAnimationTrigger(TriggerType ttype)
     {
-        if(ttype == TriggerType.ControlLock)
+        if (ttype == TriggerType.ControlLock)
         {
             LockControls(true);
         }
-        else if(ttype == TriggerType.ControlUnlock)
+        else if (ttype == TriggerType.ControlUnlock)
         {
             LockControls(false);
         }
@@ -339,7 +340,7 @@ public class Unit : MonoBehaviour
         MOVESPEED = 4,
         STUN = 8,
         GOLD = 16
-            
+
     }
 
     private void Awake()

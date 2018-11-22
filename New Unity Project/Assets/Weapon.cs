@@ -12,6 +12,7 @@ public class Weapon : MonoBehaviour
     public List<KeyCode> abilityKeyBindings;
     public BoxCollider coll;
     public Rigidbody rb;
+    public bool isOnGround { get { return owner == gameObject.GetInstanceID(); } }
 
     // Use this for initialization
     void Start()
