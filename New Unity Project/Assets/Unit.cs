@@ -238,10 +238,7 @@ public class Unit : MonoBehaviour
     {
 
         Debug.Log(pWeapon.owner);
-        pWeapon.transform.parent = weapons[selectedWeapon].transform.parent;
-        pWeapon.transform.position = weapons[selectedWeapon].transform.position;
-        pWeapon.transform.rotation = weapons[selectedWeapon].transform.rotation;
-        pWeapon.transform.localScale = weapons[selectedWeapon].transform.localScale;
+
 
         if (weapons[1] == null)
         {
@@ -253,6 +250,11 @@ public class Unit : MonoBehaviour
             weapons[selectedWeapon] = pWeapon;
         }
         pWeapon.SetOwnerDUs(this);
+        pWeapon.transform.parent = weapons[selectedWeapon].transform.parent;
+        pWeapon.transform.position = weapons[selectedWeapon].transform.position;
+        pWeapon.transform.rotation = weapons[selectedWeapon].transform.rotation;
+        pWeapon.transform.localScale = weapons[selectedWeapon].transform.localScale;
+        pWeapon.PreparePickup();
         Debug.Log(pWeapon.owner);
     }
 
