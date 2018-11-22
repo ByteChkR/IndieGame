@@ -166,6 +166,13 @@ public class UnitStats
     }
 }
 
+[System.Serializable]
+public class ParticleSystemEntry
+{
+    public string Key;
+    public ParticleSystem Value;
+}
+
 [RequireComponent(typeof(IController))]
 public class Unit : MonoBehaviour
 {
@@ -175,9 +182,16 @@ public class Unit : MonoBehaviour
     private Weapon[] weapons = new Weapon[2];
     public Animation UnitAnimation;
     public NavMeshAgent agent;
+    [SerializeField]
+    public ParticleSystemEntry[] particleSystems;
+
     int selectedWeapon = 0;
     public Weapon SelectedWeapon { get { return weapons[selectedWeapon]; } }
-    public enum TriggerType { CollisionCheck, Teleport, ControlLock, ControlUnlock };
+    public enum TriggerType { CollisionCheck,
+        Teleport,
+        ControlLock,
+        ControlUnlock
+    };
 
     public delegate void AnimationTrigger(TriggerType ttype);
     AnimationTrigger _trigger;
@@ -193,6 +207,24 @@ public class Unit : MonoBehaviour
         else if(weapons[0] != null)
         {
             selectedWeapon = 0;
+        }
+    }
+
+    void TriggerParticleEffect(string key)
+    {
+        foreach (ParticleSystemEntry ps in particleSystems)
+        {
+            if(ps.Key == key)
+            {
+                if (ps.Value.isStopped)
+                {
+                    ps.Value.Play();
+                }
+                else
+                {
+                    ps.Value.Stop();
+                }
+            }
         }
     }
 
