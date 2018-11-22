@@ -52,13 +52,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _collider: {fileID: 0}
+  SelfStun: 0
+  CheckCollisionsEveryFrame: 1
+  collType: 0
   _damage: 5
   _animationName: BasicWeaponSwing
   _animationSpeed: 3
   onHitEffects:
   - type: 4
     Strength: 0.1
-    UseAsFlat: 0
     InverseOnTimeout: 1
     Duration: 1
     TimeActivated: 0
