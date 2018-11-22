@@ -1,0 +1,26 @@
+Questions:
+	Character
+	All Abilities
+		i need videos of how they are supposed to work
+Pick Up system
+finish Weapon Switch System
+implement sound triggers as animation events
+implement knockback in unit
+implement hp <= 0
+implement right enforcements for stats
+	fixed computation
+	readonly basestats
+	MaximumStat
+implement all effects
+	i need short descriptions what the effects are doing(pls not complicated ones)
+prefabs for "different" npcs
+implement freeing of ppl scene
+implement animations for different stats(stun, slow?)
+implement particles in onHitEffects for fire damage and other
+implement lifesteal?
+think about how to travel between levels
+	how the train is going to move
+	what perspective do you have if you are inside the (closed) train?
+		how do you see what you are buying
+How do enemies spawn?
+Maybe we can implement some kind of explosion force to knock enemies up and back all we need is 2 poses(falling(just a pose with a bit of noise), faceplant(quick stand up animation nothing fancy really))
