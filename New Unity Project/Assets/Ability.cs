@@ -10,13 +10,15 @@ public class Ability : MonoBehaviour
 
     protected Unit Source;
     [SerializeField]
-    protected BoxCollider _collider;
+    protected Collider _collider;
     protected bool Initialized = false;
     protected List<int> unitsHitSinceInit = new List<int>();
     [SerializeField]
     protected bool SelfStun = false;
     [SerializeField]
     protected bool CheckCollisionsEveryFrame = true;
+    public enum ColliderTypes {None, Box, Sphere }
+    public ColliderTypes collType;
     // Use this for initialization
     void Start()
     {
@@ -27,15 +29,18 @@ public class Ability : MonoBehaviour
     {
         if (_collider == null)
         {
-            _collider = GetComponent<BoxCollider>();
+            _collider = GetComponent<Collider>();
         }
+        if (_collider == null) collType = ColliderTypes.None;
+        else if (_collider is SphereCollider) collType = ColliderTypes.Sphere;
+        else if (_collider is BoxCollider) collType = ColliderTypes.Box;
 
         //Debug.Assert(_collider != null, "Ability has no Collider");
 
         Source = Unit.ActiveUnits[source];
         Initialized = true;
         Source.AddAnimationTriggerListener(CollisionCheck);
-        
+
     }
 
     public virtual void OnHit(Unit target)
@@ -48,7 +53,7 @@ public class Ability : MonoBehaviour
     public virtual void Update()
     {
         if (!Initialized) return;
-        if(CheckCollisionsEveryFrame)CheckCollisions();
+        if (CheckCollisionsEveryFrame) CheckAndResolveCollisions(_collider);
     }
 
     public virtual void OnDestroy()
@@ -59,18 +64,52 @@ public class Ability : MonoBehaviour
     void CollisionCheck(Unit.TriggerType ttype)
     {
         if (ttype != Unit.TriggerType.CollisionCheck) return;
-        CheckCollisions();
+        CheckAndResolveCollisions(_collider);
     }
 
-    void CheckCollisions()
+    void CheckAndResolveCollisions(Collider coll)
     {
-        if (_collider == null) return;
-        List<int> unitsHit = Physics.OverlapBox(_collider.transform.position + _collider.center, _collider.size / 2, _collider.transform.rotation, 1 << 11)
+        List<int> newUnits = new List<int>();
+        if (collType == ColliderTypes.None) return;
+        switch (collType)
+        {
+            case ColliderTypes.Box:
+                newUnits = CheckAndResolveCollisions(coll as BoxCollider);
+                break;
+            case ColliderTypes.Sphere:
+                newUnits = CheckAndResolveCollisions(coll as SphereCollider);
+                break;
+            default:
+                break;
+        }
+        unitsHitSinceInit.AddRange(newUnits);
+    }
+
+    List<int> CheckAndResolveCollisions(SphereCollider coll)
+    {
+        List<int> unitsHit = Physics.OverlapSphere(_collider.transform.position + coll.center, coll.radius, 1 << 11)
         .Select(x => x.gameObject.GetInstanceID())
         .Where(x => x != Source.gameObject.GetInstanceID()).ToList();
+
         List<int> newUnits = unitsHit.Select(x => x).Where(x => !unitsHitSinceInit.Contains(x)).ToList();
+
         newUnits.ForEach(x => OnHit(Unit.ActiveUnits[x]));
-        unitsHitSinceInit.AddRange(newUnits);
+
         Debug.Log(newUnits.Count);
+        return newUnits;
+    }
+
+    List<int> CheckAndResolveCollisions(BoxCollider coll)
+    {
+        List<int> unitsHit = Physics.OverlapBox(_collider.transform.position + coll.center, coll.size / 2, _collider.transform.rotation, 1 << 11)
+        .Select(x => x.gameObject.GetInstanceID())
+        .Where(x => x != Source.gameObject.GetInstanceID()).ToList();
+
+        List<int> newUnits = unitsHit.Select(x => x).Where(x => !unitsHitSinceInit.Contains(x)).ToList();
+
+        newUnits.ForEach(x => OnHit(Unit.ActiveUnits[x]));
+
+        Debug.Log(newUnits.Count);
+        return newUnits;
     }
 }

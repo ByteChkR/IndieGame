@@ -48,7 +48,7 @@ public class Controller : MonoBehaviour, IController
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (lockControls) return;
+        if (lockControls || u.stats.IsStunned) return;
         Vector3 vDir = ViewingDirection();
         vDir = new Vector3(vDir.x, 0, vDir.z);
         target = transform.position + vDir;
@@ -62,7 +62,7 @@ public class Controller : MonoBehaviour, IController
         if (_rb.velocity == Vector3.zero)
         {
             {
-                speed = ForwardSpeed * u.stats.CurrentMovementSpeed ;
+                speed = ForwardSpeed * u.stats.CurrentMovementSpeed;
             }
         }
         else
@@ -75,11 +75,11 @@ public class Controller : MonoBehaviour, IController
             }
             else if (d < -StrafeCutoff)
             {
-                speed = BackwardSpeed*u.stats.CurrentMovementSpeed;
+                speed = BackwardSpeed * u.stats.CurrentMovementSpeed;
             }
             else
             {
-                speed = ForwardSpeed*u.stats.CurrentMovementSpeed;
+                speed = ForwardSpeed * u.stats.CurrentMovementSpeed;
             }
         }
         Vector3 v = Vector3.zero;
@@ -104,10 +104,10 @@ public class Controller : MonoBehaviour, IController
         {
             v += Vector3.right;
         }
-        _rb.AddForce(v.normalized * speed, ForceMode.Acceleration);
+        if (v != Vector3.zero) _rb.AddForce(v.normalized * speed, ForceMode.Acceleration);
 
-        if(Input.GetKeyDown(KeyCode.K))
-        { 
+        if (Input.GetKeyDown(KeyCode.K))
+        {
             if (MenuCanvas.activeSelf)
             {
                 MenuCanvas.SetActive(false);
@@ -115,7 +115,7 @@ public class Controller : MonoBehaviour, IController
                 WinScreen.SetActive(false);
             }
             else
-            { 
+            {
                 MenuCanvas.SetActive(true);
                 GameOverScreen.SetActive(true);
             }
@@ -130,16 +130,17 @@ public class Controller : MonoBehaviour, IController
                 WinScreen.SetActive(false);
             }
             else
-            { 
+            {
                 MenuCanvas.SetActive(true);
                 WinScreen.SetActive(true);
             }
         }
-        if(Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             u.DropWeapon();
         }
     }
+    
 
     Vector3 ViewingDirection()
     {

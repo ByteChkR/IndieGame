@@ -15,6 +15,9 @@ public class Teleport : Ability {
 
     bool started = false;
     Vector3 target;
+
+    [SerializeField]
+    private GameObject _nextAbility;
 	// Use this for initialization
 	void Start () {
 		
@@ -27,6 +30,7 @@ public class Teleport : Ability {
         Source.UnitAnimation[_animationName].speed = _animationSpeed;
         Source.UnitAnimation.Play(_animationName, PlayMode.StopSameLayer);
         Source.AddAnimationTriggerListener(TriggerTeleport);
+        started = true;
     }
 
     public void TriggerTeleport(Unit.TriggerType triggerType)
@@ -57,7 +61,14 @@ public class Teleport : Ability {
         if(blinked && started && !Source.UnitAnimation.isPlaying)
         {
             started = false;
+            if (_nextAbility != null)
+            {
+                Source.UnitAnimation.Stop();
+                Ability a = Instantiate(_nextAbility, Source.transform.position, Source.transform.rotation).GetComponent<Ability>();
+                a.Initialize(Source.gameObject.GetInstanceID(), target);
+            }
             Destroy(this.gameObject);
+            
         }
 	}
 

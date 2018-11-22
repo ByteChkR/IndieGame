@@ -82,7 +82,6 @@ GameObject:
   - component: {fileID: 114507134278541094}
   - component: {fileID: 65876336601301560}
   - component: {fileID: 54063459352094298}
-  - component: {fileID: 65178938196597168}
   m_Layer: 2
   m_Name: Weapon
   m_TagString: Untagged
@@ -343,18 +342,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!65 &65178938196597168
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1993866894514744}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &65279314487593258
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -475,7 +462,7 @@ MonoBehaviour:
   - Name: CallingArtillery
     Description: 
     icon: {fileID: 0}
-    abilityInstance: {fileID: 114351747421703744, guid: d5bbe3d4e3b426f44880af83558a9655,
+    abilityInstance: {fileID: 114351747421703744, guid: 6ac038f11fb52c9489101df267723137,
       type: 2}
     ComboCost: 0
     cooldown: 0.6
