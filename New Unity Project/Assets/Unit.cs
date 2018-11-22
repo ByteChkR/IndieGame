@@ -215,27 +215,57 @@ public class Unit : MonoBehaviour
     public delegate void AnimationTrigger(TriggerType ttype);
     AnimationTrigger _trigger;
 
+
+    public Weapon GetActiveWeapon()
+    {
+        return weapons[selectedWeapon];
+    }
+
+    void OnCollisionStay(Collision coll)
+    {
+        if(null != coll.collider.GetComponent<Weapon>())
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                Debug.Log("pickup");
+                Debug.Log("weapon id " + coll.collider.GetComponent<Weapon>().gameObject.GetInstanceID());
+                PickupWeapon(coll.collider.GetComponent<Weapon>());
+            }
+        }
+    }
     
     public void PickupWeapon(Weapon pWeapon)
     {
-        pWeapon.SetOwnerDUs(this);
+
+        Debug.Log(pWeapon.owner);
         pWeapon.transform.parent = weapons[selectedWeapon].transform.parent;
         pWeapon.transform.position = weapons[selectedWeapon].transform.position;
         pWeapon.transform.rotation = weapons[selectedWeapon].transform.rotation;
-        DropWeapon();
-        weapons[selectedWeapon] = pWeapon;
+
+        if (weapons[1] == null)
+        {
+            weapons[1] = pWeapon;
+        }
+        else
+        {
+            DropWeapon();
+            weapons[selectedWeapon] = pWeapon;
+        }
+        pWeapon.SetOwnerDUs(this);
+        Debug.Log(pWeapon.owner);
     }
 
     public void DropWeapon()
     {
         weapons[selectedWeapon].transform.parent = null;
-        weapons[selectedWeapon].SetOwner(weapons[selectedWeapon].gameObject.GetInstanceID());
+        weapons[selectedWeapon].SetOwnerForgetUnit(weapons[selectedWeapon].gameObject.GetInstanceID());
+        weapons[selectedWeapon] = null;
     }
 
 
     public void SwitchWeapon()
     {
-        if (SelectedWeapon == weapons[0] && weapons[1] != null)
+        if (weapons[1] != null && selectedWeapon == 0)
         {
             selectedWeapon = 1;
         }
@@ -243,6 +273,7 @@ public class Unit : MonoBehaviour
         {
             selectedWeapon = 0;
         }
+        Debug.Log("selected weapon: " + selectedWeapon);
     }
 
     void TriggerParticleEffect(string key)

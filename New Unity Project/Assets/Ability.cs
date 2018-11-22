@@ -109,7 +109,7 @@ public class Ability : MonoBehaviour
 
         newUnits.ForEach(x => OnHit(Unit.ActiveUnits[x]));
 
-        Debug.Log(newUnits.Count);
+        //Debug.Log(newUnits.Count);
         return newUnits;
     }
 }

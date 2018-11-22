@@ -16,7 +16,7 @@ public class Weapon : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        Physics.IgnoreLayerCollision(12, 11);
+        owner = gameObject.GetInstanceID();
         rb = GetComponent<Rigidbody>();
         coll = GetComponent<BoxCollider>();
     }
@@ -27,19 +27,20 @@ public class Weapon : MonoBehaviour
         owner = pOwner.gameObject.GetInstanceID();
     }
 
-    public void SetOwner(int unitId)
+    public void SetOwnerForgetUnit(int unitId)
     {
         owner = unitId;
-        if(unitId >= 0) oOwner = Unit.ActiveUnits[owner];
+        oOwner = null;
     }
     
-    private void PreparePickup()
+    public void PreparePickup()
     {
         if (owner == gameObject.GetInstanceID())
         {
             coll.isTrigger = false;
             rb.useGravity = true;
             rb.isKinematic = false;
+            coll.size = new Vector3(2, 2, 2);
         }
         else
         {
@@ -51,17 +52,17 @@ public class Weapon : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    { 
-        if (oOwner == null || owner == -1) return;
+    {
+        PreparePickup();
+        if (oOwner == null || owner == gameObject.GetInstanceID()) return;
         for (int i = 0; i < abilityKeyBindings.Count; i++)
         {
-            if (!oOwner.stats.IsStunned && Input.GetKey(abilityKeyBindings[i]))
+            if (!oOwner.stats.IsStunned && Input.GetKey(abilityKeyBindings[i]) && oOwner.GetActiveWeapon() == this)
             {
-                Debug.Log(abilities[i].Name + " : " + oOwner.controller.VTarget);
+                //Debug.Log(abilities[i].Name + " : " + oOwner.controller.VTarget);
                 abilities[i].Fire(owner, oOwner.controller.VTarget);
             }
         }
-        PreparePickup();
     }
 
 }
