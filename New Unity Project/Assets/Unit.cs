@@ -218,7 +218,10 @@ public class Unit : MonoBehaviour
     
     public void PickupWeapon(Weapon pWeapon)
     {
+        pWeapon.SetOwnerDUs(this);
         pWeapon.transform.parent = weapons[selectedWeapon].transform.parent;
+        pWeapon.transform.position = weapons[selectedWeapon].transform.position;
+        pWeapon.transform.rotation = weapons[selectedWeapon].transform.rotation;
         DropWeapon();
         weapons[selectedWeapon] = pWeapon;
     }
@@ -226,7 +229,7 @@ public class Unit : MonoBehaviour
     public void DropWeapon()
     {
         weapons[selectedWeapon].transform.parent = null;
-        weapons[selectedWeapon].SetOwner(-1);
+        weapons[selectedWeapon].SetOwner(weapons[selectedWeapon].gameObject.GetInstanceID());
     }
 
 

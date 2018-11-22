@@ -16,8 +16,8 @@ public class Weapon : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        coll = GetComponent<BoxCollider>();
         rb = GetComponent<Rigidbody>();
+        coll = GetComponent<BoxCollider>();
     }
 
     public void SetOwnerDUs(Unit pOwner)
@@ -34,15 +34,17 @@ public class Weapon : MonoBehaviour
     
     private void PreparePickup()
     {
-        if (owner < 0)
-        { 
-            coll.size = new Vector3(3, 3, 3);
+        if (owner == gameObject.GetInstanceID())
+        {
+            coll.isTrigger = false;
             rb.useGravity = true;
+            rb.isKinematic = false;
         }
         else
-        { 
-            coll.size = new Vector3(1, 1, 1);
+        {
+            coll.isTrigger = true;
             rb.useGravity = false;
+            rb.isKinematic = true;
         }
     }
 
@@ -58,6 +60,7 @@ public class Weapon : MonoBehaviour
                 abilities[i].Fire(owner, oOwner.controller.VTarget);
             }
         }
+        PreparePickup();
     }
 
 }
