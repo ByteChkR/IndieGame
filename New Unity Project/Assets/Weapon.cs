@@ -24,7 +24,6 @@ public class Weapon : MonoBehaviour
     {
         oOwner = pOwner;
         owner = pOwner.gameObject.GetInstanceID();
-        Debug.Log("owner " + pOwner.gameObject.GetInstanceID());
     }
 
     public void SetOwner(int unitId)
@@ -35,7 +34,6 @@ public class Weapon : MonoBehaviour
     
     private void PreparePickup()
     {
-        Debug.Log(gameObject.GetInstanceID());
         if (owner == gameObject.GetInstanceID())
         {
             coll.isTrigger = false;
