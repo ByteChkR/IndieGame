@@ -54,6 +54,8 @@ public class UnitStats
     private float _currentMovementSpeed;
     [SerializeField]
     private bool _stun = false;
+    [SerializeField]
+    private float _currentGold;
     public float CurrentHealth { get { return _currentHealth; } }
     public float CurrentCombo { get { return _currentCombo; } }
     public float CurrentMovementSpeed { get { return _currentMovementSpeed; } }
@@ -91,6 +93,9 @@ public class UnitStats
                 break;
             case Unit.StatType.STUN:
                 _stun = value > 0;
+                break;
+            case Unit.StatType.GOLD:
+                _currentGold += value;
                 break;
             default:
                 break;
@@ -227,7 +232,9 @@ public class Unit : MonoBehaviour
         HP = 1,
         COMBO = 2,
         MOVESPEED = 4,
-        STUN = 8
+        STUN = 8,
+        GOLD = 16
+            
     }
 
     private void Awake()
