@@ -204,10 +204,12 @@ public class Unit : MonoBehaviour
 
     int selectedWeapon = 0;
     public Weapon SelectedWeapon { get { return weapons[selectedWeapon]; } }
-    public enum TriggerType { CollisionCheck,
+    public enum TriggerType {
+        CollisionCheck,
         Teleport,
         ControlLock,
-        ControlUnlock
+        ControlUnlock,
+        
     };
 
     public delegate void AnimationTrigger(TriggerType ttype);
@@ -243,6 +245,12 @@ public class Unit : MonoBehaviour
                 }
             }
         }
+    }
+
+
+    void TriggerSoundEffect(AudioManager.SoundEffect effect)
+    {
+        AudioManager.instance.PlaySoundEffect(effect);
     }
 
     void FireAnimationTrigger(TriggerType ttype)
