@@ -63,4 +63,10 @@ MonoBehaviour:
   Damage: 0
   _animationName: ThreeSXTY
   _animationSpeed: 1
-  onHitEffects: []
+  onHitEffects:
+  - type: 8
+    Strength: 1
+    InverseOnTimeout: 1
+    Duration: 1
+    TimeActivated: 0
+    ApplyOnce: 1
