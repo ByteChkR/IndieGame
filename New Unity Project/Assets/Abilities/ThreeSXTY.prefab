@@ -60,8 +60,7 @@ MonoBehaviour:
   InvertKnockback: 0
   MoreOnMaxRange: 0
   collType: 0
-  Damage: 10
-  _damage: 0
+  Damage: 0
   _animationName: ThreeSXTY
-  _animationSpeed: 2
+  _animationSpeed: 1
   onHitEffects: []

@@ -5,8 +5,6 @@ using System.Linq;
 public class ThreeSXTY : Ability
 {
     [SerializeField]
-    private float _damage;
-    [SerializeField]
     private string _animationName;
     [SerializeField]
     private float _animationSpeed;
