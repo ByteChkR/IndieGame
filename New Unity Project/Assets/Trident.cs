@@ -26,5 +26,20 @@ public class Trident : Ability {
         Destroy(gameObject);
     }
 
+    public override void OnDestroy()
+    {
+        base.OnDestroy();
+    }
+
+    public override void OnHit(Unit target)
+    {
+        base.OnHit(target);
+    }
+
+    public override void Update()
+    {
+        base.Update();
+    }
+
 
 }

@@ -39,12 +39,19 @@ public class SejuR : Ability
 
             TravelDistance -= speed;
         }
-        
+
         if (TravelDistance <= 0 || initTime + maxTime <= Time.realtimeSinceStartup) Destroy(gameObject);
+    }
+
+    public override void OnDestroy()
+    {
+        base.OnDestroy();
     }
 
     public override void OnHit(Unit target)
     {
+
+        base.OnHit(target);
         if (firstHit)
         {
             firstHit = false;

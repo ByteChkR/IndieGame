@@ -2,17 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraViewLock : MonoBehaviour {
+public class CameraViewLock : MonoBehaviour
+{
 
     public Transform target;
     Vector3 distance;
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
         distance = transform.position - target.position;
-	}
-	
-	// Update is called once per frame
-	void LateUpdate () {
-        transform.position = target.position + distance;
-	}
+    }
+
+    // Update is called once per frame
+    void LateUpdate()
+    {
+        if (target != null) transform.position = target.position + distance;
+    }
 }

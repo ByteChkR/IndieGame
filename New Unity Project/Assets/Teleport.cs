@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Teleport : Ability {
+public class Teleport : Ability
+{
     [SerializeField]
     private float _damage;
     [SerializeField]
@@ -15,10 +16,14 @@ public class Teleport : Ability {
 
     bool started = false;
     Vector3 target;
-	// Use this for initialization
-	void Start () {
-		
-	}
+
+    [SerializeField]
+    private GameObject _nextAbility;
+    // Use this for initialization
+    void Start()
+    {
+
+    }
 
     public override void Initialize(int source, Vector3 target)
     {
@@ -27,6 +32,7 @@ public class Teleport : Ability {
         Source.UnitAnimation[_animationName].speed = _animationSpeed;
         Source.UnitAnimation.Play(_animationName, PlayMode.StopSameLayer);
         Source.AddAnimationTriggerListener(TriggerTeleport);
+        started = true;
     }
 
     public void TriggerTeleport(Unit.TriggerType triggerType)
@@ -35,7 +41,7 @@ public class Teleport : Ability {
         Source.RemoveAnimationTriggerListener(TriggerTeleport);
         RaycastHit info;
         Vector3 pos;
-        if(Physics.Raycast(target, -transform.forward, out info, 1.5f))
+        if (Physics.Raycast(target, -transform.forward, out info, 1.5f))
         {
             pos = target + transform.forward * 1.5f;
         }
@@ -44,22 +50,40 @@ public class Teleport : Ability {
             pos = target - transform.forward * 1.5f;
         }
         Source.transform.position = pos;
-        Source.agent.isStopped = true;
+        if (Source.agent != null) Source.agent.isStopped = true;
         blinked = true;
     }
 
     // Update is called once per frame
-    public override void Update () {
+    public override void Update()
+    {
+        base.Update();
         if (!Initialized)
         {
             return;
         }
-        if(blinked && started && !Source.UnitAnimation.isPlaying)
+        if (blinked && started && Source != null && !Source.UnitAnimation.isPlaying)
         {
             started = false;
+            if (_nextAbility != null)
+            {
+                Source.UnitAnimation.Stop();
+                Ability a = Instantiate(_nextAbility, Source.transform.position, Source.transform.rotation).GetComponent<Ability>();
+                a.Initialize(Source.gameObject.GetInstanceID(), target);
+            }
             Destroy(this.gameObject);
+
         }
-	}
+    }
+    public override void OnHit(Unit target)
+    {
+        base.OnHit(target);
+    }
+
+    public override void OnDestroy()
+    {
+        base.OnDestroy();
+    }
 
 
 }

@@ -15,7 +15,7 @@ public abstract class AbstractAbilityInstance : MonoBehaviour
     private BoxCollider Hitbox
     {
         get
-        { 
+        {
             return HasSpecialCollider ? specialCol : source.SelectedWeapon.coll;
         }
     }

@@ -13,8 +13,11 @@ public class AI : MonoBehaviour, IController
     public float ActivationRange;
     float distance2Target;
     Unit u;
+    public bool isPlayer { get { return false; } }
     public float Speed = 3.5f;
     bool lockControls = false;
+    Rigidbody _rb;
+    public Rigidbody rb { get { return _rb; } }
     public void LockControls(bool locked)
     {
         lockControls = locked;
@@ -24,6 +27,7 @@ public class AI : MonoBehaviour, IController
     {
         get
         {
+            if (target == null) return false;
             RaycastHit info;
             bool hit = Physics.Raycast(transform.position + (target.position - transform.position).normalized, target.position - transform.position, out info, float.MaxValue) && info.collider.gameObject.GetInstanceID() == target.gameObject.GetInstanceID();
             Debug.DrawRay(transform.position + (target.position - transform.position).normalized, target.position - transform.position);
@@ -35,6 +39,7 @@ public class AI : MonoBehaviour, IController
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        _rb = GetComponent<Rigidbody>();
         u = Unit.ActiveUnits[gameObject.GetInstanceID()];
         u.agent = agent;
     }
