@@ -247,7 +247,6 @@ public class Unit : MonoBehaviour
 
 
         pWeapon.SetOwnerDUs(this);
-        pWeapon.PreparePickup();
         pWeapon.transform.parent = weapons[selectedWeapon].transform.parent;
         pWeapon.transform.position = weapons[selectedWeapon].transform.position;
         pWeapon.transform.rotation = weapons[selectedWeapon].transform.rotation;
@@ -368,6 +367,7 @@ public class Unit : MonoBehaviour
     {
         weapons[0] = GetComponentInChildren<Weapon>();
         weapons[0].SetOwnerDUs(this);
+        
         controller = GetComponent<IController>();
         if (isPlayer) Player = this;
     }

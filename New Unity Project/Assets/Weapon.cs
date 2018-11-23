@@ -13,29 +13,41 @@ public class Weapon : MonoBehaviour
     public BoxCollider coll;
     public Rigidbody rb;
     public bool isOnGround { get { return owner == gameObject.GetInstanceID(); } }
-
+    bool WasSetPreInit = false;
     // Use this for initialization
     void Start()
     {
         owner = gameObject.GetInstanceID();
         rb = GetComponent<Rigidbody>();
         coll = GetComponent<BoxCollider>();
+        if (WasSetPreInit)
+        {
+            PreparePickup();
+            WasSetPreInit = false;
+        }
     }
 
     public void SetOwnerDUs(Unit pOwner)
     {
         oOwner = pOwner;
         owner = pOwner.gameObject.GetInstanceID();
+        PreparePickup();
     }
 
     public void SetOwnerForgetUnit(int unitId)
     {
         owner = unitId;
         oOwner = null;
+        PreparePickup();
     }
     
-    public void PreparePickup()
+    private void PreparePickup()
     {
+        if (coll == null)
+        {
+            WasSetPreInit = true;
+            return;
+        }
         if (owner == gameObject.GetInstanceID())
         {
             coll.isTrigger = false;
@@ -54,13 +66,14 @@ public class Weapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        PreparePickup();
+        
+        //PreparePickup();
         if (oOwner == null || owner == gameObject.GetInstanceID()) return;
         for (int i = 0; i < abilityKeyBindings.Count; i++)
         {
             if (!oOwner.stats.IsStunned && Input.GetKey(abilityKeyBindings[i]) && oOwner.GetActiveWeapon() == this)
             {
-                //Debug.Log(abilities[i].Name + " : " + oOwner.controller.VTarget);
+                Debug.Log(abilities[i].Name + " : " + oOwner.controller.VTarget);
                 abilities[i].Fire(owner, oOwner.controller.VTarget);
             }
         }

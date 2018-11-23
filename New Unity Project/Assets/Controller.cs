@@ -40,7 +40,6 @@ public class Controller : MonoBehaviour, IController
     {
         _rb = GetComponent<Rigidbody>();
         u = GetComponent<Unit>();
-        GetComponent<Animator>().SetFloat("Forward", 10);
     }
 
     public void LockControls(bool locked)
