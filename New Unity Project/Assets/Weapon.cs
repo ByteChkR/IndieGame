@@ -17,14 +17,14 @@ public class Weapon : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        owner = gameObject.GetInstanceID();
+        
         rb = GetComponent<Rigidbody>();
         coll = GetComponent<BoxCollider>();
-        if (WasSetPreInit)
+        if (!WasSetPreInit)
         {
-            PreparePickup();
-            WasSetPreInit = false;
+            owner = gameObject.GetInstanceID();
         }
+        PreparePickup();
     }
 
     public void SetOwnerDUs(Unit pOwner)
