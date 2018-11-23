@@ -7,6 +7,7 @@ using System.Linq;
 
 public class Ability : MonoBehaviour
 {
+    public static List<Ability> aliveAbilities = new List<Ability>();
 
     protected Unit Source;
     [SerializeField]
@@ -27,17 +28,34 @@ public class Ability : MonoBehaviour
     protected bool InvertKnockback = false;
     [SerializeField]
     protected bool MoreOnMaxRange = false;
-
+    private int source;
     public enum ColliderTypes { None, Box, Sphere }
     public ColliderTypes collType;
+
+    [SerializeField]
+    protected float Damage;
+    private void Awake()
+    {
+        aliveAbilities.Add(this);
+    }
     // Use this for initialization
     void Start()
     {
 
     }
 
+    public void RemoveAbility(int owner)
+    {
+        if (source == owner)
+        {
+            aliveAbilities.Remove(this);
+            Destroy(gameObject);
+        }
+    }
+
     public virtual void Initialize(int source, Vector3 target)
     {
+        this.source = source;
         if (_collider == null)
         {
             _collider = GetComponent<Collider>();
@@ -64,6 +82,8 @@ public class Ability : MonoBehaviour
             float p = Mathf.Clamp01(d.magnitude / KnockBackMaxRange);
             target.controller.rb.AddForce(d.normalized * (KnockBackPowerOnMaxRange + p * deltaPower), ForceMode.VelocityChange);
         }
+
+        target.stats.ApplyValue(Unit.StatType.HP, -Damage);
     }
 
 
@@ -71,12 +91,12 @@ public class Ability : MonoBehaviour
     public virtual void Update()
     {
         if (!Initialized) return;
-        if (CheckCollisionsEveryFrame) CheckAndResolveCollisions(_collider);
+        if (CheckCollisionsEveryFrame && _collider != null) CheckAndResolveCollisions(_collider);
     }
 
     public virtual void OnDestroy()
     {
-        Source.RemoveAnimationTriggerListener(CollisionCheck);
+        if (Source != null) Source.RemoveAnimationTriggerListener(CollisionCheck);
     }
 
     void CollisionCheck(Unit.TriggerType ttype)

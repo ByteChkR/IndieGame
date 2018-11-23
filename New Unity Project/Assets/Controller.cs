@@ -8,6 +8,7 @@ public interface IController
     void LockControls(bool locked);
     Vector3 VTarget { get; }
     Rigidbody rb { get; }
+    bool isPlayer { get; }
 }
 
 [RequireComponent(typeof(Rigidbody), typeof(Unit))]
@@ -25,7 +26,7 @@ public class Controller : MonoBehaviour, IController
     public float BackwardSpeed = 0.5f;
     public float StrafeSpeed = 0.75f;
     public float StrafeCutoff = 0.2f;
-
+    public bool isPlayer { get { return true; } }
     public GameObject WinScreen;
     public GameObject GameOverScreen;
     public GameObject MenuCanvas;
@@ -96,7 +97,7 @@ public class Controller : MonoBehaviour, IController
         }
         Vector3 v = Vector3.zero;
 
-        
+
         if (Input.GetKey(Forward))
         {
             v += Vector3.forward;
@@ -145,7 +146,7 @@ public class Controller : MonoBehaviour, IController
             }
         }
     }
-    
+
 
     Vector3 ViewingDirection()
     {

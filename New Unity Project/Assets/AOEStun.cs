@@ -5,8 +5,6 @@ using UnityEngine;
 public class AOEStun : Ability
 {
     [SerializeField]
-    private float _damage;
-    [SerializeField]
     private string _animationName;
     [SerializeField]
     private float _animationSpeed;
@@ -30,9 +28,9 @@ public class AOEStun : Ability
         if (collType == ColliderTypes.Box)
         {
             (_collider as BoxCollider).size = hitboxSize;
-            if(InFrontOfPlayer)(_collider as BoxCollider).center = transform.forward * hitboxSize.z / 2; //Move Hitbox right in front of caster
+            if (InFrontOfPlayer) (_collider as BoxCollider).center = transform.forward * hitboxSize.z / 2; //Move Hitbox right in front of caster
         }
-        else if(collType == ColliderTypes.Sphere)
+        else if (collType == ColliderTypes.Sphere)
         {
             (_collider as SphereCollider).radius = hitboxSize.x;
             if (InFrontOfPlayer) (_collider as SphereCollider).center = transform.forward * hitboxSize.x / 2;
@@ -50,7 +48,7 @@ public class AOEStun : Ability
         {
             return;
         }
-        if (started && !Source.UnitAnimation.isPlaying)
+        if (started && Source != null && !Source.UnitAnimation.isPlaying)
         {
             started = false;
             Destroy(this.gameObject);
@@ -66,7 +64,6 @@ public class AOEStun : Ability
 
     public override void OnHit(Unit target)
     {
-        target.stats.ApplyValue(Unit.StatType.HP, -_damage);
         target.stats.AddEffects(onHitEffects.ToArray());
         base.OnHit(target);
     }

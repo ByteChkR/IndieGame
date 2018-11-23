@@ -54,9 +54,15 @@ MonoBehaviour:
   _collider: {fileID: 0}
   SelfStun: 0
   CheckCollisionsEveryFrame: 0
+  KnockBackPower: 0
+  KnockBackMaxRange: 10
+  KnockBackPowerOnMaxRange: 5
+  InvertKnockback: 0
+  MoreOnMaxRange: 0
   collType: 0
+  Damage: 0
   delayPerProjectile: 0.1
-  projectileCount: 10
+  projectileCount: 40
   Projectile: {fileID: 1007788284920100, guid: 3839e4d08cc03394aba3b0b86e97831a, type: 2}
-  DistanceBetweenProjectiles: 1
-  StartDistance: 2
+  DistanceBetweenProjectiles: 0.5
+  StartDistance: 1

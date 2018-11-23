@@ -51,11 +51,11 @@ public class UnitStats
 
 
     [SerializeField]
-    private float MaxHealth;
+    public float MaxHealth;
     [SerializeField]
-    private float MaxCombo;
+    public float MaxCombo;
     [SerializeField]
-    private float MaxMovementSpeed;
+    public float MaxMovementSpeed;
     private float _currentHealth;
     private float _currentCombo;
     private float _currentMovementSpeed;
@@ -67,6 +67,7 @@ public class UnitStats
     public float CurrentCombo { get { return _currentCombo; } }
     public float CurrentMovementSpeed { get { return _currentMovementSpeed; } }
     public bool IsStunned { get { return _stun; } }
+    public float CurrentGold { get { return _currentGold; } }
     private List<AbstractEffect> effects = new List<AbstractEffect>();
 
 
@@ -194,7 +195,9 @@ public class ParticleSystemEntry
 public class Unit : MonoBehaviour
 {
     public IController controller;
+    public bool isPlayer { get { return controller.isPlayer; } }
     public static Dictionary<int, Unit> ActiveUnits = new Dictionary<int, Unit>();
+    public static Unit Player;
     public UnitStats stats;
     private Weapon[] weapons = new Weapon[2];
     public Animation UnitAnimation;
@@ -242,7 +245,7 @@ public class Unit : MonoBehaviour
         Debug.Log(pWeapon.owner);
 
 
-        
+
         pWeapon.SetOwnerDUs(this);
         pWeapon.PreparePickup();
         pWeapon.transform.parent = weapons[selectedWeapon].transform.parent;
@@ -259,9 +262,9 @@ public class Unit : MonoBehaviour
         {
             DropWeapon();
             weapons[selectedWeapon] = pWeapon;
-      
+
         }
-        
+
     }
 
     public void DropWeapon()
@@ -356,6 +359,7 @@ public class Unit : MonoBehaviour
     private void Awake()
     {
         ActiveUnits.Add(gameObject.GetInstanceID(), this);
+        
         stats.Init();
     }
 
@@ -365,11 +369,17 @@ public class Unit : MonoBehaviour
         weapons[0] = GetComponentInChildren<Weapon>();
         weapons[0].SetOwnerDUs(this);
         controller = GetComponent<IController>();
+        if (isPlayer) Player = this;
     }
 
     private void FixedUpdate()
     {
         stats.Process();
+    }
+
+    private void LateUpdate()
+    {
+        if (stats.CurrentHealth <= 0) Destroy(gameObject);
     }
 
     private void OnDestroy()

@@ -61,7 +61,7 @@ MonoBehaviour:
   InvertKnockback: 0
   MoreOnMaxRange: 0
   collType: 0
-  _damage: 0
+  Damage: 10
   _animationName: BasicWeaponSwing
   _animationSpeed: 1
   onHitEffects: []

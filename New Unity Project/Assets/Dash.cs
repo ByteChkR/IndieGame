@@ -5,8 +5,6 @@ using UnityEngine;
 public class Dash : Ability
 {
     [SerializeField]
-    private float _damage;
-    [SerializeField]
     private string _animationName;
     [SerializeField]
     private float _animationSpeed;
@@ -73,14 +71,17 @@ public class Dash : Ability
         }
         if (t >= 1)
         {
-            AOEStun s = Instantiate(afterDashAbility, Source.transform.position, Source.transform.rotation).GetComponent<AOEStun>();
-            s.Initialize(Source.gameObject.GetInstanceID(), target);
+            if (Source != null)
+            {
+                AOEStun s = Instantiate(afterDashAbility, Source.transform.position, Source.transform.rotation).GetComponent<AOEStun>();
+                s.Initialize(Source.gameObject.GetInstanceID(), target);
+            }
             started = false;
             Destroy(this.gameObject);
         }
         else
         {
-            Source.transform.position = Vector3.Lerp(pos, endPos, animationCurve.Evaluate(t));
+            if (Source != null) Source.transform.position = Vector3.Lerp(pos, endPos, animationCurve.Evaluate(t));
         }
     }
 
@@ -93,9 +94,9 @@ public class Dash : Ability
 
     public override void OnHit(Unit target)
     {
-        target.stats.ApplyValue(Unit.StatType.HP, -_damage);
-        target.stats.AddEffects(onHitEffects.ToArray());
         base.OnHit(target);
+
+        target.stats.AddEffects(onHitEffects.ToArray());
     }
 
 

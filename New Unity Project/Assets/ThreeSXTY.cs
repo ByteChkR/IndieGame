@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System.Linq;
 public class ThreeSXTY : Ability
 {
     [SerializeField]
@@ -57,8 +57,8 @@ public class ThreeSXTY : Ability
 
     public override void OnDestroy()
     {
-        unitsHitSinceInit.ForEach(x => Unit.ActiveUnits[x].stats.ApplyValue(Unit.StatType.STUN, -1));
-        
+        unitsHitSinceInit.Where(x => Unit.ActiveUnits.ContainsKey(x)).ToList().ForEach(x => Unit.ActiveUnits[x].stats.ApplyValue(Unit.StatType.STUN, -1));
+
         base.OnDestroy();
 
     }
@@ -66,7 +66,6 @@ public class ThreeSXTY : Ability
     public override void OnHit(Unit target)
     {
         localCoords.Add(target.gameObject.GetInstanceID(), _collider.transform.InverseTransformPoint(target.transform.position));
-        target.stats.ApplyValue(Unit.StatType.HP, -_damage);
         target.stats.AddEffects(onHitEffects.ToArray());
         target.stats.ApplyValue(Unit.StatType.STUN, 1);
         base.OnHit(target);

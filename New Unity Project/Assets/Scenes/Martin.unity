@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -113,50 +113,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &47809922 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114322111087838992, guid: 54452b153dfc2c04dbd011eedf2e176c,
-    type: 2}
-  m_PrefabInternal: {fileID: 434743926}
-  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
---- !u!114 &267408805 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114834546697189742, guid: 54452b153dfc2c04dbd011eedf2e176c,
-    type: 2}
-  m_PrefabInternal: {fileID: 434743926}
-  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
---- !u!114 &267922053 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114185428336182728, guid: 54452b153dfc2c04dbd011eedf2e176c,
-    type: 2}
-  m_PrefabInternal: {fileID: 434743926}
-  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
---- !u!1 &416167690 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1380945608941886, guid: 54452b153dfc2c04dbd011eedf2e176c,
-    type: 2}
-  m_PrefabInternal: {fileID: 434743926}
---- !u!114 &416167691
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 416167690}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 231e550bee79bb743bbabcb31c62c183, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _maxHealth: 100
-  _health: 0
-  _maxCombo: 10
-  _combo: 0
-  _gold: 0
-  healthBar: {fileID: 759661993}
-  comboBar: {fileID: 748486635}
-  healthAmount: {fileID: 267922053}
-  comboAmount: {fileID: 267408805}
-  goldAmount: {fileID: 47809922}
 --- !u!1001 &434743926
 Prefab:
   m_ObjectHideFlags: 0
@@ -254,82 +210,6 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 224998312161601952, guid: 54452b153dfc2c04dbd011eedf2e176c,
-        type: 2}
-      propertyPath: m_SizeDelta.y
-      value: 35
-      objectReference: {fileID: 0}
-    - target: {fileID: 224824174161265522, guid: 54452b153dfc2c04dbd011eedf2e176c,
-        type: 2}
-      propertyPath: m_SizeDelta.y
-      value: 35
-      objectReference: {fileID: 0}
-    - target: {fileID: 224994348486452778, guid: 54452b153dfc2c04dbd011eedf2e176c,
-        type: 2}
-      propertyPath: m_SizeDelta.y
-      value: 35
-      objectReference: {fileID: 0}
-    - target: {fileID: 224294145477720054, guid: 54452b153dfc2c04dbd011eedf2e176c,
-        type: 2}
-      propertyPath: m_SizeDelta.y
-      value: 35
-      objectReference: {fileID: 0}
-    - target: {fileID: 224154015749725928, guid: 54452b153dfc2c04dbd011eedf2e176c,
-        type: 2}
-      propertyPath: m_SizeDelta.y
-      value: 35
-      objectReference: {fileID: 0}
-    - target: {fileID: 224154038383306528, guid: 54452b153dfc2c04dbd011eedf2e176c,
-        type: 2}
-      propertyPath: m_SizeDelta.y
-      value: 35
-      objectReference: {fileID: 0}
-    - target: {fileID: 224963336401389438, guid: 54452b153dfc2c04dbd011eedf2e176c,
-        type: 2}
-      propertyPath: m_SizeDelta.y
-      value: 35
-      objectReference: {fileID: 0}
-    - target: {fileID: 114322111087838992, guid: 54452b153dfc2c04dbd011eedf2e176c,
-        type: 2}
-      propertyPath: m_FontData.m_Alignment
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 224154038383306528, guid: 54452b153dfc2c04dbd011eedf2e176c,
-        type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: -38.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224963336401389438, guid: 54452b153dfc2c04dbd011eedf2e176c,
-        type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: -92.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 224963336401389438, guid: 54452b153dfc2c04dbd011eedf2e176c,
-        type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: 130.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 224963336401389438, guid: 54452b153dfc2c04dbd011eedf2e176c,
-        type: 2}
-      propertyPath: m_SizeDelta.x
-      value: 301.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 1151277927728452, guid: 54452b153dfc2c04dbd011eedf2e176c, type: 2}
-      propertyPath: m_Name
-      value: HealthAmount
-      objectReference: {fileID: 0}
-    - target: {fileID: 1436222020120074, guid: 54452b153dfc2c04dbd011eedf2e176c, type: 2}
-      propertyPath: m_Name
-      value: ComboAmount
-      objectReference: {fileID: 0}
-    - target: {fileID: 1389319689433764, guid: 54452b153dfc2c04dbd011eedf2e176c, type: 2}
-      propertyPath: m_Name
-      value: GoldAmount
-      objectReference: {fileID: 0}
-    - target: {fileID: 1380945608941886, guid: 54452b153dfc2c04dbd011eedf2e176c, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54452b153dfc2c04dbd011eedf2e176c, type: 2}
   m_IsPrefabAsset: 0
@@ -421,17 +301,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats:
+    BaseHealth: 0
+    BaseMovementSpeed: 0
+    BaseCombo: 0
     MaxHealth: 0
     MaxCombo: 0
     MaxMovementSpeed: 0
-    _currentHealth: 0
-    _currentCombo: 0
-    _currentMovementSpeed: 0
-    _stun: 0
-  weapon: {fileID: 0}
   UnitAnimation: {fileID: 514462122}
-  vDirNorm: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
+  particleSystems: []
 --- !u!54 &514462125
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -587,18 +465,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &748486635 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114827527329639752, guid: 54452b153dfc2c04dbd011eedf2e176c,
-    type: 2}
-  m_PrefabInternal: {fileID: 434743926}
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
---- !u!114 &759661993 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114867907505941778, guid: 54452b153dfc2c04dbd011eedf2e176c,
-    type: 2}
-  m_PrefabInternal: {fileID: 434743926}
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &854172498
 GameObject:
   m_ObjectHideFlags: 0
@@ -1011,6 +877,7 @@ MonoBehaviour:
   agent: {fileID: 0}
   AttackRange: 2
   ActivationRange: 10
+  Speed: 3.5
 --- !u!195 &1322825421
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1044,17 +911,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats:
+    BaseHealth: 0
+    BaseMovementSpeed: 0
+    BaseCombo: 0
     MaxHealth: 100
     MaxCombo: 10
     MaxMovementSpeed: 10
-    _currentHealth: 100
-    _currentCombo: 0
-    _currentMovementSpeed: 10
-    _stun: 0
-  weapon: {fileID: 0}
   UnitAnimation: {fileID: 1322825419}
-  vDirNorm: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
+  particleSystems: []
 --- !u!54 &1322825423
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1195,6 +1060,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   owner: 0
+  oOwner: {fileID: 0}
   abilities:
   - Name: Cleave Attack
     Description: 
@@ -1212,6 +1078,7 @@ MonoBehaviour:
     cooldown: 3
   abilityKeyBindings: 4301000044010000
   coll: {fileID: 0}
+  rb: {fileID: 0}
 --- !u!23 &1383107663
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1514,6 +1381,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   owner: 0
+  oOwner: {fileID: 0}
   abilities:
   - Name: Cleave Attack
     Description: 
@@ -1531,6 +1399,7 @@ MonoBehaviour:
     cooldown: 5
   abilityKeyBindings: 0000000000000000
   coll: {fileID: 0}
+  rb: {fileID: 0}
 --- !u!23 &1706935050
 MeshRenderer:
   m_ObjectHideFlags: 0

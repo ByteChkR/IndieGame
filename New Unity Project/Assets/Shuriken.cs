@@ -37,12 +37,18 @@ public class Shuriken : Ability
 
             TravelDistance -= speed;
         }
-        
+
         if (TravelDistance <= 0 || initTime + maxTime <= Time.realtimeSinceStartup) Destroy(gameObject);
     }
 
     public override void OnHit(Unit target)
     {
         target.stats.AddEffects(onHitEffects.ToArray());
+
+        base.OnHit(target);
+    }
+    public override void OnDestroy()
+    {
+        base.OnDestroy();
     }
 }

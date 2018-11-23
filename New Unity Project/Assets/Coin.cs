@@ -28,7 +28,7 @@ public class Coin : MonoBehaviour
 
         Vector3 vdir = (target.transform.position - transform.position);
         distance = vdir.magnitude;
-        
+
         if (distance <= MinDistance)
         {
             target.stats.ApplyValue(Unit.StatType.GOLD, 1);

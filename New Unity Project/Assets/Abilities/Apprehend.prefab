@@ -73,7 +73,7 @@ MonoBehaviour:
   InvertKnockback: 1
   MoreOnMaxRange: 1
   collType: 0
-  _damage: 10
+  Damage: 10
   _animationName: AOEStun
   _animationSpeed: 1
   onHitEffects: []

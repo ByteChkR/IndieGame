@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HUDScript : MonoBehaviour {
+public class HUDScript : MonoBehaviour
+{
 
     public int _maxHealth = 100;
     public float _health;
@@ -18,15 +19,16 @@ public class HUDScript : MonoBehaviour {
     public Text goldAmount;
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         _health = _maxHealth;
-	}
-	
+    }
+
 
     void InitializeHudHealth(int pMaxHealth, int pHealth = 0)
     {
         _maxHealth = pMaxHealth;
-        if(!(pHealth == _health || pHealth == 0))
+        if (!(pHealth == _health || pHealth == 0))
         {
             UpdateHealth(pHealth);
         }
@@ -41,7 +43,7 @@ public class HUDScript : MonoBehaviour {
     {
         _health = pHealth;
         healthAmount.text = _health + " / " + _maxHealth;
-        healthBar.transform.localScale = new Vector3(_health / _maxHealth,1,1);
+        healthBar.transform.localScale = new Vector3(_health / _maxHealth, 1, 1);
     }
 
     void UpdateCombo(float pCombo)
@@ -52,17 +54,19 @@ public class HUDScript : MonoBehaviour {
     }
 
     void UpdateGold(int pGold)
-    { 
+    {
         _gold = pGold;
         goldAmount.text = "GOLD : " + _gold;
     }
 
-	// Update is called once per frame
-	void Update () {
-        comboAmount.text = (int)_combo + " / " + _maxCombo;
-        healthAmount.text = (int)_health + " / " + _maxHealth;
-        goldAmount.text = "GOLD : " + _gold;
-        healthBar.transform.localScale = new Vector3(_health / _maxHealth, 1, 1);
-        comboBar.transform.localScale = new Vector3(_combo / _maxCombo, 1, 1);
+    // Update is called once per frame
+    void LateUpdate()
+    {
+        if (Unit.Player == null) return;
+        comboAmount.text = (int)Unit.Player.stats.CurrentCombo + " / " + Unit.Player.stats.MaxCombo;
+        healthAmount.text = (int)Unit.Player.stats.CurrentHealth + " / " + Unit.Player.stats.MaxHealth;
+        goldAmount.text = "GOLD : " + Unit.Player.stats.CurrentGold;
+        healthBar.transform.localScale = new Vector3(Unit.Player.stats.CurrentHealth / Unit.Player.stats.MaxHealth, 1, 1);
+        comboBar.transform.localScale = new Vector3(Unit.Player.stats.CurrentCombo / Unit.Player.stats.MaxCombo, 1, 1);
     }
 }

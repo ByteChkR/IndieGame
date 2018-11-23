@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProjectileLine : Ability {
+public class ProjectileLine : Ability
+{
 
     public float delayPerProjectile;
     public int projectileCount;
@@ -18,10 +19,11 @@ public class ProjectileLine : Ability {
     }
     int currentCount = 0;
     float timeInitialized;
-	// Use this for initialization
-	void Start () {
-		
-	}
+    // Use this for initialization
+    void Start()
+    {
+
+    }
 
     public override void Initialize(int source, Vector3 target)
     {
@@ -39,12 +41,24 @@ public class ProjectileLine : Ability {
     {
         if (currentCount < (int)((Time.realtimeSinceStartup - timeInitialized) / delayPerProjectile))
         {
-           
-            Ability s = Instantiate(Projectile, transform.position, transform.rotation).GetComponent<Ability>();
-            s.Initialize(Source.gameObject.GetInstanceID(), transform.position + transform.forward * ActualDistance);
+            if (Source != null)
+            {
+                Ability s = Instantiate(Projectile, transform.position, transform.rotation).GetComponent<Ability>();
+                s.Initialize(Source.gameObject.GetInstanceID(), transform.position + transform.forward * ActualDistance);
+            }
             currentCount++;
         }
-        if(currentCount >= projectileCount) Destroy(gameObject);
+        if (currentCount >= projectileCount) Destroy(gameObject);
+    }
+
+    public override void OnDestroy()
+    {
+        base.OnDestroy();
+    }
+
+    public override void OnHit(Unit target)
+    {
+        base.OnHit(target);
     }
 
 }
