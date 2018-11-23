@@ -15,6 +15,7 @@ public interface IController
 public class Controller : MonoBehaviour, IController
 {
     public Camera c;
+    public Animator anim;
     Vector3 target;
     public Vector3 VTarget { get { return target; } }
     bool lockControls = false;
@@ -64,6 +65,8 @@ public class Controller : MonoBehaviour, IController
         if (lockControls || u.stats.IsStunned) return;
         Vector3 vDir = ViewingDirection();
         vDir = new Vector3(vDir.x, 0, vDir.z);
+
+
         target = transform.position + vDir;
         vDir.Normalize();
 
@@ -95,6 +98,7 @@ public class Controller : MonoBehaviour, IController
                 speed = ForwardSpeed * u.stats.CurrentMovementSpeed;
             }
         }
+
         Vector3 v = Vector3.zero;
 
 
@@ -114,7 +118,17 @@ public class Controller : MonoBehaviour, IController
         {
             v += Vector3.right;
         }
-        if (v != Vector3.zero) _rb.AddForce(v.normalized * speed, ForceMode.Acceleration);
+        anim.SetFloat("Forward", 0);
+        if (v != Vector3.zero)
+        {
+            _rb.AddForce(v.normalized * speed, ForceMode.Acceleration);
+            if (Vector3.Dot(transform.forward, _rb.velocity.normalized) < 0) anim.speed = -1;
+            else anim.speed = 1;
+            anim.SetFloat("Forward", speed);
+            
+        }
+
+
 
         if (Input.GetKeyDown(KeyCode.K))
         {

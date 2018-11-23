@@ -194,7 +194,7 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2132660}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: b235179bd2a63d1468dd430670338c55, type: 3}
   m_Controller: {fileID: 9100000, guid: e2cf68ff4b1ffda45a77f7307dd789b9, type: 2}
   m_CullingMode: 0
@@ -218,6 +218,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   c: {fileID: 534669904}
+  anim: {fileID: 2132662}
   Forward: 119
   Backward: 115
   Left: 97
@@ -266,7 +267,7 @@ MeshRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2132660}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -2704,7 +2705,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &921169170
 Transform:
   m_ObjectHideFlags: 0
@@ -3207,7 +3208,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1161839498
 Transform:
   m_ObjectHideFlags: 0
@@ -4118,7 +4119,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1566020013
 Transform:
   m_ObjectHideFlags: 0
