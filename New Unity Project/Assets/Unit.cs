@@ -210,6 +210,7 @@ public class Unit : MonoBehaviour
     public NavMeshAgent agent;
     [SerializeField]
     public List<ParticleSystemEntry> particleSystems;
+    public CheckpointScript checkpoint;
 
     int selectedWeapon = 0;
     public Weapon SelectedWeapon { get { return weapons[selectedWeapon]; } }
@@ -229,6 +230,19 @@ public class Unit : MonoBehaviour
     public Weapon GetActiveWeapon()
     {
         return weapons[selectedWeapon];
+    }
+
+    void OnTriggerEnter(Collider coll)
+    {
+        CheckpointScript cp;
+        if(null != (cp = coll.GetComponent<CheckpointScript>()))
+        {
+            if(cp.index > checkpoint.index || checkpoint == null)
+            {
+                cp.TakeCheckpoint(stats.CurrentGold, transform.position,weapons);
+                checkpoint = cp;
+            }
+        }
     }
 
     void OnCollisionStay(Collision coll)
