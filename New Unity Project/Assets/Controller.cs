@@ -40,6 +40,7 @@ public class Controller : MonoBehaviour, IController
     {
         _rb = GetComponent<Rigidbody>();
         u = GetComponent<Unit>();
+        
     }
 
     public void LockControls(bool locked)
