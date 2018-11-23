@@ -53,6 +53,7 @@ public class AOEStun : Ability
             started = false;
             Destroy(this.gameObject);
         }
+        else if (Source == null) Destroy(gameObject);
     }
 
     public override void OnDestroy()

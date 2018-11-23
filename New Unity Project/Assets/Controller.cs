@@ -122,8 +122,7 @@ public class Controller : MonoBehaviour, IController
         if (v != Vector3.zero)
         {
             _rb.AddForce(v.normalized * speed, ForceMode.Acceleration);
-            if (Vector3.Dot(transform.forward, _rb.velocity.normalized) < 0) anim.speed = -1;
-            else anim.speed = 1;
+           
             anim.SetFloat("Forward", speed);
             
         }
