@@ -70,13 +70,13 @@ public class AbstractAbility
     public float cooldown;
     public bool OnCooldown { get { return lastTimeUsed >= Time.realtimeSinceStartup - cooldown; } }
     float lastTimeUsed = float.MinValue;
-    public virtual bool Fire(int dummy, Vector3 target = new Vector3())
+    public virtual bool Fire(int dummy, Vector3 target , Quaternion rot)
     {
         if (!OnCooldown && Unit.ActiveUnits[dummy].stats.CurrentCombo >= ComboCost)
         {
             Unit.ActiveUnits[dummy].stats.ApplyValue(Unit.StatType.COMBO, -ComboCost);
             Ability a = GameObject.Instantiate(abilityInstance, Unit.ActiveUnits[dummy].transform.position, Unit.ActiveUnits[dummy].transform.rotation);
-            a.Initialize(dummy, target);
+            a.Initialize(dummy, target, rot);
             lastTimeUsed = Time.realtimeSinceStartup;
             return true;
         }

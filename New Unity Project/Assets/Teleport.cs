@@ -15,7 +15,6 @@ public class Teleport : Ability
     bool blinked = false;
 
     bool started = false;
-    Vector3 target;
 
     [SerializeField]
     private GameObject _nextAbility;
@@ -25,10 +24,9 @@ public class Teleport : Ability
 
     }
 
-    public override void Initialize(int source, Vector3 target)
+    public override void Initialize(int source, Vector3 target, Quaternion rot)
     {
-        base.Initialize(source, target);
-        this.target = target;
+        base.Initialize(source, target, rot);
         Source.UnitAnimation[_animationName].speed = _animationSpeed;
         Source.UnitAnimation.Play(_animationName, PlayMode.StopSameLayer);
         Source.AddAnimationTriggerListener(TriggerTeleport);
@@ -41,13 +39,14 @@ public class Teleport : Ability
         Source.RemoveAnimationTriggerListener(TriggerTeleport);
         RaycastHit info;
         Vector3 pos;
-        if (Physics.Raycast(target, -transform.forward, out info, 1.5f))
+        Vector3 fwd = targetRot * Vector3.forward;
+        if (Physics.Raycast(targetPos, -fwd, out info, 1.5f))
         {
-            pos = target + transform.forward * 1.5f;
+            pos = targetPos + fwd * 1.5f;
         }
         else
         {
-            pos = target - transform.forward * 1.5f;
+            pos = targetPos - fwd * 1.5f;
         }
         Source.transform.position = pos;
         if (Source.agent != null) Source.agent.isStopped = true;
@@ -69,7 +68,7 @@ public class Teleport : Ability
             {
                 Source.UnitAnimation.Stop();
                 Ability a = Instantiate(_nextAbility, Source.transform.position, Source.transform.rotation).GetComponent<Ability>();
-                a.Initialize(Source.gameObject.GetInstanceID(), target);
+                a.Initialize(Source.gameObject.GetInstanceID(), targetPos, targetRot);
             }
             Destroy(this.gameObject);
 

@@ -21,10 +21,10 @@ public class MeeleeAttack : Ability
 
     }
 
-    public override void Initialize(int source, Vector3 target)
+    public override void Initialize(int source, Vector3 target, Quaternion rot)
     {
         _collider = Unit.ActiveUnits[source].SelectedWeapon.coll;
-        base.Initialize(source, target);
+        base.Initialize(source, target,rot);
 
         Source.UnitAnimation[_animationName].speed = _animationSpeed;
         Source.UnitAnimation.Play(_animationName, PlayMode.StopSameLayer);

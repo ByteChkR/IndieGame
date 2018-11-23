@@ -31,7 +31,8 @@ public class Ability : MonoBehaviour
     private int source;
     public enum ColliderTypes { None, Box, Sphere }
     public ColliderTypes collType;
-
+    protected Vector3 targetPos;
+    protected Quaternion targetRot = Quaternion.identity;
     [SerializeField]
     protected float Damage;
     private void Awake()
@@ -53,8 +54,10 @@ public class Ability : MonoBehaviour
         }
     }
 
-    public virtual void Initialize(int source, Vector3 target)
+    public virtual void Initialize(int source, Vector3 target, Quaternion rot)
     {
+        this.targetPos = target;
+        this.targetRot = rot;
         this.source = source;
         if (_collider == null)
         {

@@ -26,17 +26,15 @@ public class Dash : Ability
     bool started = false;
     float ddistance;
     public GameObject afterDashAbility;
-    Vector3 target;
     // Use this for initialization
     void Start()
     {
 
     }
 
-    public override void Initialize(int source, Vector3 target)
+    public override void Initialize(int source, Vector3 target, Quaternion rot)
     {
-        this.target = target;
-        base.Initialize(source, target);
+        base.Initialize(source, target, rot);
         transform.parent = Source.transform;
         timeInitialized = Time.realtimeSinceStartup;
         if (collType == ColliderTypes.Box)
@@ -74,7 +72,7 @@ public class Dash : Ability
             if (Source != null)
             {
                 AOEStun s = Instantiate(afterDashAbility, Source.transform.position, Source.transform.rotation).GetComponent<AOEStun>();
-                s.Initialize(Source.gameObject.GetInstanceID(), target);
+                s.Initialize(Source.gameObject.GetInstanceID(), targetPos, targetRot);
             }
             started = false;
             Destroy(this.gameObject);

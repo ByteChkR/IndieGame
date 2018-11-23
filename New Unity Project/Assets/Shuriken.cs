@@ -16,9 +16,9 @@ public class Shuriken : Ability
 
     }
 
-    public override void Initialize(int source, Vector3 target)
+    public override void Initialize(int source, Vector3 target, Quaternion rot)
     {
-        base.Initialize(source, target);
+        base.Initialize(source, target, rot);
         initTime = Time.realtimeSinceStartup;
     }
 

@@ -74,7 +74,7 @@ public class Weapon : MonoBehaviour
             if (!oOwner.stats.IsStunned && Input.GetKey(abilityKeyBindings[i]) && oOwner.GetActiveWeapon() == this)
             {
                 Debug.Log(abilities[i].Name + " : " + oOwner.controller.VTarget);
-                abilities[i].Fire(owner, oOwner.controller.VTarget);
+                abilities[i].Fire(owner, oOwner.controller.VTarget, oOwner.transform.rotation);
             }
         }
     }

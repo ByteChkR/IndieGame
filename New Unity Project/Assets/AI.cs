@@ -82,12 +82,12 @@ public class AI : MonoBehaviour, IController
                     if (u.stats.CurrentCombo >= u.SelectedWeapon.abilities[1].ComboCost)
                     {
                         //Special Attack
-                        u.SelectedWeapon.abilities[1].Fire(u.gameObject.GetInstanceID(), target.position);
+                        u.SelectedWeapon.abilities[1].Fire(u.gameObject.GetInstanceID(), target.position, target.rotation);
 
                     }
                     else
                     {
-                        u.SelectedWeapon.abilities[0].Fire(u.gameObject.GetInstanceID(), target.position);
+                        u.SelectedWeapon.abilities[0].Fire(u.gameObject.GetInstanceID(), target.position, target.rotation);
 
                     }
                 }
