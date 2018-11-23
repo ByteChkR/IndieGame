@@ -13,7 +13,7 @@ public class Weapon : MonoBehaviour
     public BoxCollider coll;
     public Rigidbody rb;
     public bool isOnGround { get { return owner == gameObject.GetInstanceID(); } }
-    bool WasSetPreInit = false;
+    bool WasSetPreInit = true;
     // Use this for initialization
     void Start()
     {
@@ -43,11 +43,6 @@ public class Weapon : MonoBehaviour
     
     private void PreparePickup()
     {
-        if (coll == null)
-        {
-            WasSetPreInit = true;
-            return;
-        }
         if (owner == gameObject.GetInstanceID())
         {
             coll.isTrigger = false;
