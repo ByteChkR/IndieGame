@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using System.Linq;
 [System.Serializable]
 public class AbstractEffect
 {
@@ -188,6 +189,11 @@ public class ParticleSystemEntry
 {
     public string Key;
     public ParticleSystem Value;
+    public ParticleSystemEntry(string key, ParticleSystem ps)
+    {
+        Key = key;
+        Value = ps;
+    }
 }
 
 [RequireComponent(typeof(IController))]
@@ -200,7 +206,7 @@ public class Unit : MonoBehaviour
     public Animation UnitAnimation;
     public NavMeshAgent agent;
     [SerializeField]
-    public ParticleSystemEntry[] particleSystems;
+    public List<ParticleSystemEntry> particleSystems;
 
     int selectedWeapon = 0;
     public Weapon SelectedWeapon { get { return weapons[selectedWeapon]; } }
@@ -239,6 +245,23 @@ public class Unit : MonoBehaviour
         {
             selectedWeapon = 0;
         }
+    }
+
+    void RegisterParticleEffect(string key, ParticleSystem ps)
+    {
+        if(particleSystems.Count(x=>x.Key == key) > 0)
+        {
+            Debug.LogError("Tried to register particle system with key that is already existing");
+            return;
+        }
+        particleSystems.Add(new ParticleSystemEntry(key, ps));
+
+    }
+
+    void UnRegisterParticleEffect(string key)
+    {
+        if (particleSystems.Count(x => x.Key == key) == 0) return;
+        particleSystems.Remove(particleSystems.First(x => x.Key == key));
     }
 
     void TriggerParticleEffect(string key)
