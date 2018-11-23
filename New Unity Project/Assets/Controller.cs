@@ -59,6 +59,38 @@ public class Controller : MonoBehaviour, IController
         }
     }
 
+    void DeconstructVelocityAndApplyToAnimation(Vector3 velocity)
+    {
+        float d = Vector3.Dot(transform.forward, velocity.normalized); // 1 = same dir, -1 = walking backwards
+        float d1 = Vector3.Dot(transform.right, velocity.normalized); // 1 = walking right, -1 = walking left
+        
+        if(d1 > 0)
+        {
+            Debug.Log("Walking Right");
+        }
+        else
+        {
+            Debug.Log("Walking Left");
+        }
+
+        if (d > 0)
+        {
+            Debug.Log("Walking Forward");
+        }
+        else
+        {
+            Debug.Log("Walking Backwards");
+        }
+
+        float right, fwd;
+        right = d1;
+        fwd = d;
+        
+        anim.SetFloat("forwards", fwd);
+        anim.SetFloat("right", right);
+        anim.SetFloat("speed", velocity.magnitude);
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -83,6 +115,8 @@ public class Controller : MonoBehaviour, IController
         }
         else
         {
+
+            DeconstructVelocityAndApplyToAnimation(_rb.velocity);
             Debug.DrawRay(transform.position, _rb.velocity, Color.red);
             float d = Vector3.Dot(vDir, _rb.velocity.normalized);
             if (d < StrafeCutoff && d > -StrafeCutoff)
@@ -126,7 +160,6 @@ public class Controller : MonoBehaviour, IController
             anim.SetFloat("Forward", speed);
             
         }
-
 
 
         if (Input.GetKeyDown(KeyCode.K))
