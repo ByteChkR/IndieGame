@@ -21,7 +21,6 @@ public class DialogueTrigger : MonoBehaviour {
         {
 
             DialogueSystem.instance.StartDialogue(set);
-            Debug.Log("in");
         }
     }
 
@@ -30,8 +29,7 @@ public class DialogueTrigger : MonoBehaviour {
         if (other.tag == "Player")
         {
 
-            DialogueSystem.instance.EndDialogue();
-            Debug.Log("out");
+            DialogueSystem.instance.EndDialogue(); 
         }
     }
 }
