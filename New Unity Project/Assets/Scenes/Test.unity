@@ -728,12 +728,6 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf150dd538c10d54ebce27ab8d04724a, type: 2}
   m_IsPrefabAsset: 0
---- !u!114 &462809401 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114767172910700232, guid: ef129d2d73cbb444ea3d86e6287a2233,
-    type: 2}
-  m_PrefabInternal: {fileID: 1540317007}
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &506250648 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1349557186393726, guid: a15ecbc8b6d6aaa428c275cd49247fa7,
@@ -995,12 +989,6 @@ MeshCollider:
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300090, guid: 1fa630ba55d0e634fb2adf6147fecfcd, type: 3}
---- !u!114 &808135672 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114406969969634288, guid: ef129d2d73cbb444ea3d86e6287a2233,
-    type: 2}
-  m_PrefabInternal: {fileID: 1540317007}
-  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &808345296 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1435756512977864, guid: a15ecbc8b6d6aaa428c275cd49247fa7,
@@ -1181,12 +1169,6 @@ MeshCollider:
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300004, guid: 1fa630ba55d0e634fb2adf6147fecfcd, type: 3}
---- !u!114 &973208609 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114748057862000790, guid: ef129d2d73cbb444ea3d86e6287a2233,
-    type: 2}
-  m_PrefabInternal: {fileID: 1540317007}
-  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &975080947 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1665830205021098, guid: a15ecbc8b6d6aaa428c275cd49247fa7,
@@ -1516,44 +1498,13 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 114943938035338142, guid: ef129d2d73cbb444ea3d86e6287a2233,
-        type: 2}
-      propertyPath: weaponIS
-      value: 
-      objectReference: {fileID: 1540317008}
-    - target: {fileID: 1877425861657812, guid: ef129d2d73cbb444ea3d86e6287a2233, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114440266819862996, guid: ef129d2d73cbb444ea3d86e6287a2233,
-        type: 2}
-      propertyPath: icon
-      value: 
-      objectReference: {fileID: 462809401}
-    - target: {fileID: 114440266819862996, guid: ef129d2d73cbb444ea3d86e6287a2233,
-        type: 2}
-      propertyPath: goldCost
-      value: 
-      objectReference: {fileID: 973208609}
-    - target: {fileID: 114440266819862996, guid: ef129d2d73cbb444ea3d86e6287a2233,
-        type: 2}
-      propertyPath: description
-      value: 
-      objectReference: {fileID: 808135672}
-    - target: {fileID: 114748057862000790, guid: ef129d2d73cbb444ea3d86e6287a2233,
-        type: 2}
-      propertyPath: m_Text
-      value: 
+    - target: {fileID: 1546230843693650, guid: ef129d2d73cbb444ea3d86e6287a2233, type: 2}
+      propertyPath: m_Name
+      value: BuyAbleWeapon
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef129d2d73cbb444ea3d86e6287a2233, type: 2}
   m_IsPrefabAsset: 0
---- !u!114 &1540317008 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114440266819862996, guid: ef129d2d73cbb444ea3d86e6287a2233,
-    type: 2}
-  m_PrefabInternal: {fileID: 1540317007}
-  m_Script: {fileID: 11500000, guid: 9750bba37be3f4e4585403101bbdfb4c, type: 3}
 --- !u!1 &1604015594 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1050634080140268, guid: a15ecbc8b6d6aaa428c275cd49247fa7,

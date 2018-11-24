@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class WeaponInfoScript : MonoBehaviour {
 
     public Image icon;
-    public Text goldCost;
+    public Text prize;
     public Text description;
 
     private int _goldCost;
@@ -19,7 +19,7 @@ public class WeaponInfoScript : MonoBehaviour {
     private void SetCost(int pGold)
     {
         _goldCost = pGold;
-        goldCost.text = "PRIZE: " + goldCost;
+        prize.text = "PRIZE: " + _goldCost;
     }
 
     void Awake()
@@ -27,9 +27,4 @@ public class WeaponInfoScript : MonoBehaviour {
         SetCost(transform.parent.GetComponent<Weapon>().GoldValue);
         Debug.Log(_goldCost);
     }
-
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }
