@@ -253,17 +253,26 @@ public class Unit : MonoBehaviour
     void OnCollisionStay(Collision coll)
     {
         Weapon w = null;
-        if (null != (w = (coll.collider.GetComponent<Weapon>())))
+        if (isPlayer && null != (w = (coll.collider.GetComponent<Weapon>())))
         {
+            w.ActivateInfoBox();
             if (Input.GetKeyDown(KeyCode.E) && w.isOnGround && w.GoldValue <= stats.CurrentGold)
             {
-                Debug.Log("pickup");
-                Debug.Log("weapon id " + w.GetInstanceID());
                 stats.ApplyValue(StatType.GOLD, -w.GoldValue);
                 PickupWeapon(w);
             }
         }
     }
+    
+    void OnCollisionExit(Collision coll)
+    {
+        Weapon w = null;
+        if (isPlayer && null != (w = (coll.collider.GetComponent<Weapon>())))
+        {
+            w.DeactivateInfoBox();
+        }
+    }
+
 
     public void PickupWeapon(Weapon pWeapon)
     {

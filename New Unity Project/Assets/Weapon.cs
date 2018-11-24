@@ -12,6 +12,7 @@ public class Weapon : MonoBehaviour
     public List<KeyCode> abilityKeyBindings;
     public BoxCollider coll;
     public Rigidbody rb;
+    public WeaponInfoScript weaponIS;
     public bool isOnGround { get { return owner == gameObject.GetInstanceID(); } }
     bool WasSetPreInit = false;
 
@@ -27,6 +28,16 @@ public class Weapon : MonoBehaviour
             owner = gameObject.GetInstanceID();
         }
         PreparePickup();
+    }
+
+    public void ActivateInfoBox()
+    {
+        weaponIS.gameObject.SetActive(true);
+    }
+
+    public void DeactivateInfoBox()
+    {
+        weaponIS.gameObject.SetActive(false);
     }
 
     public void SetOwnerDUs(Unit pOwner)

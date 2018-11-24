@@ -66,20 +66,20 @@ public class Controller : MonoBehaviour, IController
         
         if(d1 > 0)
         {
-            Debug.Log("Walking Right");
+            //Debug.Log("Walking Right");
         }
         else
         {
-            Debug.Log("Walking Left");
+            //Debug.Log("Walking Left");
         }
 
         if (d > 0)
         {
-            Debug.Log("Walking Forward");
+            //Debug.Log("Walking Forward");
         }
         else
         {
-            Debug.Log("Walking Backwards");
+            //Debug.Log("Walking Backwards");
         }
 
         float right, fwd;
@@ -152,12 +152,12 @@ public class Controller : MonoBehaviour, IController
         {
             v += Vector3.right;
         }
-        anim.SetFloat("Forward", 0);
+        //anim.SetFloat("Forward", 0);
         if (v != Vector3.zero)
         {
             _rb.AddForce(v.normalized * speed, ForceMode.Acceleration);
            
-            anim.SetFloat("Forward", speed);
+            //anim.SetFloat("Forward", speed);
             
         }
 
