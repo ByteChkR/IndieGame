@@ -30,6 +30,11 @@ public class Weapon : MonoBehaviour
         PreparePickup();
     }
 
+    public void DisableBuying()
+    {
+        weaponIS.SetCost(0);
+    }
+
     public void ActivateInfoBox()
     {
         weaponIS.gameObject.SetActive(true);

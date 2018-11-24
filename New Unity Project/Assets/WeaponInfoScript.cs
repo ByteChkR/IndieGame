@@ -16,10 +16,16 @@ public class WeaponInfoScript : MonoBehaviour {
 
 	}
 
-    private void SetCost(int pGold)
+    public void SetCost(int pGold)
     {
         _goldCost = pGold;
-        prize.text = "PRIZE: " + _goldCost;
+        if (_goldCost > 0) {
+            prize.text = "PRIZE: " + _goldCost;
+        }
+        else
+        {
+            prize.text = null;
+        }
     }
 
     void Awake()

@@ -275,7 +275,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: 114767172910700232}
-  goldCost: {fileID: 114748057862000790}
+  prize: {fileID: 114748057862000790}
   description: {fileID: 114406969969634288}
 --- !u!114 &114615693153628234
 MonoBehaviour:
