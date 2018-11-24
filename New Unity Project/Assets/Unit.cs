@@ -240,7 +240,7 @@ public class Unit : MonoBehaviour
     void OnTriggerEnter(Collider coll)
     {
         CheckpointScript cp;
-        if (null != (cp = coll.GetComponent<CheckpointScript>()))
+        if (isPlayer && null != (cp = coll.GetComponent<CheckpointScript>()))
         {
             if (cp.index > checkpoint.index || checkpoint == null)
             {
