@@ -2,15 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Coin : MonoBehaviour
+public class Coin : Ability
 {
 
     public float startSpeed;
     float spe;
     public float speedStepPerFrame;
     public float MinDistance;
-    public Unit target;
-
+    Unit target;
 
     // Use this for initialization
     void Start()
@@ -21,21 +20,40 @@ public class Coin : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public override void Update()
     {
-
+        base.Update();
+        if (target == null) return;
         float distance;
 
         Vector3 vdir = (target.transform.position - transform.position);
         distance = vdir.magnitude;
-
-        if (distance <= MinDistance)
+        if(distance <= MinDistance)
         {
             target.stats.ApplyValue(Unit.StatType.GOLD, 1);
             Destroy(gameObject);
         }
+
         vdir.Normalize();
         transform.position += vdir * startSpeed * distance;
         startSpeed += speedStepPerFrame;
+    }
+
+    public override void OnDestroy()
+    {
+        base.OnDestroy();
+    }
+
+    public override void Initialize(int source, Vector3 target, Quaternion rot)
+    {
+        base.Initialize(source, target, rot);
+        this.target = Unit.Player;
+    }
+
+    public override void OnHit(Unit target)
+    {
+        
+        base.OnHit(target);
+        
     }
 }

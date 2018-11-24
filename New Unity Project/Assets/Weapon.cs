@@ -14,6 +14,8 @@ public class Weapon : MonoBehaviour
     public Rigidbody rb;
     public bool isOnGround { get { return owner == gameObject.GetInstanceID(); } }
     bool WasSetPreInit = false;
+
+    public int GoldValue = 5;
     // Use this for initialization
     void Start()
     {

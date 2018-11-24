@@ -55,8 +55,8 @@ public class SejuR : Ability
         if (firstHit)
         {
             firstHit = false;
-            target.stats.AddEffect(stun);
+            target.stats.AddEffect(stun, Source.gameObject.GetInstanceID());
         }
-        target.stats.AddEffects(onHitEffects.ToArray());
+        target.stats.AddEffects(onHitEffects.ToArray(), Source.gameObject.GetInstanceID());
     }
 }

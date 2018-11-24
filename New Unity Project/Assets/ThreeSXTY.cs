@@ -64,7 +64,7 @@ public class ThreeSXTY : Ability
     public override void OnHit(Unit target)
     {
         localCoords.Add(target.gameObject.GetInstanceID(), _collider.transform.InverseTransformPoint(target.transform.position));
-        target.stats.AddEffects(onHitEffects.ToArray());
+        target.stats.AddEffects(onHitEffects.ToArray(), Source.gameObject.GetInstanceID());
         target.stats.ApplyValue(Unit.StatType.STUN, 1);
         base.OnHit(target);
     }

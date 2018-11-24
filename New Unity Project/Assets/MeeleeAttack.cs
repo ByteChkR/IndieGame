@@ -57,7 +57,7 @@ public class MeeleeAttack : Ability
     public override void OnHit(Unit target)
     {
         if (Source != null) Source.stats.ApplyValue(Unit.StatType.COMBO, ComboGainPerHit);
-        target.stats.AddEffects(onHitEffects.ToArray());
+        target.stats.AddEffects(onHitEffects.ToArray(), Source.gameObject.GetInstanceID());
         base.OnHit(target);
     }
 

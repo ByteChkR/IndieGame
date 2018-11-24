@@ -38,6 +38,6 @@ public class KogMawR : Ability
     public override void OnHit(Unit target)
     {
         base.OnHit(target);
-        target.stats.AddEffects(effects);
+        target.stats.AddEffects(effects, Source.gameObject.GetInstanceID());
     }
 }

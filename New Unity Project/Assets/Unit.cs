@@ -14,6 +14,7 @@ public class AbstractEffect
     public bool ApplyOnce = true;
     bool appliedOnce = false;
     bool inversed = false;
+
     public bool active
     {
         get
@@ -21,6 +22,7 @@ public class AbstractEffect
             return Time.realtimeSinceStartup < TimeActivated + Duration;
         }
     }
+
     public virtual float Apply(float value)
     {
         if (ApplyOnce && appliedOnce) return value;
@@ -48,7 +50,8 @@ public class UnitStats
     private float BaseCombo;
 
 
-
+    int killer = -1;
+    public int Killer { get { return killer; } }
 
 
     [SerializeField]
@@ -69,7 +72,7 @@ public class UnitStats
     public float CurrentMovementSpeed { get { return _currentMovementSpeed; } }
     public bool IsStunned { get { return _stun; } }
     public float CurrentGold { get { return _currentGold; } }
-    private List<AbstractEffect> effects = new List<AbstractEffect>();
+    private List<KeyValuePair<int, AbstractEffect>> effects = new List<KeyValuePair<int, AbstractEffect>>();
 
 
     public void Init()
@@ -79,21 +82,21 @@ public class UnitStats
         _currentCombo = BaseCombo;
     }
 
-    public void AddEffect(AbstractEffect newEffect)
+    public void AddEffect(AbstractEffect newEffect,  int source)
     {
         newEffect.TimeActivated = Time.realtimeSinceStartup;
-        effects.Add(newEffect);
+        effects.Add(new KeyValuePair<int, AbstractEffect>(source, newEffect));
     }
 
-    public void AddEffects(AbstractEffect[] newEffects)
+    public void AddEffects(AbstractEffect[] newEffects, int source)
     {
         foreach (AbstractEffect effect in newEffects)
         {
-            AddEffect(effect);
+            AddEffect(effect, source);
         }
     }
 
-    public void ApplyValue(Unit.StatType stype, float value)
+    public void ApplyValue(Unit.StatType stype, float value, int source = -1)
     {
         Debug.Log(System.Enum.GetName(typeof(Unit.StatType), stype) + ": changed by " + value);
         switch (stype)
@@ -101,6 +104,7 @@ public class UnitStats
             case Unit.StatType.HP:
                 _currentHealth += value;
                 _currentHealth = _currentHealth > MaxHealth ? MaxHealth : _currentHealth;
+                if (_currentHealth <= 0) killer = source;
                 break;
             case Unit.StatType.COMBO:
                 _currentCombo += value;
@@ -124,50 +128,50 @@ public class UnitStats
     public void Process()
     {
         List<int> inactiveEffects = new List<int>();
-        for (int i = 0; i < effects.Count; i++)
-        {
-            if (!effects[i].active)
+        foreach(KeyValuePair<int, AbstractEffect> kvp in effects){
+
+            if (!kvp.Value.active)
             {
 
-                inactiveEffects.Add(i);
+                inactiveEffects.Add(effects.IndexOf(kvp));
 
 
             }
 
-            switch (effects[i].type)
+            switch (kvp.Value.type)
             {
                 case Unit.StatType.HP:
-                    if (!effects[i].active && effects[i].InverseOnTimeout)
+                    if (!kvp.Value.active && kvp.Value.InverseOnTimeout)
                     {
-                        _currentHealth = effects[i].Inverse(_currentHealth);
+                        _currentHealth = kvp.Value.Inverse(_currentHealth);
                     }
-                    else if (effects[i].active) _currentHealth = effects[i].Apply(_currentHealth);
-
+                    else if (kvp.Value.active) _currentHealth = kvp.Value.Apply(_currentHealth);
+                    if (_currentHealth >= 0) killer = kvp.Key; 
                     break;
                 case Unit.StatType.COMBO:
-                    if (!effects[i].active && effects[i].InverseOnTimeout)
+                    if (!kvp.Value.active && kvp.Value.InverseOnTimeout)
                     {
-                        _currentCombo = effects[i].Inverse(_currentCombo);
+                        _currentCombo = kvp.Value.Inverse(_currentCombo);
                     }
-                    else if (effects[i].active) _currentCombo = effects[i].Apply(_currentCombo);
+                    else if (kvp.Value.active) _currentCombo = kvp.Value.Apply(_currentCombo);
 
                     break;
                 case Unit.StatType.MOVESPEED:
-                    if (!effects[i].active && effects[i].InverseOnTimeout)
+                    if (!kvp.Value.active && kvp.Value.InverseOnTimeout)
                     {
-                        _currentMovementSpeed = effects[i].Inverse(_currentMovementSpeed);
+                        _currentMovementSpeed = kvp.Value.Inverse(_currentMovementSpeed);
                     }
-                    else if (effects[i].active)
+                    else if (kvp.Value.active)
                     {
-                        _currentMovementSpeed = effects[i].Apply(_currentMovementSpeed);
+                        _currentMovementSpeed =kvp.Value.Apply(_currentMovementSpeed);
                     }
                     break;
                 case Unit.StatType.STUN:
-                    if (!effects[i].active && effects[i].InverseOnTimeout)
+                    if (!kvp.Value.active && kvp.Value.InverseOnTimeout)
                     {
                         _stun = false;
                     }
-                    else if (effects[i].active)
+                    else if (kvp.Value.active)
                     {
                         _stun = true;
                     }
@@ -211,7 +215,8 @@ public class Unit : MonoBehaviour
     [SerializeField]
     public List<ParticleSystemEntry> particleSystems;
     public CheckpointScript checkpoint;
-
+    public int GoldReward = 2;
+    public GameObject goldPrefab;
     int selectedWeapon = 0;
     public Weapon SelectedWeapon { get { return weapons[selectedWeapon]; } }
     public enum TriggerType
@@ -235,11 +240,11 @@ public class Unit : MonoBehaviour
     void OnTriggerEnter(Collider coll)
     {
         CheckpointScript cp;
-        if(null != (cp = coll.GetComponent<CheckpointScript>()))
+        if (null != (cp = coll.GetComponent<CheckpointScript>()))
         {
-            if(cp.index > checkpoint.index || checkpoint == null)
+            if (cp.index > checkpoint.index || checkpoint == null)
             {
-                cp.TakeCheckpoint(stats.CurrentGold, transform.position,weapons);
+                cp.TakeCheckpoint(stats.CurrentGold, transform.position, weapons);
                 checkpoint = cp;
             }
         }
@@ -250,10 +255,11 @@ public class Unit : MonoBehaviour
         Weapon w = null;
         if (null != (w = (coll.collider.GetComponent<Weapon>())))
         {
-            if (Input.GetKeyDown(KeyCode.E) && w.isOnGround)
+            if (Input.GetKeyDown(KeyCode.E) && w.isOnGround && w.GoldValue <= stats.CurrentGold)
             {
                 Debug.Log("pickup");
                 Debug.Log("weapon id " + w.GetInstanceID());
+                stats.ApplyValue(StatType.GOLD, -w.GoldValue);
                 PickupWeapon(w);
             }
         }
@@ -312,7 +318,7 @@ public class Unit : MonoBehaviour
 
     void RegisterParticleEffect(string key, ParticleSystem ps)
     {
-        if(particleSystems.Count(x=>x.Key == key) > 0)
+        if (particleSystems.Count(x => x.Key == key) > 0)
         {
             Debug.LogError("Tried to register particle system with key that is already existing");
             return;
@@ -395,7 +401,7 @@ public class Unit : MonoBehaviour
     private void Awake()
     {
         ActiveUnits.Add(gameObject.GetInstanceID(), this);
-        
+
         stats.Init();
     }
 
@@ -404,7 +410,7 @@ public class Unit : MonoBehaviour
     {
         weapons[0] = GetComponentInChildren<Weapon>();
         weapons[0].SetOwnerDUs(this);
-        
+
         controller = GetComponent<IController>();
         if (isPlayer) Player = this;
     }
@@ -414,9 +420,23 @@ public class Unit : MonoBehaviour
         stats.Process();
     }
 
+    private void UnitDying()
+    {
+        Vector3 rnd = new Vector3();
+        Vector2 r;
+        for (int i = 0; i < GoldReward; i++)
+        {
+            r = Random.insideUnitCircle*2;
+            rnd.Set(r.x, 0, r.y);
+            Ability a = Instantiate(goldPrefab, transform.position + rnd, transform.rotation).GetComponent<Ability>();
+            a.Initialize(gameObject.GetInstanceID(), Vector3.zero, Quaternion.identity); //use the source int as the killers id. This works only with coins.
+        }
+        Destroy(gameObject);
+    }
+
     private void LateUpdate()
     {
-        if (stats.CurrentHealth <= 0) Destroy(gameObject);
+        if (stats.CurrentHealth <= 0) UnitDying();
     }
 
     private void OnDestroy()

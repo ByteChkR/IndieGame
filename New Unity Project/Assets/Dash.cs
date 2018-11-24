@@ -94,7 +94,7 @@ public class Dash : Ability
     {
         base.OnHit(target);
 
-        target.stats.AddEffects(onHitEffects.ToArray());
+        target.stats.AddEffects(onHitEffects.ToArray(), Source.gameObject.GetInstanceID());
     }
 
 

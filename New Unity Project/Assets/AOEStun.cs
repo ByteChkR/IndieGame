@@ -65,7 +65,7 @@ public class AOEStun : Ability
 
     public override void OnHit(Unit target)
     {
-        target.stats.AddEffects(onHitEffects.ToArray());
+        target.stats.AddEffects(onHitEffects.ToArray(), Source.gameObject.GetInstanceID());
         base.OnHit(target);
     }
 

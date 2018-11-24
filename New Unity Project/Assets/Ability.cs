@@ -86,7 +86,7 @@ public class Ability : MonoBehaviour
             target.controller.rb.AddForce(d.normalized * (KnockBackPowerOnMaxRange + p * deltaPower), ForceMode.VelocityChange);
         }
 
-        target.stats.ApplyValue(Unit.StatType.HP, -Damage);
+        target.stats.ApplyValue(Unit.StatType.HP, -Damage, Source.gameObject.GetInstanceID());
     }
 
 
@@ -94,7 +94,7 @@ public class Ability : MonoBehaviour
     public virtual void Update()
     {
         if (!Initialized) return;
-        if (CheckCollisionsEveryFrame && _collider != null) CheckAndResolveCollisions(_collider);
+        if (CheckCollisionsEveryFrame && Source != null && _collider != null) CheckAndResolveCollisions(_collider);
     }
 
     public virtual void OnDestroy()
@@ -136,7 +136,7 @@ public class Ability : MonoBehaviour
 
         newUnits.ForEach(x => OnHit(Unit.ActiveUnits[x]));
 
-        Debug.Log(newUnits.Count);
+        //Debug.Log(unitsHit.Count);
         return newUnits;
     }
 
