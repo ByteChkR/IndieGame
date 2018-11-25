@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4334799433876266}
   - component: {fileID: 114581013238943084}
-  - component: {fileID: 65722245988166904}
+  - component: {fileID: 135421002662652140}
   m_Layer: 0
   m_Name: Apprehend
   m_TagString: Untagged
@@ -41,18 +41,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &65722245988166904
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1789416970732076}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114581013238943084
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -74,8 +62,20 @@ MonoBehaviour:
   MoreOnMaxRange: 1
   collType: 0
   Damage: 10
-  _animationName: AOEStun
+  _animationName: ThreeSXTY
   _animationSpeed: 1
   onHitEffects: []
-  hitboxSize: {x: 2, y: 1, z: 10}
-  InFrontOfPlayer: 1
+  hitboxSize: {x: 7, y: 1, z: 10}
+  InFrontOfPlayer: 0
+--- !u!135 &135421002662652140
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1789416970732076}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}

@@ -27,8 +27,8 @@ GameObject:
   - component: {fileID: 114347026770803852}
   - component: {fileID: 54321184512289836}
   - component: {fileID: 111114691272427366}
-  m_Layer: 0
-  m_Name: Enemy
+  m_Layer: 11
+  m_Name: VeigarWEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -49,39 +49,26 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1815769001437216
+--- !u!1 &1992014108295524
 GameObject:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4217558679001036}
-  - component: {fileID: 33891765098715916}
-  - component: {fileID: 23058357380945752}
-  - component: {fileID: 114285816654249360}
-  - component: {fileID: 65975430067250768}
-  - component: {fileID: 54473218395744856}
+  - component: {fileID: 4473466041792658}
+  - component: {fileID: 33866026152061720}
+  - component: {fileID: 23769681770360164}
+  - component: {fileID: 114327608603972958}
+  - component: {fileID: 65720305064711498}
+  - component: {fileID: 54591549939353816}
   m_Layer: 2
-  m_Name: GameObject (1)
+  m_Name: VeigarWWeapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4217558679001036
-Transform:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1815769001437216}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4900582268538302}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4332284743366068
 Transform:
   m_ObjectHideFlags: 1
@@ -96,6 +83,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4473466041792658
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1992014108295524}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 3}
+  m_Children: []
+  m_Father: {fileID: 4900582268538302}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4900582268538302
 Transform:
   m_ObjectHideFlags: 1
@@ -104,47 +104,12 @@ Transform:
   m_GameObject: {fileID: 1539951431648014}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 1.5}
-  m_LocalScale: {x: 0.29999998, y: 0.32999998, z: 2.83}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4217558679001036}
+  - {fileID: 4473466041792658}
   m_Father: {fileID: 4332284743366068}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23058357380945752
-MeshRenderer:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1815769001437216}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
-  m_Materials:
-  - {fileID: 2100000, guid: 7378c51ebfe22b04c85b8af219739358, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
 --- !u!23 &23207740681530196
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -180,6 +145,41 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!23 &23769681770360164
+MeshRenderer:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1992014108295524}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
+  m_Materials:
+  - {fileID: 2100000, guid: 7378c51ebfe22b04c85b8af219739358, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
 --- !u!33 &33264523852605996
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -187,12 +187,12 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1382934848206572}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
---- !u!33 &33891765098715916
+--- !u!33 &33866026152061720
 MeshFilter:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1815769001437216}
+  m_GameObject: {fileID: 1992014108295524}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!54 &54321184512289836
 Rigidbody:
@@ -209,12 +209,12 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!54 &54473218395744856
+--- !u!54 &54591549939353816
 Rigidbody:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1815769001437216}
+  m_GameObject: {fileID: 1992014108295524}
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
@@ -224,12 +224,12 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &65975430067250768
+--- !u!65 &65720305064711498
 BoxCollider:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1815769001437216}
+  m_GameObject: {fileID: 1992014108295524}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
@@ -266,7 +266,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats:
-    BaseHealth: 10
+    BaseHealth: 1
     BaseMovementSpeed: 1
     BaseCombo: 0
     MaxHealth: 10
@@ -276,12 +276,14 @@ MonoBehaviour:
   agent: {fileID: 0}
   particleSystems: []
   checkpoint: {fileID: 0}
---- !u!114 &114285816654249360
+  GoldReward: 20
+  goldPrefab: {fileID: 1136768164843768, guid: aac181e834279be488ad830f1c633251, type: 2}
+--- !u!114 &114327608603972958
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1815769001437216}
+  m_GameObject: {fileID: 1992014108295524}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ffa9b166186a8434aa2d1be75225fd2e, type: 3}
@@ -297,30 +299,32 @@ MonoBehaviour:
       type: 2}
     ComboCost: 0
     cooldown: 1
-  - Name: CallingArtillery
+  - Name: Dash
     Description: 
     icon: {fileID: 0}
     abilityInstance: {fileID: 114565534382304942, guid: c54b9fb1c069ce04b88eb2be33825231,
       type: 2}
-    ComboCost: 3
-    cooldown: 5
-  abilityKeyBindings: 0000000000000000
+    ComboCost: 0
+    cooldown: 0.6
+  abilityKeyBindings: 4301000044010000
   coll: {fileID: 0}
   rb: {fileID: 0}
+  weaponIS: {fileID: 0}
+  GoldValue: 5
 --- !u!114 &114347026770803852
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1382934848206572}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0eaef62141d15d44bb695ad130c92953, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   agent: {fileID: 0}
-  AttackRange: 1.5
+  AttackRange: 5
   ActivationRange: 10
   Speed: 3.5
 --- !u!136 &136923448478166742
