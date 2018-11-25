@@ -120,7 +120,7 @@ MonoBehaviour:
   Damage: 10
   onHitEffects:
   - type: 4
-    Strength: -0.7
+    Strength: -0.1
     InverseOnTimeout: 1
     Duration: 3
     TimeActivated: 0

@@ -79,7 +79,7 @@ public class AI : MonoBehaviour, IController
                 {
 
                     transform.forward = target.position - transform.position;
-                    if (u.stats.CurrentCombo >= u.SelectedWeapon.abilities[1].ComboCost)
+                    if (u.SelectedWeapon.abilities.Count > 1 && u.stats.CurrentCombo >= u.SelectedWeapon.abilities[1].ComboCost)
                     {
                         //Special Attack
                         u.SelectedWeapon.abilities[1].Fire(u.gameObject.GetInstanceID(), target.position, target.rotation);
