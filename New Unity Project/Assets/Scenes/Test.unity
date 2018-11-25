@@ -1480,15 +1480,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4545288865883636, guid: ef129d2d73cbb444ea3d86e6287a2233, type: 2}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4545288865883636, guid: ef129d2d73cbb444ea3d86e6287a2233, type: 2}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4545288865883636, guid: ef129d2d73cbb444ea3d86e6287a2233, type: 2}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4545288865883636, guid: ef129d2d73cbb444ea3d86e6287a2233, type: 2}
       propertyPath: m_LocalRotation.w
@@ -1501,6 +1501,11 @@ Prefab:
     - target: {fileID: 1546230843693650, guid: ef129d2d73cbb444ea3d86e6287a2233, type: 2}
       propertyPath: m_Name
       value: BuyAbleWeapon
+      objectReference: {fileID: 0}
+    - target: {fileID: 54552265284396520, guid: ef129d2d73cbb444ea3d86e6287a2233,
+        type: 2}
+      propertyPath: m_Mass
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef129d2d73cbb444ea3d86e6287a2233, type: 2}
@@ -2105,6 +2110,11 @@ Prefab:
       propertyPath: prize
       value: 
       objectReference: {fileID: 1656638118}
+    - target: {fileID: 54552265284396520, guid: ef129d2d73cbb444ea3d86e6287a2233,
+        type: 2}
+      propertyPath: m_Constraints
+      value: 64
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef129d2d73cbb444ea3d86e6287a2233, type: 2}
   m_IsPrefabAsset: 0

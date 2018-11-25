@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class WeaponInfoScript : MonoBehaviour {
 
+    public GameObject weapon;
+    public GameObject InfoBox;
     public Image icon;
     public Text prize;
     public Text description;
@@ -32,5 +34,16 @@ public class WeaponInfoScript : MonoBehaviour {
     {
         SetCost(transform.parent.GetComponent<Weapon>().GoldValue);
         Debug.Log(_goldCost);
+    }
+
+    void RotateInfoBox()
+    {
+        InfoBox.transform.rotation = Quaternion.Euler(45, -weapon.transform.rotation.y, 0);
+        Debug.Log("checking for spam");
+    }
+
+    void Update()
+    {
+        RotateInfoBox();
     }
 }

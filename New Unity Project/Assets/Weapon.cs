@@ -71,7 +71,6 @@ public class Weapon : MonoBehaviour
             coll.isTrigger = false;
             rb.useGravity = true;
             rb.isKinematic = false;
-            coll.size = new Vector3(2, 2, 2);
         }
         else
         {
