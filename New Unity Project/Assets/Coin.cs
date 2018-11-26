@@ -5,11 +5,11 @@ using UnityEngine;
 public class Coin : Ability
 {
 
-    public float startSpeed;
-    float spe;
-    public float speedStepPerFrame;
+    public float StartSpeed;
+    private readonly float _spe;
+    public float SpeedStepPerFrame;
     public float MinDistance;
-    Unit target;
+    Unit _target;
 
     // Use this for initialization
     void Start()
@@ -23,20 +23,20 @@ public class Coin : Ability
     public override void Update()
     {
         base.Update();
-        if (target == null) return;
+        if (_target == null) return;
         float distance;
 
-        Vector3 vdir = (target.transform.position - transform.position);
+        Vector3 vdir = (_target.transform.position - transform.position);
         distance = vdir.magnitude;
         if(distance <= MinDistance)
         {
-            target.stats.ApplyValue(Unit.StatType.GOLD, 1);
+            _target.Stats.ApplyValue(Unit.StatType.GOLD, 1);
             Destroy(gameObject);
         }
 
         vdir.Normalize();
-        transform.position += vdir * startSpeed * distance;
-        startSpeed += speedStepPerFrame;
+        transform.position += vdir * StartSpeed * distance;
+        StartSpeed += SpeedStepPerFrame;
     }
 
     public override void OnDestroy()
@@ -47,7 +47,7 @@ public class Coin : Ability
     public override void Initialize(int source, Vector3 target, Quaternion rot)
     {
         base.Initialize(source, target, rot);
-        this.target = Unit.Player;
+        this._target = Unit.Player;
     }
 
     public override void OnHit(Unit target)

@@ -5,20 +5,20 @@ using UnityEngine;
 public class ProjectileLine : Ability
 {
 
-    public float delayPerProjectile;
-    public int projectileCount;
+    public float DelayPerProjectile;
+    public int ProjectileCount;
     public GameObject Projectile;
     public float DistanceBetweenProjectiles;
     public float StartDistance;
-    float ActualDistance
+    private float _actualDistance
     {
         get
         {
-            return StartDistance + DistanceBetweenProjectiles * currentCount;
+            return StartDistance + DistanceBetweenProjectiles * _currentCount;
         }
     }
-    int currentCount = 0;
-    float timeInitialized;
+    private int _currentCount = 0;
+    private float _timeInitialized;
     // Use this for initialization
     void Start()
     {
@@ -28,7 +28,7 @@ public class ProjectileLine : Ability
     public override void Initialize(int source, Vector3 target, Quaternion rot)
     {
         base.Initialize(source, target, rot);
-        timeInitialized = Time.realtimeSinceStartup;
+        _timeInitialized = Time.realtimeSinceStartup;
 
     }
 
@@ -39,16 +39,16 @@ public class ProjectileLine : Ability
 
     public void FixedUpdate()
     {
-        if (currentCount < (int)((Time.realtimeSinceStartup - timeInitialized) / delayPerProjectile))
+        if (_currentCount < (int)((Time.realtimeSinceStartup - _timeInitialized) / DelayPerProjectile))
         {
             if (Source != null)
             {
                 Ability s = Instantiate(Projectile, transform.position, transform.rotation).GetComponent<Ability>();
-                s.Initialize(Source.gameObject.GetInstanceID(), transform.position + transform.forward * ActualDistance, targetRot);
+                s.Initialize(Source.gameObject.GetInstanceID(), transform.position + transform.forward * _actualDistance, TargetRot);
             }
-            currentCount++;
+            _currentCount++;
         }
-        if (currentCount >= projectileCount) Destroy(gameObject);
+        if (_currentCount >= ProjectileCount) Destroy(gameObject);
     }
 
     public override void OnDestroy()

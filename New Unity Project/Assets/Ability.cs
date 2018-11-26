@@ -7,13 +7,13 @@ using System.Linq;
 
 public class Ability : MonoBehaviour
 {
-    public static List<Ability> aliveAbilities = new List<Ability>();
+    public static List<Ability> AliveAbilities = new List<Ability>();
 
     protected Unit Source;
     [SerializeField]
-    protected Collider _collider;
+    protected Collider Collider;
     protected bool Initialized = false;
-    protected List<int> unitsHitSinceInit = new List<int>();
+    protected List<int> UnitsHitSinceInit = new List<int>();
     [SerializeField]
     protected bool SelfStun = false;
     [SerializeField]
@@ -28,16 +28,16 @@ public class Ability : MonoBehaviour
     protected bool InvertKnockback = false;
     [SerializeField]
     protected bool MoreOnMaxRange = false;
-    private int source;
+    private int _source;
     public enum ColliderTypes { None, Box, Sphere }
-    public ColliderTypes collType;
-    protected Vector3 targetPos;
-    protected Quaternion targetRot = Quaternion.identity;
+    public ColliderTypes CollType;
+    protected Vector3 TargetPos;
+    protected Quaternion TargetRot = Quaternion.identity;
     [SerializeField]
     protected float Damage;
     private void Awake()
     {
-        aliveAbilities.Add(this);
+        AliveAbilities.Add(this);
     }
     // Use this for initialization
     void Start()
@@ -47,25 +47,25 @@ public class Ability : MonoBehaviour
 
     public void RemoveAbility(int owner)
     {
-        if (source == owner)
+        if (_source == owner)
         {
-            aliveAbilities.Remove(this);
+            AliveAbilities.Remove(this);
             Destroy(gameObject);
         }
     }
 
     public virtual void Initialize(int source, Vector3 target, Quaternion rot)
     {
-        this.targetPos = target;
-        this.targetRot = rot;
-        this.source = source;
-        if (_collider == null)
+        this.TargetPos = target;
+        this.TargetRot = rot;
+        this._source = source;
+        if (Collider == null)
         {
-            _collider = GetComponent<Collider>();
+            Collider = GetComponent<Collider>();
         }
-        if (_collider == null) collType = ColliderTypes.None;
-        else if (_collider is SphereCollider) collType = ColliderTypes.Sphere;
-        else if (_collider is BoxCollider) collType = ColliderTypes.Box;
+        if (Collider == null) CollType = ColliderTypes.None;
+        else if (Collider is SphereCollider) CollType = ColliderTypes.Sphere;
+        else if (Collider is BoxCollider) CollType = ColliderTypes.Box;
 
         //Debug.Assert(_collider != null, "Ability has no Collider");
 
@@ -83,10 +83,10 @@ public class Ability : MonoBehaviour
             d = InvertKnockback ? -d : d;
             float deltaPower = MoreOnMaxRange ? -(KnockBackPower - KnockBackPowerOnMaxRange) : KnockBackPower - KnockBackPowerOnMaxRange;
             float p = Mathf.Clamp01(d.magnitude / KnockBackMaxRange);
-            target.controller.rb.AddForce(d.normalized * (KnockBackPowerOnMaxRange + p * deltaPower), ForceMode.VelocityChange);
+            target.Controller.Rb.AddForce(d.normalized * (KnockBackPowerOnMaxRange + p * deltaPower), ForceMode.VelocityChange);
         }
 
-        target.stats.ApplyValue(Unit.StatType.HP, -Damage, Source.gameObject.GetInstanceID());
+        target.Stats.ApplyValue(Unit.StatType.HP, -Damage, Source.gameObject.GetInstanceID());
     }
 
 
@@ -94,7 +94,7 @@ public class Ability : MonoBehaviour
     public virtual void Update()
     {
         if (!Initialized) return;
-        if (CheckCollisionsEveryFrame && Source != null && _collider != null) CheckAndResolveCollisions(_collider);
+        if (CheckCollisionsEveryFrame && Source != null && Collider != null) CheckAndResolveCollisions(Collider);
     }
 
     public virtual void OnDestroy()
@@ -105,14 +105,14 @@ public class Ability : MonoBehaviour
     void CollisionCheck(Unit.TriggerType ttype)
     {
         if (ttype != Unit.TriggerType.CollisionCheck) return;
-        CheckAndResolveCollisions(_collider);
+        CheckAndResolveCollisions(Collider);
     }
 
     void CheckAndResolveCollisions(Collider coll)
     {
         List<int> newUnits = new List<int>();
-        if (collType == ColliderTypes.None) return;
-        switch (collType)
+        if (CollType == ColliderTypes.None) return;
+        switch (CollType)
         {
             case ColliderTypes.Box:
                 newUnits = CheckAndResolveCollisions(coll as BoxCollider);
@@ -123,16 +123,16 @@ public class Ability : MonoBehaviour
             default:
                 break;
         }
-        unitsHitSinceInit.AddRange(newUnits);
+        UnitsHitSinceInit.AddRange(newUnits);
     }
 
     List<int> CheckAndResolveCollisions(SphereCollider coll)
     {
-        List<int> unitsHit = Physics.OverlapSphere(_collider.transform.position + coll.center, coll.radius, 1 << 11)
+        List<int> unitsHit = Physics.OverlapSphere(Collider.transform.position + coll.center, coll.radius, 1 << 11)
         .Select(x => x.gameObject.GetInstanceID())
         .Where(x => x != Source.gameObject.GetInstanceID()).ToList();
 
-        List<int> newUnits = unitsHit.Select(x => x).Where(x => !unitsHitSinceInit.Contains(x)).ToList();
+        List<int> newUnits = unitsHit.Select(x => x).Where(x => !UnitsHitSinceInit.Contains(x)).ToList();
 
         newUnits.ForEach(x => OnHit(Unit.ActiveUnits[x]));
 
@@ -142,11 +142,11 @@ public class Ability : MonoBehaviour
 
     List<int> CheckAndResolveCollisions(BoxCollider coll)
     {
-        List<int> unitsHit = Physics.OverlapBox(_collider.transform.position + coll.center, coll.size / 2, _collider.transform.rotation, 1 << 11)
+        List<int> unitsHit = Physics.OverlapBox(Collider.transform.position + coll.center, coll.size / 2, Collider.transform.rotation, 1 << 11)
         .Select(x => x.gameObject.GetInstanceID())
         .Where(x => x != Source.gameObject.GetInstanceID()).ToList();
 
-        List<int> newUnits = unitsHit.Select(x => x).Where(x => !unitsHitSinceInit.Contains(x)).ToList();
+        List<int> newUnits = unitsHit.Select(x => x).Where(x => !UnitsHitSinceInit.Contains(x)).ToList();
 
         newUnits.ForEach(x => OnHit(Unit.ActiveUnits[x]));
 

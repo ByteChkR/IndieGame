@@ -6,42 +6,42 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class AI : MonoBehaviour, IController
 {
-    public Vector3 VTarget { get { return target.position; } }
-    public Transform target;
-    public NavMeshAgent agent;
+    public Vector3 VTarget { get { return Target.position; } }
+    public Transform Target;
+    public NavMeshAgent Agent;
     public float AttackRange;
     public float ActivationRange;
-    float distance2Target;
-    Unit u;
-    public bool isPlayer { get { return false; } }
+    float _distance2Target;
+    Unit _unit;
+    public bool IsPlayer { get { return false; } }
     public float Speed = 3.5f;
-    bool lockControls = false;
+    bool _lockControls = false;
     Rigidbody _rb;
-    public Rigidbody rb { get { return _rb; } }
+    public Rigidbody Rb { get { return _rb; } }
     public void LockControls(bool locked)
     {
-        lockControls = locked;
-        agent.velocity = Vector3.zero;
+        _lockControls = locked;
+        Agent.velocity = Vector3.zero;
     }
-    bool CanSeeTarget
+    bool _canSeeTarget
     {
         get
         {
-            if (target == null) return false;
+            if (Target == null) return false;
             RaycastHit info;
-            bool hit = Physics.Raycast(transform.position + (target.position - transform.position).normalized, target.position - transform.position, out info, float.MaxValue) && info.collider.gameObject.GetInstanceID() == target.gameObject.GetInstanceID();
-            Debug.DrawRay(transform.position + (target.position - transform.position).normalized, target.position - transform.position);
-            distance2Target = info.distance;
-            return hit && distance2Target <= ActivationRange;
+            bool hit = Physics.Raycast(transform.position + (Target.position - transform.position).normalized, Target.position - transform.position, out info, float.MaxValue) && info.collider.gameObject.GetInstanceID() == Target.gameObject.GetInstanceID();
+            Debug.DrawRay(transform.position + (Target.position - transform.position).normalized, Target.position - transform.position);
+            _distance2Target = info.distance;
+            return hit && _distance2Target <= ActivationRange;
         }
     }
     // Use this for initialization
     void Start()
     {
-        agent = GetComponent<NavMeshAgent>();
+        Agent = GetComponent<NavMeshAgent>();
         _rb = GetComponent<Rigidbody>();
-        u = Unit.ActiveUnits[gameObject.GetInstanceID()];
-        u.agent = agent;
+        _unit = Unit.ActiveUnits[gameObject.GetInstanceID()];
+        _unit.Agent = Agent;
     }
 
     private void FixedUpdate()
@@ -52,42 +52,42 @@ public class AI : MonoBehaviour, IController
     // Update is called once per frame
     void Update()
     {
-        agent.speed = u.stats.CurrentMovementSpeed * Speed;
-        if (!CanSeeTarget || lockControls)
+        Agent.speed = _unit.Stats.CurrentMovementSpeed * Speed;
+        if (!_canSeeTarget || _lockControls)
         {
             return;
         }
 
-        if (u.stats.IsStunned)
+        if (_unit.Stats.IsStunned)
         {
-            u.agent.isStopped = true;
-            u.agent.velocity = Vector3.zero;
+            _unit.Agent.isStopped = true;
+            _unit.Agent.velocity = Vector3.zero;
             return;
         }
-        if (distance2Target <= ActivationRange)
+        if (_distance2Target <= ActivationRange)
         {
-            if (distance2Target > AttackRange)
+            if (_distance2Target > AttackRange)
             {
-                agent.SetDestination(target.position);
-                agent.isStopped = false;
+                Agent.SetDestination(Target.position);
+                Agent.isStopped = false;
             }
             else
             {
 
-                agent.isStopped = true;
-                if (!u.UnitAnimation.isPlaying)
+                Agent.isStopped = true;
+                if (!_unit.UnitAnimation.isPlaying)
                 {
 
-                    transform.forward = target.position - transform.position;
-                    if (u.SelectedWeapon.abilities.Count > 1 && u.stats.CurrentCombo >= u.SelectedWeapon.abilities[1].ComboCost)
+                    transform.forward = Target.position - transform.position;
+                    if (_unit.SelectedWeapon.Abilities.Count > 1 && _unit.Stats.CurrentCombo >= _unit.SelectedWeapon.Abilities[1].ComboCost)
                     {
                         //Special Attack
-                        u.SelectedWeapon.abilities[1].Fire(u.gameObject.GetInstanceID(), target.position, target.rotation);
+                        _unit.SelectedWeapon.Abilities[1].Fire(_unit.gameObject.GetInstanceID(), Target.position, Target.rotation);
 
                     }
                     else
                     {
-                        u.SelectedWeapon.abilities[0].Fire(u.gameObject.GetInstanceID(), target.position, target.rotation);
+                        _unit.SelectedWeapon.Abilities[0].Fire(_unit.gameObject.GetInstanceID(), Target.position, Target.rotation);
 
                     }
                 }
@@ -95,7 +95,7 @@ public class AI : MonoBehaviour, IController
         }
         else
         {
-            agent.isStopped = true;
+            Agent.isStopped = true;
         }
 
     }

@@ -6,12 +6,12 @@ public class ArtilleryDrop : Ability
 {
 
     public float DistanceFromCaster = 8;
-    public Vector3 startHeight;
+    public Vector3 StartHeight;
     public override void Initialize(int source, Vector3 target, Quaternion rot)
     {
         base.Initialize(source, target, rot);
 
-        transform.position = target + startHeight;
+        transform.position = target + StartHeight;
     }
 
     public override void OnHit(Unit target)

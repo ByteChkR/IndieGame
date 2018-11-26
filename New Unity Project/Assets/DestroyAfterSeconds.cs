@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class DestroyAfterSeconds : MonoBehaviour {
 
-    public float timeLeft;
+    public float TimeLeft;
 	void Start () {
 		
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        timeLeft -= Time.deltaTime;
-        if(timeLeft<0)
+        TimeLeft -= Time.deltaTime;
+        if(TimeLeft<0)
         {
             Destroy(gameObject);
         }

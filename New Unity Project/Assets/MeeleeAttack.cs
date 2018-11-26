@@ -5,16 +5,16 @@ using UnityEngine;
 public class MeeleeAttack : Ability
 {
     [SerializeField]
-    private string _animationName;
+    private readonly string _animationName;
     [SerializeField]
-    private float _animationSpeed;
+    private readonly float _animationSpeed;
     [SerializeField]
-    private List<AbstractEffect> onHitEffects;
+    private List<AbstractEffect> _onHitEffects;
     [SerializeField]
-    private float ComboGainPerHit = 100;
+    private readonly float _comboGainPerHit = 100;
 
 
-    bool started = false;
+    private bool _started = false;
     // Use this for initialization
     void Start()
     {
@@ -23,12 +23,12 @@ public class MeeleeAttack : Ability
 
     public override void Initialize(int source, Vector3 target, Quaternion rot)
     {
-        _collider = Unit.ActiveUnits[source].SelectedWeapon.coll;
+        Collider = Unit.ActiveUnits[source].SelectedWeapon.Coll;
         base.Initialize(source, target,rot);
 
         Source.UnitAnimation[_animationName].speed = _animationSpeed;
         Source.UnitAnimation.Play(_animationName, PlayMode.StopSameLayer);
-        started = true;
+        _started = true;
     }
 
     // Update is called once per frame
@@ -40,9 +40,9 @@ public class MeeleeAttack : Ability
         {
             return;
         }
-        if (started && Source != null && !Source.UnitAnimation.isPlaying)
+        if (_started && Source != null && !Source.UnitAnimation.isPlaying)
         {
-            started = false;
+            _started = false;
             Destroy(this.gameObject);
         }
     }
@@ -56,8 +56,8 @@ public class MeeleeAttack : Ability
 
     public override void OnHit(Unit target)
     {
-        if (Source != null) Source.stats.ApplyValue(Unit.StatType.COMBO, ComboGainPerHit);
-        target.stats.AddEffects(onHitEffects.ToArray(), Source.gameObject.GetInstanceID());
+        if (Source != null) Source.Stats.ApplyValue(Unit.StatType.COMBO, _comboGainPerHit);
+        target.Stats.AddEffects(_onHitEffects.ToArray(), Source.gameObject.GetInstanceID());
         base.OnHit(target);
     }
 

@@ -5,27 +5,26 @@ using UnityEngine;
 public class Dash : Ability
 {
     [SerializeField]
-    private string _animationName;
+    private readonly string _animationName;
     [SerializeField]
-    private float _animationSpeed;
+    private readonly float _animationSpeed;
     [SerializeField]
-    private List<AbstractEffect> onHitEffects;
+    private List<AbstractEffect> _onHitEffects;
     [Tooltip("If the collider is a Sphere only the X axis will be used as a radius.")]
     public Vector3 hitboxSize;
     [SerializeField]
-    private bool InFrontOfPlayer = true;
+    private readonly bool  _inFrontOfPlayer = true;
     [SerializeField]
-    private float DashDistance = 10;
+    private readonly float _dashDistance = 10;
     [SerializeField]
-    private float DashTime = 1;
+    private readonly float _dashTime = 1;
     [SerializeField]
-    private AnimationCurve animationCurve;
-    float timeInitialized;
-    Vector3 pos;
-    Vector3 endPos;
-    bool started = false;
-    float ddistance;
-    public GameObject afterDashAbility;
+    private AnimationCurve _animationCurve;
+    private float _timeInitialized;
+    private Vector3 _pos;
+    private Vector3 _endPos;
+    float _ddistance;
+    public GameObject AfterDashAbility;
     // Use this for initialization
     void Start()
     {
@@ -36,33 +35,33 @@ public class Dash : Ability
     {
         base.Initialize(source, target, rot);
         transform.parent = Source.transform;
-        timeInitialized = Time.realtimeSinceStartup;
-        if (collType == ColliderTypes.Box)
+        _timeInitialized = Time.realtimeSinceStartup;
+        if (CollType == ColliderTypes.Box)
         {
-            (_collider as BoxCollider).size = hitboxSize;
-            if (InFrontOfPlayer) (_collider as BoxCollider).center = transform.forward * hitboxSize.z / 2; //Move Hitbox right in front of caster
+            (Collider as BoxCollider).size = hitboxSize;
+            if (_inFrontOfPlayer) (Collider as BoxCollider).center = transform.forward * hitboxSize.z / 2; //Move Hitbox right in front of caster
         }
-        else if (collType == ColliderTypes.Sphere)
+        else if (CollType == ColliderTypes.Sphere)
         {
-            (_collider as SphereCollider).radius = hitboxSize.x;
-            if (InFrontOfPlayer) (_collider as SphereCollider).center = transform.forward * hitboxSize.x / 2;
+            (Collider as SphereCollider).radius = hitboxSize.x;
+            if (_inFrontOfPlayer) (Collider as SphereCollider).center = transform.forward * hitboxSize.x / 2;
         }
         Source.UnitAnimation[_animationName].speed = _animationSpeed;
         Source.UnitAnimation.Play(_animationName, PlayMode.StopSameLayer);
-        started = true;
-        pos = Source.transform.position;
-        ddistance = (target - Source.transform.position).magnitude;
+        
+        _pos = Source.transform.position;
+        _ddistance = (target - Source.transform.position).magnitude;
         Vector3 fwd = Source.transform.forward;
         fwd.y = 0;
         fwd.Normalize();
-        endPos = ddistance > DashDistance ? Source.transform.position + fwd * DashDistance : Source.transform.position + fwd * ddistance;
+        _endPos = _ddistance > _dashDistance ? Source.transform.position + fwd * _dashDistance : Source.transform.position + fwd * _ddistance;
     }
 
     // Update is called once per frame
     public override void Update()
     {
         base.Update();
-        float t = (Time.realtimeSinceStartup - timeInitialized) / DashTime;
+        float t = (Time.realtimeSinceStartup - _timeInitialized) / _dashTime;
         if (!Initialized)
         {
             return;
@@ -71,15 +70,15 @@ public class Dash : Ability
         {
             if (Source != null)
             {
-                AOEStun s = Instantiate(afterDashAbility, Source.transform.position, Source.transform.rotation).GetComponent<AOEStun>();
-                s.Initialize(Source.gameObject.GetInstanceID(), targetPos, targetRot);
+                AOEStun s = Instantiate(AfterDashAbility, Source.transform.position, Source.transform.rotation).GetComponent<AOEStun>();
+                s.Initialize(Source.gameObject.GetInstanceID(), TargetPos, TargetRot);
             }
-            started = false;
+            
             Destroy(this.gameObject);
         }
         else
         {
-            if (Source != null) Source.transform.position = Vector3.Lerp(pos, endPos, animationCurve.Evaluate(t));
+            if (Source != null) Source.transform.position = Vector3.Lerp(_pos, _endPos, _animationCurve.Evaluate(t));
         }
     }
 
@@ -94,7 +93,7 @@ public class Dash : Ability
     {
         base.OnHit(target);
 
-        target.stats.AddEffects(onHitEffects.ToArray(), Source.gameObject.GetInstanceID());
+        target.Stats.AddEffects(_onHitEffects.ToArray(), Source.gameObject.GetInstanceID());
     }
 
 

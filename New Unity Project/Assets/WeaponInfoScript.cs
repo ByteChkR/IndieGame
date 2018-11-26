@@ -5,11 +5,11 @@ using UnityEngine.UI;
 
 public class WeaponInfoScript : MonoBehaviour {
 
-    public GameObject weapon;
+    public GameObject Weapon;
     public GameObject InfoBox;
-    public Image icon;
-    public Text prize;
-    public Text description;
+    public Image Icon;
+    public Text Prize;
+    public Text Description;
 
     private int _goldCost;
 
@@ -22,11 +22,11 @@ public class WeaponInfoScript : MonoBehaviour {
     {
         _goldCost = pGold;
         if (_goldCost > 0) {
-            prize.text = "PRIZE: " + _goldCost;
+            Prize.text = "PRIZE: " + _goldCost;
         }
         else
         {
-            prize.text = null;
+            Prize.text = null;
         }
     }
 
@@ -38,7 +38,7 @@ public class WeaponInfoScript : MonoBehaviour {
 
     void RotateInfoBox()
     {
-        InfoBox.transform.rotation = Quaternion.Euler(45, -weapon.transform.rotation.y, 0);
+        InfoBox.transform.rotation = Quaternion.Euler(45, -Weapon.transform.rotation.y, 0);
         Debug.Log("checking for spam");
     }
 

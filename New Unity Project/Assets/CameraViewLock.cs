@@ -5,17 +5,17 @@ using UnityEngine;
 public class CameraViewLock : MonoBehaviour
 {
 
-    public Transform target;
-    Vector3 distance;
+    public Transform Target;
+    Vector3 _distance;
     // Use this for initialization
     void Start()
     {
-        distance = transform.position - target.position;
+        _distance = transform.position - Target.position;
     }
 
     // Update is called once per frame
     void LateUpdate()
     {
-        if (target != null) transform.position = target.position + distance;
+        if (Target != null) transform.position = Target.position + _distance;
     }
 }

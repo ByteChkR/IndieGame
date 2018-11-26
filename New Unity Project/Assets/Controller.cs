@@ -2,23 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
-public interface IController
-{
-    void LockControls(bool locked);
-    Vector3 VTarget { get; }
-    Rigidbody rb { get; }
-    bool isPlayer { get; }
-}
-
 [RequireComponent(typeof(Rigidbody), typeof(Unit))]
 public class Controller : MonoBehaviour, IController
 {
-    public Camera c;
-    public Animator anim;
-    Vector3 target;
-    public Vector3 VTarget { get { return target; } }
-    bool lockControls = false;
+    public Camera Camera;
+    public Animator Animator;
+    Vector3 _target;
+    public Vector3 VTarget { get { return _target; } }
+    bool _lockControls = false;
     public KeyCode Forward;
     public KeyCode Backward;
     public KeyCode Left;
@@ -27,35 +18,35 @@ public class Controller : MonoBehaviour, IController
     public float BackwardSpeed = 0.5f;
     public float StrafeSpeed = 0.75f;
     public float StrafeCutoff = 0.2f;
-    public bool isPlayer { get { return true; } }
+    public bool IsPlayer { get { return true; } }
     public GameObject WinScreen;
     public GameObject GameOverScreen;
     public GameObject MenuCanvas;
 
     private Rigidbody _rb;
-    public Rigidbody rb { get { return _rb; } }
-    Unit u;
+    public Rigidbody Rb { get { return _rb; } }
+    Unit _unit;
 
     // Use this for initialization
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
-        u = GetComponent<Unit>();
+        _unit = GetComponent<Unit>();
     }
 
     public void LockControls(bool locked)
     {
-        lockControls = locked;
+        _lockControls = locked;
         _rb.velocity = Vector3.zero;
     }
 
     private void Update()
     {
 
-        if (lockControls || u.stats.IsStunned) return;
+        if (_lockControls || _unit.Stats.IsStunned) return;
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            u.SwitchWeapon();
+            _unit.SwitchWeapon();
         }
     }
 
@@ -86,20 +77,20 @@ public class Controller : MonoBehaviour, IController
         right = d1;
         fwd = d;
         
-        anim.SetFloat("forwards", fwd);
-        anim.SetFloat("right", right);
-        anim.SetFloat("speed", velocity.magnitude);
+        Animator.SetFloat("forwards", fwd);
+        Animator.SetFloat("right", right);
+        Animator.SetFloat("speed", velocity.magnitude);
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (lockControls || u.stats.IsStunned) return;
+        if (_lockControls || _unit.Stats.IsStunned) return;
         Vector3 vDir = ViewingDirection();
         vDir = new Vector3(vDir.x, 0, vDir.z);
 
 
-        target = transform.position + vDir;
+        _target = transform.position + vDir;
         vDir.Normalize();
 
         Debug.DrawRay(transform.position, vDir * 5, Color.blue);
@@ -110,7 +101,7 @@ public class Controller : MonoBehaviour, IController
         if (_rb.velocity == Vector3.zero)
         {
             {
-                speed = ForwardSpeed * u.stats.CurrentMovementSpeed;
+                speed = ForwardSpeed * _unit.Stats.CurrentMovementSpeed;
             }
         }
         else
@@ -121,15 +112,15 @@ public class Controller : MonoBehaviour, IController
             float d = Vector3.Dot(vDir, _rb.velocity.normalized);
             if (d < StrafeCutoff && d > -StrafeCutoff)
             {
-                speed = StrafeSpeed * u.stats.CurrentMovementSpeed;
+                speed = StrafeSpeed * _unit.Stats.CurrentMovementSpeed;
             }
             else if (d < -StrafeCutoff)
             {
-                speed = BackwardSpeed * u.stats.CurrentMovementSpeed;
+                speed = BackwardSpeed * _unit.Stats.CurrentMovementSpeed;
             }
             else
             {
-                speed = ForwardSpeed * u.stats.CurrentMovementSpeed;
+                speed = ForwardSpeed * _unit.Stats.CurrentMovementSpeed;
             }
         }
 
@@ -197,7 +188,7 @@ public class Controller : MonoBehaviour, IController
     Vector3 ViewingDirection()
     {
         Vector3 mousePos = Input.mousePosition;
-        Ray r = c.ScreenPointToRay(mousePos);
+        Ray r = Camera.ScreenPointToRay(mousePos);
         RaycastHit info;
         if (Physics.Raycast(r, out info, 1000, 1 << 9))
         {

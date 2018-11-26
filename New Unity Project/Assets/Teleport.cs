@@ -5,19 +5,19 @@ using UnityEngine;
 public class Teleport : Ability
 {
     [SerializeField]
-    private float _damage;
+    private readonly float _damage;
     [SerializeField]
-    private string _animationName;
+    private readonly string _animationName;
     [SerializeField]
-    private float _animationSpeed;
+    private readonly float _animationSpeed;
     [SerializeField]
-    private List<AbstractEffect> onHitEffects;
-    bool blinked = false;
+    private readonly List<AbstractEffect> _onHitEffects;
+    private bool _blinked = false;
 
-    bool started = false;
+    private bool _started = false;
 
     [SerializeField]
-    private GameObject _nextAbility;
+    private readonly GameObject _nextAbility;
     // Use this for initialization
     void Start()
     {
@@ -30,7 +30,7 @@ public class Teleport : Ability
         Source.UnitAnimation[_animationName].speed = _animationSpeed;
         Source.UnitAnimation.Play(_animationName, PlayMode.StopSameLayer);
         Source.AddAnimationTriggerListener(TriggerTeleport);
-        started = true;
+        _started = true;
     }
 
     public void TriggerTeleport(Unit.TriggerType triggerType)
@@ -39,18 +39,18 @@ public class Teleport : Ability
         Source.RemoveAnimationTriggerListener(TriggerTeleport);
         RaycastHit info;
         Vector3 pos;
-        Vector3 fwd = targetRot * Vector3.forward;
-        if (Physics.Raycast(targetPos, -fwd, out info, 1.5f))
+        Vector3 fwd = TargetRot * Vector3.forward;
+        if (Physics.Raycast(TargetPos, -fwd, out info, 1.5f))
         {
-            pos = targetPos + fwd * 1.5f;
+            pos = TargetPos + fwd * 1.5f;
         }
         else
         {
-            pos = targetPos - fwd * 1.5f;
+            pos = TargetPos - fwd * 1.5f;
         }
         Source.transform.position = pos;
-        if (Source.agent != null) Source.agent.isStopped = true;
-        blinked = true;
+        if (Source.Agent != null) Source.Agent.isStopped = true;
+        _blinked = true;
     }
 
     // Update is called once per frame
@@ -61,14 +61,14 @@ public class Teleport : Ability
         {
             return;
         }
-        if (blinked && started && Source != null && !Source.UnitAnimation.isPlaying)
+        if (_blinked && _started && Source != null && !Source.UnitAnimation.isPlaying)
         {
-            started = false;
+            _started = false;
             if (_nextAbility != null)
             {
                 Source.UnitAnimation.Stop();
                 Ability a = Instantiate(_nextAbility, Source.transform.position, Source.transform.rotation).GetComponent<Ability>();
-                a.Initialize(Source.gameObject.GetInstanceID(), targetPos, targetRot);
+                a.Initialize(Source.gameObject.GetInstanceID(), TargetPos, TargetRot);
             }
             Destroy(this.gameObject);
 

@@ -8,9 +8,9 @@ public class LevelLoader : MonoBehaviour
 {
 
     #region "Inspector"
-    public GameObject loadingScreen;
-    public Slider slider;
-    public Text progressText;
+    public GameObject LoadingScreen;
+    public Slider Slider;
+    public Text ProgressText;
     #endregion
 
     public void LoadLevel(int sceneIndex)
@@ -23,14 +23,14 @@ public class LevelLoader : MonoBehaviour
     {
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex);
 
-        loadingScreen.SetActive(true);
+        LoadingScreen.SetActive(true);
 
         while (!operation.isDone)
         {
             float progress = Mathf.Clamp01(operation.progress / .9f);
 
-            slider.value = progress;
-            progressText.text = Mathf.Round(progress * 100f) + "%";
+            Slider.value = progress;
+            ProgressText.text = Mathf.Round(progress * 100f) + "%";
 
             yield return null;
         }

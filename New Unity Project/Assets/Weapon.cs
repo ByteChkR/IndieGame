@@ -6,77 +6,77 @@ using System;
 public class Weapon : MonoBehaviour
 {
 
-    public int owner = -1;
-    public Unit oOwner;
-    public List<AbstractAbility> abilities;
-    public List<KeyCode> abilityKeyBindings;
-    public BoxCollider coll;
-    public Rigidbody rb;
-    public WeaponInfoScript weaponIS;
-    public bool isOnGround { get { return owner == gameObject.GetInstanceID(); } }
-    bool WasSetPreInit = false;
+    public int Owner = -1;
+    public Unit OOwner;
+    public List<AbstractAbility> Abilities;
+    public List<KeyCode> AbilityKeyBindings;
+    public BoxCollider Coll;
+    public Rigidbody Rb;
+    public WeaponInfoScript WeaponIS;
+    public bool IsOnGround { get { return Owner == gameObject.GetInstanceID(); } }
+    private bool _wasSetPreInit = false;
 
     public int GoldValue = 5;
     // Use this for initialization
     void Start()
     {
         
-        rb = GetComponent<Rigidbody>();
-        coll = GetComponent<BoxCollider>();
-        if (!WasSetPreInit)
+        Rb = GetComponent<Rigidbody>();
+        Coll = GetComponent<BoxCollider>();
+        if (!_wasSetPreInit)
         {
-            owner = gameObject.GetInstanceID();
+            Owner = gameObject.GetInstanceID();
         }
         PreparePickup();
     }
 
     public void DisableBuying()
     {
-        weaponIS.SetCost(0);
+        WeaponIS.SetCost(0);
     }
 
     public void ActivateInfoBox()
     {
-        weaponIS.gameObject.SetActive(true);
+        WeaponIS.gameObject.SetActive(true);
     }
 
     public void DeactivateInfoBox()
     {
-        weaponIS.gameObject.SetActive(false);
+        WeaponIS.gameObject.SetActive(false);
     }
 
     public void SetOwnerDUs(Unit pOwner)
     {
-        oOwner = pOwner;
-        owner = pOwner.gameObject.GetInstanceID();
+        OOwner = pOwner;
+        Owner = pOwner.gameObject.GetInstanceID();
         PreparePickup();
     }
 
     public void SetOwnerForgetUnit(int unitId)
     {
-        owner = unitId;
-        oOwner = null;
+        Owner = unitId;
+        OOwner = null;
         PreparePickup();
     }
     
     private void PreparePickup()
     {
-        if (coll == null)
+        if (Coll == null)
         {
-            WasSetPreInit = true;
+            _wasSetPreInit = true;
             return;
         }
-        if (owner == gameObject.GetInstanceID())
+        if (Owner == gameObject.GetInstanceID())
         {
-            coll.isTrigger = false;
-            rb.useGravity = true;
-            rb.isKinematic = false;
+            Coll.isTrigger = false;
+            Rb.useGravity = true;
+            Rb.isKinematic = false;
         }
         else
         {
-            coll.isTrigger = true;
-            rb.useGravity = false;
-            rb.isKinematic = true;
+            Coll.isTrigger = true;
+            Rb.useGravity = false;
+            Rb.isKinematic = true;
         }
     }
 
@@ -85,13 +85,13 @@ public class Weapon : MonoBehaviour
     {
         
         //PreparePickup();
-        if (oOwner == null || owner == gameObject.GetInstanceID()) return;
-        for (int i = 0; i < abilityKeyBindings.Count; i++)
+        if (OOwner == null || Owner == gameObject.GetInstanceID()) return;
+        for (int i = 0; i < AbilityKeyBindings.Count; i++)
         {
-            if (!oOwner.stats.IsStunned && Input.GetKey(abilityKeyBindings[i]) && oOwner.GetActiveWeapon() == this)
+            if (!OOwner.Stats.IsStunned && Input.GetKey(AbilityKeyBindings[i]) && OOwner.GetActiveWeapon() == this)
             {
-                Debug.Log(abilities[i].Name + " : " + oOwner.controller.VTarget);
-                abilities[i].Fire(owner, oOwner.controller.VTarget, oOwner.transform.rotation);
+                Debug.Log(Abilities[i].Name + " : " + OOwner.Controller.VTarget);
+                Abilities[i].Fire(Owner, OOwner.Controller.VTarget, OOwner.transform.rotation);
             }
         }
     }

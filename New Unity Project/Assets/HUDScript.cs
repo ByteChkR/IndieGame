@@ -6,29 +6,29 @@ using UnityEngine.UI;
 public class HUDScript : MonoBehaviour
 {
 
-    public int _maxHealth = 100;
-    public float _health;
-    public int _maxCombo = 10;
-    public float _combo = 0f;
-    public int _gold = 0;
+    public int MaxHealth = 100;
+    public float Health;
+    public int MaxCombo = 10;
+    public float Combo = 0f;
+    public int Gold = 0;
 
-    public Image healthBar;
-    public Image comboBar;
-    public Text healthAmount;
-    public Text comboAmount;
-    public Text goldAmount;
+    public Image HealthBar;
+    public Image ComboBar;
+    public Text HealthAmount;
+    public Text ComboAmount;
+    public Text GoldAmount;
 
     // Use this for initialization
     void Start()
     {
-        _health = _maxHealth;
+        Health = MaxHealth;
     }
 
 
     void InitializeHudHealth(int pMaxHealth, int pHealth = 0)
     {
-        _maxHealth = pMaxHealth;
-        if (!(pHealth == _health || pHealth == 0))
+        MaxHealth = pMaxHealth;
+        if (!(pHealth == Health || pHealth == 0))
         {
             UpdateHealth(pHealth);
         }
@@ -36,37 +36,37 @@ public class HUDScript : MonoBehaviour
 
     void InitializeHudCombo(int pMaxCombo, float pCombo = 0)
     {
-        _maxCombo = pMaxCombo;
+        MaxCombo = pMaxCombo;
         UpdateCombo(pCombo);
     }
     void UpdateHealth(int pHealth)
     {
-        _health = pHealth;
-        healthAmount.text = _health + " / " + _maxHealth;
-        healthBar.transform.localScale = new Vector3(_health / _maxHealth, 1, 1);
+        Health = pHealth;
+        HealthAmount.text = Health + " / " + MaxHealth;
+        HealthBar.transform.localScale = new Vector3(Health / MaxHealth, 1, 1);
     }
 
     void UpdateCombo(float pCombo)
     {
-        _combo = pCombo;
-        comboAmount.text = _combo + " / " + _maxCombo;
-        comboBar.transform.localScale = new Vector3(_combo / _maxCombo, 1, 1);
+        Combo = pCombo;
+        ComboAmount.text = Combo + " / " + MaxCombo;
+        ComboBar.transform.localScale = new Vector3(Combo / MaxCombo, 1, 1);
     }
 
     void UpdateGold(int pGold)
     {
-        _gold = pGold;
-        goldAmount.text = "GOLD : " + _gold;
+        Gold = pGold;
+        GoldAmount.text = "GOLD : " + Gold;
     }
 
     // Update is called once per frame
     void LateUpdate()
     {
         if (Unit.Player == null) return;
-        comboAmount.text = (int)Unit.Player.stats.CurrentCombo + " / " + Unit.Player.stats.MaxCombo;
-        healthAmount.text = (int)Unit.Player.stats.CurrentHealth + " / " + Unit.Player.stats.MaxHealth;
-        goldAmount.text = "GOLD : " + Unit.Player.stats.CurrentGold;
-        healthBar.transform.localScale = new Vector3(Unit.Player.stats.CurrentHealth / Unit.Player.stats.MaxHealth, 1, 1);
-        comboBar.transform.localScale = new Vector3(Unit.Player.stats.CurrentCombo / Unit.Player.stats.MaxCombo, 1, 1);
+        ComboAmount.text = (int)Unit.Player.Stats.CurrentCombo + " / " + Unit.Player.Stats.MaxCombo;
+        HealthAmount.text = (int)Unit.Player.Stats.CurrentHealth + " / " + Unit.Player.Stats.MaxHealth;
+        GoldAmount.text = "GOLD : " + Unit.Player.Stats.CurrentGold;
+        HealthBar.transform.localScale = new Vector3(Unit.Player.Stats.CurrentHealth / Unit.Player.Stats.MaxHealth, 1, 1);
+        ComboBar.transform.localScale = new Vector3(Unit.Player.Stats.CurrentCombo / Unit.Player.Stats.MaxCombo, 1, 1);
     }
 }

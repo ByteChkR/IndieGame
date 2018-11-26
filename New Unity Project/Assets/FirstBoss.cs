@@ -22,13 +22,13 @@ public class FirstBoss : MonoBehaviour {
     public GameObject widePrefab;
     public GameObject specialPrefab;
     private float specialOffset= 15;
-    private float specialDegrees = 45;
+    private readonly float specialDegrees = 45;
 
     private Animator _anim;
-    private int _maxNumberOfDashes = 3;
-    private int _dashesLeft = 0;
-    private float _dashMaxCooldown;
-    private float _dashCurrentCooldwon;
+    private readonly int _maxNumberOfDashes = 3;
+    private readonly int _dashesLeft = 0;
+    private readonly float _dashMaxCooldown;
+    private readonly float _dashCurrentCooldwon;
     private int _animationResetTime = 0;
     private float _timeTillNextAttack = 3;
 

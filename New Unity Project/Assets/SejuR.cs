@@ -5,13 +5,13 @@ using UnityEngine;
 public class SejuR : Ability
 {
 
-    bool firstHit = true;
-    public List<AbstractEffect> onHitEffects;
-    public float speed = 1f;
-    public AbstractEffect stun;
+    private bool _firstHit = true;
+    public List<AbstractEffect> OnHitEffects;
+    public float Speed = 1f;
+    public AbstractEffect Stun;
     public float TravelDistance = 5f;
-    public float maxTime = 1f;
-    float initTime;
+    public float MaxTime = 1f;
+    private float _initTime;
     // Use this for initialization
     void Start()
     {
@@ -21,26 +21,26 @@ public class SejuR : Ability
     public override void Initialize(int source, Vector3 target, Quaternion rot)
     {
         base.Initialize(source, target, rot);
-        initTime = Time.realtimeSinceStartup;
+        _initTime = Time.realtimeSinceStartup;
     }
 
     // Update is called once per frame
     public override void Update()
     {
         base.Update();
-        if (unitsHitSinceInit.Count > 0) Destroy(gameObject);
+        if (UnitsHitSinceInit.Count > 0) Destroy(gameObject);
     }
 
     private void FixedUpdate()
     {
-        if (firstHit)
+        if (_firstHit)
         {
-            transform.position = transform.position + transform.forward * speed;
+            transform.position = transform.position + transform.forward * Speed;
 
-            TravelDistance -= speed;
+            TravelDistance -= Speed;
         }
 
-        if (TravelDistance <= 0 || initTime + maxTime <= Time.realtimeSinceStartup) Destroy(gameObject);
+        if (TravelDistance <= 0 || _initTime + MaxTime <= Time.realtimeSinceStartup) Destroy(gameObject);
     }
 
     public override void OnDestroy()
@@ -52,11 +52,11 @@ public class SejuR : Ability
     {
 
         base.OnHit(target);
-        if (firstHit)
+        if (_firstHit)
         {
-            firstHit = false;
-            target.stats.AddEffect(stun, Source.gameObject.GetInstanceID());
+            _firstHit = false;
+            target.Stats.AddEffect(Stun, Source.gameObject.GetInstanceID());
         }
-        target.stats.AddEffects(onHitEffects.ToArray(), Source.gameObject.GetInstanceID());
+        target.Stats.AddEffects(OnHitEffects.ToArray(), Source.gameObject.GetInstanceID());
     }
 }

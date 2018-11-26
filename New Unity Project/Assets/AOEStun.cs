@@ -5,17 +5,17 @@ using UnityEngine;
 public class AOEStun : Ability
 {
     [SerializeField]
-    private string _animationName;
+    private readonly string _animationName;
     [SerializeField]
-    private float _animationSpeed;
+    private readonly float _animationSpeed;
     [SerializeField]
-    private List<AbstractEffect> onHitEffects;
+    private List<AbstractEffect> _onHitEffects;
     [Tooltip("If the collider is a Sphere only the X axis will be used as a radius.")]
-    public Vector3 hitboxSize;
+    public Vector3 HitboxSize;
     [SerializeField]
-    private bool InFrontOfPlayer = true;
+    private readonly bool _inFrontOfPlayer = true;
 
-    bool started = false;
+    bool _started = false;
     // Use this for initialization
     void Start()
     {
@@ -25,19 +25,19 @@ public class AOEStun : Ability
     public override void Initialize(int source, Vector3 target, Quaternion rot)
     {
         base.Initialize(source, target, rot);
-        if (collType == ColliderTypes.Box)
+        if (CollType == ColliderTypes.Box)
         {
-            (_collider as BoxCollider).size = hitboxSize;
-            if (InFrontOfPlayer) (_collider as BoxCollider).center = transform.forward * hitboxSize.z / 2; //Move Hitbox right in front of caster
+            (Collider as BoxCollider).size = HitboxSize;
+            if (_inFrontOfPlayer) (Collider as BoxCollider).center = transform.forward * HitboxSize.z / 2; //Move Hitbox right in front of caster
         }
-        else if (collType == ColliderTypes.Sphere)
+        else if (CollType == ColliderTypes.Sphere)
         {
-            (_collider as SphereCollider).radius = hitboxSize.x;
-            if (InFrontOfPlayer) (_collider as SphereCollider).center = transform.forward * hitboxSize.x / 2;
+            (Collider as SphereCollider).radius = HitboxSize.x;
+            if (_inFrontOfPlayer) (Collider as SphereCollider).center = transform.forward * HitboxSize.x / 2;
         }
         Source.UnitAnimation[_animationName].speed = _animationSpeed;
         Source.UnitAnimation.Play(_animationName, PlayMode.StopSameLayer);
-        started = true;
+        _started = true;
     }
 
     // Update is called once per frame
@@ -48,9 +48,9 @@ public class AOEStun : Ability
         {
             return;
         }
-        if (started && Source != null && !Source.UnitAnimation.isPlaying)
+        if (_started && Source != null && !Source.UnitAnimation.isPlaying)
         {
-            started = false;
+            _started = false;
             Destroy(this.gameObject);
         }
         else if (Source == null) Destroy(gameObject);
@@ -65,7 +65,7 @@ public class AOEStun : Ability
 
     public override void OnHit(Unit target)
     {
-        target.stats.AddEffects(onHitEffects.ToArray(), Source.gameObject.GetInstanceID());
+        target.Stats.AddEffects(_onHitEffects.ToArray(), Source.gameObject.GetInstanceID());
         base.OnHit(target);
     }
 

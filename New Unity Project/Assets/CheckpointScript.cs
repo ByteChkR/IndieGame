@@ -7,7 +7,7 @@ public class CheckpointScript : MonoBehaviour {
     private float _checkpointGold;
     private Vector3 _checkpointPosition;
     private Weapon[] _checkpointWeapons = new Weapon[2];
-    public int index;
+    public int Index;
 
 
 	// Use this for initialization
