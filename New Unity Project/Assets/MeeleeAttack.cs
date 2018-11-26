@@ -5,9 +5,9 @@ using UnityEngine;
 public class MeeleeAttack : Ability
 {
     [SerializeField]
-    private readonly string _animationName;
+    private string _animationName;
     [SerializeField]
-    private readonly float _animationSpeed;
+    private float _animationSpeed;
     [SerializeField]
     private List<AbstractEffect> _onHitEffects;
     [SerializeField]
