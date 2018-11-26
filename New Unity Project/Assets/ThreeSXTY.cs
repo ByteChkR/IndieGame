@@ -5,9 +5,9 @@ using System.Linq;
 public class ThreeSXTY : Ability
 {
     [SerializeField]
-    private readonly string _animationName;
+    private string _animationName;
     [SerializeField]
-    private readonly float _animationSpeed;
+    private float _animationSpeed;
     [SerializeField]
     private List<AbstractEffect> _onHitEffects;
     private Dictionary<int, Vector3> _localCoords = new Dictionary<int, Vector3>();//The coords on the sword
