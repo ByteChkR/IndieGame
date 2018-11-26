@@ -24,7 +24,7 @@ public class AdditiveLevelManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        //player = GameObject.FindGameObjectWithTag("Player").GetComponent<Unit>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Unit>();
         UnityEngine.Debug.Assert(instance == null, "Instance singleton is already initialized.");
         instance = this;
         loadedLevels = new Dictionary<int, MapInfo>();
