@@ -39,7 +39,6 @@ public class WeaponInfoScript : MonoBehaviour {
     void RotateInfoBox()
     {
         InfoBox.transform.rotation = Quaternion.Euler(45, -Weapon.transform.rotation.y, 0);
-        Debug.Log("checking for spam");
     }
 
     void Update()
