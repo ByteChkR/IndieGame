@@ -22,6 +22,7 @@ public class Unit : MonoBehaviour
     public CheckpointScript Checkpoint;
     public int GoldReward = 2;
     public GameObject GoldPrefab;
+    public Rigidbody rb;
     private int _selectedWeapon = 0;
     public Weapon SelectedWeapon { get { return _weapons[_selectedWeapon]; } }
     public enum TriggerType
@@ -225,6 +226,8 @@ public class Unit : MonoBehaviour
     {
         _weapons[0] = GetComponentInChildren<Weapon>();
         _weapons[0].SetOwnerDUs(this);
+
+        rb = GetComponent<Rigidbody>();
 
         Controller = GetComponent<IController>();
         if (IsPlayer) Player = this;

@@ -29,7 +29,6 @@ public class AdditiveLevelManager : MonoBehaviour
         instance = this;
         loadedLevels = new Dictionary<int, MapInfo>();
         if (DebugStart) LoadLevel(1);
-        //else LoadLevel(0);
     }
 
     private void Update()
@@ -83,11 +82,9 @@ public class AdditiveLevelManager : MonoBehaviour
         loadingScreen.SetActive(true);
         menuScreen.SetActive(false);
         Controller c = player.GetComponent<Controller>();
-        //if (player != null && player.rb != null) player.rb.constraints = RigidbodyConstraints.FreezeRotation + (int)RigidbodyConstraints.FreezePositionY;
-        //c.EnableDashing = false;
+        if (player != null && player.rb != null) player.rb.constraints = RigidbodyConstraints.FreezeRotation + (int)RigidbodyConstraints.FreezePositionY;
         //c.EnableMovement = false;
         //c.EnableRotation = false;
-        //c.EnableShooting = false;
         IngameHud.SetActive(false);
 
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex, LoadSceneMode.Additive);
@@ -105,7 +102,7 @@ public class AdditiveLevelManager : MonoBehaviour
         menuScreen.SetActive(true);
         loadingScreen.SetActive(false);
         optionsMenu.SetActive(false);
-        if (sceneIndex > 1)
+        if (sceneIndex > 0)
         {
             IngameHud.SetActive(true);
             loadingScreen.transform.parent.gameObject.SetActive(false);
@@ -114,21 +111,17 @@ public class AdditiveLevelManager : MonoBehaviour
         UnityEngine.Debug.Assert(level != null, "Level prefix is not correct, you tried to load: " + LevelPrefix + sceneIndex + ", Check the GameObject name of the level.");
         loadedLevels.Add(sceneIndex, level);
 
-        if (!level.data.isMenu) ;
-        //player.rb.constraints = RigidbodyConstraints.FreezeRotation + (int)RigidbodyConstraints.FreezePositionY;
+        if (!level.data.isMenu) 
+        player.rb.constraints = RigidbodyConstraints.FreezeRotation + (int)RigidbodyConstraints.FreezePositionY;
         else if (!level.data.isTurorial)
         {
-            // c.EnableDashing = false;
             // c.EnableMovement = false;
             // c.EnableRotation = false;
-            // c.EnableShooting = false;
         }
         else
         {
-            //c.EnableDashing = true;
             //c.EnableMovement = true;
             //c.EnableRotation = true;
-            //c.EnableShooting = true;
         }
     }
 
