@@ -5,19 +5,19 @@ using UnityEngine;
 public class Dash : Ability
 {
     [SerializeField]
-    private readonly string _animationName;
+    private  string _animationName;
     [SerializeField]
-    private readonly float _animationSpeed;
+    private  float _animationSpeed;
     [SerializeField]
     private List<AbstractEffect> _onHitEffects;
     [Tooltip("If the collider is a Sphere only the X axis will be used as a radius.")]
     public Vector3 hitboxSize;
     [SerializeField]
-    private readonly bool _inFrontOfPlayer = true;
+    private  bool _inFrontOfPlayer = true;
     [SerializeField]
-    private readonly float _dashDistance = 10000;
+    private  float _dashDistance = 10000;
     [SerializeField]
-    private readonly float _dashTime = 1;
+    private  float _dashTime = 1;
     [SerializeField]
     private AnimationCurve _animationCurve;
     private float _timeInitialized;

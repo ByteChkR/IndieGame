@@ -14,7 +14,7 @@ public class Unit : MonoBehaviour
     public static Dictionary<int, Unit> ActiveUnits = new Dictionary<int, Unit>();
     public static Unit Player;
     public UnitStats Stats;
-    private readonly Weapon[] _weapons = new Weapon[2];
+    private Weapon[] _weapons = new Weapon[2];
     public Animation UnitAnimation;
     public NavMeshAgent Agent;
     [SerializeField]

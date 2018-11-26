@@ -13,7 +13,7 @@ public class AbilityDeployer : Ability
     [Tooltip("If the collider is a Sphere only the X axis will be used as a radius.")]
     public Vector3 HitboxSize;
     [SerializeField]
-    private readonly bool _inFrontOfPlayer = true;
+    private  bool _inFrontOfPlayer = true;
     [SerializeField]
     private GameObject ability;
     [SerializeField]

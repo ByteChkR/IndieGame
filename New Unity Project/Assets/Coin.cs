@@ -6,7 +6,7 @@ public class Coin : Ability
 {
 
     public float StartSpeed;
-    private readonly float _spe;
+    private float _spe;
     public float SpeedStepPerFrame;
     public float MinDistance;
     public Unit Target;

@@ -5,19 +5,19 @@ using UnityEngine;
 public class Teleport : Ability
 {
     [SerializeField]
-    private readonly float _damage;
+    private  float _damage;
     [SerializeField]
-    private readonly string _animationName;
+    private  string _animationName;
     [SerializeField]
-    private readonly float _animationSpeed;
+    private  float _animationSpeed;
     [SerializeField]
-    private readonly List<AbstractEffect> _onHitEffects;
+    private  List<AbstractEffect> _onHitEffects;
     private bool _blinked = false;
 
     private bool _started = false;
 
     [SerializeField]
-    private readonly GameObject _nextAbility;
+    private  GameObject _nextAbility;
     // Use this for initialization
     void Start()
     {

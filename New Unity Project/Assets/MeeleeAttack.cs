@@ -11,7 +11,7 @@ public class MeeleeAttack : Ability
     [SerializeField]
     private List<AbstractEffect> _onHitEffects;
     [SerializeField]
-    private readonly float _comboGainPerHit = 100;
+    private  float _comboGainPerHit = 100;
 
 
     private bool _started = false;
