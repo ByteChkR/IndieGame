@@ -982,7 +982,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1382934848206572}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.96, y: 21.22, z: -35.99}
+  m_LocalPosition: {x: -2.04, y: 21.22, z: -35.99}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4900582268538302}
@@ -1737,7 +1737,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Owner: -1
   OOwner: {fileID: 0}
-  Abilities: []
+  Abilities:
+  - Name: Basic Attack
+    Description: 
+    icon: {fileID: 0}
+    abilityInstance: {fileID: 114469962327125172, guid: 73bf2125c0dc30f4caf326ad32000293,
+      type: 2}
+    ComboCost: 0
+    cooldown: 2
+  - Name: Special
+    Description: 
+    icon: {fileID: 0}
+    abilityInstance: {fileID: 114551388014807028, guid: b393fa62583e670439ab0c5474344a6d,
+      type: 2}
+    ComboCost: 3
+    cooldown: 10
   AbilityKeyBindings: 
   Coll: {fileID: 0}
   Rb: {fileID: 0}

@@ -9,7 +9,7 @@ public class Coin : Ability
     private readonly float _spe;
     public float SpeedStepPerFrame;
     public float MinDistance;
-    Unit _target;
+    public Unit Target;
 
     // Use this for initialization
     void Start()
@@ -23,14 +23,14 @@ public class Coin : Ability
     public override void Update()
     {
         base.Update();
-        if (_target == null) return;
+        if (Target == null) return;
         float distance;
 
-        Vector3 vdir = (_target.transform.position - transform.position);
+        Vector3 vdir = (Target.transform.position - transform.position);
         distance = vdir.magnitude;
         if(distance <= MinDistance)
         {
-            _target.Stats.ApplyValue(Unit.StatType.GOLD, 1);
+            Target.Stats.ApplyValue(Unit.StatType.GOLD, 1);
             Destroy(gameObject);
         }
 
@@ -47,7 +47,7 @@ public class Coin : Ability
     public override void Initialize(int source, Vector3 target, Quaternion rot)
     {
         base.Initialize(source, target, rot);
-        this._target = Unit.Player;
+        this.Target = Unit.Player;
     }
 
     public override void OnHit(Unit target)

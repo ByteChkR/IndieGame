@@ -27,9 +27,12 @@ public class Teleport : Ability
     public override void Initialize(int source, Vector3 target, Quaternion rot)
     {
         base.Initialize(source, target, rot);
-        Source.UnitAnimation[_animationName].speed = _animationSpeed;
-        Source.UnitAnimation.Play(_animationName, PlayMode.StopSameLayer);
-        Source.AddAnimationTriggerListener(TriggerTeleport);
+        if (Source.UnitAnimation[_animationName] != null)
+        {
+            Source.UnitAnimation[_animationName].speed = _animationSpeed;
+            Source.UnitAnimation.Play(_animationName, PlayMode.StopSameLayer);
+            Source.AddAnimationTriggerListener(TriggerTeleport);
+        }
         _started = true;
     }
 

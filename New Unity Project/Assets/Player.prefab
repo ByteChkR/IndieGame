@@ -2913,7 +2913,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Owner: -1
   OOwner: {fileID: 0}
-  Abilities: []
+  Abilities:
+  - Name: Melee
+    Description: 
+    icon: {fileID: 0}
+    abilityInstance: {fileID: 114594336571885322, guid: 6a2757239111ab143b4565c0e0482616,
+      type: 2}
+    ComboCost: -1
+    cooldown: 1
+  - Name: TP
+    Description: 
+    icon: {fileID: 0}
+    abilityInstance: {fileID: 114551388014807028, guid: b393fa62583e670439ab0c5474344a6d,
+      type: 2}
+    ComboCost: 0
+    cooldown: 2
   AbilityKeyBindings: 
   Coll: {fileID: 0}
   Rb: {fileID: 0}

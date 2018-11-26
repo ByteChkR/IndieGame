@@ -35,8 +35,11 @@ public class AOEStun : Ability
             (Collider as SphereCollider).radius = HitboxSize.x;
             if (_inFrontOfPlayer) (Collider as SphereCollider).center = transform.forward * HitboxSize.x / 2;
         }
-        Source.UnitAnimation[_animationName].speed = _animationSpeed;
-        Source.UnitAnimation.Play(_animationName, PlayMode.StopSameLayer);
+        if (Source.UnitAnimation[_animationName] != null)
+        {
+            Source.UnitAnimation[_animationName].speed = _animationSpeed;
+            Source.UnitAnimation.Play(_animationName, PlayMode.StopSameLayer);
+        }
         _started = true;
     }
 

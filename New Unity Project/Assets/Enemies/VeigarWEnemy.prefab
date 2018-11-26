@@ -2821,7 +2821,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1382934848206572}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14.24, y: 21.01, z: -30.3}
+  m_LocalPosition: {x: 2.2799997, y: 21.01, z: -30.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4900582268538302}
@@ -4298,7 +4298,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Owner: -1
   OOwner: {fileID: 0}
-  Abilities: []
+  Abilities:
+  - Name: Basic Attack
+    Description: 
+    icon: {fileID: 0}
+    abilityInstance: {fileID: 114371152656050242, guid: 3839e4d08cc03394aba3b0b86e97831a,
+      type: 2}
+    ComboCost: 0
+    cooldown: 1
+  - Name: Speicla
+    Description: 
+    icon: {fileID: 0}
+    abilityInstance: {fileID: 114565534382304942, guid: c54b9fb1c069ce04b88eb2be33825231,
+      type: 2}
+    ComboCost: 3
+    cooldown: 3
   AbilityKeyBindings: 
   Coll: {fileID: 0}
   Rb: {fileID: 0}

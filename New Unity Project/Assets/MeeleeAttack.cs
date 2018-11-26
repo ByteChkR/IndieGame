@@ -25,9 +25,11 @@ public class MeeleeAttack : Ability
     {
         Collider = Unit.ActiveUnits[source].SelectedWeapon.Coll;
         base.Initialize(source, target,rot);
-
-        Source.UnitAnimation[_animationName].speed = _animationSpeed;
-        Source.UnitAnimation.Play(_animationName, PlayMode.StopSameLayer);
+        if (Source.UnitAnimation[_animationName] != null)
+        {
+            Source.UnitAnimation[_animationName].speed = _animationSpeed;
+            Source.UnitAnimation.Play(_animationName, PlayMode.StopSameLayer);
+        }
         _started = true;
     }
 
