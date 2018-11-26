@@ -17,12 +17,9 @@ public class MapInfo : MonoBehaviour {
     public MapMetaData data;
     public Controller controller;
     public GameObject EnemyContainer;
-    public GameObject bulletContainer;
-    public static GameObject BulletContainer;
 
     // Use this for initialization
     void Start () {
-        BulletContainer = bulletContainer;
         controller = GameObject.FindGameObjectWithTag("Player").GetComponent<Controller>();
         if (!data.isTurorial)
         {

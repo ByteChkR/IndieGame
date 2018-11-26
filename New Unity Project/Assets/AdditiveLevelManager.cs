@@ -11,7 +11,6 @@ public class AdditiveLevelManager : MonoBehaviour
     public static AdditiveLevelManager instance;
     private Dictionary<int, MapInfo> loadedLevels = new Dictionary<int, MapInfo>();
     public string LevelPrefix = "level_";
-    public Image loadingCycle;
     public bool DebugStart = false;
     private Unit player;
     public GameObject IngameHud;
@@ -29,8 +28,8 @@ public class AdditiveLevelManager : MonoBehaviour
         UnityEngine.Debug.Assert(instance == null, "Instance singleton is already initialized.");
         instance = this;
         loadedLevels = new Dictionary<int, MapInfo>();
-        if (DebugStart) LoadLevel(2);
-        else LoadLevel(1);
+        if (DebugStart) LoadLevel(1);
+        //else LoadLevel(0);
     }
 
     private void Update()
@@ -90,7 +89,6 @@ public class AdditiveLevelManager : MonoBehaviour
         //c.EnableRotation = false;
         //c.EnableShooting = false;
         IngameHud.SetActive(false);
-        if (loadingCycle != null) loadingCycle.fillAmount = 0;
 
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex, LoadSceneMode.Additive);
 
@@ -98,7 +96,6 @@ public class AdditiveLevelManager : MonoBehaviour
         {
             float progress = Mathf.Clamp01(operation.progress / .9f);
 
-            if (loadingCycle != null) loadingCycle.fillAmount = progress;
             if (loadingSlider != null) loadingSlider.value = progress;
             if (progressText != null) progressText.text = Mathf.Round(progress * 100f) + "%";
 
@@ -116,15 +113,15 @@ public class AdditiveLevelManager : MonoBehaviour
         MapInfo level = GameObject.Find(LevelPrefix + sceneIndex).GetComponent<MapInfo>();
         UnityEngine.Debug.Assert(level != null, "Level prefix is not correct, you tried to load: " + LevelPrefix + sceneIndex + ", Check the GameObject name of the level.");
         loadedLevels.Add(sceneIndex, level);
-        if (loadingCycle != null) loadingCycle.fillAmount = 0;
-        //if (!level.data.isMenu)
-            //player.rb.constraints = RigidbodyConstraints.FreezeRotation + (int)RigidbodyConstraints.FreezePositionY;
+
+        if (!level.data.isMenu) ;
+        //player.rb.constraints = RigidbodyConstraints.FreezeRotation + (int)RigidbodyConstraints.FreezePositionY;
         else if (!level.data.isTurorial)
         {
-           // c.EnableDashing = false;
-           // c.EnableMovement = false;
+            // c.EnableDashing = false;
+            // c.EnableMovement = false;
             // c.EnableRotation = false;
-           // c.EnableShooting = false;
+            // c.EnableShooting = false;
         }
         else
         {
