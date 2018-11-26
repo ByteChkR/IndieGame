@@ -30,7 +30,7 @@ public class AI : MonoBehaviour, IController
             if (Target == null) return false;
             RaycastHit info;
             bool hit = Physics.Raycast(transform.position + (Target.position - transform.position).normalized, Target.position - transform.position, out info, float.MaxValue) && info.collider.gameObject.GetInstanceID() == Target.gameObject.GetInstanceID();
-            Debug.DrawRay(transform.position + (Target.position - transform.position).normalized, Target.position - transform.position);
+            //Debug.DrawRay(transform.position + (Target.position - transform.position).normalized, Target.position - transform.position);
             _distance2Target = info.distance;
             return hit && _distance2Target <= ActivationRange;
         }
