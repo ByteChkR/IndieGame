@@ -53,39 +53,33 @@ public class Controller : MonoBehaviour, IController
 
     void DeconstructVelocityAndApplyToAnimation(Vector3 velocity)
     {
-        float d = Vector3.Dot(transform.forward, velocity.normalized); // 1 = same dir, -1 = walking backwards
-        float d1 = Vector3.Dot(transform.right, velocity.normalized); // 1 = walking right, -1 = walking left
-
-        if (d1 > 0)
+        float right = 0, fwd = 0, scale = 0;
+        if (velocity != Vector3.zero)
         {
-            //Debug.Log("Walking Right");
-        }
-        else
-        {
-            //Debug.Log("Walking Left");
-        }
+            scale = velocity.magnitude;
+            float d = Vector3.Dot(transform.forward, velocity.normalized); // 1 = same dir, -1 = walking backwards
+            float d1 = Vector3.Dot(transform.right, velocity.normalized); // 1 = walking right, -1 = walking left
 
-        if (d > 0)
-        {
-            //Debug.Log("Walking Forward");
-        }
-        else
-        {
-            //Debug.Log("Walking Backwards");
-        }
 
-        float right, fwd;
-        right = d1;
-        fwd = d;
 
-        Animator.SetFloat("forwards", fwd);
-        Animator.SetFloat("right", right);
-        Animator.SetFloat("speed", velocity.magnitude);
+
+            right = d1;
+            fwd = d;
+
+
+        }
+        Debug.Log(scale);
+
+        Animator.SetFloat("speed", 2+scale);
+        Animator.SetFloat("forwards", fwd * Mathf.Clamp01(scale));
+        Animator.SetFloat("right", right * Mathf.Clamp01(scale));
+        
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        DeconstructVelocityAndApplyToAnimation(_rb.velocity);
         if (_lockControls || _unit.Stats.IsStunned) return;
         Vector3 vDir = ViewingDirection();
         vDir = new Vector3(vDir.x, 0, vDir.z);
@@ -107,7 +101,7 @@ public class Controller : MonoBehaviour, IController
         {
 
             transform.forward = MakeControlsHardlyRetarded ? _rb.velocity : vDir;
-            DeconstructVelocityAndApplyToAnimation(_rb.velocity);
+
             Debug.DrawRay(transform.position, _rb.velocity, Color.red);
             float d = Vector3.Dot(vDir, _rb.velocity.normalized);
             if (d < StrafeCutoff && d > -StrafeCutoff)

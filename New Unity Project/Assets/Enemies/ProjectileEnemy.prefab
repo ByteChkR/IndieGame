@@ -1628,6 +1628,7 @@ MonoBehaviour:
   Checkpoint: {fileID: 0}
   GoldReward: 20
   GoldPrefab: {fileID: 1136768164843768, guid: aac181e834279be488ad830f1c633251, type: 2}
+  rb: {fileID: 0}
 --- !u!114 &114048291300561842
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1743,7 +1744,7 @@ MonoBehaviour:
     icon: {fileID: 0}
     abilityInstance: {fileID: 114469962327125172, guid: 73bf2125c0dc30f4caf326ad32000293,
       type: 2}
-    ComboCost: 0
+    ComboCost: -1
     cooldown: 2
   - Name: Special
     Description: 

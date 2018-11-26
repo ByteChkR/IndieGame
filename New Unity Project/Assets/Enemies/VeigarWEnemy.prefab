@@ -4209,6 +4209,7 @@ MonoBehaviour:
   Checkpoint: {fileID: 0}
   GoldReward: 20
   GoldPrefab: {fileID: 1136768164843768, guid: aac181e834279be488ad830f1c633251, type: 2}
+  rb: {fileID: 0}
 --- !u!114 &114035837611722252
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4304,7 +4305,7 @@ MonoBehaviour:
     icon: {fileID: 0}
     abilityInstance: {fileID: 114371152656050242, guid: 3839e4d08cc03394aba3b0b86e97831a,
       type: 2}
-    ComboCost: 0
+    ComboCost: -1
     cooldown: 1
   - Name: Speicla
     Description: 
