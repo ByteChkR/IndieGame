@@ -5,9 +5,9 @@ using UnityEngine;
 public class AbilityDeployer : Ability
 {
     [SerializeField]
-    private readonly string _animationName;
+    private  string _animationName;
     [SerializeField]
-    private readonly float _animationSpeed;
+    private  float _animationSpeed;
     [SerializeField]
     private List<AbstractEffect> _onHitEffects;
     [Tooltip("If the collider is a Sphere only the X axis will be used as a radius.")]
@@ -16,6 +16,8 @@ public class AbilityDeployer : Ability
     private readonly bool _inFrontOfPlayer = true;
     [SerializeField]
     private GameObject ability;
+    [SerializeField]
+    private GameObject ownAbility;
 
     bool _started = false;
     // Use this for initialization
@@ -63,6 +65,13 @@ public class AbilityDeployer : Ability
 
     public override void OnDestroy()
     {
+        if (Source != null && ownAbility != null)
+        {
+            Ability a = Instantiate(ownAbility, Source.transform.position, Source.transform.rotation).GetComponent<Ability>();
+            a.Initialize(Source.gameObject.GetInstanceID(), Source.transform.position, Source.transform.rotation);
+
+        }
+
         base.OnDestroy();
     }
 
@@ -74,7 +83,7 @@ public class AbilityDeployer : Ability
         base.OnHit(target);
         Vector3 dir = target.transform.position-Source.transform.position;
         Ability a = Instantiate(ability, target.transform.position, target.transform.rotation).GetComponent<Ability>();
-        a.Initialize(target.gameObject.GetInstanceID(), Source.transform.position + dir.normalized*5, target.transform.rotation);
+        a.Initialize(target.gameObject.GetInstanceID(), Source.transform.position + dir.normalized*3, target.transform.rotation);
 
     }
 

@@ -51,7 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23f6a6c68fa1f8b40a83f97f892ead0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _collider: {fileID: 0}
+  Collider: {fileID: 0}
   SelfStun: 0
   CheckCollisionsEveryFrame: 1
   KnockBackPower: 0
@@ -59,14 +59,8 @@ MonoBehaviour:
   KnockBackPowerOnMaxRange: 5
   InvertKnockback: 0
   MoreOnMaxRange: 0
-  collType: 0
+  CollType: 0
   Damage: 0
   _animationName: ThreeSXTY
   _animationSpeed: 1
-  onHitEffects:
-  - type: 8
-    Strength: 1
-    InverseOnTimeout: 1
-    Duration: 1
-    TimeActivated: 0
-    ApplyOnce: 1
+  _onHitEffects: []
