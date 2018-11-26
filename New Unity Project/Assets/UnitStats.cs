@@ -5,11 +5,11 @@ using System.Collections.Generic;
 public class UnitStats
 {
     [SerializeField]
-    private readonly float _baseHealth;
+    private float _baseHealth;
     [SerializeField]
-    private readonly float _baseMovementSpeed;
+    private float _baseMovementSpeed;
     [SerializeField]
-    private readonly float _baseCombo;
+    private float _baseCombo;
 
 
     private int _killer = -1;
@@ -35,10 +35,13 @@ public class UnitStats
     public bool IsStunned { get { return _stun; } }
     public float CurrentGold { get { return _currentGold; } }
     private List<KeyValuePair<int, AbstractEffect>> _effects = new List<KeyValuePair<int, AbstractEffect>>();
-
+    
 
     public void Init()
     {
+        _baseCombo = 0;
+        _baseMovementSpeed = 1;
+        _baseHealth = MaxHealth;
         _currentMovementSpeed = _baseMovementSpeed;
         _currentHealth = _baseHealth;
         _currentCombo = _baseCombo;

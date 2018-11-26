@@ -28,6 +28,7 @@ public class Weapon : MonoBehaviour
             Owner = gameObject.GetInstanceID();
         }
         PreparePickup();
+        WeaponIS.Weapon = gameObject;
     }
 
     public void DisableBuying()

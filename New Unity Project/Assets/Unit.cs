@@ -68,7 +68,7 @@ public class Unit : MonoBehaviour
             }
         }
     }
-    
+
     void OnCollisionExit(Collision coll)
     {
         Weapon w = null;
@@ -214,9 +214,10 @@ public class Unit : MonoBehaviour
 
     private void Awake()
     {
-        ActiveUnits.Add(gameObject.GetInstanceID(), this);
 
         Stats.Init();
+        ActiveUnits.Add(gameObject.GetInstanceID(), this);
+
     }
 
     // Use this for initialization
@@ -240,7 +241,7 @@ public class Unit : MonoBehaviour
         Vector2 r;
         for (int i = 0; i < GoldReward; i++)
         {
-            r = Random.insideUnitCircle*2;
+            r = Random.insideUnitCircle * 2;
             rnd.Set(r.x, 0, r.y);
             Ability a = Instantiate(GoldPrefab, transform.position + rnd, transform.rotation).GetComponent<Ability>();
             a.Initialize(gameObject.GetInstanceID(), Vector3.zero, Quaternion.identity); //use the source int as the killers id. This works only with coins.

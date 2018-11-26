@@ -125,8 +125,9 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1546230843693650}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.38, y: 24.91, z: 0.04}
+  m_LocalRotation: {x: -0.000000009408071, y: -0.000041912626, z: 0.00000021589254,
+    w: 1}
+  m_LocalPosition: {x: 5.230082, y: 20.215, z: 0.03983404}
   m_LocalScale: {x: 0.29999998, y: 0.32999998, z: 2.83}
   m_Children:
   - {fileID: 224366186299353948}
@@ -186,9 +187,9 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 64
   m_CollisionDetection: 0
 --- !u!65 &65259585811070130
 BoxCollider:
@@ -274,11 +275,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9750bba37be3f4e4585403101bbdfb4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapon: {fileID: 1546230843693650}
+  Weapon: {fileID: 0}
   InfoBox: {fileID: 1917259284251692}
-  icon: {fileID: 114767172910700232}
-  prize: {fileID: 114748057862000790}
-  description: {fileID: 114406969969634288}
+  Icon: {fileID: 114767172910700232}
+  Prize: {fileID: 114748057862000790}
+  Description: {fileID: 114406969969634288}
 --- !u!114 &114615693153628234
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -398,27 +399,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffa9b166186a8434aa2d1be75225fd2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  owner: 0
-  oOwner: {fileID: 0}
-  abilities:
-  - Name: Cleave Attack
-    Description: 
-    icon: {fileID: 0}
-    abilityInstance: {fileID: 114594336571885322, guid: 6a2757239111ab143b4565c0e0482616,
-      type: 2}
-    ComboCost: 0
-    cooldown: 1
-  - Name: CallingArtillery
-    Description: 
-    icon: {fileID: 0}
-    abilityInstance: {fileID: 114436595879807954, guid: da63a084048900f448c6731f9024082a,
-      type: 2}
-    ComboCost: 0
-    cooldown: 0.6
-  abilityKeyBindings: 4301000044010000
-  coll: {fileID: 0}
-  rb: {fileID: 0}
-  weaponIS: {fileID: 114440266819862996}
+  Owner: -27492
+  OOwner: {fileID: 0}
+  Abilities: []
+  AbilityKeyBindings: 
+  Coll: {fileID: 65612281957488514}
+  Rb: {fileID: 54552265284396520}
+  WeaponIS: {fileID: 114440266819862996}
   GoldValue: 5
 --- !u!222 &222027977227299260
 CanvasRenderer:

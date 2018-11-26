@@ -8,6 +8,7 @@ public class Controller : MonoBehaviour, IController
     public Camera Camera;
     public Animator Animator;
     Vector3 _target;
+    public bool MakeControlsHardlyRetarded = true;
     public Vector3 VTarget { get { return _target; } }
     bool _lockControls = false;
     public KeyCode Forward;
@@ -54,8 +55,8 @@ public class Controller : MonoBehaviour, IController
     {
         float d = Vector3.Dot(transform.forward, velocity.normalized); // 1 = same dir, -1 = walking backwards
         float d1 = Vector3.Dot(transform.right, velocity.normalized); // 1 = walking right, -1 = walking left
-        
-        if(d1 > 0)
+
+        if (d1 > 0)
         {
             //Debug.Log("Walking Right");
         }
@@ -76,7 +77,7 @@ public class Controller : MonoBehaviour, IController
         float right, fwd;
         right = d1;
         fwd = d;
-        
+
         Animator.SetFloat("forwards", fwd);
         Animator.SetFloat("right", right);
         Animator.SetFloat("speed", velocity.magnitude);
@@ -95,18 +96,17 @@ public class Controller : MonoBehaviour, IController
 
         Debug.DrawRay(transform.position, vDir * 5, Color.blue);
 
-        transform.forward = vDir;
 
         float speed;
         if (_rb.velocity == Vector3.zero)
         {
-            {
-                speed = ForwardSpeed * _unit.Stats.CurrentMovementSpeed;
-            }
+            speed = ForwardSpeed * _unit.Stats.CurrentMovementSpeed;
+            transform.forward = transform.forward;
         }
         else
         {
 
+            transform.forward = MakeControlsHardlyRetarded ? _rb.velocity : vDir;
             DeconstructVelocityAndApplyToAnimation(_rb.velocity);
             Debug.DrawRay(transform.position, _rb.velocity, Color.red);
             float d = Vector3.Dot(vDir, _rb.velocity.normalized);
@@ -147,9 +147,9 @@ public class Controller : MonoBehaviour, IController
         if (v != Vector3.zero)
         {
             _rb.AddForce(v.normalized * speed, ForceMode.Acceleration);
-           
+
             //anim.SetFloat("Forward", speed);
-            
+
         }
 
 
@@ -187,14 +187,21 @@ public class Controller : MonoBehaviour, IController
 
     Vector3 ViewingDirection()
     {
-        Vector3 mousePos = Input.mousePosition;
-        Ray r = Camera.ScreenPointToRay(mousePos);
-        RaycastHit info;
-        if (Physics.Raycast(r, out info, 1000, 1 << 9))
+        if (MakeControlsHardlyRetarded)
         {
-            return info.point - transform.position; //Position only because the camera is not a child object 
+            return transform.forward;
         }
-        return -Vector3.one;
+        else
+        {
+            Vector3 mousePos = Input.mousePosition;
+            Ray r = Camera.ScreenPointToRay(mousePos);
+            RaycastHit info;
+            if (Physics.Raycast(r, out info, 1000, 1 << 9))
+            {
+                return info.point - transform.position; //Position only because the camera is not a child object 
+            }
+            return -Vector3.one;
+        }
     }
 
 }
