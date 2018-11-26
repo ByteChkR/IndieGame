@@ -47,7 +47,7 @@ public class Coin : Ability
     public override void Initialize(int source, Vector3 target, Quaternion rot)
     {
         base.Initialize(source, target, rot);
-        this.Target = Unit.Player;
+        this.Target = Source;
     }
 
     public override void OnHit(Unit target)

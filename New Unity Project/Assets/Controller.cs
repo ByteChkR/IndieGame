@@ -68,7 +68,6 @@ public class Controller : MonoBehaviour, IController
 
 
         }
-        Debug.Log(scale);
 
         Animator.SetFloat("speed", 2+scale);
         Animator.SetFloat("forwards", fwd * Mathf.Clamp01(scale));

@@ -248,7 +248,7 @@ public class Unit : MonoBehaviour
             rnd.Set(r.x, 0, r.y);
             Coin a = Instantiate(GoldPrefab, transform.position + rnd, transform.rotation).GetComponent<Coin>();
             a.Target = Unit.Player;
-            a.Initialize(gameObject.GetInstanceID(), Vector3.zero, Quaternion.identity); //use the source int as the killers id. This works only with coins.
+            a.Initialize(Stats.Killer, Vector3.zero, Quaternion.identity); //use the source int as the killers id. This works only with coins.
             
         }
         Destroy(gameObject);
