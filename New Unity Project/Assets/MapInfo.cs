@@ -23,7 +23,7 @@ public class MapInfo : MonoBehaviour {
         controller = GameObject.FindGameObjectWithTag("Player").GetComponent<Controller>();
         if (!data.isTurorial)
         {
-            //controller.EnableDashing = controller.EnableMovement = controller.EnableShooting = true;
+            //controller.EnableMovement = true;
         }
 	}
 

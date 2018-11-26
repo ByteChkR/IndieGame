@@ -116,7 +116,7 @@ public class AdditiveLevelManager : MonoBehaviour
         else if (!level.data.isTurorial)
         {
             // c.EnableMovement = false;
-            // c.EnableRotation = false;
+            // c.EnableRotation = false;            TODO: add these functions to the controller
         }
         else
         {
@@ -125,14 +125,14 @@ public class AdditiveLevelManager : MonoBehaviour
         }
     }
 
-    /*
+    
     public void Reset()
     {
-        IResettable[] resettableObjs = (IResettable[])GameObject.FindObjectsOfType(typeof(IResettable));
+        IResettable[] resettableObjs = (IResettable[])GameObject.FindObjectsOfType(typeof(IResettable));            
         foreach (IResettable ir in resettableObjs)
         {
             ir.Reset();
         }
     }
-    */
+    
 }
