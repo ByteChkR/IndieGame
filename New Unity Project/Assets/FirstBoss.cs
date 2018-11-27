@@ -24,6 +24,7 @@ public class FirstBoss : MonoBehaviour,IController {
     private float specialOffset= 15;
     private readonly float specialDegrees = 45;
     private bool _canBeStunned = false;
+    private bool _wasStunned = false;
 
 
     private Animator _anim;
@@ -118,6 +119,11 @@ public class FirstBoss : MonoBehaviour,IController {
     {
         _anim.SetInteger("frame", pIndex);
         _animationResetTime = pResetFrames;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        
     }
 
     private void TestAnimation()
