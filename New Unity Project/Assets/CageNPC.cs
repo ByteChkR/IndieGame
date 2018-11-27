@@ -81,7 +81,7 @@ public class CageNPC : MonoBehaviour {
         _currentTimeOn = 0;
     }
 
-    private void AddCrystal()
+    public void AddCrystal()
     {
 
     }

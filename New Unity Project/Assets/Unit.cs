@@ -62,6 +62,12 @@ public class Unit : MonoBehaviour
     void OnCollisionStay(Collision coll)
     {
         Weapon w = null;
+
+        if(Controller == null)
+        {
+            return;
+        }
+
         if (IsPlayer && null != (w = (coll.collider.GetComponent<Weapon>())))
         {
             w.ActivateInfoBox();
@@ -75,6 +81,11 @@ public class Unit : MonoBehaviour
 
     void OnCollisionExit(Collision coll)
     {
+        if (Controller == null)
+        {
+            return;
+        }
+
         Weapon w = null;
         if (IsPlayer && null != (w = (coll.collider.GetComponent<Weapon>())))
         {
@@ -237,13 +248,18 @@ public class Unit : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        _weapon = GetComponentInChildren<Weapon>();
-        _weapon.SetOwnerDUs(this);
+
 
         rb = GetComponent<Rigidbody>();
 
         Controller = GetComponent<IController>();
         if (IsPlayer) Player = this;
+
+        if (gameObject.tag != "Boss")
+        {
+            _weapon = GetComponentInChildren<Weapon>();
+            _weapon.SetOwnerDUs(this);
+        }
     }
 
     private void FixedUpdate()

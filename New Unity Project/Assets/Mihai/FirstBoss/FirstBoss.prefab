@@ -38,11 +38,12 @@ GameObject:
   - component: {fileID: 4747984832499866}
   - component: {fileID: 136284572936538998}
   - component: {fileID: 54882575027258732}
+  - component: {fileID: 114411091747453968}
   - component: {fileID: 114224776338722510}
   - component: {fileID: 95303547846471750}
   m_Layer: 0
   m_Name: FirstBoss
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -489,6 +490,31 @@ MonoBehaviour:
   widePrefab: {fileID: 1596907750002680, guid: 8b79274e5056e8a45b4efb30c4798f96, type: 2}
   specialPrefab: {fileID: 1199072669255060, guid: dee8cf2005b6ffa42bcdf0415e91c4aa,
     type: 2}
+--- !u!114 &114411091747453968
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1210421800613244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d188b9ca1efe4ac40a2bb46ce9231144, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Stats:
+    _baseHealth: 1000
+    _baseMovementSpeed: 0
+    _baseCombo: 0
+    MaxHealth: 1000
+    MaxCombo: 0
+    MaxMovementSpeed: 0
+  UnitAnimation: {fileID: 0}
+  Agent: {fileID: 0}
+  ParticleSystems: []
+  Checkpoint: {fileID: 0}
+  GoldReward: 2
+  GoldPrefab: {fileID: 0}
+  rb: {fileID: 54882575027258732}
 --- !u!136 &136284572936538998
 CapsuleCollider:
   m_ObjectHideFlags: 1

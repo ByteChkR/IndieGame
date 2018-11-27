@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Weapon
   - FirstBossWall
+  - Boss
   layers:
   - Default
   - TransparentFX

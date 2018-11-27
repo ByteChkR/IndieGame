@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FirstBoss : MonoBehaviour {
+public class FirstBoss : MonoBehaviour,IController {
 
     public float rotationInterpolationSpeed = 0.1f;
     public Transform looker;
@@ -17,19 +17,34 @@ public class FirstBoss : MonoBehaviour {
     public Transform player;
     private Rigidbody _rb;
     public enum FirstBossStates { Dash, RangedAttack, Trio, Special}
-    public FirstBossStates firstBossState =FirstBossStates.Dash;
+    private FirstBossStates _firstBossState =FirstBossStates.Special;
 
     public GameObject widePrefab;
     public GameObject specialPrefab;
     private float specialOffset= 15;
     private readonly float specialDegrees = 45;
+    private bool _canBeStunned = false;
+
 
     private Animator _anim;
     private int _animationResetTime = 0;
-    private float _timeTillNextAttack = 3;
+    private float _timeTillNextAttack = 1;
+
+    public bool IsPlayer { get { return false; } }
+    public Rigidbody Rb { get { return _rb; } }
+    public void LockControls(bool locked)
+    {
+        
+    }
+
+    public Vector3 VTarget { get { return player.position; } }
 
 
-	void Start () {
+    void Start () {
+        if(player == null)
+        {
+            player = GameObject.FindGameObjectWithTag("Player").transform;
+        }
         _anim = GetComponent<Animator>();
         _rb = GetComponent<Rigidbody>();
 
@@ -71,27 +86,27 @@ public class FirstBoss : MonoBehaviour {
         }
         else
         {
-            switch(firstBossState)
+            switch(_firstBossState)
             {
                 case FirstBossStates.Dash:
                     _timeTillNextAttack = 6;
                     DoAnimation(1, 5);
-                    firstBossState = FirstBossStates.RangedAttack;
+                    _firstBossState = FirstBossStates.RangedAttack;
                     break;
                 case FirstBossStates.RangedAttack:
                     _timeTillNextAttack = 3;
                     DoAnimation(2, 3);
-                    firstBossState = FirstBossStates.Trio;
+                    _firstBossState = FirstBossStates.Trio;
                     break;
                 case FirstBossStates.Trio:
-                    firstBossState = FirstBossStates.Special;
+                    _firstBossState = FirstBossStates.Special;
                     _timeTillNextAttack = 6;
                     DoAnimation(4, 5);
                     break;
                 case FirstBossStates.Special:
                     _timeTillNextAttack = 8;
-                    firstBossState = FirstBossStates.Dash;
-                    DoAnimation(3, 5);
+                    _firstBossState = FirstBossStates.Dash;
+                    DoAnimation(3, 9999999);
                     break;
             }
 
@@ -110,8 +125,9 @@ public class FirstBoss : MonoBehaviour {
        
         if(Input.GetKeyDown(KeyCode.Alpha1))
         {
-            _anim.SetInteger("frame", 1);
-            _animationResetTime=5;
+            EndSpecial();
+           /* _anim.SetInteger("frame", 1);
+            _animationResetTime=5;*/
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
@@ -181,4 +197,15 @@ public class FirstBoss : MonoBehaviour {
 
 
     }
+
+    private void EndSpecial()
+    {
+        if (_firstBossState == FirstBossStates.Dash)
+        {
+          
+            _animationResetTime = 2;
+            _timeTillNextAttack = 3;
+        }
+    }
+
 }

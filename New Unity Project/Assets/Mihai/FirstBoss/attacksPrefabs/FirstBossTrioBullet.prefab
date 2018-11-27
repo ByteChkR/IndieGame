@@ -23,6 +23,8 @@ GameObject:
   - component: {fileID: 114894345767067522}
   - component: {fileID: 114061719603425724}
   - component: {fileID: 54760951509033198}
+  - component: {fileID: 114565563246717566}
+  - component: {fileID: 114974520131896018}
   m_Layer: 0
   m_Name: FirstBossTrioBullet
   m_TagString: Untagged
@@ -144,6 +146,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TimeLeft: 6
+--- !u!114 &114565563246717566
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1615804433756854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f99f7ccf444b60449a455424cf56fabb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 0}
 --- !u!114 &114894345767067522
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -158,6 +172,18 @@ MonoBehaviour:
   speed: 10
   timeSpentOnWall: 2
   player: {fileID: 0}
+--- !u!114 &114974520131896018
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1615804433756854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc306e0eb17191c4ea5b6b17483bfcde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
 --- !u!135 &135019719152695372
 SphereCollider:
   m_ObjectHideFlags: 1
