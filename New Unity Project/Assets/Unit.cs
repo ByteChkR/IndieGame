@@ -14,7 +14,7 @@ public class Unit : MonoBehaviour
     public static Dictionary<int, Unit> ActiveUnits = new Dictionary<int, Unit>();
     public static Unit Player;
     public UnitStats Stats;
-    private readonly Weapon[] _weapons = new Weapon[2];
+    private Weapon[] _weapons = new Weapon[2];
     public Animation UnitAnimation;
     public NavMeshAgent Agent;
     [SerializeField]
@@ -22,6 +22,7 @@ public class Unit : MonoBehaviour
     public CheckpointScript Checkpoint;
     public int GoldReward = 2;
     public GameObject GoldPrefab;
+    public Rigidbody rb;
     private int _selectedWeapon = 0;
     public Weapon SelectedWeapon { get { return _weapons[_selectedWeapon]; } }
     public enum TriggerType
@@ -171,7 +172,7 @@ public class Unit : MonoBehaviour
         AudioManager.instance.PlaySoundEffect(effect);
     }
 
-    void FireAnimationTrigger(TriggerType ttype)
+    public void FireAnimationTrigger(TriggerType ttype)
     {
         if (ttype == TriggerType.ControlLock)
         {
@@ -214,7 +215,7 @@ public class Unit : MonoBehaviour
 
     private void Awake()
     {
-
+        Physics.IgnoreLayerCollision(11, 11);
         Stats.Init();
         ActiveUnits.Add(gameObject.GetInstanceID(), this);
 
@@ -225,6 +226,8 @@ public class Unit : MonoBehaviour
     {
         _weapons[0] = GetComponentInChildren<Weapon>();
         _weapons[0].SetOwnerDUs(this);
+
+        rb = GetComponent<Rigidbody>();
 
         Controller = GetComponent<IController>();
         if (IsPlayer) Player = this;
@@ -245,7 +248,7 @@ public class Unit : MonoBehaviour
             rnd.Set(r.x, 0, r.y);
             Coin a = Instantiate(GoldPrefab, transform.position + rnd, transform.rotation).GetComponent<Coin>();
             a.Target = Unit.Player;
-            a.Initialize(gameObject.GetInstanceID(), Vector3.zero, Quaternion.identity); //use the source int as the killers id. This works only with coins.
+            a.Initialize(Stats.Killer, Vector3.zero, Quaternion.identity); //use the source int as the killers id. This works only with coins.
             
         }
         Destroy(gameObject);

@@ -17,6 +17,8 @@ public class Ability : MonoBehaviour
     [SerializeField]
     protected bool SelfStun = false;
     [SerializeField]
+    protected bool UnlockSelfStunOnDestroy = true;
+    [SerializeField]
     protected bool CheckCollisionsEveryFrame = true;
     [SerializeField]
     protected float KnockBackPower = 0;
@@ -72,6 +74,7 @@ public class Ability : MonoBehaviour
         Source = Unit.ActiveUnits[source];
         Initialized = true;
         Source.AddAnimationTriggerListener(CollisionCheck);
+        if (SelfStun) Source.FireAnimationTrigger(Unit.TriggerType.ControlLock);
 
     }
 
@@ -99,7 +102,12 @@ public class Ability : MonoBehaviour
 
     public virtual void OnDestroy()
     {
-        if (Source != null) Source.RemoveAnimationTriggerListener(CollisionCheck);
+        if (Source != null)
+        {
+            Source.RemoveAnimationTriggerListener(CollisionCheck);
+            if (UnlockSelfStunOnDestroy) Source.FireAnimationTrigger(Unit.TriggerType.ControlUnlock);
+        }
+        
     }
 
     void CollisionCheck(Unit.TriggerType ttype)

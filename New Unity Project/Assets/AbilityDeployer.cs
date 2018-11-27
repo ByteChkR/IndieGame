@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AOEStun : Ability
+public class AbilityDeployer : Ability
 {
     [SerializeField]
     private  string _animationName;
@@ -14,6 +14,10 @@ public class AOEStun : Ability
     public Vector3 HitboxSize;
     [SerializeField]
     private  bool _inFrontOfPlayer = true;
+    [SerializeField]
+    private GameObject ability;
+    [SerializeField]
+    private GameObject ownAbility;
 
     bool _started = false;
     // Use this for initialization
@@ -61,6 +65,13 @@ public class AOEStun : Ability
 
     public override void OnDestroy()
     {
+        if (Source != null && ownAbility != null)
+        {
+            Ability a = Instantiate(ownAbility, Source.transform.position, Source.transform.rotation).GetComponent<Ability>();
+            a.Initialize(Source.gameObject.GetInstanceID(), Source.transform.position, Source.transform.rotation);
+
+        }
+
         base.OnDestroy();
     }
 
@@ -70,6 +81,10 @@ public class AOEStun : Ability
     {
         target.Stats.AddEffects(_onHitEffects.ToArray(), Source.gameObject.GetInstanceID());
         base.OnHit(target);
+        Vector3 dir = target.transform.position-Source.transform.position;
+        Ability a = Instantiate(ability, target.transform.position, target.transform.rotation).GetComponent<Ability>();
+        a.Initialize(target.gameObject.GetInstanceID(), Source.transform.position + dir.normalized*3, target.transform.rotation);
+
     }
 
 

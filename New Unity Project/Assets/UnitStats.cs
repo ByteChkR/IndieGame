@@ -4,15 +4,18 @@ using System.Collections.Generic;
 [System.Serializable]
 public class UnitStats
 {
-    [SerializeField]
+    [SerializeField, Tooltip("Spawn Health")]
     private float _baseHealth;
-    [SerializeField]
+    [SerializeField, Tooltip("Spawn MovementSpeed")]
     private float _baseMovementSpeed;
-    [SerializeField]
+    [SerializeField, Tooltip("Spawn Combo")]
     private float _baseCombo;
 
 
     private int _killer = -1;
+    /// <summary>
+    /// The Unit ID that had the killing blow.
+    /// </summary>
     public int Killer { get { return _killer; } }
 
 

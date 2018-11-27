@@ -5,19 +5,19 @@ using UnityEngine;
 public class Dash : Ability
 {
     [SerializeField]
-    private readonly string _animationName;
+    private  string _animationName;
     [SerializeField]
-    private readonly float _animationSpeed;
+    private  float _animationSpeed;
     [SerializeField]
     private List<AbstractEffect> _onHitEffects;
     [Tooltip("If the collider is a Sphere only the X axis will be used as a radius.")]
     public Vector3 hitboxSize;
     [SerializeField]
-    private readonly bool  _inFrontOfPlayer = true;
+    private  bool _inFrontOfPlayer = true;
     [SerializeField]
-    private readonly float _dashDistance = 10;
+    private  float _dashDistance = 10000;
     [SerializeField]
-    private readonly float _dashTime = 1;
+    private  float _dashTime = 1;
     [SerializeField]
     private AnimationCurve _animationCurve;
     private float _timeInitialized;
@@ -46,12 +46,16 @@ public class Dash : Ability
             (Collider as SphereCollider).radius = hitboxSize.x;
             if (_inFrontOfPlayer) (Collider as SphereCollider).center = transform.forward * hitboxSize.x / 2;
         }
-        Source.UnitAnimation[_animationName].speed = _animationSpeed;
-        Source.UnitAnimation.Play(_animationName, PlayMode.StopSameLayer);
-        
+        if (Source.UnitAnimation[_animationName] != null)
+        {
+
+            Source.UnitAnimation[_animationName].speed = _animationSpeed;
+            Source.UnitAnimation.Play(_animationName, PlayMode.StopSameLayer);
+
+        }
+        Vector3 fwd = (target - Source.transform.position);
         _pos = Source.transform.position;
-        _ddistance = (target - Source.transform.position).magnitude;
-        Vector3 fwd = Source.transform.forward;
+        _ddistance = (fwd).magnitude;
         fwd.y = 0;
         fwd.Normalize();
         _endPos = _ddistance > _dashDistance ? Source.transform.position + fwd * _dashDistance : Source.transform.position + fwd * _ddistance;
@@ -66,14 +70,15 @@ public class Dash : Ability
         {
             return;
         }
+        Debug.DrawLine(_pos, _endPos);
         if (t >= 1)
         {
-            if (Source != null)
+            if (Source != null && AfterDashAbility != null)
             {
                 AOEStun s = Instantiate(AfterDashAbility, Source.transform.position, Source.transform.rotation).GetComponent<AOEStun>();
                 s.Initialize(Source.gameObject.GetInstanceID(), TargetPos, TargetRot);
             }
-            
+
             Destroy(this.gameObject);
         }
         else
@@ -84,6 +89,7 @@ public class Dash : Ability
 
     public override void OnDestroy()
     {
+        Source.rb.velocity = Vector3.zero;
         base.OnDestroy();
     }
 
