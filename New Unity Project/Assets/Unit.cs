@@ -24,6 +24,7 @@ public class Unit : MonoBehaviour
     public int GoldReward = 2;
     public GameObject GoldPrefab;
     public Rigidbody rb;
+    public GameObject WeaponContainer;
     //private int _selectedWeapon = 0;
     //public Weapon SelectedWeapon { get { return _weapons[_selectedWeapon]; } }
     public enum TriggerType
@@ -108,11 +109,10 @@ public class Unit : MonoBehaviour
         pWeapon.transform.rotation = _weapons[_selectedWeapon].transform.rotation;
         pWeapon.transform.localScale = _weapons[_selectedWeapon].transform.localScale;
         */
-
-        pWeapon.transform.parent = _weapon.transform.parent;
-        pWeapon.transform.position = _weapon.transform.position;
-        pWeapon.transform.rotation = _weapon.transform.rotation;
-        pWeapon.transform.localScale = _weapon.transform.localScale;
+        pWeapon.transform.parent = WeaponContainer.transform;
+        pWeapon.transform.position = WeaponContainer.transform.position;
+        pWeapon.transform.rotation = WeaponContainer.transform.rotation;
+        pWeapon.transform.localScale = Vector3.one;
         /*
         if (_weapon == null)
         {
@@ -120,14 +120,15 @@ public class Unit : MonoBehaviour
             SwitchWeapon(); //Switch to new weapon
         }
         */
-            DropWeapon();
-            //_weapons[_selectedWeapon] = pWeapon;
-            _weapon = pWeapon;
+        DropWeapon();
+        //_weapons[_selectedWeapon] = pWeapon;
+        _weapon = pWeapon;
 
     }
 
     public void DropWeapon()
     {
+        if (_weapon == null) return;
         /*
         _weapons[_selectedWeapon].transform.parent = null;
         _weapons[_selectedWeapon].SetOwnerForgetUnit(_weapons[_selectedWeapon].gameObject.GetInstanceID());
@@ -250,6 +251,7 @@ public class Unit : MonoBehaviour
     {
 
 
+
         rb = GetComponent<Rigidbody>();
 
         Controller = GetComponent<IController>();
@@ -278,7 +280,7 @@ public class Unit : MonoBehaviour
             Coin a = Instantiate(GoldPrefab, transform.position + rnd, transform.rotation).GetComponent<Coin>();
             a.Target = Unit.Player;
             a.Initialize(Stats.Killer, Vector3.zero, Quaternion.identity); //use the source int as the killers id. This works only with coins.
-            
+
         }
         Destroy(gameObject);
     }

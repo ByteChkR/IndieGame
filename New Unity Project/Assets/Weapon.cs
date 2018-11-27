@@ -15,6 +15,7 @@ public class Weapon : MonoBehaviour
     public WeaponInfoScript WeaponIS;
     public bool IsOnGround { get { return Owner == gameObject.GetInstanceID(); } }
     private bool _wasSetPreInit = false;
+    private bool _wasSetOnce = false;
 
     public int GoldValue = 5;
     // Use this for initialization
@@ -23,7 +24,7 @@ public class Weapon : MonoBehaviour
         
         Rb = GetComponent<Rigidbody>();
         Coll = GetComponent<BoxCollider>();
-        if (!_wasSetPreInit)
+        if (!_wasSetPreInit && !_wasSetOnce)
         {
             Owner = gameObject.GetInstanceID();
         }
@@ -62,8 +63,10 @@ public class Weapon : MonoBehaviour
     
     private void PreparePickup()
     {
+        _wasSetOnce = true;
         if (Coll == null)
         {
+            Debug.Log("BBBBB");
             _wasSetPreInit = true;
             return;
         }
