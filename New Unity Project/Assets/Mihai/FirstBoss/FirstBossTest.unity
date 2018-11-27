@@ -747,18 +747,6 @@ Prefab:
       propertyPath: player
       value: 
       objectReference: {fileID: 307166825}
-    - target: {fileID: 114224776338722510, guid: 43ec8153a912ad34c9fd03d7645c90c6,
-        type: 2}
-      propertyPath: widePrefab
-      value: 
-      objectReference: {fileID: 1596907750002680, guid: 8b79274e5056e8a45b4efb30c4798f96,
-        type: 2}
-    - target: {fileID: 114224776338722510, guid: 43ec8153a912ad34c9fd03d7645c90c6,
-        type: 2}
-      propertyPath: specialPrefab
-      value: 
-      objectReference: {fileID: 1199072669255060, guid: dee8cf2005b6ffa42bcdf0415e91c4aa,
-        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 43ec8153a912ad34c9fd03d7645c90c6, type: 2}
   m_IsPrefabAsset: 0

@@ -25,10 +25,6 @@ public class FirstBoss : MonoBehaviour {
     private readonly float specialDegrees = 45;
 
     private Animator _anim;
-    private readonly int _maxNumberOfDashes = 3;
-    private readonly int _dashesLeft = 0;
-    private readonly float _dashMaxCooldown;
-    private readonly float _dashCurrentCooldwon;
     private int _animationResetTime = 0;
     private float _timeTillNextAttack = 3;
 
