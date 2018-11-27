@@ -11,7 +11,7 @@ public class Spawner : MonoBehaviour
     Animation anim;
     public string AnimationName;
     public float DistanceAboveGround = 0.5f;
-    public Renderer r;
+    public GameObject pipe;
     // Use this for initialization
     void Start()
     {
@@ -26,7 +26,7 @@ public class Spawner : MonoBehaviour
         if (spawning && !anim.isPlaying)
         {
             spawning = false;
-            r.enabled = false;
+            pipe.SetActive(false);
         }
     }
 
@@ -34,7 +34,7 @@ public class Spawner : MonoBehaviour
     {
         if (anim.isPlaying) return;
         spawning = true;
-        r.enabled = true;
+        pipe.SetActive(true);
         anim.Play(AnimationName, PlayMode.StopSameLayer);
         RaycastHit info;
         if (Physics.Raycast(transform.position, Vector3.down, out info, float.MaxValue, 1 << 10))
