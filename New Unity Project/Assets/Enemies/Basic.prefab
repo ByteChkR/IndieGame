@@ -1023,7 +1023,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1382934848206572}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14.53, y: 19.999876, z: -40.13}
+  m_LocalPosition: {x: 2.19, y: 19.999876, z: -27.62}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4900582268538302}
@@ -1802,6 +1802,7 @@ MonoBehaviour:
   Checkpoint: {fileID: 0}
   GoldReward: 20
   GoldPrefab: {fileID: 1136768164843768, guid: aac181e834279be488ad830f1c633251, type: 2}
+  rb: {fileID: 0}
 --- !u!114 &114185107150590254
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1831,7 +1832,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Target: {fileID: 0}
   Agent: {fileID: 0}
-  AttackRange: 5
+  AttackRange: 1.3
   ActivationRange: 10
   Speed: 3.5
 --- !u!114 &114452847438073860
@@ -1964,11 +1965,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9750bba37be3f4e4585403101bbdfb4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Weapon: {fileID: 0}
-  InfoBox: {fileID: 1592149824720596}
-  Icon: {fileID: 114954020433145898}
-  Prize: {fileID: 114507746712000942}
-  Description: {fileID: 114452847438073860}
+  _weapon: {fileID: 0}
+  _infoBox: {fileID: 0}
+  _icon: {fileID: 0}
+  _prize: {fileID: 0}
+  _description: {fileID: 0}
 --- !u!114 &114915188290281198
 MonoBehaviour:
   m_ObjectHideFlags: 1

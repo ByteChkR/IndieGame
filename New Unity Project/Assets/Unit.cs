@@ -172,7 +172,7 @@ public class Unit : MonoBehaviour
         AudioManager.instance.PlaySoundEffect(effect);
     }
 
-    void FireAnimationTrigger(TriggerType ttype)
+    public void FireAnimationTrigger(TriggerType ttype)
     {
         if (ttype == TriggerType.ControlLock)
         {

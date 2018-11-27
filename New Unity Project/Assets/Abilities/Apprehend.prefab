@@ -54,6 +54,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Collider: {fileID: 0}
   SelfStun: 1
+  UnlockSelfStunOnDestroy: 0
   CheckCollisionsEveryFrame: 1
   KnockBackPower: 0
   KnockBackMaxRange: 10
@@ -66,6 +67,7 @@ MonoBehaviour:
   _animationSpeed: 1
   _onHitEffects: []
   HitboxSize: {x: 100, y: 0, z: 0}
+  _inFrontOfPlayer: 1
   ability: {fileID: 1789416970732076, guid: dc11bfc4af621e84e8b3b222fbc9a4fb, type: 2}
   ownAbility: {fileID: 1789416970732076, guid: da63a084048900f448c6731f9024082a, type: 2}
 --- !u!135 &135421002662652140

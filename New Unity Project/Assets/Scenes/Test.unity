@@ -3793,6 +3793,12 @@ Prefab:
       propertyPath: m_Drag
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 114239158501968664, guid: 0bf0a0cb88542ed468c4543523f10b86,
+        type: 2}
+      propertyPath: Abilities.Array.data[0].abilityInstance
+      value: 
+      objectReference: {fileID: 114436595879807954, guid: da63a084048900f448c6731f9024082a,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0bf0a0cb88542ed468c4543523f10b86, type: 2}
   m_IsPrefabAsset: 0
