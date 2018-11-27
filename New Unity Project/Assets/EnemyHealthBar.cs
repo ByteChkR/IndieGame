@@ -15,9 +15,14 @@ public class EnemyHealthBar : MonoBehaviour {
 	void Start () {
         _maxHealth = Enemy.Stats.MaxHealth;
 	}
+    void RotateHealthBar()
+    {
+        transform.rotation = Quaternion.Euler(40, -Enemy.transform.rotation.y, 0);
+    }
 
-	// Update is called once per frame
-	void LateUpdate () {
+    // Update is called once per frame
+    void LateUpdate () {
+        RotateHealthBar();
         HealthBar.transform.localScale = new Vector3(Enemy.Stats.CurrentHealth / Enemy.Stats.MaxHealth, 1, 1);
     }
 }
