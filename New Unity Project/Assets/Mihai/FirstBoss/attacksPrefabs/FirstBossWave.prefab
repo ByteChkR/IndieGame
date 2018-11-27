@@ -170,7 +170,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   damage: 0
-  distanceoffset: 2
+  distanceoffset: 1
 --- !u!114 &114180191011392546
 MonoBehaviour:
   m_ObjectHideFlags: 1

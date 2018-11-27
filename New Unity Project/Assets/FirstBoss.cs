@@ -39,7 +39,7 @@ public class FirstBoss : MonoBehaviour,IController {
         
     }
 
-    public Vector3 VTarget { get { return player.position; } }
+    public Vector3 VTarget { get { return player ==null? Vector3.zero: player.position; } }
 
 
     void Start () {
@@ -63,8 +63,18 @@ public class FirstBoss : MonoBehaviour,IController {
         WatchControl();
         AnimationControll();
         StunCheck();
-
+        DashControl();
         // TestAnimation();
+       
+    }
+
+    private void DashControl()
+    {
+        if(_rb.velocity.magnitude <2)
+        {
+            return;
+        }
+
         Collider[] dashTest = Physics.OverlapSphere(transform.position, 0.5f);
 
         for (int i = 0; i < dashTest.Length; ++i)
@@ -202,9 +212,13 @@ public class FirstBoss : MonoBehaviour,IController {
     {
         if(_canWatch == true)
         {
-            Vector3 samePosition = new Vector3(player.position.x, transform.position.y, player.position.z);
-           looker.LookAt(samePosition);
-           transform.rotation = Quaternion.Lerp(transform.rotation, looker.rotation, rotationInterpolationSpeed);
+            if (player != null)
+            {
+                Vector3 samePosition = new Vector3(player.position.x, transform.position.y, player.position.z);
+                looker.LookAt(samePosition);
+
+                transform.rotation = Quaternion.Lerp(transform.rotation, looker.rotation, rotationInterpolationSpeed);
+            }
         }
     }
 

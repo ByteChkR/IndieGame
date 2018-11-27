@@ -273,14 +273,17 @@ public class Unit : MonoBehaviour
     {
         Vector3 rnd = new Vector3();
         Vector2 r;
-        for (int i = 0; i < GoldReward; i++)
+        if (GoldPrefab != null)
         {
-            r = Random.insideUnitCircle * 2;
-            rnd.Set(r.x, 0, r.y);
-            Coin a = Instantiate(GoldPrefab, transform.position + rnd, transform.rotation).GetComponent<Coin>();
-            a.Target = Unit.Player;
-            a.Initialize(Stats.Killer, Vector3.zero, Quaternion.identity); //use the source int as the killers id. This works only with coins.
+            for (int i = 0; i < GoldReward; i++)
+            {
+                r = Random.insideUnitCircle * 2;
+                rnd.Set(r.x, 0, r.y);
+                Coin a = Instantiate(GoldPrefab, transform.position + rnd, transform.rotation).GetComponent<Coin>();
 
+                a.Target = Unit.Player;
+                a.Initialize(Stats.Killer, Vector3.zero, Quaternion.identity); //use the source int as the killers id. This works only with coins.
+            }
         }
         Destroy(gameObject);
     }
