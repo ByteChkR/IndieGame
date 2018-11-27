@@ -36,7 +36,6 @@ public class WeaponInfoScript : MonoBehaviour
     void Awake()
     {
         SetCost(transform.parent.GetComponent<Weapon>().GoldValue);
-        Debug.Log(_goldCost);
     }
 
     void RotateInfoBox()
