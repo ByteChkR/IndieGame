@@ -23,7 +23,7 @@ public class MeeleeAttack : Ability
 
     public override void Initialize(int source, Vector3 target, Quaternion rot)
     {
-        Collider = Unit.ActiveUnits[source].SelectedWeapon.Coll;
+        Collider = Unit.ActiveUnits[source].GetActiveWeapon().Coll;
         base.Initialize(source, target,rot);
         if (Source.UnitAnimation[_animationName] != null)
         {

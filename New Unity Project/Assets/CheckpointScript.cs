@@ -6,7 +6,8 @@ public class CheckpointScript : MonoBehaviour {
 
     private float _checkpointGold;
     private Vector3 _checkpointPosition;
-    private Weapon[] _checkpointWeapons = new Weapon[2];
+    //private Weapon[] _checkpointWeapons = new Weapon[2];
+    private Weapon _checkpointWeapon;
     public int Index;
 
 
@@ -15,11 +16,12 @@ public class CheckpointScript : MonoBehaviour {
 		
 	}
 	
-    public void TakeCheckpoint(float pGold, Vector3 pPosition, Weapon[] pWeapons)
+    public void TakeCheckpoint(float pGold, Vector3 pPosition, Weapon pWeapon/*Weapon[] pWeapons*/)
     {
         _checkpointGold = pGold;
         _checkpointPosition = pPosition;
-        _checkpointWeapons = pWeapons;
+        //_checkpointWeapons = pWeapons;
+        _checkpointWeapon = pWeapon;
     }
 
     public float GetCheckpointGold()
@@ -32,9 +34,13 @@ public class CheckpointScript : MonoBehaviour {
         return _checkpointPosition;
     }
 
+    public Weapon GetCheckpointWeapon()
+    {
+        return _checkpointWeapon;
+    }
 
-// Update is called once per frame
-void Update () {
+    // Update is called once per frame
+    void Update () {
 		
 	}
 }

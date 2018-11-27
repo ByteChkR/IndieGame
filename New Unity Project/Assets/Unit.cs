@@ -14,7 +14,8 @@ public class Unit : MonoBehaviour
     public static Dictionary<int, Unit> ActiveUnits = new Dictionary<int, Unit>();
     public static Unit Player;
     public UnitStats Stats;
-    private Weapon[] _weapons = new Weapon[2];
+    //private Weapon[] _weapons = new Weapon[2];
+    private Weapon _weapon;
     public Animation UnitAnimation;
     public NavMeshAgent Agent;
     [SerializeField]
@@ -23,8 +24,8 @@ public class Unit : MonoBehaviour
     public int GoldReward = 2;
     public GameObject GoldPrefab;
     public Rigidbody rb;
-    private int _selectedWeapon = 0;
-    public Weapon SelectedWeapon { get { return _weapons[_selectedWeapon]; } }
+    //private int _selectedWeapon = 0;
+    //public Weapon SelectedWeapon { get { return _weapons[_selectedWeapon]; } }
     public enum TriggerType
     {
         CollisionCheck,
@@ -40,7 +41,8 @@ public class Unit : MonoBehaviour
 
     public Weapon GetActiveWeapon()
     {
-        return _weapons[_selectedWeapon];
+        //return _weapons[_selectedWeapon];
+        return _weapon;
     }
 
     void OnTriggerEnter(Collider coll)
@@ -50,7 +52,8 @@ public class Unit : MonoBehaviour
         {
             if (cp.Index > Checkpoint.Index || Checkpoint == null)
             {
-                cp.TakeCheckpoint(Stats.CurrentGold, transform.position, _weapons);
+                //cp.TakeCheckpoint(Stats.CurrentGold, transform.position, _weapons);
+                cp.TakeCheckpoint(Stats.CurrentGold, transform.position, _weapon);
                 Checkpoint = cp;
             }
         }
@@ -88,33 +91,43 @@ public class Unit : MonoBehaviour
 
 
         pWeapon.SetOwnerDUs(this);
+        /*
         pWeapon.transform.parent = _weapons[_selectedWeapon].transform.parent;
         pWeapon.transform.position = _weapons[_selectedWeapon].transform.position;
         pWeapon.transform.rotation = _weapons[_selectedWeapon].transform.rotation;
         pWeapon.transform.localScale = _weapons[_selectedWeapon].transform.localScale;
+        */
 
-        if (_weapons[1] == null)
+        pWeapon.transform.parent = _weapon.transform.parent;
+        pWeapon.transform.position = _weapon.transform.position;
+        pWeapon.transform.rotation = _weapon.transform.rotation;
+        pWeapon.transform.localScale = _weapon.transform.localScale;
+        /*
+        if (_weapon == null)
         {
-            _weapons[1] = pWeapon;
+            _weapon = pWeapon;
             SwitchWeapon(); //Switch to new weapon
         }
-        else
-        {
+        */
             DropWeapon();
-            _weapons[_selectedWeapon] = pWeapon;
-
-        }
+            //_weapons[_selectedWeapon] = pWeapon;
+            _weapon = pWeapon;
 
     }
 
     public void DropWeapon()
     {
+        /*
         _weapons[_selectedWeapon].transform.parent = null;
         _weapons[_selectedWeapon].SetOwnerForgetUnit(_weapons[_selectedWeapon].gameObject.GetInstanceID());
         _weapons[_selectedWeapon] = null;
+        */
+        _weapon.transform.parent = null;
+        _weapon.SetOwnerForgetUnit(_weapon.gameObject.GetInstanceID());
+        _weapon = null;
     }
 
-
+    /*
     public void SwitchWeapon()
     {
         int last = _selectedWeapon;
@@ -130,7 +143,7 @@ public class Unit : MonoBehaviour
         _weapons[_selectedWeapon].gameObject.SetActive(true);
         Debug.Log("selected weapon: " + _selectedWeapon);
     }
-
+    */
     void RegisterParticleEffect(string key, ParticleSystem ps)
     {
         if (ParticleSystems.Count(x => x.Key == key) > 0)
@@ -224,8 +237,8 @@ public class Unit : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        _weapons[0] = GetComponentInChildren<Weapon>();
-        _weapons[0].SetOwnerDUs(this);
+        _weapon = GetComponentInChildren<Weapon>();
+        _weapon.SetOwnerDUs(this);
 
         rb = GetComponent<Rigidbody>();
 

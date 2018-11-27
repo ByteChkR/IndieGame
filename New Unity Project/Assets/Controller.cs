@@ -43,12 +43,13 @@ public class Controller : MonoBehaviour, IController
 
     private void Update()
     {
-
+        /*
         if (_lockControls || _unit.Stats.IsStunned) return;
         if (Input.GetKeyDown(KeyCode.Q))
         {
             _unit.SwitchWeapon();
         }
+        */
     }
 
     void DeconstructVelocityAndApplyToAnimation(Vector3 velocity)
