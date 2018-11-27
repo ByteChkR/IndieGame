@@ -27,7 +27,14 @@ public class AI : MonoBehaviour, IController
     {
         get
         {
-            if (Target == null) return false;
+            if (Target == null && Unit.Player != null)
+            {
+                Target = Unit.Player.transform;
+            }
+            else if(Target == null && Unit.Player == null)
+            {
+                return false;
+            }
             RaycastHit info;
             bool hit = Physics.Raycast(transform.position + (Target.position - transform.position).normalized, Target.position - transform.position, out info, float.MaxValue) && info.collider.gameObject.GetInstanceID() == Target.gameObject.GetInstanceID();
             //Debug.DrawRay(transform.position + (Target.position - transform.position).normalized, Target.position - transform.position);
@@ -42,6 +49,7 @@ public class AI : MonoBehaviour, IController
         _rb = GetComponent<Rigidbody>();
         _unit = Unit.ActiveUnits[gameObject.GetInstanceID()];
         _unit.Agent = Agent;
+        
     }
 
     private void FixedUpdate()
