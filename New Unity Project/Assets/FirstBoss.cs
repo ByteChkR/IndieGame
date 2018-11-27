@@ -17,14 +17,15 @@ public class FirstBoss : MonoBehaviour,IController {
     public Transform player;
     private Rigidbody _rb;
     public enum FirstBossStates { Dash, RangedAttack, Trio, Special}
-    private FirstBossStates _firstBossState =FirstBossStates.Special;
+    private FirstBossStates _firstBossState =FirstBossStates.Dash;
+    public Unit bossUnit;
 
     public GameObject widePrefab;
     public GameObject specialPrefab;
     private float specialOffset= 15;
     private readonly float specialDegrees = 45;
     private bool _canBeStunned = false;
-    private bool _wasStunned = false;
+    private bool _canDealDashDamage = false;
 
 
     private Animator _anim;
@@ -42,6 +43,11 @@ public class FirstBoss : MonoBehaviour,IController {
 
 
     void Start () {
+
+        if(bossUnit == null)
+        {
+            bossUnit = GetComponent<Unit>();
+        }
         if(player == null)
         {
             player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -56,9 +62,49 @@ public class FirstBoss : MonoBehaviour,IController {
 
         WatchControl();
         AnimationControll();
-     // TestAnimation();
-           
-	}
+        StunCheck();
+
+        // TestAnimation();
+        Collider[] dashTest = Physics.OverlapSphere(transform.position, 0.5f);
+
+        for (int i = 0; i < dashTest.Length; ++i)
+        {
+            if (dashTest[i].gameObject.tag == "Player")
+            {
+
+                if (_canDealDashDamage == true)
+                {
+                    _canDealDashDamage = false;
+                    Unit playerUnit = dashTest[i].gameObject.GetComponent<Unit>();
+                    if (playerUnit != null)
+                    {
+                        playerUnit.Stats.ApplyValue(Unit.StatType.HP, -20, 90);
+                    }
+                }
+
+            }
+        }
+
+    }
+
+    private void StunCheck()
+    {
+        if (_firstBossState == FirstBossStates.Dash)
+        {
+            
+            if (_canBeStunned == true && bossUnit.Stats.IsStunned == true)
+            {
+                _canBeStunned = false;
+                EndSpecial();
+
+            }
+
+        }
+        else
+        {
+
+        }
+    }
 
     private void AnimationControll()
     {
@@ -93,11 +139,14 @@ public class FirstBoss : MonoBehaviour,IController {
                     _timeTillNextAttack = 6;
                     DoAnimation(1, 5);
                     _firstBossState = FirstBossStates.RangedAttack;
+                    _canDealDashDamage = true;
+                    _canBeStunned = false;
                     break;
                 case FirstBossStates.RangedAttack:
                     _timeTillNextAttack = 3;
                     DoAnimation(2, 3);
                     _firstBossState = FirstBossStates.Trio;
+                    _canDealDashDamage = false;
                     break;
                 case FirstBossStates.Trio:
                     _firstBossState = FirstBossStates.Special;
@@ -107,6 +156,7 @@ public class FirstBoss : MonoBehaviour,IController {
                 case FirstBossStates.Special:
                     _timeTillNextAttack = 8;
                     _firstBossState = FirstBossStates.Dash;
+                    _canBeStunned = true;
                     DoAnimation(3, 9999999);
                     break;
             }
@@ -119,11 +169,6 @@ public class FirstBoss : MonoBehaviour,IController {
     {
         _anim.SetInteger("frame", pIndex);
         _animationResetTime = pResetFrames;
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        
     }
 
     private void TestAnimation()
