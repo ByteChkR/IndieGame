@@ -8360,6 +8360,7 @@ MonoBehaviour:
     MaxHealth: 2000
     MaxCombo: 10
     MaxMovementSpeed: 3
+    OnlyDamagedWithSpecialAttacks: 0
   UnitAnimation: {fileID: 95427179779466966}
   Agent: {fileID: 0}
   ParticleSystems: []
@@ -8368,6 +8369,7 @@ MonoBehaviour:
   GoldPrefab: {fileID: 1136768164843768, guid: aac181e834279be488ad830f1c633251, type: 2}
   rb: {fileID: 54542799977753298}
   WeaponContainer: {fileID: 1993866894514744}
+  TeamID: 1
 --- !u!114 &114280270937398308
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8474,7 +8476,8 @@ MonoBehaviour:
   Owner: -107864
   OOwner: {fileID: 0}
   Abilities:
-  - Name: Melee Attack
+  - IsSpecial: 0
+    Name: Melee Attack
     Description: 
     icon: {fileID: 0}
     abilityInstance: {fileID: 114594336571885322, guid: 6a2757239111ab143b4565c0e0482616,
@@ -8482,7 +8485,8 @@ MonoBehaviour:
     ComboCost: -1
     cooldown: 1.4
     animState: 2
-  - Name: AOE Stun
+  - IsSpecial: 1
+    Name: AOE Stun
     Description: 
     icon: {fileID: 0}
     abilityInstance: {fileID: 114351747421703744, guid: d5bbe3d4e3b426f44880af83558a9655,
