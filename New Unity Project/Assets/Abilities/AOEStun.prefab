@@ -65,7 +65,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Collider: {fileID: 0}
-  SelfStun: 0
+  SelfStun: 1
   UnlockSelfStunOnDestroy: 1
   CheckCollisionsEveryFrame: 0
   KnockBackPower: 0

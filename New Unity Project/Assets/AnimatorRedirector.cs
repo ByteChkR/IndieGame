@@ -12,9 +12,10 @@ public class AnimatorRedirector : MonoBehaviour {
 
     public void EndAttackAnimation()
     {
-        u.SetAnimationState(Unit.AnimationStates.IDLE);
         u.Controller.LockControls(false);
         Debug.Log("Unlocked");
+        u.FireAnimationTrigger(Unit.TriggerType.EndAnimation);
+        u.SetAnimationState(Unit.AnimationStates.IDLE);
     }
 
 
