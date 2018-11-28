@@ -33,7 +33,7 @@ public class AI : MonoBehaviour, IController
             {
                 Target = Unit.Player.transform;
             }
-            else if(Target == null && Unit.Player == null)
+            else if (Target == null && Unit.Player == null)
             {
                 return false;
             }
@@ -51,7 +51,7 @@ public class AI : MonoBehaviour, IController
         _rb = GetComponent<Rigidbody>();
         _unit = Unit.ActiveUnits[gameObject.GetInstanceID()];
         _unit.Agent = Agent;
-        
+
     }
 
     private void FixedUpdate()
@@ -69,56 +69,53 @@ public class AI : MonoBehaviour, IController
             return;
         }
 
-        
+
 
 
         if (_unit.Stats.IsStunned)
         {
-            _unit.UnitAnimation.SetInteger("state", 4);
+            _unit.SetAnimationState(Unit.AnimationStates.STUN);
             _unit.Agent.isStopped = true;
             _unit.Agent.velocity = Vector3.zero;
-            
+
             return;
         }
         if (_distance2Target <= ActivationRange)
         {
-
-            _unit.UnitAnimation.SetInteger("state", 0);
+            _unit.SetAnimationState(Unit.AnimationStates.IDLE);
             if (_distance2Target > AttackRange)
             {
-                _unit.UnitAnimation.SetInteger("state", 1);
+                _unit.SetAnimationState(Unit.AnimationStates.WALKING);
                 Agent.SetDestination(Target.position);
                 Agent.isStopped = false;
             }
             else
             {
                 Agent.isStopped = true;
-                if (!_unit.UnitAnimation.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+
+
+                transform.forward = Target.position - transform.position;
+                if (_unit.GetActiveWeapon().Abilities.Count > 1 && _unit.Stats.CurrentCombo >= _unit.GetActiveWeapon().Abilities[1].ComboCost)
                 {
 
-                    transform.forward = Target.position - transform.position;
-                    if (_unit.GetActiveWeapon().Abilities.Count > 1 && _unit.Stats.CurrentCombo >= _unit.GetActiveWeapon().Abilities[1].ComboCost)
-                    {
+                    _unit.SetAnimationState(Unit.AnimationStates.SPECIAL);
+                    //Special Attack
+                    _unit.GetActiveWeapon().Abilities[1].Fire(_unit.gameObject.GetInstanceID(), Target.position, Target.rotation);
 
-                        _unit.UnitAnimation.SetInteger("state", 5);
-                        //Special Attack
-                        _unit.GetActiveWeapon().Abilities[1].Fire(_unit.gameObject.GetInstanceID(), Target.position, Target.rotation);
-
-                    }
-                    else
-                    {
-
-                        _unit.UnitAnimation.SetInteger("state", 2);
-                        _unit.GetActiveWeapon().Abilities[0].Fire(_unit.gameObject.GetInstanceID(), Target.position, Target.rotation);
-
-                    }
                 }
+                else
+                {
+
+                    _unit.SetAnimationState(Unit.AnimationStates.ATTACK);
+                    _unit.GetActiveWeapon().Abilities[0].Fire(_unit.gameObject.GetInstanceID(), Target.position, Target.rotation);
+
+                }
+
             }
         }
         else
         {
-
-            _unit.UnitAnimation.SetInteger("state", 0);
+            _unit.SetAnimationState(Unit.AnimationStates.IDLE);
             Agent.isStopped = true;
         }
 
