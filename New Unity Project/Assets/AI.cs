@@ -17,6 +17,8 @@ public class AI : MonoBehaviour, IController
     public float Speed = 3.5f;
     bool _lockControls = false;
     Rigidbody _rb;
+    public Animator _animator;
+    public Animator Animator { get { return _animator; } }
     public Rigidbody Rb { get { return _rb; } }
     public void LockControls(bool locked)
     {
@@ -61,10 +63,14 @@ public class AI : MonoBehaviour, IController
     void Update()
     {
         Agent.speed = _unit.Stats.CurrentMovementSpeed * Speed;
+        Animator.SetFloat("speed", Rb.velocity.magnitude);
         if (!_canSeeTarget || _lockControls)
         {
             return;
         }
+
+        
+
 
         if (_unit.Stats.IsStunned)
         {

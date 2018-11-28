@@ -51,12 +51,13 @@ public class AOEStun : Ability
         {
             return;
         }
-        if (_started && Source != null && !Source.UnitAnimation.isPlaying)
-        {
-            _started = false;
-            Destroy(this.gameObject);
-        }
         else if (Source == null) Destroy(gameObject);
+    }
+
+    protected override void CollisionCheck(Unit.TriggerType ttype)
+    {
+        base.CollisionCheck(ttype);
+        Destroy(this.gameObject);
     }
 
     public override void OnDestroy()

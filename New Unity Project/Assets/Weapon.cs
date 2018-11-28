@@ -21,7 +21,7 @@ public class Weapon : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        
+
         Rb = GetComponent<Rigidbody>();
         Coll = GetComponent<BoxCollider>();
         if (!_wasSetPreInit && !_wasSetOnce)
@@ -60,7 +60,7 @@ public class Weapon : MonoBehaviour
         OOwner = null;
         PreparePickup();
     }
-    
+
     private void PreparePickup()
     {
         _wasSetOnce = true;
@@ -87,15 +87,17 @@ public class Weapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
         //PreparePickup();
         if (OOwner == null || Owner == gameObject.GetInstanceID()) return;
         for (int i = 0; i < AbilityKeyBindings.Count; i++)
         {
             if (!OOwner.Stats.IsStunned && Input.GetKey(AbilityKeyBindings[i]) && OOwner.GetActiveWeapon() == this)
             {
-                Debug.Log(Abilities[i].Name + " : " + OOwner.Controller.VTarget);
-                Abilities[i].Fire(Owner, OOwner.Controller.VTarget, OOwner.transform.rotation);
+                if (Abilities[i].Fire(Owner, OOwner.Controller.VTarget, OOwner.transform.rotation))
+                {
+                    Debug.Log(Abilities[i].Name + " : " + OOwner.Controller.VTarget);
+                }
             }
         }
     }

@@ -7,8 +7,6 @@ public class MeeleeAttack : Ability
     [SerializeField]
     private string _animationName;
     [SerializeField]
-    private float _animationSpeed;
-    [SerializeField]
     private List<AbstractEffect> _onHitEffects;
     [SerializeField]
     private  float _comboGainPerHit = 100;
@@ -25,14 +23,10 @@ public class MeeleeAttack : Ability
     {
         Collider = Unit.ActiveUnits[source].GetActiveWeapon().Coll;
         base.Initialize(source, target,rot);
-        if (Source.UnitAnimation[_animationName] != null)
-        {
-            Source.UnitAnimation[_animationName].speed = _animationSpeed;
-            Source.UnitAnimation.Play(_animationName, PlayMode.StopSameLayer);
-        }
         _started = true;
     }
 
+    
     // Update is called once per frame
     public override void Update()
     {
@@ -42,12 +36,20 @@ public class MeeleeAttack : Ability
         {
             return;
         }
-        if (_started && Source != null && !Source.UnitAnimation.isPlaying)
+        
+        if (_started && Source != null && Source.Controller.Animator != null )
         {
-            _started = false;
-            Destroy(this.gameObject);
+            
+            AnimatorStateInfo i = Source.Controller.Animator.GetCurrentAnimatorStateInfo(0);
+            AnimatorTransitionInfo ti = Source.Controller.Animator.GetAnimatorTransitionInfo(0);
+            if (!ti.IsUserName("2Attack") || !i.IsName("Attack")){
+                _started = false;
+                Destroy(gameObject);
+            }
         }
     }
+
+    
 
 
     public override void OnDestroy()

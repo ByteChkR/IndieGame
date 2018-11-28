@@ -164,7 +164,7 @@ public class Unit : MonoBehaviour
             return;
         }
         ParticleSystems.Add(new ParticleSystemEntry(key, ps));
-
+        
     }
 
     void UnRegisterParticleEffect(string key)
@@ -195,6 +195,11 @@ public class Unit : MonoBehaviour
     void TriggerSoundEffect(AudioManager.SoundEffect effect)
     {
         AudioManager.instance.PlaySoundEffect(effect);
+    }
+
+    public void FireAnimationTrigger(int ttype)
+    {
+        FireAnimationTrigger((TriggerType)ttype);
     }
 
     public void FireAnimationTrigger(TriggerType ttype)
@@ -285,6 +290,7 @@ public class Unit : MonoBehaviour
                 a.Initialize(Stats.Killer, Vector3.zero, Quaternion.identity); //use the source int as the killers id. This works only with coins.
             }
         }
+        if(Controller.Animator != null) Controller.Animator.SetBool("Death", true);
         Destroy(gameObject);
     }
 

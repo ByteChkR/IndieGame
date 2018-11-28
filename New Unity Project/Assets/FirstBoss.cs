@@ -8,6 +8,9 @@ public class FirstBoss : MonoBehaviour,IController {
     public Transform looker;
     public Transform TrioPlace;
 
+    public Animator _animator;
+    public Animator Animator { get { return _animator; } }
+
 
     public GameObject TrioPrefab;
 

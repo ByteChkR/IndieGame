@@ -6,7 +6,8 @@ using UnityEngine;
 public class Controller : MonoBehaviour, IController
 {
     public Camera Camera;
-    public Animator Animator;
+    public Animator _animator;
+    public Animator Animator { get { return _animator; } }
     Vector3 _target;
     public bool MakeControlsHardlyRetarded = true;
     public Vector3 VTarget { get { return _target; } }
