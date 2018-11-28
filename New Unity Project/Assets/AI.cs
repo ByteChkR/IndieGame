@@ -76,6 +76,7 @@ public class AI : MonoBehaviour, IController
         {
             _unit.Agent.isStopped = true;
             _unit.Agent.velocity = Vector3.zero;
+            
             return;
         }
         if (_distance2Target <= ActivationRange)
@@ -89,7 +90,7 @@ public class AI : MonoBehaviour, IController
             {
 
                 Agent.isStopped = true;
-                if (_unit.UnitAnimation.GetCurrentAnimatorStateInfo(0).IsName("BasicMovement"))
+                if (!_unit.UnitAnimation.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
                 {
 
                     transform.forward = Target.position - transform.position;

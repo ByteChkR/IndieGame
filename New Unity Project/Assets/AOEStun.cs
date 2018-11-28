@@ -15,6 +15,7 @@ public class AOEStun : Ability
     [SerializeField]
     private bool _inFrontOfPlayer = true;
 
+
     bool _started = false;
     // Use this for initialization
     void Start()
@@ -25,15 +26,16 @@ public class AOEStun : Ability
     public override void Initialize(int source, Vector3 target, Quaternion rot)
     {
         base.Initialize(source, target, rot);
+        
         if (CollType == ColliderTypes.Box)
         {
             (Collider as BoxCollider).size = HitboxSize;
-            if (_inFrontOfPlayer) (Collider as BoxCollider).center = transform.forward * HitboxSize.z / 2; //Move Hitbox right in front of caster
+            if (_inFrontOfPlayer) (Collider as BoxCollider).center = Vector3.forward * HitboxSize.z / 2; //Move Hitbox right in front of caster
         }
         else if (CollType == ColliderTypes.Sphere)
         {
             (Collider as SphereCollider).radius = HitboxSize.x;
-            if (_inFrontOfPlayer) (Collider as SphereCollider).center = transform.forward * HitboxSize.x / 2;
+            if (_inFrontOfPlayer) (Collider as SphereCollider).center = Vector3.forward * HitboxSize.x / 2;
         }
         //if (Source.UnitAnimation[_animationName] != null)
         //{
@@ -41,7 +43,7 @@ public class AOEStun : Ability
         //    Source.UnitAnimation.Play(_animationName, PlayMode.StopSameLayer);
         //}
         Source.AddAnimationTriggerListener(ReceiveAnimEvent);
-        Source.Controller.Animator.SetTrigger("attack");
+        Source.UnitAnimation.SetTrigger("attack");
 
         _started = true;
     }
@@ -50,21 +52,13 @@ public class AOEStun : Ability
     public override void Update()
     {
         base.Update();
-        if (!Initialized)
-        {
-            return;
-        }
-        else if (Source == null && Source.Controller.Animator != null) //TODO
-        {
-            
-           
-            //Destroy(gameObject);
 
-        }
+
     }
 
     void ReceiveAnimEvent(Unit.TriggerType triggerType)
     {
+        Debug.Log(triggerType);
         if(triggerType == Unit.TriggerType.EndAnimation)
         {
             Destroy(gameObject);

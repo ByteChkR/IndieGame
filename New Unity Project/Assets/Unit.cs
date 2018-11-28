@@ -290,7 +290,7 @@ public class Unit : MonoBehaviour
                 a.Initialize(Stats.Killer, Vector3.zero, Quaternion.identity); //use the source int as the killers id. This works only with coins.
             }
         }
-        if(Controller.Animator != null) Controller.Animator.SetBool("Death", true);
+        //if(UnitAnimation != null) UnitAnimation.SetBool("Death", true);
         Destroy(gameObject);
     }
 
