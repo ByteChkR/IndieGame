@@ -95,6 +95,7 @@ public class Weapon : MonoBehaviour
             {
                 if (Abilities[i].Fire(Owner, OOwner.Controller.VTarget, OOwner.transform.rotation))
                 {
+                    OOwner.SetAnimationState(Abilities[i].animState);
                     Debug.Log(Abilities[i].Name + " : " + OOwner.Controller.VTarget);
                 }
             }

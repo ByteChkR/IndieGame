@@ -756,12 +756,12 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.9911438
-        functionName: FireAnimationTrigger
+      - time: 0.9555707
+        functionName: EndAttackAnimation
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
-        intParameter: 4
+        intParameter: 0
         messageOptions: 0
       transformMask: []
       maskType: 3
