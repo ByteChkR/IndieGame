@@ -38,7 +38,7 @@ public class AI : MonoBehaviour, IController
                 return false;
             }
             RaycastHit info;
-            bool hit = Physics.Raycast(transform.position + (Target.position - transform.position).normalized, Target.position - transform.position, out info, float.MaxValue) && info.collider.gameObject.GetInstanceID() == Target.gameObject.GetInstanceID();
+            bool hit = Physics.Raycast(transform.position, Target.position - transform.position, out info, float.MaxValue) && info.collider.gameObject.GetInstanceID() == Target.gameObject.GetInstanceID();
             //Debug.DrawRay(transform.position + (Target.position - transform.position).normalized, Target.position - transform.position);
             _distance2Target = info.distance;
             return hit && _distance2Target <= ActivationRange;
@@ -62,8 +62,8 @@ public class AI : MonoBehaviour, IController
     // Update is called once per frame
     void Update()
     {
-
         Agent.speed = _unit.Stats.CurrentMovementSpeed * Speed;
+
      //   Animator.SetFloat("speed", Rb.velocity.magnitude);
         if (!_canSeeTarget || _lockControls)
         {
@@ -71,7 +71,7 @@ public class AI : MonoBehaviour, IController
         }
 
 
-
+        
 
         if (_unit.Stats.IsStunned)
         {
@@ -98,7 +98,7 @@ public class AI : MonoBehaviour, IController
                 transform.forward = Target.position - transform.position;
                 if (_unit.GetActiveWeapon().Abilities.Count > 1 && _unit.Stats.CurrentCombo >= _unit.GetActiveWeapon().Abilities[1].ComboCost)
                 {
-
+                    
                     //Special Attack
                     if(_unit.GetActiveWeapon().Abilities[1].Fire(_unit.gameObject.GetInstanceID(), Target.position, Target.rotation))
                     {

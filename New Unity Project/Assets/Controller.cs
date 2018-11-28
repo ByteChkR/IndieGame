@@ -105,8 +105,8 @@ public class Controller : MonoBehaviour, IController
         }
         else
         {
-
-            transform.forward = MakeControlsHardlyRetarded ? _rb.velocity : vDir;
+            Vector3 n = MakeControlsHardlyRetarded ? new Vector3(_rb.velocity.x, 0, _rb.velocity.z).normalized : vDir;
+            transform.forward = n == Vector3.zero ? transform.forward : n;
 
             Debug.DrawRay(transform.position, _rb.velocity, Color.red);
             float d = Vector3.Dot(vDir, _rb.velocity.normalized);

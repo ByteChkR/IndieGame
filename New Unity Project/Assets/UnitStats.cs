@@ -31,7 +31,7 @@ public class UnitStats
     private bool _stun = false;
     private float _currentGold;
 
-    public bool OnlyDamagedWithSpecialAttacks;
+    public bool OnlyDamagedWithSpecialAttacks = false;
     public float CurrentHealth { get { return _currentHealth; } }
     public float CurrentCombo { get { return _currentCombo; } }
     public float CurrentMovementSpeed { get { return _currentMovementSpeed; } }
@@ -66,11 +66,15 @@ public class UnitStats
 
     public void ApplyValue(Unit.StatType stype, float value, int source, bool isSpecialAttack)
     {
-        Debug.Log(System.Enum.GetName(typeof(Unit.StatType), stype) + ": changed by " + value);
+        //Debug.Log(System.Enum.GetName(typeof(Unit.StatType), stype) + ": changed by " + value);
         switch (stype)
         {
             case Unit.StatType.HP:
-                if (OnlyDamagedWithSpecialAttacks && !isSpecialAttack) break;
+                if (OnlyDamagedWithSpecialAttacks && !isSpecialAttack)
+                {
+                    
+                    break;
+                }
                 _currentHealth += value;
                 _currentHealth = _currentHealth > MaxHealth ? MaxHealth : _currentHealth;
                 if (_currentHealth <= 0) _killer = source;

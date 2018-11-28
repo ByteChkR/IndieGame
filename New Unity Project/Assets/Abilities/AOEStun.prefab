@@ -74,14 +74,14 @@ MonoBehaviour:
   InvertKnockback: 0
   MoreOnMaxRange: 0
   CollType: 0
-  Damage: 1
+  Damage: 50
   _animationName: AOEStun
   _animationSpeed: 1
   _onHitEffects:
   - Type: 8
     Strength: 1
     InverseOnTimeout: 1
-    Duration: 2
+    Duration: 4
     TimeActivated: 0
     ApplyOnce: 0
   HitboxSize: {x: 4, y: 3, z: 6}
