@@ -53,6 +53,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Collider: {fileID: 0}
   SelfStun: 0
+  UnlockSelfStunOnDestroy: 1
   CheckCollisionsEveryFrame: 1
   KnockBackPower: 10
   KnockBackMaxRange: 10
@@ -61,6 +62,7 @@ MonoBehaviour:
   MoreOnMaxRange: 0
   CollType: 0
   Damage: 25
-  _animationName: BasicWeaponSwing
-  _animationSpeed: 1
+  TriggerName: attack
+  _animationName: 
   _onHitEffects: []
+  _comboGainPerHit: 100

@@ -110,7 +110,7 @@ public class Ability : MonoBehaviour
         
     }
 
-    void CollisionCheck(Unit.TriggerType ttype)
+    protected virtual void CollisionCheck(Unit.TriggerType ttype)
     {
         if (ttype != Unit.TriggerType.CollisionCheck) return;
         CheckAndResolveCollisions(Collider);
