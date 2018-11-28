@@ -91,7 +91,7 @@ public class FirstBoss : MonoBehaviour,IController {
                     Unit playerUnit = dashTest[i].gameObject.GetComponent<Unit>();
                     if (playerUnit != null)
                     {
-                        playerUnit.Stats.ApplyValue(Unit.StatType.HP, -20, 90);
+                        playerUnit.Stats.ApplyValue(Unit.StatType.HP, -20, 90,false);
                     }
                 }
 

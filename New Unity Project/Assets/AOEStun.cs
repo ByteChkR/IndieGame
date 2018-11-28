@@ -16,17 +16,17 @@ public class AOEStun : Ability
     private bool _inFrontOfPlayer = true;
 
 
-    bool _started = false;
+
     // Use this for initialization
     void Start()
     {
 
     }
 
-    public override void Initialize(int source, Vector3 target, Quaternion rot)
+    public override void Initialize(int source, Vector3 target, Quaternion rot, bool isSpecial)
     {
-        base.Initialize(source, target, rot);
-        
+        base.Initialize(source, target, rot, isSpecial);
+
         if (CollType == ColliderTypes.Box)
         {
             (Collider as BoxCollider).size = HitboxSize;
@@ -45,7 +45,6 @@ public class AOEStun : Ability
 
         //Source.UnitAnimation.SetTrigger("attack");
 
-        _started = true;
     }
 
     // Update is called once per frame

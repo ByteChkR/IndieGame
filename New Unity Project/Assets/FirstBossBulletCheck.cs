@@ -35,7 +35,7 @@ public class FirstBossBulletCheck : MonoBehaviour {
         Unit unitTest = pl.GetComponent<Unit>();
         if(unitTest != null)
         {
-            unitTest.Stats.ApplyValue(Unit.StatType.HP,-damage, 90);
+            unitTest.Stats.ApplyValue(Unit.StatType.HP,-damage, 90, false);
             CreateBeforeDestroy cbd = GetComponent<CreateBeforeDestroy>();
             if(cbd!= null)
             {

@@ -7,9 +7,9 @@ public class ArtilleryDrop : Ability
 
     public float DistanceFromCaster = 8;
     public Vector3 StartHeight;
-    public override void Initialize(int source, Vector3 target, Quaternion rot)
+    public override void Initialize(int source, Vector3 target, Quaternion rot, bool isSpecial)
     {
-        base.Initialize(source, target, rot);
+        base.Initialize(source, target, rot, isSpecial);
 
         transform.position = target + StartHeight;
     }

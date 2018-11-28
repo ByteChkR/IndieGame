@@ -118,7 +118,7 @@ public class AchievementSystem : MonoBehaviour {
         _timeLeftOnScreen = _maxTimeOnScreen;
         achievementImage.sprite = pAS.aImage;
         achieventText.text = pAS.aLine;
-        achievementName.text = pAS.name;
+        achievementName.text = pAS.aName;
         _anim.SetBool("isOnScreen", true);
 
     }

@@ -26,6 +26,7 @@ public class Unit : MonoBehaviour
     public GameObject GoldPrefab;
     public Rigidbody rb;
     public GameObject WeaponContainer;
+    public int TeamID = 0;
     //private int _selectedWeapon = 0;
     //public Weapon SelectedWeapon { get { return _weapons[_selectedWeapon]; } }
     public enum TriggerType
@@ -90,7 +91,7 @@ public class Unit : MonoBehaviour
             w.ActivateInfoBox();
             if (Input.GetKeyDown(KeyCode.E) && w.IsOnGround && w.GoldValue <= Stats.CurrentGold)
             {
-                Stats.ApplyValue(StatType.GOLD, -w.GoldValue);
+                Stats.ApplyValue(StatType.GOLD, -w.GoldValue, -1, false);
                 PickupWeapon(w);
             }
         }
@@ -291,6 +292,7 @@ public class Unit : MonoBehaviour
 
     private void UnitDying()
     {
+        AchievementSystem.instance.KillEnemy();
         Vector3 rnd = new Vector3();
         Vector2 r;
         if (GoldPrefab != null)
@@ -302,7 +304,7 @@ public class Unit : MonoBehaviour
                 Coin a = Instantiate(GoldPrefab, transform.position + rnd, transform.rotation).GetComponent<Coin>();
 
                 a.Target = Unit.Player;
-                a.Initialize(Stats.Killer, Vector3.zero, Quaternion.identity); //use the source int as the killers id. This works only with coins.
+                a.Initialize(Stats.Killer, Vector3.zero, Quaternion.identity, false); //use the source int as the killers id. This works only with coins.
             }
         }
         //if(UnitAnimation != null) UnitAnimation.SetBool("Death", true);

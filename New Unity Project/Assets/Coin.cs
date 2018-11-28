@@ -30,7 +30,7 @@ public class Coin : Ability
         distance = vdir.magnitude;
         if(distance <= MinDistance)
         {
-            Target.Stats.ApplyValue(Unit.StatType.GOLD, 1);
+            Target.Stats.ApplyValue(Unit.StatType.GOLD, 1,-1,false);
             Destroy(gameObject);
         }
 
@@ -44,9 +44,9 @@ public class Coin : Ability
         base.OnDestroy();
     }
 
-    public override void Initialize(int source, Vector3 target, Quaternion rot)
+    public override void Initialize(int source, Vector3 target, Quaternion rot, bool isSpecial)
     {
-        base.Initialize(source, target, rot);
+        base.Initialize(source, target, rot, isSpecial);
         this.Target = Source;
     }
 

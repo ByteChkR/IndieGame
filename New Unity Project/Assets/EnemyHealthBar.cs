@@ -8,12 +8,10 @@ public class EnemyHealthBar : MonoBehaviour {
     public Unit Enemy;
     public Image HealthBar;
     private float _fill;
-    private float _maxHealth;
     private float _currentHealth;
 
 	// Use this for initialization
 	void Start () {
-        _maxHealth = Enemy.Stats.MaxHealth;
 	}
     void RotateHealthBar()
     {

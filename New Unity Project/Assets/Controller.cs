@@ -5,6 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody), typeof(Unit))]
 public class Controller : MonoBehaviour, IController
 {
+    public Vector3 MovementDegreeOffset;
+    private Quaternion _movementOffset;
     public Camera Camera;
     public Animator _animator;
     public Animator Animator { get { return _animator; } }
@@ -35,6 +37,7 @@ public class Controller : MonoBehaviour, IController
     {
         _rb = GetComponent<Rigidbody>();
         _unit = GetComponent<Unit>();
+        _movementOffset = Quaternion.Euler(MovementDegreeOffset);
     }
 
     public void LockControls(bool locked)
@@ -68,6 +71,7 @@ public class Controller : MonoBehaviour, IController
 
             right = d1;
             fwd = d;
+
 
 
         }
@@ -139,8 +143,9 @@ public class Controller : MonoBehaviour, IController
         {
             v += Vector3.right;
         }
+        v = _movementOffset * v;
         //anim.SetFloat("Forward", 0);
-        if(v != Vector3.zero)
+        if (v != Vector3.zero)
         {
             _unit.SetAnimationState(Unit.AnimationStates.WALKING);
         }
@@ -157,7 +162,7 @@ public class Controller : MonoBehaviour, IController
         {
             _rb.AddForce(v.normalized * speed, ForceMode.Acceleration);
         }
-        
+
         //anim.SetFloat("Forward", speed);
 
 

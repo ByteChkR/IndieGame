@@ -25,9 +25,9 @@ public class ProjectileLine : Ability
 
     }
 
-    public override void Initialize(int source, Vector3 target, Quaternion rot)
+    public override void Initialize(int source, Vector3 target, Quaternion rot, bool isSpecial)
     {
-        base.Initialize(source, target, rot);
+        base.Initialize(source, target, rot, isSpecial);
         _timeInitialized = Time.realtimeSinceStartup;
 
     }
@@ -44,7 +44,7 @@ public class ProjectileLine : Ability
             if (Source != null)
             {
                 Ability s = Instantiate(Projectile, transform.position, transform.rotation).GetComponent<Ability>();
-                s.Initialize(Source.gameObject.GetInstanceID(), transform.position + transform.forward * _actualDistance, TargetRot);
+                s.Initialize(Source.gameObject.GetInstanceID(), transform.position + transform.forward * _actualDistance, TargetRot, isSpecial);
             }
             _currentCount++;
         }
