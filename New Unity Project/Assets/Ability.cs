@@ -75,6 +75,7 @@ public class Ability : MonoBehaviour
         Source = Unit.ActiveUnits[source];
         Initialized = true;
         Source.AddAnimationTriggerListener(CollisionCheck);
+        Source.AddAnimationTriggerListener(EndAbility);
         if (SelfStun) Source.FireAnimationTrigger(Unit.TriggerType.ControlLock);
 
     }
@@ -106,10 +107,19 @@ public class Ability : MonoBehaviour
         if (Source != null)
         {
             Source.RemoveAnimationTriggerListener(CollisionCheck);
+            Source.RemoveAnimationTriggerListener(EndAbility);
             if (UnlockSelfStunOnDestroy) Source.FireAnimationTrigger(Unit.TriggerType.ControlUnlock);
             
         }
         Debug.Log("Destroy Ability");
+    }
+
+    public void EndAbility(Unit.TriggerType triggerType)
+    {
+        if(triggerType == Unit.TriggerType.EndAnimation)
+        {
+            Destroy(gameObject);
+        }
     }
 
     protected virtual void CollisionCheck(Unit.TriggerType ttype)

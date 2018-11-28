@@ -26,11 +26,8 @@ public class ThreeSXTY : Ability
         Collider = Unit.ActiveUnits[source].GetActiveWeapon().Coll;
         base.Initialize(source, target,rot);
 
-        if (Source.UnitAnimation[_animationName] != null)
-        {
-            Source.UnitAnimation[_animationName].speed = _animationSpeed;
-            Source.UnitAnimation.Play(_animationName, PlayMode.StopSameLayer);
-        }
+            Source.UnitAnimation.speed = _animationSpeed;
+            Source.UnitAnimation.SetTrigger(_animationName);
         _started = true;
     }
 
@@ -41,11 +38,6 @@ public class ThreeSXTY : Ability
         if (!Initialized)
         {
             return;
-        }
-        if (_started && !Source.UnitAnimation.isPlaying)
-        {
-            _started = false;
-            Destroy(this.gameObject);
         }
         else
         {

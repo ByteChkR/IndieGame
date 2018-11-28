@@ -5,15 +5,15 @@ using UnityEngine;
 public class AbilityDeployer : Ability
 {
     [SerializeField]
-    private  string _animationName;
+    private string _animationName;
     [SerializeField]
-    private  float _animationSpeed;
+    private float _animationSpeed;
     [SerializeField]
     private List<AbstractEffect> _onHitEffects;
     [Tooltip("If the collider is a Sphere only the X axis will be used as a radius.")]
     public Vector3 HitboxSize;
     [SerializeField]
-    private  bool _inFrontOfPlayer = true;
+    private bool _inFrontOfPlayer = true;
     [SerializeField]
     private GameObject ability;
     [SerializeField]
@@ -39,11 +39,9 @@ public class AbilityDeployer : Ability
             (Collider as SphereCollider).radius = HitboxSize.x;
             if (_inFrontOfPlayer) (Collider as SphereCollider).center = transform.forward * HitboxSize.x / 2;
         }
-        if (Source.UnitAnimation[_animationName] != null)
-        {
-            Source.UnitAnimation[_animationName].speed = _animationSpeed;
-            Source.UnitAnimation.Play(_animationName, PlayMode.StopSameLayer);
-        }
+
+        Source.UnitAnimation.speed = _animationSpeed;
+        Source.UnitAnimation.SetTrigger(_animationName);
         _started = true;
     }
 
@@ -54,11 +52,6 @@ public class AbilityDeployer : Ability
         if (!Initialized)
         {
             return;
-        }
-        if (_started && Source != null && !Source.UnitAnimation.isPlaying)
-        {
-            _started = false;
-            Destroy(this.gameObject);
         }
         else if (Source == null) Destroy(gameObject);
     }
@@ -81,9 +74,9 @@ public class AbilityDeployer : Ability
     {
         target.Stats.AddEffects(_onHitEffects.ToArray(), Source.gameObject.GetInstanceID());
         base.OnHit(target);
-        Vector3 dir = target.transform.position-Source.transform.position;
+        Vector3 dir = target.transform.position - Source.transform.position;
         Ability a = Instantiate(ability, target.transform.position, target.transform.rotation).GetComponent<Ability>();
-        a.Initialize(target.gameObject.GetInstanceID(), Source.transform.position + dir.normalized*3, target.transform.rotation);
+        a.Initialize(target.gameObject.GetInstanceID(), Source.transform.position + dir.normalized * 3, target.transform.rotation);
 
     }
 

@@ -46,13 +46,7 @@ public class Dash : Ability
             (Collider as SphereCollider).radius = hitboxSize.x;
             if (_inFrontOfPlayer) (Collider as SphereCollider).center = transform.forward * hitboxSize.x / 2;
         }
-        if (Source.UnitAnimation[_animationName] != null)
-        {
-
-            Source.UnitAnimation[_animationName].speed = _animationSpeed;
-            Source.UnitAnimation.Play(_animationName, PlayMode.StopSameLayer);
-
-        }
+        Source.UnitAnimation.SetTrigger(_animationName);
         Vector3 fwd = (target - Source.transform.position);
         _pos = Source.transform.position;
         _ddistance = (fwd).magnitude;
