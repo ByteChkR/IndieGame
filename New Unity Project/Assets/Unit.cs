@@ -291,6 +291,7 @@ public class Unit : MonoBehaviour
 
     private void UnitDying()
     {
+        AchievementSystem.instance.KillEnemy();
         Vector3 rnd = new Vector3();
         Vector2 r;
         if (GoldPrefab != null)

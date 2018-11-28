@@ -51,6 +51,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dd8965887f3c9a43b5fd2365e9d45e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  aImage: {fileID: 21300000, guid: e32d075d0e801b2458e930a5aacbcb5f, type: 3}
-  aName: Novice
-  aLine: Kill 10 enemies;
+  aImage: {fileID: 21300000, guid: 8673231d271fd7c4689920c9bd79f435, type: 3}
+  aName: First Blood
+  aLine: You Killed your first enemy.
