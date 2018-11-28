@@ -40,6 +40,8 @@ public class AOEStun : Ability
             Source.UnitAnimation[_animationName].speed = _animationSpeed;
             Source.UnitAnimation.Play(_animationName, PlayMode.StopSameLayer);
         }
+        Source.Controller.Animator.SetTrigger("attack");
+
         _started = true;
     }
 
@@ -51,9 +53,9 @@ public class AOEStun : Ability
         {
             return;
         }
-        else if (Source == null)
+        else if (Source == null && Source.Controller.Animator != null) //TODO
         {
-
+            
            
             Destroy(gameObject);
 
@@ -64,7 +66,7 @@ public class AOEStun : Ability
     {
         base.CollisionCheck(ttype);
         
-        Destroy(this.gameObject);
+        
     }
 
     public override void OnDestroy()
