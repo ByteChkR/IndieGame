@@ -12,6 +12,7 @@ public class AchievementSystem : MonoBehaviour {
     public GameObject achievementBox;
     public Text achieventText;
     public Image achievementImage;
+    public Text achievementName;
 
     [Header("Sets")]
 
@@ -116,7 +117,8 @@ public class AchievementSystem : MonoBehaviour {
         _isOnScreen = true;
         _timeLeftOnScreen = _maxTimeOnScreen;
         achievementImage.sprite = pAS.aImage;
-        achieventText.text = pAS.aName + '\n' + pAS.aLine;
+        achieventText.text = pAS.aLine;
+        achievementName.text = pAS.name;
         _anim.SetBool("isOnScreen", true);
 
     }

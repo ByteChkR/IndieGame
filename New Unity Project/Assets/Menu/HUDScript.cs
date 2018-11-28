@@ -62,7 +62,7 @@ public class HUDScript : MonoBehaviour
     void UpdateGold(int pGold)
     {
         Gold = pGold;
-        GoldAmount.text = "GOLD : " + Gold;
+        GoldAmount.text = " X " + Gold;
     }
 
     public void SetBoss(Unit pBoss)
