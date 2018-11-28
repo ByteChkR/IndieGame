@@ -815,7 +815,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.58861244
+      - time: 0.4399638
         functionName: EndAttackAnimation
         data: 
         objectReferenceParameter: {instanceID: 0}
