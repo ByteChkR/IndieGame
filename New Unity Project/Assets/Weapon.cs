@@ -66,7 +66,6 @@ public class Weapon : MonoBehaviour
         _wasSetOnce = true;
         if (Coll == null)
         {
-            Debug.Log("BBBBB");
             _wasSetPreInit = true;
             return;
         }

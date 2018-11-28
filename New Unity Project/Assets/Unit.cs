@@ -98,7 +98,6 @@ public class Unit : MonoBehaviour
     public void PickupWeapon(Weapon pWeapon)
     {
         pWeapon.DisableBuying();
-        Debug.Log(pWeapon.Owner);
 
 
 

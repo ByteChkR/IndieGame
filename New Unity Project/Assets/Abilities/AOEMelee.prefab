@@ -75,9 +75,8 @@ MonoBehaviour:
   MoreOnMaxRange: 0
   CollType: 0
   Damage: 1
-  TriggerName: attack
   _animationName: AOEStun
   _animationSpeed: 1
   _onHitEffects: []
-  HitboxSize: {x: 1.5, y: 1, z: 1}
+  HitboxSize: {x: 1, y: 1, z: 1.5}
   _inFrontOfPlayer: 1
