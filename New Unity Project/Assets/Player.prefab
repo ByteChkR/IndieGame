@@ -4548,7 +4548,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1523658532706950}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.1, y: 21.29, z: 0}
+  m_LocalPosition: {x: -8.473345, y: 22, z: -70.81626}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4028908351004610}
@@ -5507,14 +5507,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1993866894514744}
-  m_LocalRotation: {x: -0.6351362, y: -0.70074874, z: 0.32248938, w: 0.039419807}
-  m_LocalPosition: {x: -1.113, y: -0.361, z: -0.37}
+  m_LocalRotation: {x: 0.00000017881389, y: 0.6712808, z: -0.00000019371505, w: 0.7412031}
+  m_LocalPosition: {x: 0.96, y: -0.756, z: 0.077}
   m_LocalScale: {x: 0.30000004, y: 0.33, z: 2.8300006}
   m_Children:
   - {fileID: 4464572397315970}
-  m_Father: {fileID: 4744944393683310}
+  m_Father: {fileID: 4753536105961648}
   m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 84.332, z: 0}
 --- !u!4 &4381827431373770
 Transform:
   m_ObjectHideFlags: 1
@@ -6968,7 +6968,6 @@ Transform:
   - {fileID: 4009930396654578}
   - {fileID: 4939388400586050}
   - {fileID: 4743655339864862}
-  - {fileID: 4371401110584666}
   m_Father: {fileID: 4533936528370448}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 79.834045, y: 0.000428445, z: 0.00055179076}
@@ -6987,6 +6986,7 @@ Transform:
   - {fileID: 4318431027568976}
   - {fileID: 4661595300190716}
   - {fileID: 4816433690573126}
+  - {fileID: 4371401110584666}
   m_Father: {fileID: 4439441317756048}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 39.958313, y: 0.025640937, z: -8.115466}
@@ -8481,6 +8481,7 @@ MonoBehaviour:
       type: 2}
     ComboCost: -1
     cooldown: 1.4
+    animState: 2
   - Name: AOE Stun
     Description: 
     icon: {fileID: 0}
@@ -8488,6 +8489,7 @@ MonoBehaviour:
       type: 2}
     ComboCost: 3
     cooldown: 3
+    animState: 5
   AbilityKeyBindings: 4301000044010000
   Coll: {fileID: 65787451807501060}
   Rb: {fileID: 54741682752734248}

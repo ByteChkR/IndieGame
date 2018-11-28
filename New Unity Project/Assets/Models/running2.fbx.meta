@@ -496,7 +496,7 @@ ModelImporter:
     4300238: Body39
     4300240: Body40
     4300242: Leg_left1
-    7400000: running2
+    7400000: running
     9500000: //RootNode
     13700000: Body38
     13700002: Body39
@@ -649,7 +649,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: running2
+      name: running
       takeName: running2
       firstFrame: 0
       lastFrame: 21
@@ -707,7 +707,7 @@ ModelImporter:
     tangentImportMode: 3
     normalCalculationMode: 4
   importAnimation: 1
-  copyAvatar: 1
+  copyAvatar: 0
   humanDescription:
     serializedVersion: 2
     human: []
@@ -723,8 +723,7 @@ ModelImporter:
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 3672cf26d632ea9419ab7f5891449fdc,
-    type: 3}
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
