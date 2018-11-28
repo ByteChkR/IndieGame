@@ -5,15 +5,15 @@ using UnityEngine;
 public class AOEStun : Ability
 {
     [SerializeField]
-    private  string _animationName;
+    private string _animationName;
     [SerializeField]
-    private  float _animationSpeed;
+    private float _animationSpeed;
     [SerializeField]
     private List<AbstractEffect> _onHitEffects;
     [Tooltip("If the collider is a Sphere only the X axis will be used as a radius.")]
     public Vector3 HitboxSize;
     [SerializeField]
-    private  bool _inFrontOfPlayer = true;
+    private bool _inFrontOfPlayer = true;
 
     bool _started = false;
     // Use this for initialization
@@ -51,17 +51,25 @@ public class AOEStun : Ability
         {
             return;
         }
-        else if (Source == null) Destroy(gameObject);
+        else if (Source == null)
+        {
+
+           
+            Destroy(gameObject);
+
+        }
     }
 
     protected override void CollisionCheck(Unit.TriggerType ttype)
     {
         base.CollisionCheck(ttype);
+        
         Destroy(this.gameObject);
     }
 
     public override void OnDestroy()
     {
+
         base.OnDestroy();
     }
 

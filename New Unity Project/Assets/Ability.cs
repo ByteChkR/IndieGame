@@ -58,6 +58,7 @@ public class Ability : MonoBehaviour
 
     public virtual void Initialize(int source, Vector3 target, Quaternion rot)
     {
+        Debug.Log("Init Ability");
         this.TargetPos = target;
         this.TargetRot = rot;
         this._source = source;
@@ -106,8 +107,9 @@ public class Ability : MonoBehaviour
         {
             Source.RemoveAnimationTriggerListener(CollisionCheck);
             if (UnlockSelfStunOnDestroy) Source.FireAnimationTrigger(Unit.TriggerType.ControlUnlock);
+            
         }
-        
+        Debug.Log("Destroy Ability");
     }
 
     protected virtual void CollisionCheck(Unit.TriggerType ttype)
