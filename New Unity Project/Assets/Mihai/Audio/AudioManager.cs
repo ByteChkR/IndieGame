@@ -224,7 +224,7 @@ public class AudioManager : MonoBehaviour
             ChangeBackgroundMusic(BackgroundMusic.Menu);
         }
         */
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+      /*  if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             ChangeBackgroundMusic(BackgroundMusic.Tutorial);
         }
@@ -243,7 +243,7 @@ public class AudioManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.W))
         {
             GameOverScreen();
-        }
+        }*/
     }
 
     private void ChangeClips()

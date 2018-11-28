@@ -24,7 +24,12 @@ public class AdditiveLevelManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Unit>();
+        GameObject playerGameObject = GameObject.FindGameObjectWithTag("Player");
+        if(playerGameObject!=null)
+        {
+
+        player =playerGameObject.GetComponent<Unit>();
+        }
         UnityEngine.Debug.Assert(instance == null, "Instance singleton is already initialized.");
         instance = this;
         loadedLevels = new Dictionary<int, MapInfo>();
@@ -110,18 +115,23 @@ public class AdditiveLevelManager : MonoBehaviour
         UnityEngine.Debug.Assert(level != null, "Level prefix is not correct, you tried to load: " + LevelPrefix + sceneIndex + ", Check the GameObject name of the level.");
         loadedLevels.Add(sceneIndex, level);
 
-        if (!level.data.isMenu) 
-        player.rb.constraints = RigidbodyConstraints.FreezeRotation + (int)RigidbodyConstraints.FreezePositionY;
-        else if (!level.data.isTurorial)
-        {
-            // c.EnableMovement = false;
-            // c.EnableRotation = false;            TODO: add these functions to the controller
-        }
-        else
-        {
-            //c.EnableMovement = true;
-            //c.EnableRotation = true;
-        }
+        if (!level.data.isMenu)
+            if (player != null)
+            {
+
+
+                player.rb.constraints = RigidbodyConstraints.FreezeRotation + (int)RigidbodyConstraints.FreezePositionY;
+            }
+            else if (!level.data.isTurorial)
+            {
+                // c.EnableMovement = false;
+                // c.EnableRotation = false;            TODO: add these functions to the controller
+            }
+            else
+            {
+                //c.EnableMovement = true;
+                //c.EnableRotation = true;
+            }
     }
 
     

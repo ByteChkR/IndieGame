@@ -99,7 +99,7 @@ public class HUDScript : MonoBehaviour
         if (Unit.Player == null) return;
         ComboAmount.text = (int)Unit.Player.Stats.CurrentCombo + " / " + Unit.Player.Stats.MaxCombo;
         HealthAmount.text = (int)Unit.Player.Stats.CurrentHealth + " / " + Unit.Player.Stats.MaxHealth;
-        GoldAmount.text = "GOLD : " + Unit.Player.Stats.CurrentGold;
+        GoldAmount.text = " X " + Unit.Player.Stats.CurrentGold;
         HealthBar.transform.localScale = new Vector3(Unit.Player.Stats.CurrentHealth / Unit.Player.Stats.MaxHealth, 1, 1);
         ComboBar.transform.localScale = new Vector3(Unit.Player.Stats.CurrentCombo / Unit.Player.Stats.MaxCombo, 1, 1);
         UpdateBossHealth();
