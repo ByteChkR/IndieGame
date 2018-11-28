@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 8d11e1442d7a793489fbe76af54a5961
+guid: 3d84312ded497c745bb641974251e563
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -76,7 +76,6 @@ ModelImporter:
     7400008: Death
     9500000: //RootNode
     13700000: pSphere20
-    2186277476908879412: ImportLogs
   externalObjects:
   - first:
       type: UnityEngine:Material
@@ -97,8 +96,7 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
-    animationImportWarnings: Event EndAttackAnimation has a time (1.111250) outside
-      the clip's valid range (0.000000..1.041667). It will never be fired
+    animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
@@ -191,8 +189,8 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 1.0668
-        functionName: EndAttackAnimation
+      - time: 0.5090135
+        functionName: FireAnimationTrigger
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0

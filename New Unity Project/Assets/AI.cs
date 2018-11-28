@@ -33,7 +33,7 @@ public class AI : MonoBehaviour, IController
             {
                 Target = Unit.Player.transform;
             }
-            else if(Target == null && Unit.Player == null)
+            else if (Target == null && Unit.Player == null)
             {
                 return false;
             }
@@ -51,7 +51,7 @@ public class AI : MonoBehaviour, IController
         _rb = GetComponent<Rigidbody>();
         _unit = Unit.ActiveUnits[gameObject.GetInstanceID()];
         _unit.Agent = Agent;
-        
+
     }
 
     private void FixedUpdate()
@@ -69,7 +69,7 @@ public class AI : MonoBehaviour, IController
             return;
         }
 
-        
+
 
 
         if (_unit.Stats.IsStunned)
@@ -77,7 +77,7 @@ public class AI : MonoBehaviour, IController
             _unit.UnitAnimation.SetInteger("state", 4);
             _unit.Agent.isStopped = true;
             _unit.Agent.velocity = Vector3.zero;
-            
+
             return;
         }
         if (_distance2Target <= ActivationRange)
@@ -123,4 +123,11 @@ public class AI : MonoBehaviour, IController
         }
 
     }
+
+
+    private void EndAttackAnimation()
+    {
+        _unit.UnitAnimation.SetInteger("state", 0);
+    }
+
 }
