@@ -37,6 +37,21 @@ public class Unit : MonoBehaviour
         EndAnimation
     };
 
+    public enum AnimationStates : int
+    {
+        IDLE = 0,
+        WALKING = 1,
+        ATTACK = 2,
+        STUN = 3,
+        DEATH = 4,
+        SPECIAL = 5
+    }
+
+    public void SetAnimationState(AnimationStates newState)
+    {
+        UnitAnimation.SetInteger("state", (int)newState);
+    }
+
     public delegate void AnimationTrigger(TriggerType ttype);
     private AnimationTrigger _trigger;
 
@@ -65,7 +80,7 @@ public class Unit : MonoBehaviour
     {
         Weapon w = null;
 
-        if(Controller == null)
+        if (Controller == null)
         {
             return;
         }
@@ -164,7 +179,7 @@ public class Unit : MonoBehaviour
             return;
         }
         ParticleSystems.Add(new ParticleSystemEntry(key, ps));
-        
+
     }
 
     void UnRegisterParticleEffect(string key)
