@@ -24,7 +24,7 @@ public class MeeleeAttack : Ability
         Collider = Unit.ActiveUnits[source].GetActiveWeapon().Coll;
         base.Initialize(source, target,rot);
         _started = true;
-        Source.UnitAnimation.SetTrigger(_animationName);
+
     }
 
     

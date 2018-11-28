@@ -496,7 +496,7 @@ ModelImporter:
     4300238: Body39
     4300240: Body40
     4300242: Leg_left1
-    7400000: running2
+    7400000: running
     9500000: //RootNode
     13700000: Body38
     13700002: Body39
@@ -649,7 +649,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: running2
+      name: running
       takeName: running2
       firstFrame: 0
       lastFrame: 21

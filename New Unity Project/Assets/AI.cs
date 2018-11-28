@@ -99,9 +99,12 @@ public class AI : MonoBehaviour, IController
                 if (_unit.GetActiveWeapon().Abilities.Count > 1 && _unit.Stats.CurrentCombo >= _unit.GetActiveWeapon().Abilities[1].ComboCost)
                 {
 
-                    _unit.SetAnimationState(Unit.AnimationStates.SPECIAL);
                     //Special Attack
-                    _unit.GetActiveWeapon().Abilities[1].Fire(_unit.gameObject.GetInstanceID(), Target.position, Target.rotation);
+                    if(_unit.GetActiveWeapon().Abilities[1].Fire(_unit.gameObject.GetInstanceID(), Target.position, Target.rotation))
+                    {
+
+                        _unit.SetAnimationState(Unit.AnimationStates.SPECIAL);
+                    }
 
                 }
                 else

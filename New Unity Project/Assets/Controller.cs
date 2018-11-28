@@ -71,9 +71,6 @@ public class Controller : MonoBehaviour, IController
 
 
         }
-        Animator.SetFloat("speed", scale);
-        Animator.SetFloat("forwards", fwd * Mathf.Clamp01(scale));
-        Animator.SetFloat("right", right * Mathf.Clamp01(scale));
 
     }
 
@@ -81,7 +78,11 @@ public class Controller : MonoBehaviour, IController
     void FixedUpdate()
     {
         DeconstructVelocityAndApplyToAnimation(_rb.velocity);
-        if (_lockControls || _unit.Stats.IsStunned) return;
+        if (_lockControls || _unit.Stats.IsStunned)
+        {
+            if (_unit.Stats.IsStunned) _unit.SetAnimationState(Unit.AnimationStates.STUN);
+            return;
+        }
         Vector3 vDir = ViewingDirection();
         vDir = new Vector3(vDir.x, 0, vDir.z);
 
@@ -139,17 +140,25 @@ public class Controller : MonoBehaviour, IController
             v += Vector3.right;
         }
         //anim.SetFloat("Forward", 0);
+        if(v != Vector3.zero)
+        {
+            _unit.SetAnimationState(Unit.AnimationStates.WALKING);
+        }
+        else
+        {
+            _unit.SetAnimationState(Unit.AnimationStates.IDLE);
+        }
 
-            if (MakeControlsEventMoreRetarded)
-            {
-                _rb.velocity = v*speed*0.2f;
-            }
-            else
-            {
-                _rb.AddForce(v.normalized * speed, ForceMode.Acceleration);
-            }
-
-            //anim.SetFloat("Forward", speed);
+        if (MakeControlsEventMoreRetarded)
+        {
+            _rb.velocity = v.normalized * speed * 0.2f;
+        }
+        else
+        {
+            _rb.AddForce(v.normalized * speed, ForceMode.Acceleration);
+        }
+        
+        //anim.SetFloat("Forward", speed);
 
 
 
