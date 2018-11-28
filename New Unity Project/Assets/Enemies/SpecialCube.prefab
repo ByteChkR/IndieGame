@@ -28,7 +28,7 @@ GameObject:
   - component: {fileID: 54321184512289836}
   - component: {fileID: 111114691272427366}
   m_Layer: 11
-  m_Name: Cube
+  m_Name: SpecialCube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -360,12 +360,15 @@ MonoBehaviour:
     MaxHealth: 2
     MaxCombo: 0
     MaxMovementSpeed: 0
+    OnlyDamagedWithSpecialAttacks: 1
   UnitAnimation: {fileID: 111114691272427366}
   Agent: {fileID: 0}
   ParticleSystems: []
   Checkpoint: {fileID: 0}
   GoldReward: 20
   GoldPrefab: {fileID: 1136768164843768, guid: aac181e834279be488ad830f1c633251, type: 2}
+  rb: {fileID: 0}
+  WeaponContainer: {fileID: 0}
 --- !u!114 &114035837611722252
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -404,11 +407,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9750bba37be3f4e4585403101bbdfb4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Weapon: {fileID: 0}
-  InfoBox: {fileID: 1849468984469108}
-  Icon: {fileID: 114476759253996096}
-  Prize: {fileID: 114199931105587564}
-  Description: {fileID: 114825625981830100}
+  _weapon: {fileID: 0}
+  _infoBox: {fileID: 0}
+  _icon: {fileID: 0}
+  _prize: {fileID: 0}
+  _description: {fileID: 0}
 --- !u!114 &114199931105587564
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -477,6 +480,7 @@ MonoBehaviour:
   AttackRange: 0
   ActivationRange: 0
   Speed: 0
+  _animator: {fileID: 0}
 --- !u!114 &114476759253996096
 MonoBehaviour:
   m_ObjectHideFlags: 1
