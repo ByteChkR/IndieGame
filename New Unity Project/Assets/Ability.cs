@@ -58,7 +58,6 @@ public class Ability : MonoBehaviour
 
     public virtual void Initialize(int source, Vector3 target, Quaternion rot)
     {
-        Debug.Log("Init Ability");
         this.TargetPos = target;
         this.TargetRot = rot;
         this._source = source;
@@ -111,7 +110,6 @@ public class Ability : MonoBehaviour
             if (UnlockSelfStunOnDestroy) Source.FireAnimationTrigger(Unit.TriggerType.ControlUnlock);
             
         }
-        Debug.Log("Destroy Ability");
     }
 
     public void EndAbility(Unit.TriggerType triggerType)

@@ -62,8 +62,9 @@ public class AI : MonoBehaviour, IController
     // Update is called once per frame
     void Update()
     {
+
         Agent.speed = _unit.Stats.CurrentMovementSpeed * Speed;
-        Animator.SetFloat("speed", Rb.velocity.magnitude);
+     //   Animator.SetFloat("speed", Rb.velocity.magnitude);
         if (!_canSeeTarget || _lockControls)
         {
             return;
@@ -93,7 +94,7 @@ public class AI : MonoBehaviour, IController
             {
                 Agent.isStopped = true;
 
-
+                
                 transform.forward = Target.position - transform.position;
                 if (_unit.GetActiveWeapon().Abilities.Count > 1 && _unit.Stats.CurrentCombo >= _unit.GetActiveWeapon().Abilities[1].ComboCost)
                 {
@@ -106,8 +107,11 @@ public class AI : MonoBehaviour, IController
                 else
                 {
 
-                    _unit.SetAnimationState(Unit.AnimationStates.ATTACK);
-                    _unit.GetActiveWeapon().Abilities[0].Fire(_unit.gameObject.GetInstanceID(), Target.position, Target.rotation);
+                    
+                   if (_unit.GetActiveWeapon().Abilities[0].Fire(_unit.gameObject.GetInstanceID(), Target.position, Target.rotation))
+                    {
+                        _unit.SetAnimationState(Unit.AnimationStates.ATTACK);
+                    }
 
                 }
 
@@ -122,9 +126,6 @@ public class AI : MonoBehaviour, IController
     }
 
 
-    private void EndAttackAnimation()
-    {
-        _unit.UnitAnimation.SetInteger("state", 0);
-    }
+    
 
 }

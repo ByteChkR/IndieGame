@@ -42,8 +42,8 @@ public class AOEStun : Ability
         //    Source.UnitAnimation[_animationName].speed = _animationSpeed;
         //    Source.UnitAnimation.Play(_animationName, PlayMode.StopSameLayer);
         //}
-        Source.AddAnimationTriggerListener(ReceiveAnimEvent);
-        Source.UnitAnimation.SetTrigger("attack");
+
+        //Source.UnitAnimation.SetTrigger("attack");
 
         _started = true;
     }
@@ -56,17 +56,10 @@ public class AOEStun : Ability
 
     }
 
-    void ReceiveAnimEvent(Unit.TriggerType triggerType)
-    {
-        Debug.Log(triggerType);
-        if(triggerType == Unit.TriggerType.EndAnimation)
-        {
-            Destroy(gameObject);
-        }
-    }
+
     public override void OnDestroy()
     {
-        Source.RemoveAnimationTriggerListener(ReceiveAnimEvent);
+
         base.OnDestroy();
     }
 

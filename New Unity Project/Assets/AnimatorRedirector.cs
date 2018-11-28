@@ -9,6 +9,15 @@ public class AnimatorRedirector : MonoBehaviour {
     {
         u.FireAnimationTrigger(triggerType);
     }
+
+    public void EndAttackAnimation()
+    {
+        u.SetAnimationState(Unit.AnimationStates.IDLE);
+        u.Controller.LockControls(false);
+        Debug.Log("Unlocked");
+    }
+
+
     private void Start()
     {
         u = GetComponentInParent<Unit>();

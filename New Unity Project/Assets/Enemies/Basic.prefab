@@ -1233,7 +1233,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Target: {fileID: 0}
   Agent: {fileID: 0}
-  AttackRange: 0.2
+  AttackRange: 1
   ActivationRange: 10
   Speed: 3.5
   _animator: {fileID: 95791459206690694}
