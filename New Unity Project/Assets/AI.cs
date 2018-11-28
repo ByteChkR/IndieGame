@@ -74,33 +74,41 @@ public class AI : MonoBehaviour, IController
 
         if (_unit.Stats.IsStunned)
         {
+            _unit.UnitAnimation.SetInteger("state", 4);
             _unit.Agent.isStopped = true;
             _unit.Agent.velocity = Vector3.zero;
+            
             return;
         }
         if (_distance2Target <= ActivationRange)
         {
+
+            _unit.UnitAnimation.SetInteger("state", 0);
             if (_distance2Target > AttackRange)
             {
+                _unit.UnitAnimation.SetInteger("state", 1);
                 Agent.SetDestination(Target.position);
                 Agent.isStopped = false;
             }
             else
             {
-
                 Agent.isStopped = true;
-                if (_unit.UnitAnimation.GetCurrentAnimatorStateInfo(0).IsName("BasicMovement"))
+                if (!_unit.UnitAnimation.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
                 {
 
                     transform.forward = Target.position - transform.position;
                     if (_unit.GetActiveWeapon().Abilities.Count > 1 && _unit.Stats.CurrentCombo >= _unit.GetActiveWeapon().Abilities[1].ComboCost)
                     {
+
+                        _unit.UnitAnimation.SetInteger("state", 5);
                         //Special Attack
                         _unit.GetActiveWeapon().Abilities[1].Fire(_unit.gameObject.GetInstanceID(), Target.position, Target.rotation);
 
                     }
                     else
                     {
+
+                        _unit.UnitAnimation.SetInteger("state", 2);
                         _unit.GetActiveWeapon().Abilities[0].Fire(_unit.gameObject.GetInstanceID(), Target.position, Target.rotation);
 
                     }
@@ -109,6 +117,8 @@ public class AI : MonoBehaviour, IController
         }
         else
         {
+
+            _unit.UnitAnimation.SetInteger("state", 0);
             Agent.isStopped = true;
         }
 

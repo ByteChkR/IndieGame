@@ -1172,7 +1172,7 @@ MonoBehaviour:
     MaxHealth: 50
     MaxCombo: 10
     MaxMovementSpeed: 3
-  UnitAnimation: {fileID: 111114691272427366}
+  UnitAnimation: {fileID: 95791459206690694}
   Agent: {fileID: 0}
   ParticleSystems: []
   Checkpoint: {fileID: 0}
@@ -1233,7 +1233,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Target: {fileID: 0}
   Agent: {fileID: 0}
-  AttackRange: 0.5
+  AttackRange: 0.2
   ActivationRange: 10
   Speed: 3.5
   _animator: {fileID: 95791459206690694}

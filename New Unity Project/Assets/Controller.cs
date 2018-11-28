@@ -10,6 +10,7 @@ public class Controller : MonoBehaviour, IController
     public Animator Animator { get { return _animator; } }
     Vector3 _target;
     public bool MakeControlsHardlyRetarded = true;
+    public bool MakeControlsEventMoreRetarded = true;
     public Vector3 VTarget { get { return _target; } }
     bool _lockControls = false;
     public KeyCode Forward;
@@ -73,7 +74,7 @@ public class Controller : MonoBehaviour, IController
         Animator.SetFloat("speed", scale);
         Animator.SetFloat("forwards", fwd * Mathf.Clamp01(scale));
         Animator.SetFloat("right", right * Mathf.Clamp01(scale));
-        
+
     }
 
     // Update is called once per frame
@@ -138,13 +139,18 @@ public class Controller : MonoBehaviour, IController
             v += Vector3.right;
         }
         //anim.SetFloat("Forward", 0);
-        if (v != Vector3.zero)
-        {
-            _rb.AddForce(v.normalized * speed, ForceMode.Acceleration);
+
+            if (MakeControlsEventMoreRetarded)
+            {
+                _rb.velocity = v*speed*0.2f;
+            }
+            else
+            {
+                _rb.AddForce(v.normalized * speed, ForceMode.Acceleration);
+            }
 
             //anim.SetFloat("Forward", speed);
 
-        }
 
 
         if (Input.GetKeyDown(KeyCode.K))

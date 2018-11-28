@@ -4079,6 +4079,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4812512386561734}
   - component: {fileID: 95427179779466966}
+  - component: {fileID: 114826624751824796}
   m_Layer: 0
   m_Name: running2
   m_TagString: Untagged
@@ -4547,7 +4548,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1523658532706950}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1418.9093, y: 1101.55, z: -1.4213969}
+  m_LocalPosition: {x: -0.1, y: 21.29, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4028908351004610}
@@ -8359,7 +8360,7 @@ MonoBehaviour:
     MaxHealth: 2000
     MaxCombo: 10
     MaxMovementSpeed: 3
-  UnitAnimation: {fileID: 111996268613663784}
+  UnitAnimation: {fileID: 95427179779466966}
   Agent: {fileID: 0}
   ParticleSystems: []
   Checkpoint: {fileID: 0}
@@ -8379,8 +8380,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Camera: {fileID: 0}
-  Animator: {fileID: 95427179779466966}
+  _animator: {fileID: 95427179779466966}
   MakeControlsHardlyRetarded: 1
+  MakeControlsEventMoreRetarded: 1
   Forward: 119
   Backward: 115
   Left: 97
@@ -8478,7 +8480,7 @@ MonoBehaviour:
     abilityInstance: {fileID: 114594336571885322, guid: 6a2757239111ab143b4565c0e0482616,
       type: 2}
     ComboCost: -1
-    cooldown: 1
+    cooldown: 1.4
   - Name: AOE Stun
     Description: 
     icon: {fileID: 0}
@@ -8555,6 +8557,17 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &114826624751824796
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1959229123660256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7791c57847d4ea349aa9031081a9f798, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114856550222602990
 MonoBehaviour:
   m_ObjectHideFlags: 1

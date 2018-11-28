@@ -10,5 +10,4 @@ public interface IController
     Vector3 VTarget { get; }
     Rigidbody Rb { get; }
     bool IsPlayer { get; }
-    Animator Animator { get; }
 }

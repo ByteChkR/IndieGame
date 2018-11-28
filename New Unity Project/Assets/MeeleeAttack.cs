@@ -24,6 +24,7 @@ public class MeeleeAttack : Ability
         Collider = Unit.ActiveUnits[source].GetActiveWeapon().Coll;
         base.Initialize(source, target,rot);
         _started = true;
+        Source.UnitAnimation.SetTrigger(_animationName);
     }
 
     
@@ -36,17 +37,7 @@ public class MeeleeAttack : Ability
         {
             return;
         }
-        
-        if (_started && Source != null && Source.Controller.Animator != null )
-        {
-            
-            AnimatorStateInfo i = Source.Controller.Animator.GetCurrentAnimatorStateInfo(0);
-            AnimatorTransitionInfo ti = Source.Controller.Animator.GetAnimatorTransitionInfo(0);
-            if (!ti.IsUserName("2Attack") || !i.IsName("Attack")){
-                _started = false;
-                Destroy(gameObject);
-            }
-        }
+
     }
 
     
