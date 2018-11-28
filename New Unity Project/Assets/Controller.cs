@@ -68,6 +68,7 @@ public class Controller : MonoBehaviour, IController
 
             right = d1;
             fwd = d;
+            
 
 
         }

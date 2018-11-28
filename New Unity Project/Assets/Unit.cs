@@ -90,7 +90,7 @@ public class Unit : MonoBehaviour
             w.ActivateInfoBox();
             if (Input.GetKeyDown(KeyCode.E) && w.IsOnGround && w.GoldValue <= Stats.CurrentGold)
             {
-                Stats.ApplyValue(StatType.GOLD, -w.GoldValue);
+                Stats.ApplyValue(StatType.GOLD, -w.GoldValue, -1, false);
                 PickupWeapon(w);
             }
         }
@@ -303,7 +303,7 @@ public class Unit : MonoBehaviour
                 Coin a = Instantiate(GoldPrefab, transform.position + rnd, transform.rotation).GetComponent<Coin>();
 
                 a.Target = Unit.Player;
-                a.Initialize(Stats.Killer, Vector3.zero, Quaternion.identity); //use the source int as the killers id. This works only with coins.
+                a.Initialize(Stats.Killer, Vector3.zero, Quaternion.identity, false); //use the source int as the killers id. This works only with coins.
             }
         }
         //if(UnitAnimation != null) UnitAnimation.SetBool("Death", true);

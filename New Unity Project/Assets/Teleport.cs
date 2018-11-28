@@ -12,9 +12,7 @@ public class Teleport : Ability
     private float _animationSpeed;
     [SerializeField]
     private List<AbstractEffect> _onHitEffects;
-    private bool _blinked = false;
 
-    private bool _started = false;
 
     [SerializeField]
     private GameObject _nextAbility;
@@ -24,13 +22,13 @@ public class Teleport : Ability
 
     }
 
-    public override void Initialize(int source, Vector3 target, Quaternion rot)
+    public override void Initialize(int source, Vector3 target, Quaternion rot, bool isSpecial)
     {
-        base.Initialize(source, target, rot);
+        base.Initialize(source, target, rot, isSpecial);
 
         Source.UnitAnimation.speed = _animationSpeed;
         Source.AddAnimationTriggerListener(TriggerTeleport);
-        _started = true;
+        
     }
 
     public void TriggerTeleport(Unit.TriggerType triggerType)
@@ -50,7 +48,7 @@ public class Teleport : Ability
         }
         Source.transform.position = pos;
         if (Source.Agent != null) Source.Agent.isStopped = true;
-        _blinked = true;
+        
     }
 
     // Update is called once per frame
@@ -74,7 +72,7 @@ public class Teleport : Ability
         {
 
             Ability a = Instantiate(_nextAbility, Source.transform.position, Source.transform.rotation).GetComponent<Ability>();
-            a.Initialize(Source.gameObject.GetInstanceID(), TargetPos, TargetRot);
+            a.Initialize(Source.gameObject.GetInstanceID(), TargetPos, TargetRot, isSpecial);
         }
         base.OnDestroy();
     }

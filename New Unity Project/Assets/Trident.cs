@@ -11,18 +11,18 @@ public class Trident : Ability {
 		
 	}
 
-    public override void Initialize(int source, Vector3 target, Quaternion rot)
+    public override void Initialize(int source, Vector3 target, Quaternion rot, bool isSpecial)
     {
-        base.Initialize(source, target, rot);
+        base.Initialize(source, target, rot, isSpecial);
         Shuriken s = Instantiate(Projectile, transform.position, transform.rotation).GetComponent<Shuriken>();
-        s.Initialize(source, target, rot);
+        s.Initialize(source, target, rot, isSpecial);
         Quaternion rt = transform.rotation;
         rot.eulerAngles = rot.eulerAngles + new Vector3(0, Angle,0);
         s = Instantiate(Projectile, transform.position, rot).GetComponent<Shuriken>();
-        s.Initialize(source, target, rt);
+        s.Initialize(source, target, rot, isSpecial);
         rot.eulerAngles = rot.eulerAngles - new Vector3(0, Angle*2, 0);
         s = Instantiate(Projectile, transform.position, rot).GetComponent<Shuriken>();
-        s.Initialize(source, target, rt);
+        s.Initialize(source, target, rot, isSpecial);
         Destroy(gameObject);
     }
 

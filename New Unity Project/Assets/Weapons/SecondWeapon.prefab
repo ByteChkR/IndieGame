@@ -301,20 +301,24 @@ MonoBehaviour:
   Owner: -1
   OOwner: {fileID: 0}
   Abilities:
-  - Name: Melee Attack
+  - IsSpecial: 0
+    Name: Melee Attack
     Description: 
     icon: {fileID: 0}
     abilityInstance: {fileID: 114594336571885322, guid: 6a2757239111ab143b4565c0e0482616,
       type: 2}
     ComboCost: -1
     cooldown: 0.5
-  - Name: Dash
+    animState: 2
+  - IsSpecial: 1
+    Name: Dash
     Description: 
     icon: {fileID: 0}
     abilityInstance: {fileID: 114475344119778760, guid: dc11bfc4af621e84e8b3b222fbc9a4fb,
       type: 2}
     ComboCost: 3
     cooldown: 3
+    animState: 5
   AbilityKeyBindings: 4301000044010000
   Coll: {fileID: 0}
   Rb: {fileID: 0}

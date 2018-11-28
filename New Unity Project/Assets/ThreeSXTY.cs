@@ -14,21 +14,20 @@ public class ThreeSXTY : Ability
 
 
 
-    private bool _started = false;
     // Use this for initialization
     void Start()
     {
 
     }
 
-    public override void Initialize(int source, Vector3 target, Quaternion rot)
+    public override void Initialize(int source, Vector3 target, Quaternion rot, bool isSpecial)
     {
         Collider = Unit.ActiveUnits[source].GetActiveWeapon().Coll;
-        base.Initialize(source, target,rot);
+        base.Initialize(source, target,rot,isSpecial);
 
             Source.UnitAnimation.speed = _animationSpeed;
             Source.UnitAnimation.SetTrigger(_animationName);
-        _started = true;
+        
     }
 
     // Update is called once per frame
@@ -50,7 +49,7 @@ public class ThreeSXTY : Ability
 
     public override void OnDestroy()
     {
-        UnitsHitSinceInit.Where(x => Unit.ActiveUnits.ContainsKey(x)).ToList().ForEach(x => Unit.ActiveUnits[x].Stats.ApplyValue(Unit.StatType.STUN, -1));
+        UnitsHitSinceInit.Where(x => Unit.ActiveUnits.ContainsKey(x)).ToList().ForEach(x => Unit.ActiveUnits[x].Stats.ApplyValue(Unit.StatType.STUN, -1,-1,false));
 
         base.OnDestroy();
 
@@ -60,7 +59,7 @@ public class ThreeSXTY : Ability
     {
         _localCoords.Add(target.gameObject.GetInstanceID(), Collider.transform.InverseTransformPoint(target.transform.position));
         target.Stats.AddEffects(_onHitEffects.ToArray(), Source.gameObject.GetInstanceID());
-        target.Stats.ApplyValue(Unit.StatType.STUN, 1);
+        target.Stats.ApplyValue(Unit.StatType.STUN, 1, -1,false);
         base.OnHit(target);
     }
 

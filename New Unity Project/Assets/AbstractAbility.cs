@@ -6,7 +6,7 @@ using System.Linq;
 [System.Serializable]
 public class AbstractAbility
 {
-
+    public bool IsSpecial = false;
     public string Name;
     public string Description;
     public Sprite icon;
@@ -20,9 +20,10 @@ public class AbstractAbility
     {
         if (!OnCooldown && Unit.ActiveUnits[dummy].Stats.CurrentCombo >= ComboCost)
         {
-            Unit.ActiveUnits[dummy].Stats.ApplyValue(Unit.StatType.COMBO, -ComboCost);
+            Unit.ActiveUnits[dummy].Stats.ApplyValue(Unit.StatType.COMBO, -ComboCost, -1, false);
             Ability a = GameObject.Instantiate(abilityInstance, Unit.ActiveUnits[dummy].transform.position, Unit.ActiveUnits[dummy].transform.rotation);
-            a.Initialize(dummy, target, rot);
+            a.Initialize(dummy, target, rot, IsSpecial);
+
             lastTimeUsed = Time.realtimeSinceStartup;
             return true;
         }

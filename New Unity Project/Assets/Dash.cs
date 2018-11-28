@@ -31,9 +31,9 @@ public class Dash : Ability
 
     }
 
-    public override void Initialize(int source, Vector3 target, Quaternion rot)
+    public override void Initialize(int source, Vector3 target, Quaternion rot, bool isSpecial)
     {
-        base.Initialize(source, target, rot);
+        base.Initialize(source, target, rot, isSpecial);
         transform.parent = Source.transform;
         _timeInitialized = Time.realtimeSinceStartup;
         if (CollType == ColliderTypes.Box)
@@ -70,7 +70,7 @@ public class Dash : Ability
             if (Source != null && AfterDashAbility != null)
             {
                 AOEStun s = Instantiate(AfterDashAbility, Source.transform.position, Source.transform.rotation).GetComponent<AOEStun>();
-                s.Initialize(Source.gameObject.GetInstanceID(), TargetPos, TargetRot);
+                s.Initialize(Source.gameObject.GetInstanceID(), TargetPos, TargetRot, isSpecial);
             }
 
             Destroy(this.gameObject);

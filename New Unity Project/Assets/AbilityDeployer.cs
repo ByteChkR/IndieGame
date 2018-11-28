@@ -19,16 +19,15 @@ public class AbilityDeployer : Ability
     [SerializeField]
     private GameObject ownAbility;
 
-    bool _started = false;
     // Use this for initialization
     void Start()
     {
 
     }
 
-    public override void Initialize(int source, Vector3 target, Quaternion rot)
+    public override void Initialize(int source, Vector3 target, Quaternion rot, bool isSpecial)
     {
-        base.Initialize(source, target, rot);
+        base.Initialize(source, target, rot, isSpecial);
         if (CollType == ColliderTypes.Box)
         {
             (Collider as BoxCollider).size = HitboxSize;
@@ -42,7 +41,7 @@ public class AbilityDeployer : Ability
 
         Source.UnitAnimation.speed = _animationSpeed;
         Source.UnitAnimation.SetTrigger(_animationName);
-        _started = true;
+      
     }
 
     // Update is called once per frame
@@ -61,7 +60,7 @@ public class AbilityDeployer : Ability
         if (Source != null && ownAbility != null)
         {
             Ability a = Instantiate(ownAbility, Source.transform.position, Source.transform.rotation).GetComponent<Ability>();
-            a.Initialize(Source.gameObject.GetInstanceID(), Source.transform.position, Source.transform.rotation);
+            a.Initialize(Source.gameObject.GetInstanceID(), Source.transform.position, Source.transform.rotation, isSpecial);
 
         }
 
@@ -76,7 +75,7 @@ public class AbilityDeployer : Ability
         base.OnHit(target);
         Vector3 dir = target.transform.position - Source.transform.position;
         Ability a = Instantiate(ability, target.transform.position, target.transform.rotation).GetComponent<Ability>();
-        a.Initialize(target.gameObject.GetInstanceID(), Source.transform.position + dir.normalized * 3, target.transform.rotation);
+        a.Initialize(target.gameObject.GetInstanceID(), Source.transform.position + dir.normalized * 3, target.transform.rotation, isSpecial);
 
     }
 

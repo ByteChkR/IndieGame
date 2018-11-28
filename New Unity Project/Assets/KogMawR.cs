@@ -19,9 +19,9 @@ public class KogMawR : Ability
         if ((_hit && _info.distance < 0.5f) || !_hit) Destroy(gameObject);
     }
 
-    public override void Initialize(int source, Vector3 target, Quaternion rot)
+    public override void Initialize(int source, Vector3 target, Quaternion rot, bool isSpecial)
     {
-        base.Initialize(source, target, rot);
+        base.Initialize(source, target, rot, isSpecial);
         transform.position = target + Offset;
     }
 

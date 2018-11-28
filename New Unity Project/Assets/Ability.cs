@@ -8,7 +8,7 @@ using System.Linq;
 public class Ability : MonoBehaviour
 {
     public static List<Ability> AliveAbilities = new List<Ability>();
-
+    protected bool isSpecial = false;
     protected Unit Source;
     [SerializeField]
     protected Collider Collider;
@@ -56,8 +56,14 @@ public class Ability : MonoBehaviour
         }
     }
 
-    public virtual void Initialize(int source, Vector3 target, Quaternion rot)
+    public void SetSpecialAttack(bool special)
     {
+        isSpecial = special;
+    }
+
+    public virtual void Initialize(int source, Vector3 target, Quaternion rot, bool isSpecial)
+    {
+        SetSpecialAttack(this.isSpecial);
         this.TargetPos = target;
         this.TargetRot = rot;
         this._source = source;
@@ -90,7 +96,7 @@ public class Ability : MonoBehaviour
             target.Controller.Rb.AddForce(d.normalized * (KnockBackPowerOnMaxRange + p * deltaPower), ForceMode.VelocityChange);
         }
 
-        target.Stats.ApplyValue(Unit.StatType.HP, -Damage, Source.gameObject.GetInstanceID());
+        target.Stats.ApplyValue(Unit.StatType.HP, -Damage, Source.gameObject.GetInstanceID(), isSpecial);
     }
 
 
