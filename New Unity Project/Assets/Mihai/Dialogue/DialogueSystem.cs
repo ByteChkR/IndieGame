@@ -8,6 +8,7 @@ public class DialogueSystem : MonoBehaviour {
     public static DialogueSystem instance;
     public GameObject dialogUI;
     public Text characterLine;
+    public Text characterName;
     public Image characterImage;
     private Animator _animator;
     
@@ -36,9 +37,10 @@ public class DialogueSystem : MonoBehaviour {
 
     public void StartDialogue(DialogueSet pSet)
     {
-        characterLine.text = pSet.characterName + '\n' + pSet.line;
+        characterLine.text = pSet.line;
         characterImage.sprite = pSet.characterImage;
         _animator.SetBool("isOnScreen", true);
+        characterName.text = pSet.characterName;
     }
 
     public void EndDialogue()
