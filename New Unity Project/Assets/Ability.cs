@@ -156,7 +156,9 @@ public class Ability : MonoBehaviour
         .Select(x => x.gameObject.GetInstanceID())
         .Where(x => x != Source.gameObject.GetInstanceID()).ToList();
 
-        List<int> newUnits = unitsHit.Select(x => x).Where(x => !UnitsHitSinceInit.Contains(x)).ToList();
+        List<int> newUnits = unitsHit.Select(x => x).
+            Where(x => !UnitsHitSinceInit.Contains(x) && Unit.ActiveUnits[x].TeamID != Source.TeamID).
+            ToList();
 
         newUnits.ForEach(x => OnHit(Unit.ActiveUnits[x]));
 
@@ -170,8 +172,9 @@ public class Ability : MonoBehaviour
         .Select(x => x.gameObject.GetInstanceID())
         .Where(x => x != Source.gameObject.GetInstanceID()).ToList();
 
-        List<int> newUnits = unitsHit.Select(x => x).Where(x => !UnitsHitSinceInit.Contains(x)).ToList();
-
+        List<int> newUnits = unitsHit.Select(x => x).
+            Where(x => !UnitsHitSinceInit.Contains(x) && Unit.ActiveUnits[x].TeamID != Source.TeamID).
+            ToList();
         newUnits.ForEach(x => OnHit(Unit.ActiveUnits[x]));
 
         //Debug.Log(newUnits.Count);

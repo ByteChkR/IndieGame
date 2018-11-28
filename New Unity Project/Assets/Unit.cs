@@ -26,6 +26,7 @@ public class Unit : MonoBehaviour
     public GameObject GoldPrefab;
     public Rigidbody rb;
     public GameObject WeaponContainer;
+    public int TeamID = 0;
     //private int _selectedWeapon = 0;
     //public Weapon SelectedWeapon { get { return _weapons[_selectedWeapon]; } }
     public enum TriggerType
