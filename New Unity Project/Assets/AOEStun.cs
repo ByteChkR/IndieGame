@@ -35,11 +35,12 @@ public class AOEStun : Ability
             (Collider as SphereCollider).radius = HitboxSize.x;
             if (_inFrontOfPlayer) (Collider as SphereCollider).center = transform.forward * HitboxSize.x / 2;
         }
-        if (Source.UnitAnimation[_animationName] != null)
-        {
-            Source.UnitAnimation[_animationName].speed = _animationSpeed;
-            Source.UnitAnimation.Play(_animationName, PlayMode.StopSameLayer);
-        }
+        //if (Source.UnitAnimation[_animationName] != null)
+        //{
+        //    Source.UnitAnimation[_animationName].speed = _animationSpeed;
+        //    Source.UnitAnimation.Play(_animationName, PlayMode.StopSameLayer);
+        //}
+        Source.AddAnimationTriggerListener(ReceiveAnimEvent);
         Source.Controller.Animator.SetTrigger("attack");
 
         _started = true;
@@ -57,23 +58,24 @@ public class AOEStun : Ability
         {
             
            
-            Destroy(gameObject);
+            //Destroy(gameObject);
 
         }
     }
 
-    protected override void CollisionCheck(Unit.TriggerType ttype)
+    void ReceiveAnimEvent(Unit.TriggerType triggerType)
     {
-        base.CollisionCheck(ttype);
-        
-        
+        if(triggerType == Unit.TriggerType.EndAnimation)
+        {
+            Destroy(gameObject);
+        }
     }
-
     public override void OnDestroy()
     {
-
+        Source.RemoveAnimationTriggerListener(ReceiveAnimEvent);
         base.OnDestroy();
     }
+
 
 
 

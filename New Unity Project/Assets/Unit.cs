@@ -16,7 +16,8 @@ public class Unit : MonoBehaviour
     public UnitStats Stats;
     //private Weapon[] _weapons = new Weapon[2];
     private Weapon _weapon;
-    public Animation UnitAnimation;
+    //public Animation UnitAnimation;
+    public Animator UnitAnimation;
     public NavMeshAgent Agent;
     [SerializeField]
     public List<ParticleSystemEntry> ParticleSystems;
@@ -33,7 +34,7 @@ public class Unit : MonoBehaviour
         Teleport,
         ControlLock,
         ControlUnlock,
-
+        EndAnimation
     };
 
     public delegate void AnimationTrigger(TriggerType ttype);

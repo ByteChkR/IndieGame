@@ -5,19 +5,19 @@ using UnityEngine;
 public class Teleport : Ability
 {
     [SerializeField]
-    private  float _damage;
+    private float _damage;
     [SerializeField]
-    private  string _animationName;
+    private string _animationName;
     [SerializeField]
-    private  float _animationSpeed;
+    private float _animationSpeed;
     [SerializeField]
-    private  List<AbstractEffect> _onHitEffects;
+    private List<AbstractEffect> _onHitEffects;
     private bool _blinked = false;
 
     private bool _started = false;
 
     [SerializeField]
-    private  GameObject _nextAbility;
+    private GameObject _nextAbility;
     // Use this for initialization
     void Start()
     {
@@ -27,12 +27,9 @@ public class Teleport : Ability
     public override void Initialize(int source, Vector3 target, Quaternion rot)
     {
         base.Initialize(source, target, rot);
-        if (Source.UnitAnimation[_animationName] != null)
-        {
-            Source.UnitAnimation[_animationName].speed = _animationSpeed;
-            Source.UnitAnimation.Play(_animationName, PlayMode.StopSameLayer);
-            Source.AddAnimationTriggerListener(TriggerTeleport);
-        }
+
+        Source.UnitAnimation.speed = _animationSpeed;
+        Source.AddAnimationTriggerListener(TriggerTeleport);
         _started = true;
     }
 
@@ -64,18 +61,7 @@ public class Teleport : Ability
         {
             return;
         }
-        if (_blinked && _started && Source != null && !Source.UnitAnimation.isPlaying)
-        {
-            _started = false;
-            if (_nextAbility != null)
-            {
-                Source.UnitAnimation.Stop();
-                Ability a = Instantiate(_nextAbility, Source.transform.position, Source.transform.rotation).GetComponent<Ability>();
-                a.Initialize(Source.gameObject.GetInstanceID(), TargetPos, TargetRot);
-            }
-            Destroy(this.gameObject);
 
-        }
     }
     public override void OnHit(Unit target)
     {
@@ -84,6 +70,12 @@ public class Teleport : Ability
 
     public override void OnDestroy()
     {
+        if (_nextAbility != null)
+        {
+
+            Ability a = Instantiate(_nextAbility, Source.transform.position, Source.transform.rotation).GetComponent<Ability>();
+            a.Initialize(Source.gameObject.GetInstanceID(), TargetPos, TargetRot);
+        }
         base.OnDestroy();
     }
 

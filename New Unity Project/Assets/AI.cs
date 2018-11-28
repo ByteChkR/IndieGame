@@ -89,7 +89,7 @@ public class AI : MonoBehaviour, IController
             {
 
                 Agent.isStopped = true;
-                if (!_unit.UnitAnimation.isPlaying)
+                if (_unit.UnitAnimation.GetCurrentAnimatorStateInfo(0).IsName("BasicMovement"))
                 {
 
                     transform.forward = Target.position - transform.position;
