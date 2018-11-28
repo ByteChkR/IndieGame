@@ -13,6 +13,7 @@ public class AbstractAbility
     public Ability abilityInstance;
     public float ComboCost;
     public float cooldown;
+    public Unit.AnimationStates animState;
     public bool OnCooldown { get { return lastTimeUsed >= Time.realtimeSinceStartup - cooldown; } }
     float lastTimeUsed = float.MinValue;
     public virtual bool Fire(int dummy, Vector3 target , Quaternion rot)

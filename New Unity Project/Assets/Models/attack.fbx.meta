@@ -756,12 +756,12 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.9911438
-        functionName: FireAnimationTrigger
+      - time: 0.9555707
+        functionName: EndAttackAnimation
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
-        intParameter: 4
+        intParameter: 0
         messageOptions: 0
       transformMask: []
       maskType: 3
@@ -814,7 +814,7 @@ ModelImporter:
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 0b22ad3a788146249b831f7334ea3eba,
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 3672cf26d632ea9419ab7f5891449fdc,
     type: 3}
   animationType: 2
   humanoidOversampling: 1
