@@ -18,9 +18,9 @@ public class SejuR : Ability
 
     }
 
-    public override void Initialize(int source, Vector3 target, Quaternion rot)
+    public override void Initialize(int source, Vector3 target, Quaternion rot, bool isSpecial)
     {
-        base.Initialize(source, target, rot);
+        base.Initialize(source, target, rot, isSpecial);
         _initTime = Time.realtimeSinceStartup;
     }
 

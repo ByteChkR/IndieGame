@@ -323,20 +323,24 @@ MonoBehaviour:
   Owner: -107864
   OOwner: {fileID: 0}
   Abilities:
-  - Name: Melee Attack
+  - IsSpecial: 0
+    Name: Melee Attack
     Description: 
     icon: {fileID: 0}
     abilityInstance: {fileID: 114594336571885322, guid: 6a2757239111ab143b4565c0e0482616,
       type: 2}
     ComboCost: -1
     cooldown: 1
-  - Name: AOE Stun
+    animState: 2
+  - IsSpecial: 1
+    Name: AOE Stun
     Description: 
     icon: {fileID: 0}
     abilityInstance: {fileID: 114351747421703744, guid: d5bbe3d4e3b426f44880af83558a9655,
       type: 2}
     ComboCost: 3
     cooldown: 3
+    animState: 5
   AbilityKeyBindings: 4301000044010000
   Coll: {fileID: 65854071982532468}
   Rb: {fileID: 54590416944947070}

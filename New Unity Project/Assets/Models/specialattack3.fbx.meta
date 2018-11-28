@@ -809,7 +809,7 @@ ModelImporter:
       curves: []
       events:
       - time: 0.28921568
-        functionName: FireAnimationEvent
+        functionName: FireAnimationTrigger
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0

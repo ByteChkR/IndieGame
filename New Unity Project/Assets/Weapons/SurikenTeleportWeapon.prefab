@@ -388,20 +388,24 @@ MonoBehaviour:
   Owner: -1
   OOwner: {fileID: 0}
   Abilities:
-  - Name: Melee
+  - IsSpecial: 0
+    Name: Melee
     Description: 
     icon: {fileID: 0}
     abilityInstance: {fileID: 114469962327125172, guid: 73bf2125c0dc30f4caf326ad32000293,
       type: 2}
     ComboCost: -1
     cooldown: 2
-  - Name: TP
+    animState: 2
+  - IsSpecial: 1
+    Name: TP
     Description: 
     icon: {fileID: 0}
     abilityInstance: {fileID: 114551388014807028, guid: b393fa62583e670439ab0c5474344a6d,
       type: 2}
     ComboCost: 0
     cooldown: 2
+    animState: 5
   AbilityKeyBindings: 4301000044010000
   Coll: {fileID: 0}
   Rb: {fileID: 0}
