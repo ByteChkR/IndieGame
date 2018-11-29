@@ -502,7 +502,7 @@ MonoBehaviour:
   FollowPlayer: 1
   Target: {fileID: 0}
   Cam: {fileID: 0}
-  MinDistanceToPlayer: 25
+  MinDistanceToPlayer: 13
   AddDistanceOnSpeed: 2
   SpeedAverageCount: 50
   MaxSpeed: 10
