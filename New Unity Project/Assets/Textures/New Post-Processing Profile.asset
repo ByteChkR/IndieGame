@@ -71,16 +71,16 @@ MonoBehaviour:
   depthOfField:
     m_Enabled: 0
     m_Settings:
-      focusDistance: 300000
-      aperture: 3.6
-      focalLength: 23
+      focusDistance: 3
+      aperture: 1
+      focalLength: 44
       useCameraFov: 0
       kernelSize: 1
   motionBlur:
-    m_Enabled: 1
+    m_Enabled: 0
     m_Settings:
-      shutterAngle: 270
-      sampleCount: 10
+      shutterAngle: 1
+      sampleCount: 12
       frameBlending: 0
   eyeAdaptation:
     m_Enabled: 0
@@ -175,7 +175,7 @@ MonoBehaviour:
             serializedVersion: 2
             m_Curve:
             - serializedVersion: 3
-              time: 0
+              time: 0.008733625
               value: 0
               inSlope: 1
               outSlope: 1
@@ -295,10 +295,10 @@ MonoBehaviour:
           m_ZeroValue: 0.5
           m_Range: 1
         e_CurrentEditingCurve: 0
-        e_CurveY: 1
+        e_CurveY: 0
         e_CurveR: 0
         e_CurveG: 0
-        e_CurveB: 0
+        e_CurveB: 1
   userLut:
     m_Enabled: 0
     m_Settings:
