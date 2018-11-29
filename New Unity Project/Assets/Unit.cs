@@ -266,7 +266,7 @@ public class Unit : MonoBehaviour
 
     private void Awake()
     {
-        Physics.IgnoreLayerCollision(11, 11);
+        //Physics.IgnoreLayerCollision(11, 11);
         Stats.Init();
         ActiveUnits.Add(gameObject.GetInstanceID(), this);
 

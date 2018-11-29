@@ -58,6 +58,8 @@ public class FirstBoss : MonoBehaviour,IController {
         _anim = GetComponent<Animator>();
         _rb = GetComponent<Rigidbody>();
 
+        HUDScript.instance.SetBoss(bossUnit);
+
 	}
 	
 	// Update is called once per frame
@@ -232,7 +234,7 @@ public class FirstBoss : MonoBehaviour,IController {
 
     private void DashToPlayer()
     {
-        _rb.velocity = transform.forward * 30;
+        _rb.velocity = transform.forward * 80;
     }
 
     private void TrioAttack()

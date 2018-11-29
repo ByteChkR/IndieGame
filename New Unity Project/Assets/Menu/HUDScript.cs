@@ -22,7 +22,21 @@ public class HUDScript : MonoBehaviour
     public Text ComboAmount;
     public Text GoldAmount;
 
+    public static HUDScript instance;
+
     private Unit _boss;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     // Use this for initialization
     void Start()

@@ -18,6 +18,7 @@ public class EnemyHealthBar : MonoBehaviour {
     void RotateHealthBar()
     {
         transform.LookAt(_cam.transform.position);
+        transform.Rotate(new Vector3(0, 180, 0));
     }
 
     // Update is called once per frame

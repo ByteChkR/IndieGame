@@ -5803,8 +5803,8 @@ Transform:
   m_GameObject: {fileID: 1856340383513428}
   m_LocalRotation: {x: 0.0000000045111306, y: 0.00027473384, z: -0.00000016811849,
     w: 1}
-  m_LocalPosition: {x: -0, y: 2.27, z: 0.1472164}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0, y: 2.34, z: -0.037}
+  m_LocalScale: {x: 1, y: 0.391, z: 0.6314}
   m_Children:
   - {fileID: 224055891249473480}
   m_Father: {fileID: 4371401110584666}
@@ -8184,7 +8184,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 7378c51ebfe22b04c85b8af219739358, type: 2}
+  - {fileID: 2100000, guid: ad7cd701d3b781849a70c2b94984b11d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -8354,10 +8354,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Stats:
-    _baseHealth: 2000
+    _baseHealth: 100
     _baseMovementSpeed: 1
     _baseCombo: 0
-    MaxHealth: 2000
+    MaxHealth: 100
     MaxCombo: 10
     MaxMovementSpeed: 3
     OnlyDamagedWithSpecialAttacks: 0
