@@ -32,15 +32,13 @@ public class Unit : MonoBehaviour
     //public Weapon SelectedWeapon { get { return _weapons[_selectedWeapon]; } }
     public enum TriggerType
     {
-        CollisionCheck,
-        Teleport,
         ControlLock,
-        ControlUnlock,
-        EndAnimation
+        ControlUnlock
     };
 
     public enum AnimationStates : int
     {
+        ANY = -1,
         IDLE = 0,
         WALKING = 1,
         ATTACK = 2,
@@ -51,6 +49,7 @@ public class Unit : MonoBehaviour
 
     public AnimationStates GetAnimationState()
     {
+        if (UnitAnimation == null) return AnimationStates.ANY;
         return (AnimationStates)UnitAnimation.GetInteger("state");
     }
 
@@ -58,9 +57,6 @@ public class Unit : MonoBehaviour
     {
         UnitAnimation.SetInteger("state", (int)newState);
     }
-
-    public delegate void AnimationTrigger(TriggerType ttype);
-    private AnimationTrigger _trigger;
 
 
     public Weapon GetActiveWeapon()
@@ -166,8 +162,9 @@ public class Unit : MonoBehaviour
     {
         AnimatorStateInfo si = UnitAnimation.GetCurrentAnimatorStateInfo(0);
         if (UnitAnimation.GetInteger("state") != (int)animationState) return -1;
-        float c = UnitAnimation.runtimeAnimatorController.animationClips.Where(x => si.IsName(x.name)).First(x => x.length / si.length >= 1f - 0.2f).length;
+        AnimationClip c1 = UnitAnimation.runtimeAnimatorController.animationClips.Where(x => si.IsName(x.name)).FirstOrDefault(x => si.length/ x.length >= 1f - 0.2f);
 
+        float c = c1 != null ? c1.length : -1;
         return c - si.length;
     }
 
@@ -245,10 +242,7 @@ public class Unit : MonoBehaviour
         {
             LockControls(false);
         }
-        if (null != _trigger)
-        {
-            _trigger(ttype);
-        }
+        
     }
 
     void LockControls(bool locked)
@@ -256,15 +250,7 @@ public class Unit : MonoBehaviour
         Controller.LockControls(locked);
     }
 
-    public void AddAnimationTriggerListener(AnimationTrigger pTrigger)
-    {
-        _trigger += pTrigger;
-    }
 
-    public void RemoveAnimationTriggerListener(AnimationTrigger pTrigger)
-    {
-        _trigger -= pTrigger;
-    }
 
     public enum StatType
     {
@@ -328,6 +314,7 @@ public class Unit : MonoBehaviour
                 Coin a = Instantiate(GoldPrefab, transform.position + rnd, transform.rotation).GetComponent<Coin>();
 
                 a.Target = Unit.Player;
+
                 a.Initialize(Stats.Killer, Vector3.zero, Quaternion.identity, false); //use the source int as the killers id. This works only with coins.
             }
         }

@@ -22,6 +22,7 @@ public class AbstractAbility
         {
             Unit.ActiveUnits[dummy].Stats.ApplyValue(Unit.StatType.COMBO, -ComboCost, -1, false);
             Ability a = GameObject.Instantiate(abilityInstance, Unit.ActiveUnits[dummy].transform.position, Unit.ActiveUnits[dummy].transform.rotation);
+            a.SetAnimState(animState);
             a.Initialize(dummy, target, rot, IsSpecial);
 
             lastTimeUsed = Time.realtimeSinceStartup;

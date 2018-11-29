@@ -27,6 +27,7 @@ public class AOEStun : Ability
     {
         base.Initialize(source, target, rot, isSpecial);
 
+       
         if (CollType == ColliderTypes.Box)
         {
             (Collider as BoxCollider).size = HitboxSize;
@@ -48,18 +49,15 @@ public class AOEStun : Ability
         //Source.UnitAnimation.SetTrigger("attack");
 
     }
-    float fml = 0;
-    public float OvertimeDestroy = 1;
     // Update is called once per frame
     public override void Update()
     {
-        base.Update();
-        fml += Time.deltaTime;
-        if (fml >= OvertimeDestroy)
+        if (Source != null)
         {
-            Debug.Log("Overtime Destroy");
-            Destroy(gameObject);
+            Debug.Log(Source.GetAnimationState());
         }
+        base.Update();
+        
     }
 
 
@@ -71,18 +69,10 @@ public class AOEStun : Ability
     }
 
 
-    protected override void CollisionCheck(Unit.TriggerType ttype)
-    {
-        if(ttype == Unit.TriggerType.CollisionCheck)
-        {
-            Debug.Log("");
-        }
-        base.CollisionCheck(ttype);
-    }
+
 
     public override void OnHit(Unit target)
     {
-        Debug.Log(target.gameObject.name);
         target.Stats.AddEffects(_onHitEffects.ToArray(), Source.gameObject.GetInstanceID());
         base.OnHit(target);
     }

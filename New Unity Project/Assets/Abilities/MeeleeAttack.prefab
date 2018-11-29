@@ -63,6 +63,10 @@ MonoBehaviour:
   MoreOnMaxRange: 0
   CollType: 0
   Damage: 1
+  UseMaxTime: 1
+  UseStateChange: 1
+  MaxTimeAlive: 1.1
+  state: -1
   _animationName: attack
   _onHitEffects: []
   _comboGainPerHit: 1

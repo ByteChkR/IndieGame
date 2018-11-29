@@ -52,6 +52,7 @@ public class AbilityDeployer : Ability
         if (Source != null && ownAbility != null)
         {
             Ability a = Instantiate(ownAbility, Source.transform.position, Source.transform.rotation).GetComponent<Ability>();
+            a.SetAnimState(state);
             a.Initialize(Source.gameObject.GetInstanceID(), Source.transform.position, Source.transform.rotation, isSpecial);
 
         }
@@ -66,6 +67,7 @@ public class AbilityDeployer : Ability
         base.OnHit(target);
         Vector3 dir = target.transform.position - Source.transform.position;
         Ability a = Instantiate(ability, target.transform.position, target.transform.rotation).GetComponent<Ability>();
+        a.SetAnimState(state);
         a.Initialize(target.gameObject.GetInstanceID(), Source.transform.position + dir.normalized * 3, target.transform.rotation, isSpecial);
 
     }

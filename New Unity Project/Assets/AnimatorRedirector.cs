@@ -7,15 +7,15 @@ public class AnimatorRedirector : MonoBehaviour {
     Unit u;
 	public void FireAnimationTrigger(int triggerType)
     {
-        if(u.gameObject.name == "Player")Debug.Log((Unit.TriggerType) triggerType);
-        u.FireAnimationTrigger(triggerType);
+        Debug.Log("ANIMATION FIRED LEGACY ANIMATION TRIGGER");
+        //u.FireAnimationTrigger(triggerType);
     }
 
     public void EndAttackAnimation()
     {
-        u.Controller.LockControls(false);
-        u.FireAnimationTrigger(Unit.TriggerType.EndAnimation);
-        u.SetAnimationState(Unit.AnimationStates.IDLE);
+        
+        return;
+
     }
 
 

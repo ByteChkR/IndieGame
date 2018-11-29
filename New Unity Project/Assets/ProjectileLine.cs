@@ -44,6 +44,7 @@ public class ProjectileLine : Ability
             if (Source != null)
             {
                 Ability s = Instantiate(Projectile, transform.position, transform.rotation).GetComponent<Ability>();
+                s.SetAnimState(state);
                 s.Initialize(Source.gameObject.GetInstanceID(), transform.position + transform.forward * _actualDistance, TargetRot, isSpecial);
             }
             _currentCount++;

@@ -70,6 +70,7 @@ public class Dash : Ability
             if (Source != null && AfterDashAbility != null)
             {
                 AOEStun s = Instantiate(AfterDashAbility, Source.transform.position, Source.transform.rotation).GetComponent<AOEStun>();
+                s.SetAnimState(state);
                 s.Initialize(Source.gameObject.GetInstanceID(), TargetPos, TargetRot, isSpecial);
             }
 

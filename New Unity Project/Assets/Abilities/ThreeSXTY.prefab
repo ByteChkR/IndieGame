@@ -51,6 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23f6a6c68fa1f8b40a83f97f892ead0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FixForPlayerModel: 0
   Collider: {fileID: 0}
   SelfStun: 1
   UnlockSelfStunOnDestroy: 1
@@ -62,6 +63,10 @@ MonoBehaviour:
   MoreOnMaxRange: 0
   CollType: 0
   Damage: 0
+  UseMaxTime: 1
+  UseStateChange: 1
+  MaxTimeAlive: 1
+  state: -1
   _animationName: ThreeSXTY
   _animationSpeed: 1
   _onHitEffects: []

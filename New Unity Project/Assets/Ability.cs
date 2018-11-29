@@ -39,6 +39,10 @@ public class Ability : MonoBehaviour
     protected Quaternion TargetRot = Quaternion.identity;
     [SerializeField]
     protected float Damage;
+    public bool UseMaxTime = false;
+    public bool UseStateChange = true;
+    public float MaxTimeAlive;
+    public Unit.AnimationStates state = Unit.AnimationStates.ANY;
     private void Awake()
     {
         AliveAbilities.Add(this);
@@ -56,6 +60,11 @@ public class Ability : MonoBehaviour
             AliveAbilities.Remove(this);
             Destroy(gameObject);
         }
+    }
+
+    public void SetAnimState(Unit.AnimationStates s)
+    {
+        state = s;
     }
 
     public void SetSpecialAttack(bool special)
@@ -82,8 +91,7 @@ public class Ability : MonoBehaviour
 
         Source = Unit.ActiveUnits[source];
         
-        Source.AddAnimationTriggerListener(CollisionCheck);
-        Source.AddAnimationTriggerListener(EndAbility);
+
         if (SelfStun) Source.FireAnimationTrigger(Unit.TriggerType.ControlLock);
         Initialized = true;
     }
@@ -103,37 +111,36 @@ public class Ability : MonoBehaviour
     }
 
 
+    float t=0;
     // Update is called once per frame
     public virtual void Update()
     {
+        
         if (!Initialized) return;
-        if (CheckCollisionsEveryFrame && Source != null && Collider != null) CheckAndResolveCollisions(Collider);
+        if (Source != null && Collider != null) CheckAndResolveCollisions(Collider);
+        Unit.AnimationStates s = Source.GetAnimationState();
+        t += Time.deltaTime;
+        if ((UseStateChange && state != Unit.AnimationStates.ANY && Source.GetAnimationState() != state) || (UseMaxTime && t >= MaxTimeAlive))
+        {
+            Destroy(gameObject);
+        }
+
     }
 
     public virtual void OnDestroy()
     {
         if (Source != null)
         {
-            Source.RemoveAnimationTriggerListener(CollisionCheck);
-            Source.RemoveAnimationTriggerListener(EndAbility);
+
             if (UnlockSelfStunOnDestroy) Source.FireAnimationTrigger(Unit.TriggerType.ControlUnlock);
-            
+            //Source.SetAnimationState(Unit.AnimationStates.IDLE);
         }
     }
 
-    public void EndAbility(Unit.TriggerType triggerType)
-    {
-        if(triggerType == Unit.TriggerType.EndAnimation)
-        {
-            Destroy(gameObject);
-        }
-    }
 
-    protected virtual void CollisionCheck(Unit.TriggerType ttype)
-    {
-        if (ttype != Unit.TriggerType.CollisionCheck) return;
-        CheckAndResolveCollisions(Collider);
-    }
+
+
+
 
     void CheckAndResolveCollisions(Collider coll)
     {

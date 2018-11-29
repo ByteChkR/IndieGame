@@ -51,13 +51,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99c3ac82012ca9a4aabdd5550287eddc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _collider: {fileID: 0}
+  FixForPlayerModel: 0
+  Collider: {fileID: 0}
   SelfStun: 0
+  UnlockSelfStunOnDestroy: 1
   CheckCollisionsEveryFrame: 1
-  collType: 0
-  _damage: 0
+  KnockBackPower: 0
+  KnockBackMaxRange: 10
+  KnockBackPowerOnMaxRange: 5
+  InvertKnockback: 0
+  MoreOnMaxRange: 0
+  CollType: 0
+  Damage: 0
+  UseMaxTime: 0
+  UseStateChange: 1
+  MaxTimeAlive: 0
+  state: -1
   _animationName: Teleport
   _animationSpeed: 2
-  onHitEffects: []
+  _onHitEffects: []
+  TeleportTime: 0.3
   _nextAbility: {fileID: 1789416970732076, guid: 6ac038f11fb52c9489101df267723137,
     type: 2}

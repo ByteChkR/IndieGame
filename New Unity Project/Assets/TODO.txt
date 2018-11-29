@@ -24,3 +24,4 @@ think about how to travel between levels
 		how do you see what you are buying
 How do enemies spawn?
 Maybe we can implement some kind of explosion force to knock enemies up and back all we need is 2 poses(falling(just a pose with a bit of noise), faceplant(quick stand up animation nothing fancy really))
+

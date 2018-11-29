@@ -5,13 +5,13 @@ using UnityEngine;
 public class Teleport : Ability
 {
     [SerializeField]
-    private float _damage;
-    [SerializeField]
     private string _animationName;
     [SerializeField]
     private float _animationSpeed;
     [SerializeField]
     private List<AbstractEffect> _onHitEffects;
+    [SerializeField, Tooltip("The delay after the start of the animation")]
+    private float TeleportTime = 0.3f;
 
 
     [SerializeField]
@@ -27,14 +27,12 @@ public class Teleport : Ability
         base.Initialize(source, target, rot, isSpecial);
 
         Source.UnitAnimation.speed = _animationSpeed;
-        Source.AddAnimationTriggerListener(TriggerTeleport);
         
     }
 
-    public void TriggerTeleport(Unit.TriggerType triggerType)
+    public void TriggerTeleport()
     {
-        if (triggerType != Unit.TriggerType.Teleport) return;
-        Source.RemoveAnimationTriggerListener(TriggerTeleport);
+
         RaycastHit info;
         Vector3 pos;
         Vector3 fwd = TargetRot * Vector3.forward;
@@ -51,6 +49,7 @@ public class Teleport : Ability
         
     }
 
+    float aa = 0;
     // Update is called once per frame
     public override void Update()
     {
@@ -59,6 +58,12 @@ public class Teleport : Ability
         {
             return;
         }
+        aa += Time.deltaTime;
+        if(aa >= TeleportTime)
+        {
+            TriggerTeleport();
+        }
+        
 
     }
     public override void OnHit(Unit target)
@@ -72,6 +77,7 @@ public class Teleport : Ability
         {
 
             Ability a = Instantiate(_nextAbility, Source.transform.position, Source.transform.rotation).GetComponent<Ability>();
+            a.SetAnimState(state);
             a.Initialize(Source.gameObject.GetInstanceID(), TargetPos, TargetRot, isSpecial);
         }
         base.OnDestroy();
