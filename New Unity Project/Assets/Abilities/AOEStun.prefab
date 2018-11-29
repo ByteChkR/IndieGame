@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4334799433876266}
   - component: {fileID: 114351747421703744}
-  - component: {fileID: 65547996972171788}
+  - component: {fileID: 65764629006579564}
   m_Layer: 0
   m_Name: AOEStun
   m_TagString: Untagged
@@ -41,7 +41,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &65547996972171788
+--- !u!65 &65764629006579564
 BoxCollider:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -64,6 +64,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1916bf66012a52d4390910831f344b1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FixForPlayerModel: 1
   Collider: {fileID: 0}
   SelfStun: 1
   UnlockSelfStunOnDestroy: 1
@@ -84,5 +85,6 @@ MonoBehaviour:
     Duration: 4
     TimeActivated: 0
     ApplyOnce: 0
-  HitboxSize: {x: 4, y: 3, z: 6}
+  HitboxSize: {x: 4, y: 6, z: 6}
   _inFrontOfPlayer: 1
+  OvertimeDestroy: 1.5
