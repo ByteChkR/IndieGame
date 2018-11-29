@@ -145,6 +145,7 @@ public class Controller : MonoBehaviour, IController
         }
         v = _movementOffset * v;
         //anim.SetFloat("Forward", 0);
+
         if (v != Vector3.zero)
         {
             _unit.SetAnimationState(Unit.AnimationStates.WALKING);
@@ -153,6 +154,7 @@ public class Controller : MonoBehaviour, IController
         {
             _unit.SetAnimationState(Unit.AnimationStates.IDLE);
         }
+
 
         if (MakeControlsEventMoreRetarded)
         {
@@ -167,35 +169,35 @@ public class Controller : MonoBehaviour, IController
 
 
 
-       /* if (Input.GetKeyDown(KeyCode.K))
-        {
-            if (MenuCanvas.activeSelf)
-            {
-                MenuCanvas.SetActive(false);
-                GameOverScreen.SetActive(false);
-                WinScreen.SetActive(false);
-            }
-            else
-            {
-                MenuCanvas.SetActive(true);
-                GameOverScreen.SetActive(true);
-            }
-        }
+        /* if (Input.GetKeyDown(KeyCode.K))
+         {
+             if (MenuCanvas.activeSelf)
+             {
+                 MenuCanvas.SetActive(false);
+                 GameOverScreen.SetActive(false);
+                 WinScreen.SetActive(false);
+             }
+             else
+             {
+                 MenuCanvas.SetActive(true);
+                 GameOverScreen.SetActive(true);
+             }
+         }
 
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            if (MenuCanvas.activeSelf)
-            {
-                MenuCanvas.SetActive(false);
-                GameOverScreen.SetActive(false);
-                WinScreen.SetActive(false);
-            }
-            else
-            {
-                MenuCanvas.SetActive(true);
-                WinScreen.SetActive(true);
-            }
-        }*/
+         if (Input.GetKeyDown(KeyCode.J))
+         {
+             if (MenuCanvas.activeSelf)
+             {
+                 MenuCanvas.SetActive(false);
+                 GameOverScreen.SetActive(false);
+                 WinScreen.SetActive(false);
+             }
+             else
+             {
+                 MenuCanvas.SetActive(true);
+                 WinScreen.SetActive(true);
+             }
+         }*/
     }
 
 
@@ -212,7 +214,7 @@ public class Controller : MonoBehaviour, IController
                 Camera = CameraViewLock.instance.Cam;
                 if (Camera == null) return transform.forward;
             }
-            
+
             Vector3 mousePos = Input.mousePosition;
             Ray r = Camera.ScreenPointToRay(mousePos);
             RaycastHit info;

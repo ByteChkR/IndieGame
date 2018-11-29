@@ -17,6 +17,9 @@ public class Weapon : MonoBehaviour
     public bool IsOnGround { get { return Owner == gameObject.GetInstanceID(); } }
     private bool _wasSetPreInit = false;
     private bool _wasSetOnce = false;
+    public bool UseMultipleAttacks = false;
+    public int AttackCount = 1;
+    int cur = 0;
 
     public int GoldValue = 5;
     // Use this for initialization
@@ -84,7 +87,7 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    
+
 
 
     // Update is called once per frame
@@ -99,11 +102,20 @@ public class Weapon : MonoBehaviour
             {
                 if (Abilities[i].Fire(Owner, OOwner.Controller.VTarget, OOwner.transform.rotation))
                 {
+                    if (UseMultipleAttacks && Abilities[i].animState == Unit.AnimationStates.ATTACK)
+                    {
+                        OOwner.UnitAnimation.SetInteger("attack", cur);
+                        cur++;
+                        cur = cur % AttackCount;
+                        
+                    }
+
                     OOwner.SetAnimationState(Abilities[i].animState);
-                    Debug.Log(Abilities[i].Name + " : " + OOwner.Controller.VTarget);
                 }
+                //Debug.Log(Abilities[i].Name + " : " + OOwner.Controller.VTarget);
             }
         }
     }
-
 }
+
+

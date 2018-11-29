@@ -92,7 +92,7 @@ public class Ability : MonoBehaviour
         Source = Unit.ActiveUnits[source];
         
 
-        if (SelfStun) Source.FireAnimationTrigger(Unit.TriggerType.ControlLock);
+        if (SelfStun) Source.Controller.LockControls(true);
         Initialized = true;
     }
 
@@ -132,7 +132,7 @@ public class Ability : MonoBehaviour
         if (Source != null)
         {
 
-            if (UnlockSelfStunOnDestroy) Source.FireAnimationTrigger(Unit.TriggerType.ControlUnlock);
+            if (UnlockSelfStunOnDestroy) Source.Controller.LockControls(false);
             //Source.SetAnimationState(Unit.AnimationStates.IDLE);
         }
     }
