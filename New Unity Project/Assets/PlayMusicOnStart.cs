@@ -6,7 +6,7 @@ public class PlayMusicOnStart : MonoBehaviour {
 
 	public AudioManager.BackgroundMusic backMusic;
 	void Start () {
-        AudioManager.instance.ChangeBackgroundMusic(backMusic);
+        if(AudioManager.instance != null)AudioManager.instance.ChangeBackgroundMusic(backMusic);
 	}
 	
 	// Update is called once per frame

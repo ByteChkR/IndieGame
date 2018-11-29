@@ -209,7 +209,7 @@ public class Controller : MonoBehaviour, IController
         {
             if (Camera == null)
             {
-                Camera = CameraViewLock.Cam;
+                Camera = CameraViewLock.instance.Cam;
                 if (Camera == null) return transform.forward;
             }
             

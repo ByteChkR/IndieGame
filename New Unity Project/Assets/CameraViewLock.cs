@@ -4,20 +4,30 @@ using UnityEngine;
 
 public class CameraViewLock : MonoBehaviour
 {
-
+    public static CameraViewLock instance;
+    public bool FollowPlayer = true;
     public Transform Target;
     Vector3 _distance;
-    public static Camera Cam;
+    public Camera Cam;
     // Use this for initialization
+    private void Awake()
+    {
+        if (instance != null) Debug.LogError("CameraViewLockNeeds to be singleton. Make sure there is only one instance.");
+        instance = this;
+    }
     void Start()
     {
-        _distance = transform.position - Target.position;
+        if (Target == null)
+        {
+            Target = Unit.Player.transform;
+        }
+        if(Target != null)_distance = transform.position - Target.position;
         Cam = GetComponent<Camera>();
     }
 
     // Update is called once per frame
     void LateUpdate()
     {
-        if (Target != null) transform.position = Target.position + _distance;
+        if (Target != null && FollowPlayer) transform.position = Target.position + _distance;
     }
 }

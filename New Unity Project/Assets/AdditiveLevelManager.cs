@@ -7,7 +7,7 @@ using System.Diagnostics;
 
 public class AdditiveLevelManager : MonoBehaviour
 {
-
+    public GameObject Player;
     public static AdditiveLevelManager instance;
     private Dictionary<int, MapInfo> loadedLevels = new Dictionary<int, MapInfo>();
     public string LevelPrefix = "level_";
