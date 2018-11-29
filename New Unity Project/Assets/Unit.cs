@@ -161,6 +161,16 @@ public class Unit : MonoBehaviour
         _weapon = null;
     }
 
+
+    public float TimeLeftInAnimation(Unit.AnimationStates animationState)
+    {
+        AnimatorStateInfo si = UnitAnimation.GetCurrentAnimatorStateInfo(0);
+        if (UnitAnimation.GetInteger("state") != (int)animationState) return -1;
+        float c = UnitAnimation.runtimeAnimatorController.animationClips.Where(x => si.IsName(x.name)).First(x => x.length / si.length >= 1f - 0.2f).length;
+
+        return c - si.length;
+    }
+
     /*
     public void SwitchWeapon()
     {

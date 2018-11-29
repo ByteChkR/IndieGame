@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using System.Linq;
 [RequireComponent(typeof(BoxCollider))]
 public class Weapon : MonoBehaviour
 {
@@ -82,6 +83,9 @@ public class Weapon : MonoBehaviour
             Rb.isKinematic = true;
         }
     }
+
+    
+
 
     // Update is called once per frame
     void Update()
