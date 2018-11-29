@@ -502,6 +502,10 @@ MonoBehaviour:
   FollowPlayer: 1
   Target: {fileID: 0}
   Cam: {fileID: 0}
+  MinDistanceToPlayer: 25
+  AddDistanceOnSpeed: 2
+  SpeedAverageCount: 50
+  MaxSpeed: 10
 --- !u!114 &534669907
 MonoBehaviour:
   m_ObjectHideFlags: 0
