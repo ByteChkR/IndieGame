@@ -688,7 +688,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1382934848206572}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.199622, y: 20.05, z: -0.448592}
+  m_LocalPosition: {x: -8.489256, y: 21.043, z: -0.012670759}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4900582268538302}
@@ -1011,7 +1011,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1167556522096920}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -1.08, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4857857692788428}
@@ -1172,6 +1172,7 @@ MonoBehaviour:
     MaxHealth: 50
     MaxCombo: 10
     MaxMovementSpeed: 3
+    OnlyDamagedWithSpecialAttacks: 0
   UnitAnimation: {fileID: 95791459206690694}
   Agent: {fileID: 0}
   ParticleSystems: []
@@ -1180,6 +1181,7 @@ MonoBehaviour:
   GoldPrefab: {fileID: 1136768164843768, guid: aac181e834279be488ad830f1c633251, type: 2}
   rb: {fileID: 0}
   WeaponContainer: {fileID: 1539951431648014}
+  TeamID: 0
 --- !u!114 &114199913035751346
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1233,7 +1235,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Target: {fileID: 0}
   Agent: {fileID: 0}
-  AttackRange: 1
+  AttackRange: 4
   ActivationRange: 10
   Speed: 3.5
   _animator: {fileID: 95791459206690694}

@@ -7,6 +7,8 @@ using System.Linq;
 
 public class Ability : MonoBehaviour
 {
+
+    public bool FixForPlayerModel = false;
     public static List<Ability> AliveAbilities = new List<Ability>();
     protected bool isSpecial = false;
     protected Unit Source;
@@ -153,7 +155,8 @@ public class Ability : MonoBehaviour
 
     List<int> CheckAndResolveCollisions(SphereCollider coll)
     {
-        List<int> unitsHit = Physics.OverlapSphere(Collider.transform.position + coll.center, coll.radius, 1 << 11)
+        Vector3 pos = FixForPlayerModel ? Collider.transform.position + coll.center : Collider.transform.position - coll.center;
+        List<int> unitsHit = Physics.OverlapSphere(pos, coll.radius, 1 << 11)
         .Select(x => x.gameObject.GetInstanceID())
         .Where(x => x != Source.gameObject.GetInstanceID()).ToList();
 
@@ -169,7 +172,8 @@ public class Ability : MonoBehaviour
 
     List<int> CheckAndResolveCollisions(BoxCollider coll)
     {
-        List<int> unitsHit = Physics.OverlapBox(Collider.transform.position - coll.center, coll.size / 2, Collider.transform.rotation, 1 << 11)
+        Vector3 pos = FixForPlayerModel ? Collider.transform.position + coll.center : Collider.transform.position - coll.center;
+        List<int> unitsHit = Physics.OverlapBox(pos, coll.size / 2, Collider.transform.rotation, 1 << 11)
         .Select(x => x.gameObject.GetInstanceID())
         .Where(x => x != Source.gameObject.GetInstanceID()).ToList();
         if (Source.gameObject.name == "Player" && unitsHit.Count > 0) Debug.Log(Unit.ActiveUnits[unitsHit[0]]);
