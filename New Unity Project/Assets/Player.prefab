@@ -8398,6 +8398,7 @@ MonoBehaviour:
   WinScreen: {fileID: 0}
   GameOverScreen: {fileID: 0}
   MenuCanvas: {fileID: 0}
+  UseMousePositionForAim: 0
 --- !u!114 &114338002219346350
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8496,12 +8497,13 @@ MonoBehaviour:
     ComboCost: 3
     cooldown: 3
     animState: 5
-  AbilityKeyBindings: 6a0000006b000000
+  AbilityKeyBindings: 4301000044010000
   Coll: {fileID: 65787451807501060}
   Rb: {fileID: 54741682752734248}
   WeaponIS: {fileID: 114856550222602990}
   UseMultipleAttacks: 1
   AttackCount: 3
+  TurnTowardsTarget: 1
   GoldValue: 5
 --- !u!114 &114518896227530172
 MonoBehaviour:

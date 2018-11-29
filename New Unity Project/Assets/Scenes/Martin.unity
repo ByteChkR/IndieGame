@@ -487,7 +487,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0
+  near clip plane: -42.18
   far clip plane: 1000
   field of view: 60
   orthographic: 1
@@ -644,11 +644,6 @@ Prefab:
     - target: {fileID: 1523658532706950, guid: 0bf0a0cb88542ed468c4543523f10b86, type: 2}
       propertyPath: m_Name
       value: Player (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 114496297625360876, guid: 0bf0a0cb88542ed468c4543523f10b86,
-        type: 2}
-      propertyPath: TurnTowardsTarget
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0bf0a0cb88542ed468c4543523f10b86, type: 2}

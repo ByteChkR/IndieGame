@@ -38,6 +38,11 @@ public class LastBoss : MonoBehaviour,IController{
 
     }
 
+    public Vector3 ViewingDirection(bool GetRelativeMousePos = false)
+    {
+        return transform.forward;
+    }
+
     public Vector3 VTarget { get { return player == null ? Vector3.zero : player.position; } }
 
     // Use this for initialization
