@@ -22,7 +22,7 @@ public class Spawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space)) StartSpawn();
+        //if (Input.GetKeyDown(KeyCode.Space)) StartSpawn();
         if (spawning && !anim.isPlaying)
         {
             spawning = false;
