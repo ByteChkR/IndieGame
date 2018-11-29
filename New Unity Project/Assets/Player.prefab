@@ -4548,7 +4548,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1523658532706950}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.473345, y: 22, z: -70.81626}
+  m_LocalPosition: {x: -0.1, y: 22.73, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4028908351004610}
@@ -8238,7 +8238,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!54 &54741682752734248
 Rigidbody:
@@ -8353,6 +8353,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d188b9ca1efe4ac40a2bb46ce9231144, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IgnoreUnitCollisions: 0
   Stats:
     _baseHealth: 100
     _baseMovementSpeed: 1
@@ -8483,7 +8484,7 @@ MonoBehaviour:
     icon: {fileID: 0}
     abilityInstance: {fileID: 114594336571885322, guid: 6a2757239111ab143b4565c0e0482616,
       type: 2}
-    ComboCost: -1
+    ComboCost: 0
     cooldown: 1.4
     animState: 2
   - IsSpecial: 1

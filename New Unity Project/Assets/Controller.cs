@@ -207,6 +207,12 @@ public class Controller : MonoBehaviour, IController
         }
         else
         {
+            if (Camera == null)
+            {
+                Camera = CameraViewLock.Cam;
+                if (Camera == null) return transform.forward;
+            }
+            
             Vector3 mousePos = Input.mousePosition;
             Ray r = Camera.ScreenPointToRay(mousePos);
             RaycastHit info;

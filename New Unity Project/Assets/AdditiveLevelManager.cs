@@ -111,27 +111,11 @@ public class AdditiveLevelManager : MonoBehaviour
             IngameHud.SetActive(true);
             loadingScreen.transform.parent.gameObject.SetActive(false);
         }
-        MapInfo level = GameObject.Find(LevelPrefix + sceneIndex).GetComponent<MapInfo>();
-        UnityEngine.Debug.Assert(level != null, "Level prefix is not correct, you tried to load: " + LevelPrefix + sceneIndex + ", Check the GameObject name of the level.");
-        loadedLevels.Add(sceneIndex, level);
+        //MapInfo level = GameObject.Find(LevelPrefix + sceneIndex).GetComponent<MapInfo>();
+        //UnityEngine.Debug.Assert(level != null, "Level prefix is not correct, you tried to load: " + LevelPrefix + sceneIndex + ", Check the GameObject name of the level.");
+        //loadedLevels.Add(sceneIndex, level);
 
-        if (!level.data.isMenu)
-            if (player != null)
-            {
-
-
-                player.rb.constraints = RigidbodyConstraints.FreezeRotation + (int)RigidbodyConstraints.FreezePositionY;
-            }
-            else if (!level.data.isTurorial)
-            {
-                // c.EnableMovement = false;
-                // c.EnableRotation = false;            TODO: add these functions to the controller
-            }
-            else
-            {
-                //c.EnableMovement = true;
-                //c.EnableRotation = true;
-            }
+        
     }
 
     
