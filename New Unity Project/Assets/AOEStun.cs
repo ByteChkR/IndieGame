@@ -49,12 +49,17 @@ public class AOEStun : Ability
 
     }
     float fml = 0;
+    public float OvertimeDestroy = 1;
     // Update is called once per frame
     public override void Update()
     {
         base.Update();
         fml += Time.deltaTime;
-        if (fml >= 1) Destroy(gameObject);
+        if (fml >= OvertimeDestroy)
+        {
+            Debug.Log("Overtime Destroy");
+            Destroy(gameObject);
+        }
     }
 
 
@@ -66,7 +71,14 @@ public class AOEStun : Ability
     }
 
 
-
+    protected override void CollisionCheck(Unit.TriggerType ttype)
+    {
+        if(ttype == Unit.TriggerType.CollisionCheck)
+        {
+            Debug.Log("");
+        }
+        base.CollisionCheck(ttype);
+    }
 
     public override void OnHit(Unit target)
     {
