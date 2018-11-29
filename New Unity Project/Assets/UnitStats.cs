@@ -70,10 +70,8 @@ public class UnitStats
         switch (stype)
         {
             case Unit.StatType.HP:
-                if (OnlyDamagedWithSpecialAttacks == true && isSpecialAttack == true)
+                if (OnlyDamagedWithSpecialAttacks && !isSpecialAttack) //If you try deal damage with a normal attack whilst OnlyDamagedWithSpecialAttacks =true
                 {
-
-                    _killer = source;
                     break;
                 }
               
