@@ -51,7 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 910453c632ab69a4bbc9575161df26ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FixForPlayerModel: 0
+  FixForPlayerModel: 1
   Collider: {fileID: 0}
   SelfStun: 1
   UnlockSelfStunOnDestroy: 1

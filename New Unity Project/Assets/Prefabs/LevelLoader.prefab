@@ -51,6 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a58f3768e9a35954ba908f878d7af3aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player: {fileID: 0}
   LevelPrefix: level_
   DebugStart: 0
   IngameHud: {fileID: 0}

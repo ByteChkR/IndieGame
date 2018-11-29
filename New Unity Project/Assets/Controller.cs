@@ -30,6 +30,8 @@ public class Controller : MonoBehaviour, IController
 
     private Rigidbody _rb;
     public Rigidbody Rb { get { return _rb; } }
+    public bool UseMousePositionForAim = false;
+    
     Unit _unit;
 
     // Use this for initialization
@@ -77,6 +79,10 @@ public class Controller : MonoBehaviour, IController
         }
 
     }
+
+    
+
+    
 
     // Update is called once per frame
     void FixedUpdate()
@@ -201,9 +207,9 @@ public class Controller : MonoBehaviour, IController
     }
 
 
-    Vector3 ViewingDirection()
+    public Vector3 ViewingDirection(bool GetRelativeMousePos = false)
     {
-        if (MakeControlsHardlyRetarded)
+        if (MakeControlsHardlyRetarded && !GetRelativeMousePos)
         {
             return transform.forward;
         }

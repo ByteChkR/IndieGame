@@ -128,7 +128,13 @@ public class AI : MonoBehaviour, IController
 
     }
 
+    public Vector3 ViewingDirection(bool GetRelativeMousePos = false)
+    {
+        return transform.forward;
+    }
 
-    
+
+
+
 
 }

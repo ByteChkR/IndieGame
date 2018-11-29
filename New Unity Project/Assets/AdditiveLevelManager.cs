@@ -86,7 +86,7 @@ public class AdditiveLevelManager : MonoBehaviour
         loadingScreen.transform.parent.gameObject.SetActive(true);
         loadingScreen.SetActive(true);
         menuScreen.SetActive(false);
-        if (player != null && player.rb != null) player.rb.constraints = RigidbodyConstraints.FreezeRotation + (int)RigidbodyConstraints.FreezePositionY;
+        if (Unit.Player != null) Unit.Player.ToggleUnitMovement(false);
         //c.EnableMovement = false;
         //c.EnableRotation = false;
         IngameHud.SetActive(false);

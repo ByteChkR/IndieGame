@@ -20,6 +20,7 @@ public class Weapon : MonoBehaviour
     public bool UseMultipleAttacks = false;
     public int AttackCount = 1;
     int cur = 0;
+    public bool TurnTowardsTarget = false;
 
     public int GoldValue = 5;
     // Use this for initialization
@@ -100,17 +101,28 @@ public class Weapon : MonoBehaviour
         {
             if (!OOwner.Stats.IsStunned && Input.GetKey(AbilityKeyBindings[i]) && OOwner.GetActiveWeapon() == this)
             {
-                if (Abilities[i].Fire(Owner, OOwner.Controller.VTarget, OOwner.transform.rotation))
+                if (Abilities[i].IsAvailable(Owner))
                 {
-                    if (UseMultipleAttacks && Abilities[i].animState == Unit.AnimationStates.ATTACK)
+                    
+                    
+                    if (TurnTowardsTarget)
                     {
-                        OOwner.UnitAnimation.SetInteger("attack", cur);
-                        cur++;
-                        cur = cur % AttackCount;
-                        
+                        Vector3 targetDir = OOwner.Controller.ViewingDirection(true);
+                        targetDir.Set(targetDir.x, 0, targetDir.z);
+                        OOwner.transform.forward = targetDir;
                     }
+                    if (Abilities[i].Fire(Owner, OOwner.Controller.VTarget, OOwner.transform.rotation))
+                    {
+                        if (UseMultipleAttacks && Abilities[i].animState == Unit.AnimationStates.ATTACK)
+                        {
+                            OOwner.UnitAnimation.SetInteger("attack", cur);
+                            cur++;
+                            cur = cur % AttackCount;
 
-                    OOwner.SetAnimationState(Abilities[i].animState);
+                        }
+
+                        OOwner.SetAnimationState(Abilities[i].animState);
+                    } 
                 }
                 //Debug.Log(Abilities[i].Name + " : " + OOwner.Controller.VTarget);
             }

@@ -10,4 +10,5 @@ public interface IController
     Vector3 VTarget { get; }
     Rigidbody Rb { get; }
     bool IsPlayer { get; }
+    Vector3 ViewingDirection(bool GetRelativeMousePos = false);
 }
