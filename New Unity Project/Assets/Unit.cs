@@ -9,6 +9,7 @@ using System.Linq;
 [RequireComponent(typeof(IController))]
 public class Unit : MonoBehaviour
 {
+    public bool IgnoreUnitCollisions = false;
     public IController Controller;
     public bool IsPlayer { get { return Controller.IsPlayer; } }
     public static Dictionary<int, Unit> ActiveUnits = new Dictionary<int, Unit>();
@@ -225,6 +226,7 @@ public class Unit : MonoBehaviour
 
     public void FireAnimationTrigger(TriggerType ttype)
     {
+        
         if (ttype == TriggerType.ControlLock)
         {
             LockControls(true);
@@ -266,7 +268,7 @@ public class Unit : MonoBehaviour
 
     private void Awake()
     {
-        Physics.IgnoreLayerCollision(11, 11);
+        Physics.IgnoreLayerCollision(11, 11, IgnoreUnitCollisions);
         Stats.Init();
         ActiveUnits.Add(gameObject.GetInstanceID(), this);
 
