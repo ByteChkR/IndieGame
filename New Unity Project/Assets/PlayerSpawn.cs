@@ -10,7 +10,7 @@ public class PlayerSpawn : MonoBehaviour {
 		if(Unit.Player != null)
         {
             Unit.Player.transform.SetPositionAndRotation(transform.position, transform.rotation);
-            Unit.Player.rb.constraints = RigidbodyConstraints.FreezeRotation;
+            Unit.Player.ToggleUnitMovement(true);
         }
         else
         {

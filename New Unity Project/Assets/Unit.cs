@@ -79,6 +79,20 @@ public class Unit : MonoBehaviour
         }
     }
 
+    public void ToggleUnitMovement(bool enable)
+    {
+        if (!enable)
+        {
+            rb.constraints = RigidbodyConstraints.FreezeAll;
+            LockControls(true);
+        }
+        else
+        {
+            rb.constraints = RigidbodyConstraints.FreezeRotation;
+            LockControls(false);
+        }
+    }
+
     void OnCollisionStay(Collision coll)
     {
         Weapon w = null;
