@@ -464,15 +464,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4065166884981214, guid: 0bf0a0cb88542ed468c4543523f10b86, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -0.1
+      value: -8.473345
       objectReference: {fileID: 0}
     - target: {fileID: 4065166884981214, guid: 0bf0a0cb88542ed468c4543523f10b86, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 22.73
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 4065166884981214, guid: 0bf0a0cb88542ed468c4543523f10b86, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -70.81626
       objectReference: {fileID: 0}
     - target: {fileID: 4065166884981214, guid: 0bf0a0cb88542ed468c4543523f10b86, type: 2}
       propertyPath: m_LocalRotation.x
@@ -502,6 +502,15 @@ Prefab:
     - target: {fileID: 1523658532706950, guid: 0bf0a0cb88542ed468c4543523f10b86, type: 2}
       propertyPath: m_Name
       value: Player (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1523658532706950, guid: 0bf0a0cb88542ed468c4543523f10b86, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 54542799977753298, guid: 0bf0a0cb88542ed468c4543523f10b86,
+        type: 2}
+      propertyPath: m_CollisionDetection
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0bf0a0cb88542ed468c4543523f10b86, type: 2}

@@ -1110,14 +1110,14 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1382934848206572}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 100
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!95 &95791459206690694
 Animator:
   serializedVersion: 3
@@ -1165,6 +1165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d188b9ca1efe4ac40a2bb46ce9231144, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IgnoreUnitCollisions: 0
   Stats:
     _baseHealth: 3
     _baseMovementSpeed: 1
@@ -1235,7 +1236,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Target: {fileID: 0}
   Agent: {fileID: 0}
-  AttackRange: 0.2
+  AttackRange: 1
   ActivationRange: 10
   Speed: 3.5
   _animator: {fileID: 95791459206690694}
@@ -1416,7 +1417,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 1
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
