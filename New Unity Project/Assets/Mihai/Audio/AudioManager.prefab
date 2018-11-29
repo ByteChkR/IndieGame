@@ -249,13 +249,13 @@ MonoBehaviour:
   BackgroundAudioSource: {fileID: 82763399910300124}
   SoundEffectSource: {fileID: 82410308944090178}
   Shoot: {fileID: 0}
-  PlayerHit: {fileID: 0}
+  PlayerHit: {fileID: 8300000, guid: 558db36de28f46244895865d53b94580, type: 3}
   Click: {fileID: 0}
   VictorySound: {fileID: 0}
   GameOver: {fileID: 0}
-  Explosion: {fileID: 0}
-  EnemyHit: {fileID: 0}
-  Achievement: {fileID: 0}
+  Explosion: {fileID: 8300000, guid: 0e81d0d004cdf154cb1ec344d3bd8a20, type: 3}
+  EnemyHit: {fileID: 8300000, guid: 20cc1a07b1bde89498dfd886946a1eb6, type: 3}
+  Achievement: {fileID: 8300000, guid: 5a185bfbff5ed294f950d4b3d83ea78f, type: 3}
   Dash: {fileID: 0}
   NPC: {fileID: 0}
   Beam: {fileID: 0}
@@ -268,10 +268,10 @@ MonoBehaviour:
   TutorialComplete: {fileID: 0}
   ElectricSound: {fileID: 0}
   Menu: {fileID: 8300000, guid: fe2798714135d364baefc246a8f6cea8, type: 3}
-  Tutorial: {fileID: 8300000, guid: c9a033092dfc6414b8e6f48f617b5197, type: 3}
+  Tutorial: {fileID: 8300000, guid: c3323c1e5af156e4f83f8986449a52ae, type: 3}
   Stage1: {fileID: 8300000, guid: 7ba61fdb3e214d74dacac1cb753f168d, type: 3}
-  Boss1: {fileID: 0}
+  Boss1: {fileID: 8300000, guid: e23789d7acd2a2949b853bc362e6f3b3, type: 3}
   Stage2: {fileID: 0}
   Boss2: {fileID: 0}
   Result: {fileID: 0}
-  GameOverLoop: {fileID: 8300000, guid: 321e80f5bd58c5749a5893fc1aea40d1, type: 3}
+  GameOverLoop: {fileID: 8300000, guid: 57025e14a64627043ad6a71594cdd12e, type: 3}

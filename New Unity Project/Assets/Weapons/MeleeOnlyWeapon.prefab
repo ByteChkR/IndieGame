@@ -138,7 +138,7 @@ MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1480001120801082}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -308,7 +308,7 @@ MonoBehaviour:
     abilityInstance: {fileID: 114351747421703744, guid: e80e98c8d8fa54b4d8d674c4c6d950a8,
       type: 2}
     ComboCost: 0
-    cooldown: 3
+    cooldown: 2
     animState: 2
   AbilityKeyBindings: 
   Coll: {fileID: 0}

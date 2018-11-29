@@ -4,12 +4,7 @@ using UnityEngine;
 
 public class AbilityDeployer : Ability
 {
-    [SerializeField]
-    private string _animationName;
-    [SerializeField]
-    private float _animationSpeed;
-    [SerializeField]
-    private List<AbstractEffect> _onHitEffects;
+
     [Tooltip("If the collider is a Sphere only the X axis will be used as a radius.")]
     public Vector3 HitboxSize;
     [SerializeField]
@@ -38,9 +33,6 @@ public class AbilityDeployer : Ability
             (Collider as SphereCollider).radius = HitboxSize.x;
             if (_inFrontOfPlayer) (Collider as SphereCollider).center = transform.forward * HitboxSize.x / 2;
         }
-
-        Source.UnitAnimation.speed = _animationSpeed;
-        Source.UnitAnimation.SetTrigger(_animationName);
       
     }
 
@@ -71,7 +63,6 @@ public class AbilityDeployer : Ability
 
     public override void OnHit(Unit target)
     {
-        target.Stats.AddEffects(_onHitEffects.ToArray(), Source.gameObject.GetInstanceID());
         base.OnHit(target);
         Vector3 dir = target.transform.position - Source.transform.position;
         Ability a = Instantiate(ability, target.transform.position, target.transform.rotation).GetComponent<Ability>();

@@ -63,6 +63,7 @@ public class Ability : MonoBehaviour
 
     public virtual void Initialize(int source, Vector3 target, Quaternion rot, bool isSpecial)
     {
+        
         SetSpecialAttack(this.isSpecial);
         this.TargetPos = target;
         this.TargetRot = rot;
@@ -78,11 +79,11 @@ public class Ability : MonoBehaviour
         //Debug.Assert(_collider != null, "Ability has no Collider");
 
         Source = Unit.ActiveUnits[source];
-        Initialized = true;
+        
         Source.AddAnimationTriggerListener(CollisionCheck);
         Source.AddAnimationTriggerListener(EndAbility);
         if (SelfStun) Source.FireAnimationTrigger(Unit.TriggerType.ControlLock);
-
+        Initialized = true;
     }
 
     public virtual void OnHit(Unit target)
@@ -168,9 +169,10 @@ public class Ability : MonoBehaviour
 
     List<int> CheckAndResolveCollisions(BoxCollider coll)
     {
-        List<int> unitsHit = Physics.OverlapBox(Collider.transform.position + coll.center, coll.size / 2, Collider.transform.rotation, 1 << 11)
+        List<int> unitsHit = Physics.OverlapBox(Collider.transform.position - coll.center, coll.size / 2, Collider.transform.rotation, 1 << 11)
         .Select(x => x.gameObject.GetInstanceID())
         .Where(x => x != Source.gameObject.GetInstanceID()).ToList();
+        if (Source.gameObject.name == "Player" && unitsHit.Count > 0) Debug.Log(Unit.ActiveUnits[unitsHit[0]]);
 
         List<int> newUnits = unitsHit.Select(x => x).
             Where(x => !UnitsHitSinceInit.Contains(x) && Unit.ActiveUnits[x].TeamID != Source.TeamID).

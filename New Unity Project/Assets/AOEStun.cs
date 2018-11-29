@@ -37,6 +37,8 @@ public class AOEStun : Ability
             (Collider as SphereCollider).radius = HitboxSize.x;
             if (_inFrontOfPlayer) (Collider as SphereCollider).center = Vector3.forward * HitboxSize.x / 2;
         }
+
+        
         //if (Source.UnitAnimation[_animationName] != null)
         //{
         //    Source.UnitAnimation[_animationName].speed = _animationSpeed;
@@ -46,14 +48,15 @@ public class AOEStun : Ability
         //Source.UnitAnimation.SetTrigger("attack");
 
     }
-
+    float fml = 0;
     // Update is called once per frame
     public override void Update()
     {
         base.Update();
-
-
+        fml += Time.deltaTime;
+        if (fml >= 1) Destroy(gameObject);
     }
+
 
 
     public override void OnDestroy()
@@ -67,6 +70,7 @@ public class AOEStun : Ability
 
     public override void OnHit(Unit target)
     {
+        Debug.Log(target.gameObject.name);
         target.Stats.AddEffects(_onHitEffects.ToArray(), Source.gameObject.GetInstanceID());
         base.OnHit(target);
     }

@@ -36,7 +36,10 @@ public class MeeleeAttack : Ability
         {
             return;
         }
-
+        if (Source.GetAnimationState() != Unit.AnimationStates.ATTACK)
+        {
+            Destroy(gameObject);
+        }
     }
 
 

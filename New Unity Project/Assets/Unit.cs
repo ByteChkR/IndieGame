@@ -48,6 +48,11 @@ public class Unit : MonoBehaviour
         SPECIAL = 5
     }
 
+    public AnimationStates GetAnimationState()
+    {
+        return (AnimationStates)UnitAnimation.GetInteger("state");
+    }
+
     public void SetAnimationState(AnimationStates newState)
     {
         UnitAnimation.SetInteger("state", (int)newState);

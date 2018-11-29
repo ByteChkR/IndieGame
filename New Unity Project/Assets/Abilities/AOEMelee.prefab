@@ -64,7 +64,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1916bf66012a52d4390910831f344b1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Collider: {fileID: 0}
+  Collider: {fileID: 65547996972171788}
   SelfStun: 1
   UnlockSelfStunOnDestroy: 1
   CheckCollisionsEveryFrame: 0
@@ -78,5 +78,5 @@ MonoBehaviour:
   _animationName: AOEStun
   _animationSpeed: 1
   _onHitEffects: []
-  HitboxSize: {x: 1, y: 1, z: 1.75}
+  HitboxSize: {x: 1, y: 1, z: 2}
   _inFrontOfPlayer: 1
