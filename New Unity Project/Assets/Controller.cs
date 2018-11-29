@@ -167,7 +167,7 @@ public class Controller : MonoBehaviour, IController
 
 
 
-        if (Input.GetKeyDown(KeyCode.K))
+       /* if (Input.GetKeyDown(KeyCode.K))
         {
             if (MenuCanvas.activeSelf)
             {
@@ -195,7 +195,7 @@ public class Controller : MonoBehaviour, IController
                 MenuCanvas.SetActive(true);
                 WinScreen.SetActive(true);
             }
-        }
+        }*/
     }
 
 

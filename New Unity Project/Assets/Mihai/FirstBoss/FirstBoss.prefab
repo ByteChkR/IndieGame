@@ -484,6 +484,7 @@ MonoBehaviour:
   rotationInterpolationSpeed: 0.1
   looker: {fileID: 4053176530811560}
   TrioPlace: {fileID: 4071883839265746}
+  _animator: {fileID: 0}
   TrioPrefab: {fileID: 1615804433756854, guid: d059d79854cb074468aec40cf101bba4, type: 2}
   player: {fileID: 0}
   bossUnit: {fileID: 0}
@@ -502,12 +503,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Stats:
-    _baseHealth: 1000
+    _baseHealth: 40
     _baseMovementSpeed: 0
     _baseCombo: 0
-    MaxHealth: 1000
+    MaxHealth: 40
     MaxCombo: 0
     MaxMovementSpeed: 0
+    OnlyDamagedWithSpecialAttacks: 0
   UnitAnimation: {fileID: 0}
   Agent: {fileID: 0}
   ParticleSystems: []
@@ -516,6 +518,7 @@ MonoBehaviour:
   GoldPrefab: {fileID: 0}
   rb: {fileID: 54882575027258732}
   WeaponContainer: {fileID: 0}
+  TeamID: 0
 --- !u!136 &136284572936538998
 CapsuleCollider:
   m_ObjectHideFlags: 1

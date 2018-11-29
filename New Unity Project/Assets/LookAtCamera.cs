@@ -13,5 +13,6 @@ private Camera _cam;
 	// Update is called once per frame
 	void Update () {
        transform.LookAt(_cam.transform.position);
+        transform.localRotation *= transform.parent.rotation;
 	}
 }

@@ -268,7 +268,9 @@ public class Unit : MonoBehaviour
 
     private void Awake()
     {
+
         Physics.IgnoreLayerCollision(11, 11, IgnoreUnitCollisions);
+
         Stats.Init();
         ActiveUnits.Add(gameObject.GetInstanceID(), this);
 
@@ -299,7 +301,12 @@ public class Unit : MonoBehaviour
 
     private void UnitDying()
     {
-        AchievementSystem.instance.KillEnemy();
+        if (AchievementSystem.instance != null)
+        {
+
+
+            AchievementSystem.instance.KillEnemy();
+        }
         Vector3 rnd = new Vector3();
         Vector2 r;
         if (GoldPrefab != null)

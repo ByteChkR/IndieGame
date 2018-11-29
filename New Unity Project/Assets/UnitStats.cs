@@ -70,11 +70,13 @@ public class UnitStats
         switch (stype)
         {
             case Unit.StatType.HP:
-                if (OnlyDamagedWithSpecialAttacks && !isSpecialAttack)
+                if (OnlyDamagedWithSpecialAttacks == true && isSpecialAttack == true)
                 {
-                    
+
+                    _killer = source;
                     break;
                 }
+              
                 _currentHealth += value;
                 _currentHealth = _currentHealth > MaxHealth ? MaxHealth : _currentHealth;
                 if (_currentHealth <= 0) _killer = source;

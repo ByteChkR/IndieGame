@@ -25,7 +25,7 @@ public class AOEStun : Ability
 
     public override void Initialize(int source, Vector3 target, Quaternion rot, bool isSpecial)
     {
-        base.Initialize(source, target, rot, isSpecial);
+        base.Initialize(source, target, rot, true);
 
         if (CollType == ColliderTypes.Box)
         {

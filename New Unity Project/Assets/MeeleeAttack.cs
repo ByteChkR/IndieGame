@@ -9,7 +9,7 @@ public class MeeleeAttack : Ability
     [SerializeField]
     private List<AbstractEffect> _onHitEffects;
     [SerializeField]
-    private float _comboGainPerHit = 100;
+    private float _comboGainPerHit = 1;
 
 
     // Use this for initialization

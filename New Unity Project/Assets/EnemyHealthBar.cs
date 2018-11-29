@@ -9,13 +9,16 @@ public class EnemyHealthBar : MonoBehaviour {
     public Image HealthBar;
     private float _fill;
     private float _currentHealth;
+    Camera _cam;
 
 	// Use this for initialization
 	void Start () {
+        _cam = Camera.main;
 	}
     void RotateHealthBar()
     {
-        transform.rotation = Quaternion.Euler(40, -Enemy.transform.rotation.y, 0);
+        transform.LookAt(_cam.transform.position);
+        transform.Rotate(new Vector3(0, 180, 0));
     }
 
     // Update is called once per frame
