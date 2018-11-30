@@ -20,10 +20,14 @@ public class LastBoss : MonoBehaviour,IController{
     public Transform fireLeft;
     public Transform lowDir;
     public Transform leftDir;
-    [Header("Prefabs")]
+    [Header("Attack Prefabs")]
     public GameObject trioAttackPrefab;
     public GameObject normalAttack;
     public GameObject bounceAttack;
+    [Header("Effect Prefabs")]
+    public GameObject animTrue;
+    public GameObject animFalse;
+    private Animator _anim;
 
     private float _timeTillNextAttack = 2;
     private Rigidbody _rb;
@@ -47,6 +51,7 @@ public class LastBoss : MonoBehaviour,IController{
 
     // Use this for initialization
     void Start () {
+        _anim = GetComponent<Animator>();
         _rb = GetComponent<Rigidbody>();
         if (bossUnit == null)
         {
@@ -110,6 +115,8 @@ public class LastBoss : MonoBehaviour,IController{
                     InstanciateWithDelay(trioAttackPrefab, fireRight, 3.0f, Vector3.zero);
                     InstanciateWithDelay(trioAttackPrefab, fireLeft, 3.3f, Vector3.zero);
                     _firstBossState = LastBossStates.Attack2;
+                    InstanciateWithDelay(animTrue, fireRight, 0f, Vector3.zero);
+                    InstanciateWithDelay(animFalse, fireRight, 3.3f, Vector3.zero);
 
                     break;
                 case LastBossStates.Attack2:
@@ -131,7 +138,7 @@ public class LastBoss : MonoBehaviour,IController{
 
                     break;
                 case LastBossStates.Attack3:
-                    Debug.Log("yes");
+                   // Debug.Log("yes");
                         for (int j = 0; j < 5; j++)
                         {
                             for (int i = 0; i < 10; i++)
@@ -200,6 +207,10 @@ public class LastBoss : MonoBehaviour,IController{
                     InstanciateWithDelay(bounceAttack, fireLeft, 2.5f, Vector3.zero);
                     InstanciateWithDelay(bounceAttack, fireRight, 3.0f, Vector3.zero);
                     InstanciateWithDelay(bounceAttack, fireLeft, 3.3f, Vector3.zero);
+
+                    InstanciateWithDelay(animTrue, fireRight, 0f, Vector3.zero);
+                    InstanciateWithDelay(animFalse, fireRight, 3.3f, Vector3.zero);
+
 
                     _firstBossState = LastBossStates.Attack1;
                     break;
