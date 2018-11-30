@@ -178,6 +178,7 @@ public class Unit : MonoBehaviour
         if (UnitAnimation.GetInteger("state") != (int)animationState) return -1;
         AnimationClip c1 = UnitAnimation.runtimeAnimatorController.animationClips.Where(x => si.IsName(x.name)).FirstOrDefault(x => si.length/ x.length >= 1f - 0.2f);
 
+        
         float c = c1 != null ? c1.length : -1;
         return c - si.length;
     }

@@ -52,10 +52,7 @@ public class AOEStun : Ability
     // Update is called once per frame
     public override void Update()
     {
-        if (Source != null)
-        {
-            Debug.Log(Source.GetAnimationState());
-        }
+
         base.Update();
         
     }
@@ -73,6 +70,7 @@ public class AOEStun : Ability
 
     public override void OnHit(Unit target)
     {
+
         target.Stats.AddEffects(_onHitEffects.ToArray(), Source.gameObject.GetInstanceID());
         base.OnHit(target);
     }

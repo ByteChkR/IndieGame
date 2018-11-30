@@ -7,7 +7,7 @@ public class AnimatorRedirector : MonoBehaviour {
     Unit u;
 	public void FireAnimationTrigger(int triggerType)
     {
-        Debug.Log("ANIMATION FIRED LEGACY ANIMATION TRIGGER");
+        Debug.LogWarning("ANIMATION FIRED LEGACY ANIMATION TRIGGER");
         //u.FireAnimationTrigger(triggerType);
     }
 
