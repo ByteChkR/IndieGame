@@ -87,11 +87,13 @@ public class Unit : MonoBehaviour
         {
             rb.constraints = RigidbodyConstraints.FreezeAll;
             LockControls(true);
+            _weapon.SetActive(false);
         }
         else
         {
             rb.constraints = RigidbodyConstraints.FreezeRotation;
             LockControls(false);
+            _weapon.SetActive(true);
         }
     }
 
@@ -323,6 +325,7 @@ public class Unit : MonoBehaviour
         {
             _weapon = GetComponentInChildren<Weapon>();
             _weapon.SetOwnerDUs(this);
+            if (!Controller.IsPlayer) _weapon.SetActive(true); //We only want the player to not use the weapon during menu
         }
     }
 

@@ -344,7 +344,9 @@ Prefab:
       propertyPath: MenuCanvas
       value: 
       objectReference: {fileID: 66052376}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 33674708868301600, guid: 0bf0a0cb88542ed468c4543523f10b86, type: 2}
+    - {fileID: 23210755391818624, guid: 0bf0a0cb88542ed468c4543523f10b86, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: 0bf0a0cb88542ed468c4543523f10b86, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1 &189708164
@@ -486,7 +488,7 @@ Prefab:
     - target: {fileID: 114877266423987142, guid: 7034720c3573af349840f9dcaa6bfe98,
         type: 2}
       propertyPath: DebugStart
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7034720c3573af349840f9dcaa6bfe98, type: 2}

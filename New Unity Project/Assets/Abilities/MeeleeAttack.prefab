@@ -51,6 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 910453c632ab69a4bbc9575161df26ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DestroySourceOnEnd: 0
   FixForPlayerModel: 1
   Collider: {fileID: 0}
   SelfStun: 1
@@ -65,7 +66,7 @@ MonoBehaviour:
   Damage: 1
   UseMaxTime: 1
   UseStateChange: 1
-  MaxTimeAlive: 1.1
+  MaxTimeAlive: 0.65
   state: -1
   _animationName: attack
   _onHitEffects: []

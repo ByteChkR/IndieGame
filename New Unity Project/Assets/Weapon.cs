@@ -21,6 +21,7 @@ public class Weapon : MonoBehaviour
     public int AttackCount = 1;
     int cur = 0;
     public bool TurnTowardsTarget = false;
+    private bool Activate = false;
 
     public int GoldValue = 5;
     // Use this for initialization
@@ -35,6 +36,11 @@ public class Weapon : MonoBehaviour
         }
         PreparePickup();
         WeaponIS.Weapon = gameObject;
+    }
+
+    public void SetActive(bool active)
+    {
+        Activate = active;
     }
 
     public void DisableBuying()
@@ -96,7 +102,7 @@ public class Weapon : MonoBehaviour
     {
 
         //PreparePickup();
-        if (OOwner == null || Owner == gameObject.GetInstanceID()) return;
+        if (OOwner == null || Owner == gameObject.GetInstanceID() || !Activate) return;
         for (int i = 0; i < AbilityKeyBindings.Count; i++)
         {
             if (!OOwner.Stats.IsStunned && Input.GetKey(AbilityKeyBindings[i]) && OOwner.GetActiveWeapon() == this)
