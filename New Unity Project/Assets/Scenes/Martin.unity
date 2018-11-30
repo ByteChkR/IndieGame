@@ -3807,7 +3807,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FollowPlayer: 1
-  Target: {fileID: 0}
+  Target: {fileID: 724633188}
   Cam: {fileID: 0}
   MinDistanceToPlayer: 4
   AddDistanceOnSpeed: 1
