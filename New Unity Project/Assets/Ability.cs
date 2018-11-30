@@ -7,7 +7,7 @@ using System.Linq;
 
 public class Ability : MonoBehaviour
 {
-
+    public bool DestroySourceOnEnd = false;
     public bool FixForPlayerModel = false;
     public static List<Ability> AliveAbilities = new List<Ability>();
     protected bool isSpecial = false;
@@ -123,6 +123,7 @@ public class Ability : MonoBehaviour
         if ((UseStateChange && state != Unit.AnimationStates.ANY && Source.GetAnimationState() != state) || (UseMaxTime && t >= MaxTimeAlive))
         {
             Destroy(gameObject);
+            
         }
 
     }
@@ -131,8 +132,9 @@ public class Ability : MonoBehaviour
     {
         if (Source != null)
         {
-
+            
             if (UnlockSelfStunOnDestroy) Source.Controller.LockControls(false);
+            if (DestroySourceOnEnd) Destroy(Source.gameObject);
             //Source.SetAnimationState(Unit.AnimationStates.IDLE);
         }
     }

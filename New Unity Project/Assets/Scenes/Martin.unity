@@ -681,6 +681,12 @@ Prefab:
       propertyPath: MaxVelocity
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 114129737549942796, guid: 0bf0a0cb88542ed468c4543523f10b86,
+        type: 2}
+      propertyPath: deathAnim
+      value: 
+      objectReference: {fileID: 1789416970732076, guid: 2bc873d12ca41e34087e7b1ee73de152,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0bf0a0cb88542ed468c4543523f10b86, type: 2}
   m_IsPrefabAsset: 0

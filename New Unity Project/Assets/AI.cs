@@ -24,6 +24,7 @@ public class AI : MonoBehaviour, IController
     {
         _lockControls = locked;
         Agent.velocity = Vector3.zero;
+        Agent.isStopped = true;
     }
     bool _canSeeTarget
     {

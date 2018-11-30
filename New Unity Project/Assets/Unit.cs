@@ -15,6 +15,7 @@ public class Unit : MonoBehaviour
     public static Dictionary<int, Unit> ActiveUnits = new Dictionary<int, Unit>();
     public static Unit Player;
     public UnitStats Stats;
+    public GameObject deathAnim;
     //private Weapon[] _weapons = new Weapon[2];
     private Weapon _weapon;
     //public Animation UnitAnimation;
@@ -28,6 +29,7 @@ public class Unit : MonoBehaviour
     public Rigidbody rb;
     public GameObject WeaponContainer;
     public int TeamID = 0;
+    private bool Dead = false;
     //private int _selectedWeapon = 0;
     //public Weapon SelectedWeapon { get { return _weapons[_selectedWeapon]; } }
     public enum TriggerType
@@ -176,9 +178,9 @@ public class Unit : MonoBehaviour
     {
         AnimatorStateInfo si = UnitAnimation.GetCurrentAnimatorStateInfo(0);
         if (UnitAnimation.GetInteger("state") != (int)animationState) return -1;
-        AnimationClip c1 = UnitAnimation.runtimeAnimatorController.animationClips.Where(x => si.IsName(x.name)).FirstOrDefault(x => si.length/ x.length >= 1f - 0.2f);
+        AnimationClip c1 = UnitAnimation.runtimeAnimatorController.animationClips.Where(x => si.IsName(x.name)).FirstOrDefault(x => si.length / x.length >= 1f - 0.2f);
 
-        
+
         float c = c1 != null ? c1.length : -1;
         return c - si.length;
     }
@@ -248,7 +250,7 @@ public class Unit : MonoBehaviour
 
     public void FireAnimationTrigger(TriggerType ttype)
     {
-        
+
         if (ttype == TriggerType.ControlLock)
         {
             LockControls(true);
@@ -257,7 +259,7 @@ public class Unit : MonoBehaviour
         {
             LockControls(false);
         }
-        
+
     }
 
     void LockControls(bool locked)
@@ -312,7 +314,8 @@ public class Unit : MonoBehaviour
 
     private void UnitDying()
     {
-        if (AchievementSystem.instance != null)
+        Dead = true;
+        if (AchievementSystem.instance != null && !Controller.IsPlayer)
         {
 
 
@@ -333,13 +336,25 @@ public class Unit : MonoBehaviour
                 a.Initialize(Stats.Killer, Vector3.zero, Quaternion.identity, false); //use the source int as the killers id. This works only with coins.
             }
         }
+        if (deathAnim != null)
+        {
+            if (!Controller.IsPlayer)
+            {
+                Destroy(GetComponentInChildren<EnemyHealthBar>().gameObject);
+            }
+            DeathAnim da = Instantiate(deathAnim).GetComponent<DeathAnim>();
+            da.Initialize(gameObject.GetInstanceID(), transform.position, transform.rotation, false);
+            LockControls(true);
+            rb.velocity = Vector3.zero;
+
+        }
         //if(UnitAnimation != null) UnitAnimation.SetBool("Death", true);
-        Destroy(gameObject);
+        //Destroy(gameObject);
     }
 
     private void LateUpdate()
     {
-        if (Stats.CurrentHealth <= 0) UnitDying();
+        if (!Dead && Stats.CurrentHealth <= 0) UnitDying();
     }
 
     private void OnDestroy()
