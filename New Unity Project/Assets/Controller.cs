@@ -31,7 +31,7 @@ public class Controller : MonoBehaviour, IController
     private Rigidbody _rb;
     public Rigidbody Rb { get { return _rb; } }
     public bool UseMousePositionForAim = false;
-    
+    public float MaxVelocity;
     Unit _unit;
 
     // Use this for initialization
@@ -48,16 +48,7 @@ public class Controller : MonoBehaviour, IController
         _rb.velocity = Vector3.zero;
     }
 
-    private void Update()
-    {
-        /*
-        if (_lockControls || _unit.Stats.IsStunned) return;
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            _unit.SwitchWeapon();
-        }
-        */
-    }
+
 
     void DeconstructVelocityAndApplyToAnimation(Vector3 velocity)
     {
@@ -80,9 +71,9 @@ public class Controller : MonoBehaviour, IController
 
     }
 
-    
 
-    
+
+
 
     // Update is called once per frame
     void FixedUpdate()
@@ -169,6 +160,7 @@ public class Controller : MonoBehaviour, IController
         else
         {
             _rb.AddForce(v.normalized * speed, ForceMode.Acceleration);
+            
         }
 
         //anim.SetFloat("Forward", speed);

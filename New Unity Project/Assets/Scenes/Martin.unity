@@ -24,7 +24,7 @@ RenderSettings:
   m_AmbientEquatorColor: {r: 0.764151, g: 0.3128838, b: 0, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
-  m_AmbientMode: 1
+  m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
   m_HaloStrength: 0.5
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.3731193, g: 0.38073996, b: 0.35872698, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -432,6 +432,11 @@ Prefab:
       propertyPath: optionsMenu
       value: 
       objectReference: {fileID: 1744821524}
+    - target: {fileID: 114877266423987142, guid: 7034720c3573af349840f9dcaa6bfe98,
+        type: 2}
+      propertyPath: DebugStart
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7034720c3573af349840f9dcaa6bfe98, type: 2}
   m_IsPrefabAsset: 0
@@ -491,7 +496,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 11.2
+  orthographic size: 5.75
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -534,7 +539,7 @@ MonoBehaviour:
   FollowPlayer: 1
   Target: {fileID: 0}
   Cam: {fileID: 0}
-  MinDistanceToPlayer: 13
+  MinDistanceToPlayer: 4
   AddDistanceOnSpeed: 1
   SpeedAverageCount: 25
   MaxSpeed: 25
@@ -644,6 +649,31 @@ Prefab:
     - target: {fileID: 1523658532706950, guid: 0bf0a0cb88542ed468c4543523f10b86, type: 2}
       propertyPath: m_Name
       value: Player (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114496297625360876, guid: 0bf0a0cb88542ed468c4543523f10b86,
+        type: 2}
+      propertyPath: Abilities.Array.data[0].cooldown
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114280270937398308, guid: 0bf0a0cb88542ed468c4543523f10b86,
+        type: 2}
+      propertyPath: ForwardSpeed
+      value: 79.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 114280270937398308, guid: 0bf0a0cb88542ed468c4543523f10b86,
+        type: 2}
+      propertyPath: BackwardSpeed
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 114280270937398308, guid: 0bf0a0cb88542ed468c4543523f10b86,
+        type: 2}
+      propertyPath: StrafeSpeed
+      value: 114.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 114280270937398308, guid: 0bf0a0cb88542ed468c4543523f10b86,
+        type: 2}
+      propertyPath: MakeControlsEventMoreRetarded
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0bf0a0cb88542ed468c4543523f10b86, type: 2}
