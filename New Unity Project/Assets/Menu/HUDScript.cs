@@ -121,7 +121,7 @@ public class HUDScript : MonoBehaviour
         GoldAmount.text = " X " + Unit.Player.Stats.CurrentGold;
         _playerHealthNewScale = Unit.Player.Stats.CurrentHealth / Unit.Player.Stats.MaxHealth;
         if (_playerHealthNewScale < 0) _playerHealthNewScale = 0;
-        HealthBar.transform.localScale = new Vector3(Unit.Player.Stats.CurrentHealth / Unit.Player.Stats.MaxHealth, 1, 1);
+        HealthBar.transform.localScale = new Vector3(_playerHealthNewScale, 1, 1);
         ComboBar.transform.localScale = new Vector3(Unit.Player.Stats.CurrentCombo / Unit.Player.Stats.MaxCombo, 1, 1);
         UpdateBossHealth();
     }
