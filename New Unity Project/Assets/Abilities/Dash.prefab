@@ -66,8 +66,8 @@ MonoBehaviour:
   CollType: 0
   Damage: 5
   UseMaxTime: 0
-  UseStateChange: 1
-  MaxTimeAlive: 0
+  UseStateChange: 0
+  MaxTimeAlive: 2
   state: -1
   _animationName: 
   _animationSpeed: 0
@@ -75,7 +75,7 @@ MonoBehaviour:
   hitboxSize: {x: 3, y: 0, z: 0}
   _inFrontOfPlayer: 0
   _dashDistance: 9
-  _dashTime: 0.15
+  _dashTime: 0.2
   _animationCurve:
     serializedVersion: 2
     m_Curve:
@@ -101,6 +101,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   AfterDashAbility: {fileID: 0}
+  MaxControlLockTime: 1.7305
 --- !u!135 &135239838652249528
 SphereCollider:
   m_ObjectHideFlags: 1

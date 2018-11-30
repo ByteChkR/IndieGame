@@ -120,10 +120,16 @@ public class Ability : MonoBehaviour
         if (Source != null && Collider != null) CheckAndResolveCollisions(Collider);
         Unit.AnimationStates s = Source.GetAnimationState();
         t += Time.deltaTime;
-        if ((UseStateChange && state != Unit.AnimationStates.ANY && Source.GetAnimationState() != state) || (UseMaxTime && t >= MaxTimeAlive))
+        if ((UseMaxTime && t >= MaxTimeAlive))
         {
             Destroy(gameObject);
+
             
+        }
+        if((UseStateChange && state != Unit.AnimationStates.ANY && Source.GetAnimationState() != state))
+        {
+            
+            Destroy(gameObject);
         }
 
     }

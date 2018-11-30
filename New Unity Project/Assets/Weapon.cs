@@ -19,6 +19,7 @@ public class Weapon : MonoBehaviour
     private bool _wasSetOnce = false;
     public bool UseMultipleAttacks;
     public int AttackCount = 1;
+    public int SpecialAttackAnimation = 0;
     int cur = 0;
     public bool TurnTowardsTarget = false;
     private bool Activate = false;
@@ -131,6 +132,10 @@ public class Weapon : MonoBehaviour
                             cur++;
                             cur = cur % AttackCount;
 
+                        }
+                        if (Abilities[i].animState == Unit.AnimationStates.SPECIAL)
+                        {
+                            OOwner.UnitAnimation.SetInteger("spattack", SpecialAttackAnimation);
                         }
 
                         OOwner.SetAnimationState(Abilities[i].animState);
