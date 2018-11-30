@@ -26,6 +26,7 @@ public class HUDScript : MonoBehaviour
 
     private Unit _boss;
     private float _playerHealthNewScale;
+    private float _bossHealthNewScale;
 
     private void Awake()
     {
@@ -95,16 +96,16 @@ public class HUDScript : MonoBehaviour
         if(_boss != null)
         {
             BossHealth.SetActive(true);
-            float newScale = _boss.Stats.CurrentHealth / _boss.Stats.MaxHealth;
-            if (newScale < 0) newScale = 0;
-            BossHealthBar.transform.localScale = new Vector3(newScale, 1, 1);
+            _bossHealthNewScale = _boss.Stats.CurrentHealth / _boss.Stats.MaxHealth;
+            if (_bossHealthNewScale < 0) _bossHealthNewScale = 0;
+            BossHealthBar.transform.localScale = new Vector3(_bossHealthNewScale, 1, 1);
         }
-        else if(BossBarTest)
+        else if(BossBarTest && _boss == null)
         {
             BossHealth.SetActive(true);
-            float newScale = TestBossCurrentHP / TestMaxBossHP;
-            if (newScale < 0) newScale = 0;
-            BossHealthBar.transform.localScale = new Vector3(newScale, 1, 1);
+            _bossHealthNewScale = TestBossCurrentHP / TestMaxBossHP;
+            if (_bossHealthNewScale < 0) _bossHealthNewScale = 0;
+            BossHealthBar.transform.localScale = new Vector3(_bossHealthNewScale, 1, 1);
         }
         else
         {

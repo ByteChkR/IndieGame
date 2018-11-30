@@ -125,7 +125,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1132537745728174
 GameObject:
   m_ObjectHideFlags: 1
@@ -927,7 +927,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1543666118882940
 GameObject:
   m_ObjectHideFlags: 1
@@ -1141,6 +1141,7 @@ GameObject:
   - component: {fileID: 223690914790327290}
   - component: {fileID: 114729101505000318}
   - component: {fileID: 114449991511779188}
+  - component: {fileID: 114860689007994712}
   m_Layer: 5
   m_Name: MenuCanvas
   m_TagString: Untagged
@@ -1482,7 +1483,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1857561837249636
 GameObject:
   m_ObjectHideFlags: 1
@@ -5873,6 +5874,21 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: FULLSCREEN
+--- !u!114 &114860689007994712
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1737150014552702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a39c3c4b1b3dc54698f7c9a6cbac6f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WinScreen: {fileID: 1742852340613474}
+  GameOverScreen: {fileID: 1850167697870530}
+  MainMenu: {fileID: 1123377524984848}
+  OptionsMenu: {fileID: 1720080793532006}
 --- !u!114 &114874909652750154
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6990,7 +7006,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!223 &223828390565154652
 Canvas:
