@@ -34,8 +34,6 @@ public class Weapon : MonoBehaviour
             Owner = gameObject.GetInstanceID();
         }
         PreparePickup();
-        UseMultipleAttacks = true;
-        Debug.Log(UseMultipleAttacks);
         WeaponIS.Weapon = gameObject;
     }
 
@@ -105,18 +103,23 @@ public class Weapon : MonoBehaviour
             {
                 if (Abilities[i].IsAvailable(Owner))
                 {
-                    
-                    
+
+                    Vector3 targetDir;
                     if (TurnTowardsTarget)
                     {
-                        Vector3 targetDir = OOwner.Controller.ViewingDirection(true);
+                        targetDir = OOwner.Controller.ViewingDirection(true);
+                        Debug.Log(targetDir);
                         targetDir.Set(targetDir.x, 0, targetDir.z);
                         OOwner.transform.forward = targetDir;
                     }
-                    if (Abilities[i].Fire(Owner, OOwner.Controller.VTarget, OOwner.transform.rotation))
+                    else
+                    {
+                        targetDir = OOwner.Controller.VTarget;
+                    }
+                    if (Abilities[i].Fire(Owner, targetDir, OOwner.transform.rotation))
                     {
                         Debug.Log(UseMultipleAttacks);
-                        if (Abilities[i].animState == Unit.AnimationStates.ATTACK)
+                        if (UseMultipleAttacks && Abilities[i].animState == Unit.AnimationStates.ATTACK)
                         {
                             OOwner.UnitAnimation.SetInteger("attack", cur);
                             cur++;

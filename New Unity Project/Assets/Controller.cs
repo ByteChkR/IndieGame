@@ -175,9 +175,9 @@ public class Controller : MonoBehaviour, IController
         }
         else
         {
-            _rb.AddForce(v.normalized * speed*5, ForceMode.Acceleration);
+            _rb.AddForce(v.normalized * speed * 5, ForceMode.Acceleration);
             if (_rb.velocity.magnitude > MaxVelocity) _rb.velocity = _rb.velocity.normalized * MaxVelocity;
-            
+
         }
 
         //anim.SetFloat("Forward", speed);
@@ -235,7 +235,7 @@ public class Controller : MonoBehaviour, IController
             RaycastHit info;
             if (Physics.Raycast(r, out info, 1000, 1 << 9))
             {
-                return info.point - transform.position; //Position only because the camera is not a child object 
+                return  (info.point - transform.position); //Position only because the camera is not a child object 
             }
             return -Vector3.one;
         }

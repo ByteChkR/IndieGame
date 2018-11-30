@@ -13,18 +13,20 @@ public class EnemyHealthBar : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         _cam = Camera.main;
-        transform.Rotate(new Vector3(0, 0, 0));
+        transform.forward = -CameraViewLock.instance.Cam.transform.forward;
     }
     void RotateHealthBar()
     {
-        transform.LookAt(_cam.transform.position);
-        transform.Rotate(new Vector3(0, 180, 0));
+
+        transform.forward = -CameraViewLock.instance.Cam.transform.forward;
+        //transform.LookAt(_cam.transform.position);
+        //transform.Rotate(new Vector3(0, 180, 0));
     }
     
 
     // Update is called once per frame
     void LateUpdate () {
-        //RotateHealthBar();
+        RotateHealthBar();
         _fill = Enemy.Stats.CurrentHealth / Enemy.Stats.MaxHealth;
         if (_fill < 0) _fill = 0;
         HealthBar.transform.localScale = new Vector3(_fill, 1, 1);

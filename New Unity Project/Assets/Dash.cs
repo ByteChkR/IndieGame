@@ -28,7 +28,7 @@ public class Dash : Ability
     // Use this for initialization
     void Start()
     {
-
+        UseMaxTime = false;
     }
 
     public override void Initialize(int source, Vector3 target, Quaternion rot, bool isSpecial)
@@ -46,13 +46,26 @@ public class Dash : Ability
             (Collider as SphereCollider).radius = hitboxSize.x;
             if (_inFrontOfPlayer) (Collider as SphereCollider).center = transform.forward * hitboxSize.x / 2;
         }
-        Source.UnitAnimation.SetTrigger(_animationName);
-        Vector3 fwd = (target - Source.transform.position);
+        Vector3 fwd = target;
         _pos = Source.transform.position;
         _ddistance = (fwd).magnitude;
         fwd.y = 0;
         fwd.Normalize();
-        _endPos = _ddistance > _dashDistance ? Source.transform.position + fwd * _dashDistance : Source.transform.position + fwd * _ddistance;
+        
+        _endPos = _ddistance > _dashDistance ? Source.transform.position + fwd * CanDashToTarget(fwd, _dashDistance): Source.transform.position + fwd * CanDashToTarget(fwd, _ddistance);
+
+    }
+
+    float CanDashToTarget(Vector3 dir, float distance)
+    {
+        RaycastHit[] cols;
+        if((cols = Physics.SphereCastAll(new Ray(transform.position, dir), 0.5f, distance)).Length != 0){
+            foreach (RaycastHit raycastHit in cols)
+            {
+                if (raycastHit.collider.gameObject.layer == 10) return raycastHit.distance-0.5f;
+            }
+        }
+        return distance;
     }
 
     // Update is called once per frame
@@ -69,7 +82,7 @@ public class Dash : Ability
         {
             if (Source != null && AfterDashAbility != null)
             {
-                AOEStun s = Instantiate(AfterDashAbility, Source.transform.position, Source.transform.rotation).GetComponent<AOEStun>();
+                Ability s = Instantiate(AfterDashAbility, Source.transform.position, Source.transform.rotation).GetComponent<AOEStun>();
                 s.SetAnimState(state);
                 s.Initialize(Source.gameObject.GetInstanceID(), TargetPos, TargetRot, isSpecial);
             }
