@@ -8,7 +8,6 @@ public class EnemyHealthBar : MonoBehaviour {
     public Unit Enemy;
     public Image HealthBar;
     private float _fill;
-    private float _currentHealth;
     Camera _cam;
 
 	// Use this for initialization
@@ -26,6 +25,8 @@ public class EnemyHealthBar : MonoBehaviour {
     // Update is called once per frame
     void LateUpdate () {
         //RotateHealthBar();
-        HealthBar.transform.localScale = new Vector3(Enemy.Stats.CurrentHealth / Enemy.Stats.MaxHealth, 1, 1);
+        _fill = Enemy.Stats.CurrentHealth / Enemy.Stats.MaxHealth;
+        if (_fill < 0) _fill = 0;
+        HealthBar.transform.localScale = new Vector3(_fill, 1, 1);
     }
 }
