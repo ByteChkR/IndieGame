@@ -14,6 +14,8 @@ public class CameraViewLock : MonoBehaviour
     public int SpeedAverageCount = 10;
     public Queue<Vector3> lastSpeeds;
     public float MaxSpeed;
+
+    public bool OnlyLerp = false;
     // Use this for initialization
     private void Awake()
     {
@@ -35,22 +37,38 @@ public class CameraViewLock : MonoBehaviour
         }
 
         Cam = GetComponent<Camera>();
+        Cam.transform.position = Target.transform.position + MinDistanceToPlayer * _direction;
     }
 
     // Update is called once per frame
-    void LateUpdate()
+    void FixedUpdate()
     {
         if (Target != null && FollowPlayer)
         {
             lastSpeeds.Enqueue(Unit.Player.rb.velocity);
             if (lastSpeeds.Count > SpeedAverageCount) lastSpeeds.Dequeue();
-            Vector3 speed = GetAvgSpeed();
+            Vector3 speed = OnlyLerp ? Unit.Player.rb.velocity : GetAvgSpeed();
 
-            if (speed == Vector3.zero) return;
-            transform.position = Vector3.Lerp(
-                transform.position,
-                Target.position + _direction* MinDistanceToPlayer + speed.normalized * Mathf.Clamp01(speed.magnitude / MaxSpeed)*AddDistanceOnSpeed,
-                Mathf.Clamp01(speed.magnitude / MaxSpeed));
+            if (speed == Vector3.zero && !OnlyLerp)
+            {
+                transform.position = Target.position + _direction * MinDistanceToPlayer;
+            }
+            else
+            {
+                if (OnlyLerp)
+                {
+                    transform.position = Vector3.Lerp(transform.position, Target.position + _direction * MinDistanceToPlayer, 0.2f);
+                }
+                else
+                {
+
+                    transform.position = Vector3.Lerp(
+                        transform.position,
+                        Target.position + _direction * MinDistanceToPlayer + speed.normalized * Mathf.Clamp01(speed.magnitude / MaxSpeed) * AddDistanceOnSpeed,
+                        Mathf.Clamp01(speed.magnitude / MaxSpeed));
+                }
+
+            }
         }
     }
 

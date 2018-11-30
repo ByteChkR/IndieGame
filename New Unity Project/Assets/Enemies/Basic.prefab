@@ -1174,6 +1174,7 @@ MonoBehaviour:
     MaxCombo: 10
     MaxMovementSpeed: 3
     OnlyDamagedWithSpecialAttacks: 0
+  deathAnim: {fileID: 1789416970732076, guid: 2bc873d12ca41e34087e7b1ee73de152, type: 2}
   UnitAnimation: {fileID: 95791459206690694}
   Agent: {fileID: 0}
   ParticleSystems: []

@@ -159,7 +159,8 @@ public class Controller : MonoBehaviour, IController
         }
         else
         {
-            _rb.AddForce(v.normalized * speed, ForceMode.Acceleration);
+            _rb.AddForce(v.normalized * speed*5, ForceMode.Acceleration);
+            if (_rb.velocity.magnitude > MaxVelocity) _rb.velocity = _rb.velocity.normalized * MaxVelocity;
             
         }
 
