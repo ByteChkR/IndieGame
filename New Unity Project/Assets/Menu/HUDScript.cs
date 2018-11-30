@@ -25,6 +25,7 @@ public class HUDScript : MonoBehaviour
     public static HUDScript instance;
 
     private Unit _boss;
+    private float _playerHealthNewScale;
 
     private void Awake()
     {
@@ -94,12 +95,16 @@ public class HUDScript : MonoBehaviour
         if(_boss != null)
         {
             BossHealth.SetActive(true);
-            BossHealthBar.transform.localScale = new Vector3(_boss.Stats.CurrentHealth / _boss.Stats.MaxHealth, 1, 1);
+            float newScale = _boss.Stats.CurrentHealth / _boss.Stats.MaxHealth;
+            if (newScale < 0) newScale = 0;
+            BossHealthBar.transform.localScale = new Vector3(newScale, 1, 1);
         }
         else if(BossBarTest)
         {
             BossHealth.SetActive(true);
-            BossHealthBar.transform.localScale = new Vector3(TestBossCurrentHP / TestMaxBossHP, 1, 1);
+            float newScale = TestBossCurrentHP / TestMaxBossHP;
+            if (newScale < 0) newScale = 0;
+            BossHealthBar.transform.localScale = new Vector3(newScale, 1, 1);
         }
         else
         {
@@ -114,7 +119,9 @@ public class HUDScript : MonoBehaviour
         ComboAmount.text = (int)Unit.Player.Stats.CurrentCombo + " / " + Unit.Player.Stats.MaxCombo;
         HealthAmount.text = (int)Unit.Player.Stats.CurrentHealth + " / " + Unit.Player.Stats.MaxHealth;
         GoldAmount.text = " X " + Unit.Player.Stats.CurrentGold;
-        HealthBar.transform.localScale = new Vector3(Unit.Player.Stats.CurrentHealth / Unit.Player.Stats.MaxHealth, 1, 1);
+        _playerHealthNewScale = Unit.Player.Stats.CurrentHealth / Unit.Player.Stats.MaxHealth;
+        if (_playerHealthNewScale < 0) _playerHealthNewScale = 0;
+        HealthBar.transform.localScale = new Vector3(_playerHealthNewScale, 1, 1);
         ComboBar.transform.localScale = new Vector3(Unit.Player.Stats.CurrentCombo / Unit.Player.Stats.MaxCombo, 1, 1);
         UpdateBossHealth();
     }
