@@ -34,6 +34,22 @@ public class Controller : MonoBehaviour, IController
     public float MaxVelocity;
     Unit _unit;
 
+    public enum Interactions : int
+    {
+        UP, DOWN, LEFT, RIGHT, ABILITY_ONE, ABILITY_TWO, PICKUP
+    }
+
+    public static KeyCode[] interactions = new KeyCode[]
+    {
+            KeyCode.W,
+            KeyCode.S,
+            KeyCode.A,
+            KeyCode.D,
+            KeyCode.J,
+            KeyCode.K,
+            KeyCode.E
+    };
+
     // Use this for initialization
     void Start()
     {
