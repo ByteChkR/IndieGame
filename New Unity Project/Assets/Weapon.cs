@@ -17,7 +17,7 @@ public class Weapon : MonoBehaviour
     public bool IsOnGround { get { return Owner == gameObject.GetInstanceID(); } }
     private bool _wasSetPreInit = false;
     private bool _wasSetOnce = false;
-    public bool UseMultipleAttacks = false;
+    public bool UseMultipleAttacks;
     public int AttackCount = 1;
     int cur = 0;
     public bool TurnTowardsTarget = false;
@@ -34,6 +34,8 @@ public class Weapon : MonoBehaviour
             Owner = gameObject.GetInstanceID();
         }
         PreparePickup();
+        UseMultipleAttacks = true;
+        Debug.Log(UseMultipleAttacks);
         WeaponIS.Weapon = gameObject;
     }
 
@@ -113,7 +115,8 @@ public class Weapon : MonoBehaviour
                     }
                     if (Abilities[i].Fire(Owner, OOwner.Controller.VTarget, OOwner.transform.rotation))
                     {
-                        if (UseMultipleAttacks && Abilities[i].animState == Unit.AnimationStates.ATTACK)
+                        Debug.Log(UseMultipleAttacks);
+                        if (Abilities[i].animState == Unit.AnimationStates.ATTACK)
                         {
                             OOwner.UnitAnimation.SetInteger("attack", cur);
                             cur++;
