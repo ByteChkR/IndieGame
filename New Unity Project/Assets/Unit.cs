@@ -98,6 +98,7 @@ public class Unit : MonoBehaviour
     void OnCollisionStay(Collision coll)
     {
         Weapon w = null;
+        BuyableHealthScript bh = null;
 
         if (Controller == null)
         {
@@ -113,6 +114,15 @@ public class Unit : MonoBehaviour
                 PickupWeapon(w);
             }
         }
+        if (IsPlayer && null != (bh = (coll.collider.GetComponent<BuyableHealthScript>())))
+        {
+            bh.ActivateInfoBox();
+            if (Input.GetKeyDown(KeyCode.E) && bh.cost <= Stats.CurrentGold)
+            {
+                Stats.ApplyValue(StatType.GOLD, -w.GoldValue, -1, false);
+                PickupHealth(bh);
+            }
+        }
     }
 
     void OnCollisionExit(Collision coll)
@@ -123,12 +133,21 @@ public class Unit : MonoBehaviour
         }
 
         Weapon w = null;
+        BuyableHealthScript bh = null;
         if (IsPlayer && null != (w = (coll.collider.GetComponent<Weapon>())))
         {
             w.DeactivateInfoBox();
         }
+        if (IsPlayer && null != (bh = (coll.collider.GetComponent<BuyableHealthScript>())))
+        {
+            bh.DeactivateInfoBox();
+        }
     }
 
+    public void PickupHealth(BuyableHealthScript buyableHealth)
+    {
+        Stats.ApplyValue(StatType.HP, buyableHealth.health, -1, false);
+    }
 
     public void PickupWeapon(Weapon pWeapon)
     {
