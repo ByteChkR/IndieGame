@@ -9,8 +9,8 @@ public class LastBoss : MonoBehaviour,IController{
     public float rotationInterpolationSpeed = 0.1f;
     public Transform looker;
     public GameObject InstanceiatorWithOffset;
-    public enum LastBossStates { Attack1, Attack2, Attack3, Attack4,Attack5 }
-    private LastBossStates _firstBossState = LastBossStates.Attack1;
+    public enum LastBossStates { Attack1, Attack2, Attack3, Attack4}
+    private LastBossStates _firstBossState = LastBossStates.Attack4;
     public Unit bossUnit;
     public Transform player;
     public float activationDistance;
@@ -190,7 +190,17 @@ public class LastBoss : MonoBehaviour,IController{
                     
                     break;
                 case LastBossStates.Attack4:
-                    _timeTillNextAttack = 8;
+                    _timeTillNextAttack = 10;
+
+                    InstanciateWithDelay(bounceAttack, fireRight, 0.5f, Vector3.zero);
+                    InstanciateWithDelay(bounceAttack, fireLeft, 0.8f, Vector3.zero);
+                    InstanciateWithDelay(bounceAttack, fireRight, 1.4f, Vector3.zero);
+                    InstanciateWithDelay(bounceAttack, fireLeft, 1.7f, Vector3.zero);
+                    InstanciateWithDelay(bounceAttack, fireRight, 2.2f, Vector3.zero);
+                    InstanciateWithDelay(bounceAttack, fireLeft, 2.5f, Vector3.zero);
+                    InstanciateWithDelay(bounceAttack, fireRight, 3.0f, Vector3.zero);
+                    InstanciateWithDelay(bounceAttack, fireLeft, 3.3f, Vector3.zero);
+
                     _firstBossState = LastBossStates.Attack1;
                     break;
             }
