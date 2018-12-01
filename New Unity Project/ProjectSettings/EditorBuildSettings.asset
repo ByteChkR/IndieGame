@@ -9,11 +9,11 @@ EditorBuildSettings:
     path: Assets/Scenes/Martin.unity
     guid: 516c3985c3bf90f40b1c6283c04d9e90
   - enabled: 1
-    path: Assets/Scenes/Level1.unity
-    guid: 11072a98882571a44a5a46104f3a9b32
-  - enabled: 1
     path: Assets/Scenes/Test.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Scenes/Level1.unity
+    guid: 11072a98882571a44a5a46104f3a9b32
   - enabled: 1
     path: Assets/Mihai/FirstBoss/FirstBossTest.unity
     guid: 24ea16a7b739b354abcf6f3835f6d269

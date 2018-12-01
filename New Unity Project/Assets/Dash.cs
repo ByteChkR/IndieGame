@@ -5,19 +5,19 @@ using UnityEngine;
 public class Dash : Ability
 {
     [SerializeField]
-    private  string _animationName;
+    private string _animationName;
     [SerializeField]
-    private  float _animationSpeed;
+    private float _animationSpeed;
     [SerializeField]
     private List<AbstractEffect> _onHitEffects;
     [Tooltip("If the collider is a Sphere only the X axis will be used as a radius.")]
     public Vector3 hitboxSize;
     [SerializeField]
-    private  bool _inFrontOfPlayer = true;
+    private bool _inFrontOfPlayer = true;
     [SerializeField]
-    private  float _dashDistance = 10000;
+    private float _dashDistance = 10000;
     [SerializeField]
-    private  float _dashTime = 1;
+    private float _dashTime = 1;
     [SerializeField]
     private AnimationCurve _animationCurve;
     private float _timeInitialized;
@@ -25,10 +25,11 @@ public class Dash : Ability
     private Vector3 _endPos;
     float _ddistance;
     public GameObject AfterDashAbility;
+    public float MaxControlLockTime = 1f;
     // Use this for initialization
     void Start()
     {
-
+        UseMaxTime = false;
     }
 
     public override void Initialize(int source, Vector3 target, Quaternion rot, bool isSpecial)
@@ -46,30 +47,47 @@ public class Dash : Ability
             (Collider as SphereCollider).radius = hitboxSize.x;
             if (_inFrontOfPlayer) (Collider as SphereCollider).center = transform.forward * hitboxSize.x / 2;
         }
-        Source.UnitAnimation.SetTrigger(_animationName);
-        Vector3 fwd = (target - Source.transform.position);
+        Vector3 fwd = target;
         _pos = Source.transform.position;
         _ddistance = (fwd).magnitude;
         fwd.y = 0;
         fwd.Normalize();
-        _endPos = _ddistance > _dashDistance ? Source.transform.position + fwd * _dashDistance : Source.transform.position + fwd * _ddistance;
+
+        _endPos = _ddistance > _dashDistance ? Source.transform.position + fwd * CanDashToTarget(fwd, _dashDistance) : Source.transform.position + fwd * CanDashToTarget(fwd, _ddistance);
+        mControlLockTime = MaxControlLockTime * (_pos - _endPos).magnitude / _dashDistance;
     }
 
+    float CanDashToTarget(Vector3 dir, float distance)
+    {
+        RaycastHit[] cols;
+        if ((cols = Physics.SphereCastAll(new Ray(transform.position, dir), 0.5f, distance)).Length != 0)
+        {
+            foreach (RaycastHit raycastHit in cols)
+            {
+                if (raycastHit.collider.gameObject.layer == 10) return raycastHit.distance - 0.5f;
+            }
+        }
+        return distance;
+    }
+
+
+    float mControlLockTime;
     // Update is called once per frame
     public override void Update()
     {
         base.Update();
-        float t = (Time.realtimeSinceStartup - _timeInitialized) / _dashTime;
+        float time = (Time.realtimeSinceStartup - _timeInitialized);
+        float t = time / _dashTime;
         if (!Initialized)
         {
             return;
         }
         Debug.DrawLine(_pos, _endPos);
-        if (t >= 1)
+        if (time >= mControlLockTime)
         {
             if (Source != null && AfterDashAbility != null)
             {
-                AOEStun s = Instantiate(AfterDashAbility, Source.transform.position, Source.transform.rotation).GetComponent<AOEStun>();
+                Ability s = Instantiate(AfterDashAbility, Source.transform.position, Source.transform.rotation).GetComponent<AOEStun>();
                 s.SetAnimState(state);
                 s.Initialize(Source.gameObject.GetInstanceID(), TargetPos, TargetRot, isSpecial);
             }

@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class WeaponInfoScript : MonoBehaviour
-{
+public class HealthInfoScript : MonoBehaviour {
 
     [SerializeField, Tooltip("Insert Tooltip")]
-    private GameObject _weapon;
-    public GameObject Weapon { get { return _weapon; } set { _weapon = value; } }
+    private GameObject _buyAbleHealth;
     [SerializeField, Tooltip("Insert Tooltip")]
     private GameObject _infoBox;
     [SerializeField, Tooltip("Insert Tooltip")]
@@ -20,31 +18,28 @@ public class WeaponInfoScript : MonoBehaviour
 
     private int _goldCost;
 
-    public void SetCost(int pGold)
+    // Use this for initialization
+    void Start () {
+		
+	}
+	
+    void SetCost(int pCost)
     {
-        _goldCost = pGold;
-        if (_goldCost > 0)
-        {
-            _prize.text = "PRIZE: " + _goldCost;
-        }
-        else
-        {
-            _prize.text = null;
-        }
+        _goldCost = pCost;
+        _prize.text = "Prize: " + _goldCost;
     }
 
     void Awake()
     {
-        SetCost(transform.parent.GetComponent<Weapon>().GoldValue);
+        SetCost(transform.parent.GetComponent<BuyableHealthScript>().cost);
     }
-
     void RotateInfoBox()
     {
-        _infoBox.transform.rotation = Quaternion.Euler(45, -_weapon.transform.rotation.y - 45, 0);
+        _infoBox.transform.rotation = Quaternion.Euler(45, -_buyAbleHealth.transform.rotation.y - 45, 0);
     }
 
-    void LateUpdate()
-    {
+    // Update is called once per frame
+    void LateUpdate () {
         RotateInfoBox();
-    }
+	}
 }

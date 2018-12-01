@@ -52,18 +52,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c7c2aae649e49d4ca5e2f9bc0897207, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DestroySourceOnEnd: 0
+  FixForPlayerModel: 0
   Collider: {fileID: 0}
   SelfStun: 1
-  CheckCollisionsEveryFrame: 0
-  KnockBackPower: 0
+  UnlockSelfStunOnDestroy: 1
+  CheckCollisionsEveryFrame: 1
+  KnockBackPower: 10
   KnockBackMaxRange: 2
-  KnockBackPowerOnMaxRange: 30
+  KnockBackPowerOnMaxRange: 1
   InvertKnockback: 0
   MoreOnMaxRange: 0
   CollType: 0
-  Damage: 10
+  Damage: 5
+  UseMaxTime: 0
+  UseStateChange: 0
+  MaxTimeAlive: 2
+  state: -1
+  _animationName: 
+  _animationSpeed: 0
   _onHitEffects: []
   hitboxSize: {x: 3, y: 0, z: 0}
+  _inFrontOfPlayer: 0
+  _dashDistance: 9
+  _dashTime: 0.2
   _animationCurve:
     serializedVersion: 2
     m_Curve:
@@ -89,6 +101,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   AfterDashAbility: {fileID: 0}
+  MaxControlLockTime: 1.7305
 --- !u!135 &135239838652249528
 SphereCollider:
   m_ObjectHideFlags: 1

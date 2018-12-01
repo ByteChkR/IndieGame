@@ -17,10 +17,12 @@ public class Weapon : MonoBehaviour
     public bool IsOnGround { get { return Owner == gameObject.GetInstanceID(); } }
     private bool _wasSetPreInit = false;
     private bool _wasSetOnce = false;
-    public bool UseMultipleAttacks = false;
+    public bool UseMultipleAttacks;
     public int AttackCount = 1;
+    public int SpecialAttackAnimation = 0;
     int cur = 0;
     public bool TurnTowardsTarget = false;
+    private bool Activate = false;
 
     public int GoldValue = 5;
     // Use this for initialization
@@ -35,6 +37,11 @@ public class Weapon : MonoBehaviour
         }
         PreparePickup();
         WeaponIS.Weapon = gameObject;
+    }
+
+    public void SetActive(bool active)
+    {
+        Activate = active;
     }
 
     public void DisableBuying()
@@ -96,29 +103,39 @@ public class Weapon : MonoBehaviour
     {
 
         //PreparePickup();
-        if (OOwner == null || Owner == gameObject.GetInstanceID()) return;
+        if (OOwner == null || Owner == gameObject.GetInstanceID() || !Activate) return;
         for (int i = 0; i < AbilityKeyBindings.Count; i++)
         {
             if (!OOwner.Stats.IsStunned && Input.GetKey(AbilityKeyBindings[i]) && OOwner.GetActiveWeapon() == this)
             {
                 if (Abilities[i].IsAvailable(Owner))
                 {
-                    
-                    
+
+                    Vector3 targetDir;
                     if (TurnTowardsTarget)
                     {
-                        Vector3 targetDir = OOwner.Controller.ViewingDirection(true);
+                        targetDir = OOwner.Controller.ViewingDirection(true);
+                        Debug.Log(targetDir);
                         targetDir.Set(targetDir.x, 0, targetDir.z);
                         OOwner.transform.forward = targetDir;
                     }
-                    if (Abilities[i].Fire(Owner, OOwner.Controller.VTarget, OOwner.transform.rotation))
+                    else
                     {
+                        targetDir = OOwner.Controller.VTarget;
+                    }
+                    if (Abilities[i].Fire(Owner, targetDir, OOwner.transform.rotation))
+                    {
+                        Debug.Log(UseMultipleAttacks);
                         if (UseMultipleAttacks && Abilities[i].animState == Unit.AnimationStates.ATTACK)
                         {
                             OOwner.UnitAnimation.SetInteger("attack", cur);
                             cur++;
                             cur = cur % AttackCount;
 
+                        }
+                        if (Abilities[i].animState == Unit.AnimationStates.SPECIAL)
+                        {
+                            OOwner.UnitAnimation.SetInteger("spattack", SpecialAttackAnimation);
                         }
 
                         OOwner.SetAnimationState(Abilities[i].animState);
