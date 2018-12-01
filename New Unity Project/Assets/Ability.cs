@@ -92,7 +92,7 @@ public class Ability : MonoBehaviour
         Source = Unit.ActiveUnits[source];
         
 
-        if (SelfStun) Source.Controller.LockControls(true);
+        if (SelfStun) Source.UnitController.LockControls(true);
         Initialized = true;
     }
 
@@ -104,7 +104,7 @@ public class Ability : MonoBehaviour
             d = InvertKnockback ? -d : d;
             float deltaPower = MoreOnMaxRange ? -(KnockBackPower - KnockBackPowerOnMaxRange) : KnockBackPower - KnockBackPowerOnMaxRange;
             float p = Mathf.Clamp01(d.magnitude / KnockBackMaxRange);
-            target.Controller.Rb.AddForce(d.normalized * (KnockBackPowerOnMaxRange + p * deltaPower), ForceMode.VelocityChange);
+            target.UnitController.Rb.AddForce(d.normalized * (KnockBackPowerOnMaxRange + p * deltaPower), ForceMode.VelocityChange);
         }
 
         target.Stats.ApplyValue(Unit.StatType.HP, -Damage, Source.gameObject.GetInstanceID(), isSpecial);
@@ -139,7 +139,7 @@ public class Ability : MonoBehaviour
         if (Source != null)
         {
             
-            if (UnlockSelfStunOnDestroy) Source.Controller.LockControls(false);
+            if (UnlockSelfStunOnDestroy) Source.UnitController.LockControls(false);
             if (DestroySourceOnEnd) Destroy(Source.gameObject);
             //Source.SetAnimationState(Unit.AnimationStates.IDLE);
         }

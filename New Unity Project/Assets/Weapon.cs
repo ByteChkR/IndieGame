@@ -37,6 +37,7 @@ public class Weapon : MonoBehaviour
         }
         PreparePickup();
         WeaponIS.Weapon = gameObject;
+
     }
 
     public void SetActive(bool active)
@@ -114,14 +115,14 @@ public class Weapon : MonoBehaviour
                     Vector3 targetDir;
                     if (TurnTowardsTarget)
                     {
-                        targetDir = OOwner.Controller.ViewingDirection(true);
+                        targetDir = OOwner.UnitController.ViewingDirection(true);
                         Debug.Log(targetDir);
                         targetDir.Set(targetDir.x, 0, targetDir.z);
                         OOwner.transform.forward = targetDir;
                     }
                     else
                     {
-                        targetDir = OOwner.Controller.VTarget;
+                        targetDir = OOwner.UnitController.VTarget;
                     }
                     if (Abilities[i].Fire(Owner, targetDir, OOwner.transform.rotation))
                     {

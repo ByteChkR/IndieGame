@@ -185,19 +185,19 @@ public class Controller : MonoBehaviour, IController
         Vector3 v = Vector3.zero;
 
 
-        if (Input.GetKey(Forward))
+        if (Input.GetKey(interactions[(int)Interactions.UP]))
         {
             v += Vector3.forward;
         }
-        if (Input.GetKey(Backward))
+        if (Input.GetKey(interactions[(int)Interactions.DOWN]))
         {
             v += Vector3.back;
         }
-        if (Input.GetKey(Left))
+        if (Input.GetKey(interactions[(int)Interactions.LEFT]))
         {
             v += Vector3.left;
         }
-        if (Input.GetKey(Right))
+        if (Input.GetKey((interactions[(int)Interactions.RIGHT])))
         {
             v += Vector3.right;
         }

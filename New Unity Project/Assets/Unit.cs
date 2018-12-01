@@ -10,8 +10,8 @@ using System.Linq;
 public class Unit : MonoBehaviour
 {
     public bool IgnoreUnitCollisions = false;
-    public IController Controller;
-    public bool IsPlayer { get { return Controller.IsPlayer; } }
+    public IController UnitController;
+    public bool IsPlayer { get { return UnitController.IsPlayer; } }
     public static Dictionary<int, Unit> ActiveUnits = new Dictionary<int, Unit>();
     public static Unit Player;
     public UnitStats Stats;
@@ -102,7 +102,7 @@ public class Unit : MonoBehaviour
         Weapon w = null;
         BuyableHealthScript bh = null;
 
-        if (Controller == null)
+        if (UnitController == null)
         {
             return;
         }
@@ -110,7 +110,7 @@ public class Unit : MonoBehaviour
         if (IsPlayer && null != (w = (coll.collider.GetComponent<Weapon>())))
         {
             w.ActivateInfoBox();
-            if (Input.GetKeyDown(KeyCode.E) && w.IsOnGround && w.GoldValue <= Stats.CurrentGold)
+            if (Input.GetKeyDown(Controller.interactions[(int)Controller.Interactions.PICKUP]) && w.IsOnGround && w.GoldValue <= Stats.CurrentGold)
             {
                 Stats.ApplyValue(StatType.GOLD, -w.GoldValue, -1, false);
                 PickupWeapon(w);
@@ -119,7 +119,7 @@ public class Unit : MonoBehaviour
         if (IsPlayer && null != (bh = (coll.collider.GetComponent<BuyableHealthScript>())))
         {
             bh.ActivateInfoBox();
-            if (Input.GetKeyDown(KeyCode.E) && bh.cost <= Stats.CurrentGold)
+            if (Input.GetKeyDown(Controller.interactions[(int)Controller.Interactions.PICKUP]) && bh.cost <= Stats.CurrentGold)
             {
                 Stats.ApplyValue(StatType.GOLD, -w.GoldValue, -1, false);
                 PickupHealth(bh);
@@ -129,7 +129,7 @@ public class Unit : MonoBehaviour
 
     void OnCollisionExit(Collision coll)
     {
-        if (Controller == null)
+        if (UnitController == null)
         {
             return;
         }
@@ -285,7 +285,7 @@ public class Unit : MonoBehaviour
 
     void LockControls(bool locked)
     {
-        Controller.LockControls(locked);
+        UnitController.LockControls(locked);
     }
 
 
@@ -318,14 +318,14 @@ public class Unit : MonoBehaviour
 
         rb = GetComponent<Rigidbody>();
 
-        Controller = GetComponent<IController>();
+        UnitController = GetComponent<IController>();
         if (IsPlayer) Player = this;
 
         if (gameObject.tag != "Boss")
         {
             _weapon = GetComponentInChildren<Weapon>();
             _weapon.SetOwnerDUs(this);
-            if (!Controller.IsPlayer) _weapon.SetActive(true); //We only want the player to not use the weapon during menu
+            if (!UnitController.IsPlayer) _weapon.SetActive(true); //We only want the player to not use the weapon during menu
         }
     }
 
@@ -360,7 +360,7 @@ public class Unit : MonoBehaviour
         }
         if (deathAnim != null)
         {
-            if (!Controller.IsPlayer)
+            if (!UnitController.IsPlayer)
             {
                 Destroy(GetComponentInChildren<EnemyHealthBar>().gameObject);
             }
