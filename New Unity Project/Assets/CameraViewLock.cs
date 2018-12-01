@@ -14,7 +14,7 @@ public class CameraViewLock : MonoBehaviour
     public int SpeedAverageCount = 10;
     public Queue<Vector3> lastSpeeds;
     public float MaxSpeed;
-
+    public bool start = false;
     public bool OnlyLerp = false;
     // Use this for initialization
     private void Awake()
@@ -37,13 +37,18 @@ public class CameraViewLock : MonoBehaviour
         }
 
         Cam = GetComponent<Camera>();
+    }
+
+    public void Reset()
+    {
+
         Cam.transform.position = Target.transform.position + MinDistanceToPlayer * _direction;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (Target != null && FollowPlayer)
+        if (Target != null && FollowPlayer && start)
         {
             lastSpeeds.Enqueue(Unit.Player.rb.velocity);
             if (lastSpeeds.Count > SpeedAverageCount) lastSpeeds.Dequeue();

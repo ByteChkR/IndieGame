@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class PlayerSpawn : MonoBehaviour {
 
-
+    bool a = true;
 	// Use this for initialization
 	void Start () {
-		if(Unit.Player != null)
+
+        CameraController.instance.Load("CameraEnter");
+        CameraViewLock.instance.start = false;
+        if (Unit.Player != null)
         {
             Unit.Player.transform.SetPositionAndRotation(transform.position, transform.rotation);
             Unit.Player.ToggleUnitMovement(true);
@@ -16,7 +19,19 @@ public class PlayerSpawn : MonoBehaviour {
         {
             Debug.Log("Player Var is null.");
         }
-        
-	}
-	
+    }
+
+    private void FixedUpdate()
+    {
+        if (a && !CameraController.instance.start)
+        {
+
+            
+            
+            CameraViewLock.instance.start = true;
+            
+            a = false;
+        }
+    }
+
 }
