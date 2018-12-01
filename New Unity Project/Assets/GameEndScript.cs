@@ -9,25 +9,39 @@ public class GameEndScript : MonoBehaviour {
     public GameObject GameOverScreen;
     public GameObject MainMenu;
     public GameObject OptionsMenu;
+    public GameObject AchievementOne;
+    public GameObject AchievementTwo;
+    public GameObject AchievementThree;
+    public GameObject AchievementFour;
 
-	// Use this for initialization
-	void Start () {
-        instance = this;
+    // Use this for initialization
+    void Start () {
+        instance = this;                        //Creating Singleton
     }
 	
     public void ToGameOver()
     {
-        MainMenu.SetActive(false);
+        MainMenu.SetActive(false);                                                                  //Setting right screens active
         OptionsMenu.SetActive(false);
         GameOverScreen.SetActive(true);
     }
 
     public void ToWinScreen()
     {
-        MainMenu.SetActive(false);
+        if (AchievementSystem.instance.GetResultCoins()) AchievementOne.SetActive(true);            //Checking Achievements to display
+        else AchievementOne.SetActive(false);
+        if (AchievementSystem.instance.GetResultHealth()) AchievementTwo.SetActive(true);
+        else AchievementTwo.SetActive(false);
+        if (AchievementSystem.instance.GetResultKilling()) AchievementThree.SetActive(true);
+        else AchievementThree.SetActive(false);
+        if (AchievementSystem.instance.GetResultTime()) AchievementFour.SetActive(true);
+        else AchievementFour.SetActive(false);
+
+        MainMenu.SetActive(false);                                                                  //Setting the right screens active
         OptionsMenu.SetActive(false);
         WinScreen.SetActive(true);
-        AdditiveLevelManager.instance.RemoveLevel(1);
+
+        AdditiveLevelManager.instance.RemoveLevel(1);                                               //Unload Levels
         AdditiveLevelManager.instance.RemoveLevel(2);
     }
 
