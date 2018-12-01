@@ -20,6 +20,8 @@ public class AchievementSystem : MonoBehaviour {
     private bool _killTenEnemiesFinished = false;
     private int _enemiesKilled = 0;
     private int _desiredKills = 1;
+    private float _desiredTime = 600;
+    private float _currentTime = 0;
 
     public AchievementSet CollectCoinsSet;
     private bool _coinsFinished = false;
@@ -86,17 +88,18 @@ public class AchievementSystem : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-      //  Debug.Log(_anim.GetBool("isOnScreen"))  ;
-        if(Input.GetKeyDown(KeyCode.T))
-        {
-            KillEnemy();
-        }
+        //  Debug.Log(_anim.GetBool("isOnScreen"))  ;
+        /* if(Input.GetKeyDown(KeyCode.T))
+         {
+             KillEnemy();
+         }
 
-        if (Input.GetKeyDown(KeyCode.Y))
-        {
-            PickUpCoin();
-        }
+         if (Input.GetKeyDown(KeyCode.Y))
+         {
+             PickUpCoin();
+         }*/
 
+        _currentTime += Time.deltaTime;
 
         if (_isOnScreen == true)
         {
@@ -132,8 +135,10 @@ public class AchievementSystem : MonoBehaviour {
     {
         _enemiesKilled = 0;
         _coinsCollected = 0;
+        _currentTime = 0;
         _killTenEnemiesFinished = false;
         _coinsFinished = false;
+
 
     }
 
@@ -148,7 +153,7 @@ public class AchievementSystem : MonoBehaviour {
 
     public bool GetResultTime()
     {
-        return false;
+        return _currentTime < _desiredTime? true:false;
     }
 
     public bool GetResultHealth()
