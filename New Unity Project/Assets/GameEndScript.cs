@@ -27,6 +27,8 @@ public class GameEndScript : MonoBehaviour {
         MainMenu.SetActive(false);
         OptionsMenu.SetActive(false);
         WinScreen.SetActive(true);
+        AdditiveLevelManager.instance.RemoveLevel(1);
+        AdditiveLevelManager.instance.RemoveLevel(2);
     }
 
 
