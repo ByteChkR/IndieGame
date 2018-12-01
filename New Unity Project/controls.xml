@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<ArrayOfKeyCode xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <KeyCode>W</KeyCode>
+  <KeyCode>S</KeyCode>
+  <KeyCode>A</KeyCode>
+  <KeyCode>D</KeyCode>
+  <KeyCode>J</KeyCode>
+  <KeyCode>K</KeyCode>
+  <KeyCode>E</KeyCode>
+</ArrayOfKeyCode>

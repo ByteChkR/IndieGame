@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+using System.Xml.Serialization;
 
 [RequireComponent(typeof(Rigidbody), typeof(Unit))]
 public class Controller : MonoBehaviour, IController
@@ -27,6 +29,9 @@ public class Controller : MonoBehaviour, IController
     public GameObject WinScreen;
     public GameObject GameOverScreen;
     public GameObject MenuCanvas;
+    public string _SavePath = ".\\controls.xml";
+    public static string SavePath = "";
+
 
     private Rigidbody _rb;
     public Rigidbody Rb { get { return _rb; } }
@@ -50,6 +55,42 @@ public class Controller : MonoBehaviour, IController
             KeyCode.E
     };
 
+    public static void SetKeycodeFor(Interactions interaction, KeyCode key)
+    {
+        interactions[(int)interaction] = key;
+    }
+
+    public static KeyCode GetPressedKey()
+    {
+        foreach (KeyCode key in Enum.GetValues(typeof(KeyCode)))
+        {
+            if (Input.GetKeyDown(key))
+            {
+                return key;
+            }
+        }
+        return KeyCode.None;
+    }
+
+    public static void SaveToFile(KeyCode[] mapping)
+    {
+        XmlSerializer xs = new XmlSerializer(typeof(KeyCode[]));
+        System.IO.File.Delete(SavePath);
+        System.IO.FileStream tw = System.IO.File.Open(SavePath, System.IO.FileMode.Create);
+        xs.Serialize(tw, mapping);
+        tw.Close();
+
+    }
+
+    public void LoadFromFile()
+    {
+        XmlSerializer xs = new XmlSerializer(typeof(KeyCode[]));
+        if (!System.IO.File.Exists(SavePath)) SaveToFile(interactions);
+        System.IO.FileStream tw = System.IO.File.Open(SavePath, System.IO.FileMode.OpenOrCreate);
+        interactions = (KeyCode[])xs.Deserialize(tw);
+        tw.Close();
+    }
+
     // Use this for initialization
     void Start()
     {
@@ -58,12 +99,22 @@ public class Controller : MonoBehaviour, IController
         _movementOffset = Quaternion.Euler(MovementDegreeOffset);
     }
 
+    private void Awake()
+    {
+        SavePath = _SavePath;
+        LoadFromFile();
+    }
+
+    private void OnDestroy()
+    {
+        SaveToFile(interactions);
+    }
+
     public void LockControls(bool locked)
     {
         _lockControls = locked;
         _rb.velocity = Vector3.zero;
     }
-
 
 
     void DeconstructVelocityAndApplyToAnimation(Vector3 velocity)
@@ -75,14 +126,8 @@ public class Controller : MonoBehaviour, IController
             float d = Vector3.Dot(transform.forward, velocity.normalized); // 1 = same dir, -1 = walking backwards
             float d1 = Vector3.Dot(transform.right, velocity.normalized); // 1 = walking right, -1 = walking left
 
-
-
-
             right = d1;
             fwd = d;
-
-
-
         }
 
     }
