@@ -52,11 +52,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1916bf66012a52d4390910831f344b1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DestroySourceOnEnd: 0
   FixForPlayerModel: 0
   Collider: {fileID: 0}
   SelfStun: 1
   UnlockSelfStunOnDestroy: 1
-  CheckCollisionsEveryFrame: 0
+  CheckCollisionsEveryFrame: 1
   KnockBackPower: 0
   KnockBackMaxRange: 10
   KnockBackPowerOnMaxRange: 5
@@ -64,8 +65,8 @@ MonoBehaviour:
   MoreOnMaxRange: 0
   CollType: 0
   Damage: 10
-  UseMaxTime: 0
-  UseStateChange: 1
+  UseMaxTime: 1
+  UseStateChange: 0
   MaxTimeAlive: 2
   state: -1
   _animationName: AOEStun

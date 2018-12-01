@@ -394,7 +394,7 @@ MonoBehaviour:
     icon: {fileID: 0}
     abilityInstance: {fileID: 114469962327125172, guid: 73bf2125c0dc30f4caf326ad32000293,
       type: 2}
-    ComboCost: -1
+    ComboCost: 0
     cooldown: 2
     animState: 2
   - IsSpecial: 1
@@ -403,13 +403,16 @@ MonoBehaviour:
     icon: {fileID: 0}
     abilityInstance: {fileID: 114551388014807028, guid: b393fa62583e670439ab0c5474344a6d,
       type: 2}
-    ComboCost: 0
+    ComboCost: 3
     cooldown: 2
     animState: 5
-  AbilityKeyBindings: 4301000044010000
   Coll: {fileID: 0}
   Rb: {fileID: 0}
   WeaponIS: {fileID: 114637282282049762}
+  UseMultipleAttacks: 0
+  AttackCount: 1
+  SpecialAttackAnimation: 0
+  TurnTowardsTarget: 0
   GoldValue: 5
 --- !u!222 &222266530771839150
 CanvasRenderer:

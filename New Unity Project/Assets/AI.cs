@@ -103,7 +103,7 @@ public class AI : MonoBehaviour, IController
                     //Special Attack
                     if(_unit.GetActiveWeapon().Abilities[1].Fire(_unit.gameObject.GetInstanceID(), Target.position, Target.rotation))
                     {
-
+                        Debug.Log("asd");
                         _unit.SetAnimationState(Unit.AnimationStates.SPECIAL);
                     }
 
@@ -114,6 +114,7 @@ public class AI : MonoBehaviour, IController
                     
                    if (_unit.GetActiveWeapon().Abilities[0].Fire(_unit.gameObject.GetInstanceID(), Target.position, Target.rotation))
                     {
+                        
                         _unit.SetAnimationState(Unit.AnimationStates.ATTACK);
                     }
 

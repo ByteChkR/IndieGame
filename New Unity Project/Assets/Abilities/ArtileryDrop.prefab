@@ -124,21 +124,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed37d2fcb5de75f4faed0ed3e847ea6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _collider: {fileID: 0}
+  DestroySourceOnEnd: 0
+  FixForPlayerModel: 0
+  Collider: {fileID: 0}
   SelfStun: 0
+  UnlockSelfStunOnDestroy: 1
   CheckCollisionsEveryFrame: 1
   KnockBackPower: 0
   KnockBackMaxRange: 10
   KnockBackPowerOnMaxRange: 5
   InvertKnockback: 0
   MoreOnMaxRange: 0
-  collType: 0
+  CollType: 0
   Damage: 10
-  effects:
-  - type: 4
-    Strength: 0.5
-    InverseOnTimeout: 1
-    Duration: 1
-    TimeActivated: 0
-    ApplyOnce: 1
+  UseMaxTime: 0
+  UseStateChange: 0
+  MaxTimeAlive: 0
+  state: -1
+  Effects: []
   Offset: {x: 0, y: 12, z: 0}

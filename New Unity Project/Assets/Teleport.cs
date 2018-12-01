@@ -26,7 +26,7 @@ public class Teleport : Ability
     {
         base.Initialize(source, target, rot, isSpecial);
 
-        Source.UnitAnimation.speed = _animationSpeed;
+        if(Source.UnitAnimation != null) Source.UnitAnimation.speed = _animationSpeed;
         
     }
 
@@ -46,6 +46,7 @@ public class Teleport : Ability
         }
         Source.transform.position = pos;
         if (Source.Agent != null) Source.Agent.isStopped = true;
+        Destroy(gameObject);
         
     }
 

@@ -57,7 +57,7 @@ public class Unit : MonoBehaviour
 
     public void SetAnimationState(AnimationStates newState)
     {
-        UnitAnimation.SetInteger("state", (int)newState);
+        if(UnitAnimation != null) UnitAnimation.SetInteger("state", (int)newState);
     }
 
 

@@ -1424,6 +1424,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d188b9ca1efe4ac40a2bb46ce9231144, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IgnoreUnitCollisions: 0
   Stats:
     _baseHealth: 0
     _baseMovementSpeed: 1
@@ -1431,7 +1432,9 @@ MonoBehaviour:
     MaxHealth: 50
     MaxCombo: 10
     MaxMovementSpeed: 3
-  UnitAnimation: {fileID: 111114691272427366}
+    OnlyDamagedWithSpecialAttacks: 0
+  deathAnim: {fileID: 0}
+  UnitAnimation: {fileID: 0}
   Agent: {fileID: 0}
   ParticleSystems: []
   Checkpoint: {fileID: 0}
@@ -1439,6 +1442,7 @@ MonoBehaviour:
   GoldPrefab: {fileID: 1136768164843768, guid: aac181e834279be488ad830f1c633251, type: 2}
   rb: {fileID: 0}
   WeaponContainer: {fileID: 1539951431648014}
+  TeamID: 0
 --- !u!114 &114347026770803852
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1455,6 +1459,7 @@ MonoBehaviour:
   AttackRange: 5
   ActivationRange: 10
   Speed: 3.5
+  _animator: {fileID: 0}
 --- !u!136 &136923448478166742
 CapsuleCollider:
   m_ObjectHideFlags: 1

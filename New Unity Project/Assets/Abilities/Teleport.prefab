@@ -51,6 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99c3ac82012ca9a4aabdd5550287eddc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DestroySourceOnEnd: 0
   FixForPlayerModel: 0
   Collider: {fileID: 0}
   SelfStun: 0
@@ -64,7 +65,7 @@ MonoBehaviour:
   CollType: 0
   Damage: 0
   UseMaxTime: 0
-  UseStateChange: 1
+  UseStateChange: 0
   MaxTimeAlive: 0
   state: -1
   _animationName: Teleport
