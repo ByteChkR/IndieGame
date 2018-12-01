@@ -10,7 +10,24 @@ public class Weapon : MonoBehaviour
     public int Owner = -1;
     public Unit OOwner;
     public List<AbstractAbility> Abilities;
-    public List<KeyCode> AbilityKeyBindings;
+    public List<KeyCode> AbilityKeyBindings
+    {
+        get
+        {
+            List<KeyCode> ret = new List<KeyCode>();
+            if(OOwner != null && OOwner.UnitController.IsPlayer)
+            {
+                for (int i = 0; i < Controller.interactions.Length; i++)
+                {
+                    if(i == (int)Controller.Interactions.ABILITY_ONE || i == (int)Controller.Interactions.ABILITY_TWO)
+                    {
+                        ret.Add(Controller.interactions[i]);
+                    }
+                }
+            }
+            return ret;
+        }
+    }
     public BoxCollider Coll;
     public Rigidbody Rb;
     public WeaponInfoScript WeaponIS;
@@ -104,7 +121,7 @@ public class Weapon : MonoBehaviour
     {
 
         //PreparePickup();
-        if (OOwner == null || Owner == gameObject.GetInstanceID() || !Activate) return;
+        if (OOwner == null || Owner == gameObject.GetInstanceID() || !Activate || !OOwner.UnitController.IsPlayer) return;
         for (int i = 0; i < AbilityKeyBindings.Count; i++)
         {
             if (!OOwner.Stats.IsStunned && Input.GetKey(AbilityKeyBindings[i]) && OOwner.GetActiveWeapon() == this)

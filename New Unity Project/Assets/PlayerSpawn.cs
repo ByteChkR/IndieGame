@@ -10,24 +10,24 @@ public class PlayerSpawn : MonoBehaviour {
 
         CameraController.instance.Load("CameraEnter");
         CameraViewLock.instance.start = false;
-        if (Unit.Player != null)
-        {
-            Unit.Player.transform.SetPositionAndRotation(transform.position, transform.rotation);
-            Unit.Player.ToggleUnitMovement(true);
-        }
-        else
-        {
-            Debug.Log("Player Var is null.");
-        }
+        
     }
 
     private void FixedUpdate()
     {
         if (a && !CameraController.instance.start)
         {
+            if (Unit.Player != null)
+            {
+                Unit.Player.transform.SetPositionAndRotation(transform.position, transform.rotation);
+                Unit.Player.ToggleUnitMovement(true);
+            }
+            else
+            {
+                Debug.Log("Player Var is null.");
+            }
 
-            
-            
+
             CameraViewLock.instance.start = true;
             
             a = false;
