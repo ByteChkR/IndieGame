@@ -274,7 +274,7 @@ public class AudioManager : MonoBehaviour
                 case BackgroundMusic.Menu:
                     BackgroundAudioSource.clip = Menu;
                     break;
-
+    
 
                 case BackgroundMusic.Stage1:
                     BackgroundAudioSource.clip = Stage1;
