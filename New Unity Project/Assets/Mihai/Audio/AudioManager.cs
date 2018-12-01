@@ -7,7 +7,11 @@ public class AudioManager : MonoBehaviour
     [HideInInspector]
     static public AudioManager instance;
 
-    public enum SoundEffect { Click, Shoot, PlayerHit, VictorySound, GameOver, Explosion, EnemyHit, Achievement, Dash, NPC, Beam, PickUP, BossWave, Click1, Click2, LaserBeam, LaserCharge, TutorialComplete, ElectricSound }
+    public enum SoundEffect {
+        PlayerHit, Click, GameOver, Explosion, EnemyHit, Achievement, Dash, NPC,
+        Beam, PickUp, Buy, NotEnoughMoney, FirstBossWave, FirstBossSpecialAttack,
+        Glitch, LaserBeam, LaserCharge, Rocket, ElectricSound, FootSteps, SpiderFootSteps
+    }
     public enum BackgroundMusic { Menu, Tutorial, Stage1, Boss1, Stage2, Boss2, Result }
 
     [Header("VolumeMixer")]
@@ -21,13 +25,13 @@ public class AudioManager : MonoBehaviour
 
     [Header("OneShots")]
     public AudioClip Shoot;
-    public AudioClip PlayerHit, Click, VictorySound, GameOver, Explosion, EnemyHit, Achievement, Dash, NPC,
-        Beam, PickUp, BossWave, Click1, Click2, LaserBeam, LaserCharge, TutorialComplete, ElectricSound;
+    public AudioClip PlayerHit, Click, GameOver, Explosion, EnemyHit, Achievement, Dash, NPC,
+        Beam, PickUp, Buy, NotEnoughMoney, FirstBossWave,FirstBossSpecialAttack, Glitch, LaserBeam, LaserCharge, Rocket, ElectricSound, FootSteps, SpiderFootSteps;
 
 
     [Header("BackgroundClips")]
     public AudioClip Menu;
-    public AudioClip Tutorial, Stage1, Boss1, Stage2, Boss2, Result,GameOverLoop;
+    public AudioClip Stage1, Boss1, Stage2, Boss2, Result,GameOverLoop;
 
     private BackgroundMusic _currentBackgroundMusic;
     private BackgroundMusic _nextBackgroundMusic;
@@ -73,23 +77,15 @@ public class AudioManager : MonoBehaviour
     {
         switch (soundEffect)
         {
-            case SoundEffect.Click:
-                SoundEffectSource.PlayOneShot(Click);
-                break;
-
-            case SoundEffect.Shoot:
-                SoundEffectSource.PlayOneShot(Shoot);
-                break;
-
+      
             case SoundEffect.PlayerHit:
                 SoundEffectSource.PlayOneShot(PlayerHit);
                 break;
 
-            case SoundEffect.VictorySound:
-
-                SoundEffectSource.PlayOneShot(VictorySound);
-
+            case SoundEffect.Click:
+                SoundEffectSource.PlayOneShot(Click);
                 break;
+
             case SoundEffect.GameOver:
 
                 SoundEffectSource.PlayOneShot(GameOver);
@@ -130,22 +126,31 @@ public class AudioManager : MonoBehaviour
                 SoundEffectSource.PlayOneShot(Beam);
 
                 break;
-            case SoundEffect.PickUP:
+            case SoundEffect.PickUp:
 
                 SoundEffectSource.PlayOneShot(PickUp);
 
                 break;
-            case SoundEffect.BossWave:
-                SoundEffectSource.PlayOneShot(BossWave);
+
+            case SoundEffect.Buy:
+
+                SoundEffectSource.PlayOneShot(Buy);
+
                 break;
-            case SoundEffect.Click1:
-                SoundEffectSource.PlayOneShot(Click1);
+            case SoundEffect.NotEnoughMoney:
+
+                SoundEffectSource.PlayOneShot(NotEnoughMoney);
+
                 break;
-            case SoundEffect.Click2:
-                SoundEffectSource.PlayOneShot(Click2);
+
+            case SoundEffect.FirstBossWave:
+                SoundEffectSource.PlayOneShot(FirstBossWave);
                 break;
-            case SoundEffect.ElectricSound:
-                SoundEffectSource.PlayOneShot(ElectricSound);
+            case SoundEffect.FirstBossSpecialAttack:
+                SoundEffectSource.PlayOneShot(FirstBossSpecialAttack);
+                break;
+            case SoundEffect.Glitch:
+                SoundEffectSource.PlayOneShot(Glitch);
                 break;
             case SoundEffect.LaserBeam:
                 SoundEffectSource.PlayOneShot(LaserBeam);
@@ -153,8 +158,21 @@ public class AudioManager : MonoBehaviour
             case SoundEffect.LaserCharge:
                 SoundEffectSource.PlayOneShot(LaserCharge);
                 break;
-            case SoundEffect.TutorialComplete:
-                SoundEffectSource.PlayOneShot(TutorialComplete);
+            case SoundEffect.Rocket:
+
+                SoundEffectSource.PlayOneShot(Rocket);
+
+                break;
+            case SoundEffect.ElectricSound:
+                SoundEffectSource.PlayOneShot(ElectricSound);
+                break;
+            case SoundEffect.FootSteps:
+                SoundEffectSource.PlayOneShot(FootSteps);
+                break;
+            case SoundEffect.SpiderFootSteps:
+
+                SoundEffectSource.PlayOneShot(SpiderFootSteps);
+
                 break;
         }
 
@@ -256,10 +274,7 @@ public class AudioManager : MonoBehaviour
                 case BackgroundMusic.Menu:
                     BackgroundAudioSource.clip = Menu;
                     break;
-
-                case BackgroundMusic.Tutorial:
-                    BackgroundAudioSource.clip = Tutorial;
-                    break;
+    
 
                 case BackgroundMusic.Stage1:
                     BackgroundAudioSource.clip = Stage1;

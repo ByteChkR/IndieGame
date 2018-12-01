@@ -130,7 +130,34 @@ public class AchievementSystem : MonoBehaviour {
 
     public void ResetSystem()
     {
-        
+        _enemiesKilled = 0;
+        _coinsCollected = 0;
+        _killTenEnemiesFinished = false;
+        _coinsFinished = false;
+
+    }
+
+ public bool GetResultKilling()
+    {
+        return _killTenEnemiesFinished;
+    }
+    public bool GetResultCoins()
+    {
+        return _coinsFinished;
+    }
+
+    public bool GetResultTime()
+    {
+        return false;
+    }
+
+    public bool GetResultHealth()
+    {
+        if(Unit.Player == null)
+        {
+            return false;
+        }
+        return Unit.Player.Stats.CurrentHealth >= 50 ? true : false;
     }
 
 }
