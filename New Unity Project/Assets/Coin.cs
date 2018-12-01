@@ -30,6 +30,10 @@ public class Coin : Ability
         distance = vdir.magnitude;
         if(distance <= MinDistance)
         {
+            if(Target.gameObject.tag == "Player")
+            {
+                AchievementSystem.instance.PickUpCoin();
+            }
             Target.Stats.ApplyValue(Unit.StatType.GOLD, 1,-1,false);
             Destroy(gameObject);
         }

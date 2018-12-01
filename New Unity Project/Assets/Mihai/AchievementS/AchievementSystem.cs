@@ -24,7 +24,7 @@ public class AchievementSystem : MonoBehaviour {
     public AchievementSet CollectCoinsSet;
     private bool _coinsFinished = false;
     private int _coinsCollected = 0;
-    private int _desiredCoins = 1;
+    private int _desiredCoins = 10;
 
     private Animator _anim;
     private float _maxTimeOnScreen = 4;

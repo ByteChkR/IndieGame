@@ -337,7 +337,7 @@ public class Unit : MonoBehaviour
     private void UnitDying()
     {
         Dead = true;
-        if (AchievementSystem.instance != null && !Controller.IsPlayer)
+        if (AchievementSystem.instance != null && gameObject.tag != "Player")
         {
 
 
