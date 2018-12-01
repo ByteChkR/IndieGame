@@ -3150,6 +3150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   aproximatedTime: 2
   offSet: {x: 0, y: 2, z: 0}
+  lerppower: 0.1
 --- !u!114 &386095141
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4066,6 +4067,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   aproximatedTime: 2
   offSet: {x: 0, y: 2, z: 0}
+  lerppower: 0.1
 --- !u!114 &472163042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6858,6 +6860,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   aproximatedTime: 2
   offSet: {x: 0, y: 2, z: 0}
+  lerppower: 0.1
 --- !u!114 &766295815
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9804,6 +9807,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   aproximatedTime: 2
   offSet: {x: 0, y: 2, z: 0}
+  lerppower: 0.1
 --- !u!114 &1124263821
 MonoBehaviour:
   m_ObjectHideFlags: 0
