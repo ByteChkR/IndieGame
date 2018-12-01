@@ -51,18 +51,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69057728633b8164a96144153765e0ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _collider: {fileID: 0}
+  DestroySourceOnEnd: 0
+  FixForPlayerModel: 0
+  Collider: {fileID: 0}
   SelfStun: 0
+  UnlockSelfStunOnDestroy: 0
   CheckCollisionsEveryFrame: 0
   KnockBackPower: 0
   KnockBackMaxRange: 10
   KnockBackPowerOnMaxRange: 5
   InvertKnockback: 0
   MoreOnMaxRange: 0
-  collType: 0
+  CollType: 0
   Damage: 0
-  delayPerProjectile: 0.1
-  projectileCount: 40
+  UseMaxTime: 0
+  UseStateChange: 0
+  MaxTimeAlive: 0
+  state: -1
+  DelayPerProjectile: 0.1
+  ProjectileCount: 15
   Projectile: {fileID: 1007788284920100, guid: 3839e4d08cc03394aba3b0b86e97831a, type: 2}
   DistanceBetweenProjectiles: 0.5
   StartDistance: 1

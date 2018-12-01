@@ -126,6 +126,6 @@ MonoBehaviour:
   MaxTimeAlive: 0
   state: -1
   OnHitEffects: []
-  Speed: 1
+  Speed: 0.2
   TravelDistance: 20.1
   MaxTime: 1
