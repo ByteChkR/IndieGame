@@ -8,10 +8,12 @@ public class FirstBoss : MonoBehaviour,IController {
     public Transform looker;
     public Transform TrioPlace;
 
-    public Animator _animator;
-    public Animator Animator { get { return _animator; } }
+   // public Animator _animator;
+    public Animator Animator { get { return anim; } }
 
 
+    public float activationRange;
+    private bool _isBossActive = false;
     public GameObject TrioPrefab;
 
     private Quaternion _watchingDirection;
@@ -20,7 +22,7 @@ public class FirstBoss : MonoBehaviour,IController {
     public Transform player;
     private Rigidbody _rb;
     public enum FirstBossStates { Dash, RangedAttack, Trio, Special}
-    private FirstBossStates _firstBossState =FirstBossStates.Dash;
+    private FirstBossStates _firstBossState =FirstBossStates.Special;
     public Unit bossUnit;
 
     public GameObject widePrefab;
@@ -31,7 +33,7 @@ public class FirstBoss : MonoBehaviour,IController {
     private bool _canDealDashDamage = false;
 
 
-    private Animator _anim;
+    public Animator anim;
     private int _animationResetTime = 0;
     private float _timeTillNextAttack = 1;
 
@@ -59,15 +61,35 @@ public class FirstBoss : MonoBehaviour,IController {
         {
             player = GameObject.FindGameObjectWithTag("Player").transform;
         }
-        _anim = GetComponent<Animator>();
+       // _anim = GetComponent<Animator>();
         _rb = GetComponent<Rigidbody>();
 
-        HUDScript.instance.SetBoss(bossUnit);
-
+        if (HUDScript.instance != null)
+        {
+            HUDScript.instance.SetBoss(bossUnit);
+        }
 	}
 	
 	// Update is called once per frame
 	void Update () {
+
+        if(Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            GetStunned();
+        }
+        if(player == null)
+        {
+            return;
+        }
+        if(_isBossActive == false)
+        {
+            if( Vector3.Distance(player.position,transform.position)< activationRange)
+            {
+                _isBossActive = true;
+            }
+
+            return;
+        }
 
         WatchControl();
         AnimationControll();
@@ -114,7 +136,7 @@ public class FirstBoss : MonoBehaviour,IController {
             if (_canBeStunned == true && bossUnit.Stats.IsStunned == true)
             {
                 _canBeStunned = false;
-                EndSpecial();
+                GetStunned();   
 
             }
 
@@ -132,12 +154,12 @@ public class FirstBoss : MonoBehaviour,IController {
         {
             if (_animationResetTime == 1)
             {
-                _anim.SetInteger("frame", 0);
+                anim.SetInteger("frame", 0);
             }
             _animationResetTime--;
         }
 
-        if (_anim.GetCurrentAnimatorStateInfo(0).IsName("FBIdle"))
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Boss1_idle"))
         {
             _canWatch = true;
         }
@@ -186,7 +208,7 @@ public class FirstBoss : MonoBehaviour,IController {
 
     private void DoAnimation(int pIndex,int pResetFrames)
     {
-        _anim.SetInteger("frame", pIndex);
+        anim.SetInteger("frame", pIndex);
         _animationResetTime = pResetFrames;
     }
 
@@ -201,17 +223,17 @@ public class FirstBoss : MonoBehaviour,IController {
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            _anim.SetInteger("frame", 2);
+            anim.SetInteger("frame", 2);
             _animationResetTime = 5;
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            _anim.SetInteger("frame", 3);
+            anim.SetInteger("frame", 3);
             _animationResetTime = 5;
         }
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            _anim.SetInteger("frame", 4);
+            anim.SetInteger("frame", 4);
             _animationResetTime = 5;
         }
     }
@@ -280,6 +302,17 @@ public class FirstBoss : MonoBehaviour,IController {
             _animationResetTime = 2;
             _timeTillNextAttack = 3;
         }
+    }
+
+    private void GetStunned()
+    {
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Boss1_special_attackA"))
+        {
+            anim.SetInteger("frame", 5);
+            _animationResetTime = 2;
+            _timeTillNextAttack = 3;
+        }
+
     }
 
 }
