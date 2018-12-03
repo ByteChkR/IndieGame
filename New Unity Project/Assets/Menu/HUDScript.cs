@@ -21,10 +21,14 @@ public class HUDScript : MonoBehaviour
     public Text HealthAmount;
     public Text ComboAmount;
     public Text GoldAmount;
+    public Image NpcOne;
+    public Image NpcTwo;
+    public Image NpcThree;
 
     public static HUDScript instance;
 
     private Unit _boss;
+    private int _amountOfHelpedNpcs = 0;
     private float _playerHealthNewScale;
     private float _bossHealthNewScale;
 
@@ -38,6 +42,7 @@ public class HUDScript : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        UpdateNpcStuff(0);
     }
 
     // Use this for initialization
@@ -46,7 +51,34 @@ public class HUDScript : MonoBehaviour
         Health = MaxHealth;
     }
 
+    public void AddHelpedNpc()
+    {
+        _amountOfHelpedNpcs += 1;
+        UpdateNpcStuff(_amountOfHelpedNpcs);
+    }
 
+    private void UpdateNpcStuff(int amountOfHelpedNPCs)
+    {
+        if (amountOfHelpedNPCs > 0)
+        {
+            NpcOne.gameObject.SetActive(true);
+            if (amountOfHelpedNPCs > 1)
+            {
+                NpcTwo.gameObject.SetActive(true);
+                if (amountOfHelpedNPCs > 2)
+                {
+                    NpcThree.gameObject.SetActive(true);
+                }
+            }
+        }
+        else
+        {
+            NpcOne.gameObject.SetActive(false);
+            NpcTwo.gameObject.SetActive(false);
+            NpcThree.gameObject.SetActive(false);
+        }
+        
+    }
     void InitializeHudHealth(int pMaxHealth, int pHealth = 0)
     {
         MaxHealth = pMaxHealth;
