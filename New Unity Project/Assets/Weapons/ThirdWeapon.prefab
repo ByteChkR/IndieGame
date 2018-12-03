@@ -446,16 +446,16 @@ MonoBehaviour:
     Name: AOE Melee
     Description: 
     icon: {fileID: 0}
-    abilityInstance: {fileID: 114351747421703744, guid: e80e98c8d8fa54b4d8d674c4c6d950a8,
+    abilityInstance: {fileID: 114594336571885322, guid: 6a2757239111ab143b4565c0e0482616,
       type: 2}
-    ComboCost: -1
+    ComboCost: 0
     cooldown: 2
     animState: 2
   - IsSpecial: 1
     Name: 
     Description: 
     icon: {fileID: 0}
-    abilityInstance: {fileID: 114627540065632548, guid: 86e22808233aec14ea7f86662753cb12,
+    abilityInstance: {fileID: 114351747421703744, guid: f48ba00987c0cde4f928380792e4c00b,
       type: 2}
     ComboCost: 4
     cooldown: 4

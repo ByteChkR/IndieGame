@@ -127,9 +127,11 @@ public class AdditiveLevelManager : MonoBehaviour
         {
             HighestLevel = sceneIndex;
             HighestCheckpoint = 0;
+
         }
 
         loadedLevels.Add(sceneIndex, null);
+        SceneManager.SetActiveScene(SceneManager.GetSceneAt(sceneIndex));
         //MapInfo level = GameObject.Find(LevelPrefix + sceneIndex).GetComponent<MapInfo>();
         //UnityEngine.Debug.Assert(level != null, "Level prefix is not correct, you tried to load: " + LevelPrefix + sceneIndex + ", Check the GameObject name of the level.");
         //loadedLevels.Add(sceneIndex, level);

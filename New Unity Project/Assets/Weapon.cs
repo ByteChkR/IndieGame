@@ -134,7 +134,6 @@ public class Weapon : MonoBehaviour
                     if (TurnTowardsTarget)
                     {
                         targetDir = OOwner.UnitController.ViewingDirection(true);
-                        Debug.Log(targetDir);
                         targetDir.Set(targetDir.x, 0, targetDir.z);
                         OOwner.transform.forward = targetDir;
                     }
@@ -144,7 +143,6 @@ public class Weapon : MonoBehaviour
                     }
                     if (Abilities[i].Fire(Owner, targetDir, OOwner.transform.rotation))
                     {
-                        Debug.Log(UseMultipleAttacks);
                         if (UseMultipleAttacks && Abilities[i].animState == Unit.AnimationStates.ATTACK)
                         {
                             OOwner.UnitAnimation.SetInteger("attack", cur);
