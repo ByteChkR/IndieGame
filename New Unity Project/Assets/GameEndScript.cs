@@ -9,6 +9,7 @@ public class GameEndScript : MonoBehaviour {
     public GameObject GameOverScreen;
     public GameObject MainMenu;
     public GameObject OptionsMenu;
+    public GameObject MenuCanvasBackground;
     public GameObject AchievementOne;
     public GameObject AchievementTwo;
     public GameObject AchievementThree;
@@ -24,6 +25,7 @@ public class GameEndScript : MonoBehaviour {
         MainMenu.SetActive(false);                                                                  //Setting right screens active
         OptionsMenu.SetActive(false);
         GameOverScreen.SetActive(true);
+        MenuCanvasBackground.SetActive(true);
     }
 
     public void ToWinScreen()
@@ -40,6 +42,7 @@ public class GameEndScript : MonoBehaviour {
         MainMenu.SetActive(false);                                                                  //Setting the right screens active
         OptionsMenu.SetActive(false);
         WinScreen.SetActive(true);
+        MenuCanvasBackground.SetActive(true);
 
         AdditiveLevelManager.instance.RemoveLevel(1);                                               //Unload Levels
         AdditiveLevelManager.instance.RemoveLevel(2);

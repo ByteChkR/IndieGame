@@ -393,7 +393,6 @@ public class Unit : MonoBehaviour
 
     private void OnDestroy()
     {
-        Debug.Log("TEST");
         if (UnitController.IsPlayer)
         {
             GameEndScript.instance.ToGameOver();
