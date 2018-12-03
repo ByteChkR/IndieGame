@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class CageNPC : MonoBehaviour {
 
-    public GameObject DialogueTriggerPrefab;
+    public GameObject headObject;
     public Vector3 prefabOffSet;
     public GameObject canvasCage;
     public Slider progressBar;
@@ -73,7 +73,7 @@ public class CageNPC : MonoBehaviour {
 
     private void CreateDialoguePrefab()
     {
-        Instantiate(DialogueTriggerPrefab, transform.position + prefabOffSet, transform.rotation);
+        //Instantiate(DialogueTriggerPrefab, transform.position + prefabOffSet, transform.rotation);
     }
 
     public void ResetTime()
@@ -83,7 +83,8 @@ public class CageNPC : MonoBehaviour {
 
     public void AddCrystal()
     {
-
+        Destroy(headObject);
+        HUDScript.instance.AddHelpedNpc();
     }
 
 
