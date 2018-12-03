@@ -110,6 +110,7 @@ public class AdditiveLevelManager : MonoBehaviour
         {
             IngameHud.SetActive(true);
             loadingScreen.transform.parent.gameObject.SetActive(false);
+            
         }
         //MapInfo level = GameObject.Find(LevelPrefix + sceneIndex).GetComponent<MapInfo>();
         //UnityEngine.Debug.Assert(level != null, "Level prefix is not correct, you tried to load: " + LevelPrefix + sceneIndex + ", Check the GameObject name of the level.");

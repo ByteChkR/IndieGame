@@ -301,7 +301,7 @@ Prefab:
     - target: {fileID: 224828345685194126, guid: 54452b153dfc2c04dbd011eedf2e176c,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -31.999878
+      value: -31.999908
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54452b153dfc2c04dbd011eedf2e176c, type: 2}
@@ -465,10 +465,10 @@ GameObject:
   m_Component:
   - component: {fileID: 534669905}
   - component: {fileID: 534669904}
-  - component: {fileID: 534669903}
   - component: {fileID: 534669906}
   - component: {fileID: 534669907}
   - component: {fileID: 534669908}
+  - component: {fileID: 534669903}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera

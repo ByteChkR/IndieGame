@@ -57,7 +57,7 @@ public class Unit : MonoBehaviour
 
     public void SetAnimationState(AnimationStates newState)
     {
-        if(UnitAnimation != null) UnitAnimation.SetInteger("state", (int)newState);
+        if (UnitAnimation != null) UnitAnimation.SetInteger("state", (int)newState);
     }
 
 
@@ -334,6 +334,11 @@ public class Unit : MonoBehaviour
         Stats.Process();
     }
 
+
+    private void Update()
+    {
+        if (UnitController.IsPlayer) AudioManager.instance.BackgroundAudioSource.volume = SpeakerSound.GetVolume(transform.position);
+    }
     private void UnitDying()
     {
         Dead = true;
@@ -342,6 +347,11 @@ public class Unit : MonoBehaviour
 
 
             AchievementSystem.instance.KillEnemy();
+        }
+
+        if(this == Unit.Player)
+        {
+            SpeakerSound.UseSpeaker3D = false;
         }
         Vector3 rnd = new Vector3();
         Vector2 r;
