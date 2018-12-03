@@ -18,7 +18,7 @@ public class EnemyHealthBar : MonoBehaviour {
     void RotateHealthBar()
     {
 
-      //  transform.forward = -CameraViewLock.instance.Cam.transform.forward;
+        transform.forward = -CameraViewLock.instance.Cam.transform.forward;
         //transform.LookAt(_cam.transform.position);
         //transform.Rotate(new Vector3(0, 180, 0));
     }

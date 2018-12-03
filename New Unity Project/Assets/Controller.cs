@@ -101,6 +101,7 @@ public class Controller : MonoBehaviour, IController
 
     private void Awake()
     {
+        DontDestroyOnLoad(gameObject);
         SavePath = _SavePath;
         LoadFromFile();
     }
