@@ -30,7 +30,7 @@ public class Controller : MonoBehaviour, IController
     public GameObject GameOverScreen;
     public GameObject MenuCanvas;
     public string _SavePath = ".\\controls.xml";
-    public static string SavePath = "";
+    public static string SavePath = ".\\controls.xml";
 
 
     private Rigidbody _rb;
