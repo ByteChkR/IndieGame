@@ -1018,6 +1018,7 @@ MonoBehaviour:
     MaxCombo: 0
     MaxMovementSpeed: 0
     OnlyDamagedWithSpecialAttacks: 0
+  deathAnim: {fileID: 0}
   UnitAnimation: {fileID: 0}
   Agent: {fileID: 0}
   ParticleSystems: []
@@ -1027,6 +1028,8 @@ MonoBehaviour:
   rb: {fileID: 0}
   WeaponContainer: {fileID: 0}
   TeamID: 0
+  Dead: 0
+  InstantDestroy: 0
 --- !u!136 &136102814284465694
 CapsuleCollider:
   m_ObjectHideFlags: 1
