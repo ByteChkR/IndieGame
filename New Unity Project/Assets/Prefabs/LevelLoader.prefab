@@ -53,10 +53,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
   LevelPrefix: level_
-  DebugStart: 0
+  DebugStart: 1
   IngameHud: {fileID: 0}
   loadingSlider: {fileID: 0}
   loadingScreen: {fileID: 0}
   progressText: {fileID: 0}
   menuScreen: {fileID: 0}
   optionsMenu: {fileID: 0}
+  MenuCavasBackground: {fileID: 0}
+  HighestLevel: 0
+  LastGold: 0
+  HighestCheckpoint: 0
+  _lastWeaponID: 0
