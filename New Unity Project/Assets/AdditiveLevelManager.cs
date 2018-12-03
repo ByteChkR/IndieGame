@@ -19,6 +19,7 @@ public class AdditiveLevelManager : MonoBehaviour
     public Text progressText;
     public GameObject menuScreen;
     public GameObject optionsMenu;
+    public GameObject MenuCavasBackground;
 
 
     // Use this for initialization
@@ -109,7 +110,9 @@ public class AdditiveLevelManager : MonoBehaviour
         if (sceneIndex > 0)
         {
             IngameHud.SetActive(true);
-            loadingScreen.transform.parent.gameObject.SetActive(false);
+            loadingScreen.transform.gameObject.SetActive(false);
+            menuScreen.SetActive(false);
+            MenuCavasBackground.SetActive(false);
             
         }
         //MapInfo level = GameObject.Find(LevelPrefix + sceneIndex).GetComponent<MapInfo>();

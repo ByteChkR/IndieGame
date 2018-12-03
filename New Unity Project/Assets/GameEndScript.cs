@@ -9,13 +9,14 @@ public class GameEndScript : MonoBehaviour {
     public GameObject GameOverScreen;
     public GameObject MainMenu;
     public GameObject OptionsMenu;
+    public GameObject MenuCanvasBackground;
     public GameObject AchievementOne;
     public GameObject AchievementTwo;
     public GameObject AchievementThree;
     public GameObject AchievementFour;
 
     // Use this for initialization
-    void Start () {
+    void Awake () {
         instance = this;                        //Creating Singleton
     }
 	
@@ -24,6 +25,7 @@ public class GameEndScript : MonoBehaviour {
         MainMenu.SetActive(false);                                                                  //Setting right screens active
         OptionsMenu.SetActive(false);
         GameOverScreen.SetActive(true);
+        MenuCanvasBackground.SetActive(true);
     }
 
     public void ToWinScreen()
@@ -40,14 +42,15 @@ public class GameEndScript : MonoBehaviour {
         MainMenu.SetActive(false);                                                                  //Setting the right screens active
         OptionsMenu.SetActive(false);
         WinScreen.SetActive(true);
+        MenuCanvasBackground.SetActive(true);
 
         AdditiveLevelManager.instance.RemoveLevel(1);                                               //Unload Levels
         AdditiveLevelManager.instance.RemoveLevel(2);
     }
 
 
+
 	// Update is called once per frame
 	void LateUpdate () {
-        if (Unit.Player == null) ToGameOver();
 	}
 }

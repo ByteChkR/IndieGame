@@ -77,7 +77,11 @@ public class UnitStats
               
                 _currentHealth += value;
                 _currentHealth = _currentHealth > MaxHealth ? MaxHealth : _currentHealth;
-                if (_currentHealth <= 0) _killer = source;
+                if (_currentHealth <= 0)
+                {
+                    _currentHealth = 0;
+                    _killer = source;
+                }
                 break;
             case Unit.StatType.COMBO:
                 _currentCombo += value;

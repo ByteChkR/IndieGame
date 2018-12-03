@@ -29,7 +29,7 @@ public class Unit : MonoBehaviour
     public Rigidbody rb;
     public GameObject WeaponContainer;
     public int TeamID = 0;
-    private bool Dead = false;
+    public bool Dead = false;
     public bool InstantDestroy = false;
     //private int _selectedWeapon = 0;
     //public Weapon SelectedWeapon { get { return _weapons[_selectedWeapon]; } }
@@ -353,6 +353,7 @@ public class Unit : MonoBehaviour
         if(this == Unit.Player)
         {
             SpeakerSound.UseSpeaker3D = false;
+            
         }
         Vector3 rnd = new Vector3();
         Vector2 r;
@@ -392,6 +393,10 @@ public class Unit : MonoBehaviour
 
     private void OnDestroy()
     {
+        if (UnitController.IsPlayer)
+        {
+            GameEndScript.instance.ToGameOver();
+        }
         ActiveUnits.Remove(gameObject.GetInstanceID());
     }
 
