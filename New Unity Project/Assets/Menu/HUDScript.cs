@@ -53,8 +53,11 @@ public class HUDScript : MonoBehaviour
 
     public void AddHelpedNpc()
     {
-        _amountOfHelpedNpcs += 1;
-        UpdateNpcStuff(_amountOfHelpedNpcs);
+        if (_amountOfHelpedNpcs <= 3)
+        {
+            _amountOfHelpedNpcs += 1;
+            UpdateNpcStuff(_amountOfHelpedNpcs);
+        }
     }
 
     private void UpdateNpcStuff(int amountOfHelpedNPCs)
@@ -157,6 +160,21 @@ public class HUDScript : MonoBehaviour
         HealthBar.transform.localScale = new Vector3(_playerHealthNewScale, 1, 1);
         ComboBar.transform.localScale = new Vector3(Unit.Player.Stats.CurrentCombo / Unit.Player.Stats.MaxCombo, 1, 1);
         UpdateBossHealth();
+
+    }
+
+    public void ResetNpcStuff()
+    {
+        _amountOfHelpedNpcs = 0;
+        UpdateNpcStuff(_amountOfHelpedNpcs);
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            AddHelpedNpc();
+        }
     }
 
     public int GetNumberOfHelpedNPCs()

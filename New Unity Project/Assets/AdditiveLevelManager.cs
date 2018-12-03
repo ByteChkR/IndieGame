@@ -76,6 +76,7 @@ public class AdditiveLevelManager : MonoBehaviour
 
     void OnUnloadComplete(AsyncOperation op)
     {
+        
     }
 
     public void ClearLevels()
@@ -91,7 +92,12 @@ public class AdditiveLevelManager : MonoBehaviour
 
     IEnumerator LoadAsynchronously(int sceneIndex)
     {
+        if (HighestLevel < sceneIndex)
+        {
+            HighestLevel = sceneIndex;
+            HighestCheckpoint = 0;
 
+        }
         loadingScreen.transform.parent.gameObject.SetActive(true);
         loadingScreen.SetActive(true);
         menuScreen.SetActive(false);
@@ -123,15 +129,11 @@ public class AdditiveLevelManager : MonoBehaviour
             MenuCavasBackground.SetActive(false);
             
         }
-        if(HighestLevel < sceneIndex)
-        {
-            HighestLevel = sceneIndex;
-            HighestCheckpoint = 0;
 
-        }
+
 
         loadedLevels.Add(sceneIndex, null);
-        SceneManager.SetActiveScene(SceneManager.GetSceneAt(sceneIndex));
+        SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(sceneIndex));
         //MapInfo level = GameObject.Find(LevelPrefix + sceneIndex).GetComponent<MapInfo>();
         //UnityEngine.Debug.Assert(level != null, "Level prefix is not correct, you tried to load: " + LevelPrefix + sceneIndex + ", Check the GameObject name of the level.");
         //loadedLevels.Add(sceneIndex, level);
