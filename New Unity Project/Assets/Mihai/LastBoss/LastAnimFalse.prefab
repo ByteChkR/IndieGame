@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4424566023817222}
   - component: {fileID: 114581796794159784}
+  - component: {fileID: 114977158064632584}
   m_Layer: 0
   m_Name: LastAnimFalse
   m_TagString: Untagged
@@ -52,3 +53,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stop: 0
+--- !u!114 &114977158064632584
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1021667145896226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ae65f846e214064abe7dec6ffdb9cc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TimeLeft: 1
