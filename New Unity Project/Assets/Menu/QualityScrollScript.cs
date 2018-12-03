@@ -19,12 +19,12 @@ public class QualityScrollScript : MonoBehaviour, IHorizontalySelectable
     {
         _currentIndex = 0;
  
-        _options.Add("VERY LOW");
-        _options.Add("LOW");
-        _options.Add("MEDIUM");
-        _options.Add("HIGH");
-        _options.Add("VERY HIGH");
-        _options.Add("ULTRA");
+        _options.Add("Very Low");
+        _options.Add("Low");
+        _options.Add("Medium");
+        _options.Add("High");
+        _options.Add("Very High");
+        _options.Add("Ultra");
 
         _currentIndex = QualitySettings.GetQualityLevel();
         qualityText.text = _options[_currentIndex];

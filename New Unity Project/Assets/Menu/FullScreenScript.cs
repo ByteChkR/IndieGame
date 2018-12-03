@@ -18,8 +18,8 @@ public class FullScreenScript : MonoBehaviour, IHorizontalySelectable {
 	void Start () {
         _isFullScreen = Screen.fullScreen;
         
-        _options.Add("YES");
-        _options.Add("NO");
+        _options.Add("Yes");
+        _options.Add("No");
 
         if (_isFullScreen) FullScreenText.text = _options[0];
         else FullScreenText.text = _options[1];
