@@ -28,6 +28,7 @@ public class Unit : MonoBehaviour
     public GameObject GoldPrefab;
     public Rigidbody rb;
     public GameObject WeaponContainer;
+    public GameObject BeforeDeathEffect;
     public int TeamID = 0;
     public bool Dead = false;
     public bool InstantDestroy = false;
@@ -382,7 +383,14 @@ public class Unit : MonoBehaviour
 
         }
         //if(UnitAnimation != null) UnitAnimation.SetBool("Death", true);
-        if (InstantDestroy) Destroy(gameObject);
+        if (InstantDestroy)
+        {
+            if(BeforeDeathEffect !=null)
+            {
+                Instantiate(BeforeDeathEffect, transform.position, transform.rotation);
+            }
+            Destroy(gameObject);
+        }
     }
 
     private void LateUpdate()

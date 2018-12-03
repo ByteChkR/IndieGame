@@ -19,14 +19,14 @@ public class AchievementSystem : MonoBehaviour {
     public AchievementSet killTenEnemiesSet;
     private bool _killTenEnemiesFinished = false;
     private int _enemiesKilled = 0;
-    private int _desiredKills = 1;
+    private int _desiredKills = 10;
     private float _desiredTime = 600;
     private float _currentTime = 0;
 
     public AchievementSet CollectCoinsSet;
     private bool _coinsFinished = false;
     private int _coinsCollected = 0;
-    private int _desiredCoins = 10;
+    private int _desiredCoins = 100;
 
     private Animator _anim;
     private float _maxTimeOnScreen = 4;

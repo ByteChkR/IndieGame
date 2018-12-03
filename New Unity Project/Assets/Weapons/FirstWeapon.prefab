@@ -868,7 +868,7 @@ MonoBehaviour:
     abilityInstance: {fileID: 114594336571885322, guid: 6a2757239111ab143b4565c0e0482616,
       type: 2}
     ComboCost: 0
-    cooldown: 1
+    cooldown: 0.5
     animState: 2
   - IsSpecial: 1
     Name: AOE Stun
@@ -877,7 +877,7 @@ MonoBehaviour:
     abilityInstance: {fileID: 114351747421703744, guid: d5bbe3d4e3b426f44880af83558a9655,
       type: 2}
     ComboCost: 3
-    cooldown: 3
+    cooldown: 1
     animState: 5
   ID: 0
   Coll: {fileID: 65854071982532468}

@@ -76,7 +76,7 @@ MonoBehaviour:
   InvertKnockback: 0
   MoreOnMaxRange: 0
   CollType: 0
-  Damage: 5
+  Damage: 10
   UseMaxTime: 1
   UseStateChange: 1
   MaxTimeAlive: 1
@@ -87,7 +87,7 @@ MonoBehaviour:
   - Type: 8
     Strength: 20
     InverseOnTimeout: 1
-    Duration: 4
+    Duration: 2
     TimeActivated: 0
     ApplyOnce: 0
   HitboxSize: {x: 6, y: 6, z: 6}
