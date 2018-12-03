@@ -26,6 +26,7 @@ public class GameEndScript : MonoBehaviour {
         OptionsMenu.SetActive(false);
         GameOverScreen.SetActive(true);
         MenuCanvasBackground.SetActive(true);
+        HUDScript.instance.ResetNpcStuff();
     }
 
     public void ToWinScreen()
