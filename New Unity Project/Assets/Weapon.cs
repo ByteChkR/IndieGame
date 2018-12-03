@@ -10,6 +10,7 @@ public class Weapon : MonoBehaviour
     public int Owner = -1;
     public Unit OOwner;
     public List<AbstractAbility> Abilities;
+    public int ID = 0;
     public List<KeyCode> AbilityKeyBindings
     {
         get

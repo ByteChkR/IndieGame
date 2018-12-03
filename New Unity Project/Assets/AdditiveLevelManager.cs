@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Diagnostics;
 
+using System.Linq;
 public class AdditiveLevelManager : MonoBehaviour
 {
     public GameObject Player;
@@ -20,7 +21,15 @@ public class AdditiveLevelManager : MonoBehaviour
     public GameObject menuScreen;
     public GameObject optionsMenu;
     public GameObject MenuCavasBackground;
+    public int HighestLevel = 0;
+    public float LastGold = 0;
+    public int HighestCheckpoint = 0;
+    public int _lastWeaponID;
 
+    public int HighestLoadedLevel()
+    {
+        return loadedLevels.Max(x => x.Key);
+    }
 
     // Use this for initialization
     void Start()
@@ -67,7 +76,6 @@ public class AdditiveLevelManager : MonoBehaviour
 
     void OnUnloadComplete(AsyncOperation op)
     {
-        //DataManager.instance.PlayerStats.FixStats(false);
     }
 
     public void ClearLevels()
@@ -115,21 +123,31 @@ public class AdditiveLevelManager : MonoBehaviour
             MenuCavasBackground.SetActive(false);
             
         }
+        if(HighestLevel < sceneIndex)
+        {
+            HighestLevel = sceneIndex;
+            HighestCheckpoint = 0;
+        }
+
+        loadedLevels.Add(sceneIndex, null);
         //MapInfo level = GameObject.Find(LevelPrefix + sceneIndex).GetComponent<MapInfo>();
         //UnityEngine.Debug.Assert(level != null, "Level prefix is not correct, you tried to load: " + LevelPrefix + sceneIndex + ", Check the GameObject name of the level.");
         //loadedLevels.Add(sceneIndex, level);
 
-        
+
     }
 
     
     public void Reset()
     {
-        IResettable[] resettableObjs = (IResettable[])GameObject.FindObjectsOfType(typeof(IResettable));            
-        foreach (IResettable ir in resettableObjs)
-        {
-            ir.Reset();
-        }
+        //IResettable[] resettableObjs = (IResettable[])GameObject.FindObjectsOfType<IResettable>());            
+        //foreach (IResettable ir in resettableObjs)
+        //{
+        //    ir.Reset();
+        //}
+        RemoveLevel(HighestLevel);
+        GameEndScript.instance.GameOverScreen.SetActive(false);
+        LoadLevel(HighestLevel);
     }
     
 }

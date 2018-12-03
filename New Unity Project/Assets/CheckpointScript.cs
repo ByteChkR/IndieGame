@@ -10,18 +10,28 @@ public class CheckpointScript : MonoBehaviour {
     private Weapon _checkpointWeapon;
     public int Index;
 
+    public void SetPlayer(int weaponID)
+    {
+        PlayerSpawner.instance.transform.position = new Vector3(transform.position.x, PlayerSpawner.instance.transform.position.y, transform.position.z);
+        PlayerSpawner.instance.StartSpawn(weaponID);
+    }
 
 	// Use this for initialization
 	void Start () {
-		
 	}
 	
     public void TakeCheckpoint(float pGold, Vector3 pPosition, Weapon pWeapon/*Weapon[] pWeapons*/)
     {
+        if (AdditiveLevelManager.instance.HighestCheckpoint >= Index) return;
         _checkpointGold = pGold;
         _checkpointPosition = pPosition;
         //_checkpointWeapons = pWeapons;
         _checkpointWeapon = pWeapon;
+        AdditiveLevelManager.instance.LastGold = _checkpointGold;
+        AdditiveLevelManager.instance.HighestCheckpoint = Index;
+        AdditiveLevelManager.instance._lastWeaponID = pWeapon.ID;
+
+
     }
 
     public float GetCheckpointGold()
@@ -38,6 +48,8 @@ public class CheckpointScript : MonoBehaviour {
     {
         return _checkpointWeapon;
     }
+
+    
 
     // Update is called once per frame
     void Update () {

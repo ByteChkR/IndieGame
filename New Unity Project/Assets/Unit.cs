@@ -73,12 +73,7 @@ public class Unit : MonoBehaviour
         CheckpointScript cp;
         if (IsPlayer && null != (cp = coll.GetComponent<CheckpointScript>()))
         {
-            if (cp.Index > Checkpoint.Index || Checkpoint == null)
-            {
-                //cp.TakeCheckpoint(Stats.CurrentGold, transform.position, _weapons);
-                cp.TakeCheckpoint(Stats.CurrentGold, transform.position, _weapon);
-                Checkpoint = cp;
-            }
+            cp.TakeCheckpoint(Stats.CurrentGold, transform.position, _weapon);
         }
     }
 
@@ -88,7 +83,7 @@ public class Unit : MonoBehaviour
         {
             rb.constraints = RigidbodyConstraints.FreezeAll;
             LockControls(true);
-            _weapon.SetActive(false);
+            if(_weapon != null)_weapon.SetActive(false);
         }
         else
         {
@@ -325,8 +320,12 @@ public class Unit : MonoBehaviour
         if (gameObject.tag != "Boss")
         {
             _weapon = GetComponentInChildren<Weapon>();
-            _weapon.SetOwnerDUs(this);
-            if (!UnitController.IsPlayer) _weapon.SetActive(true); //We only want the player to not use the weapon during menu
+            if (_weapon != null)
+            {
+                _weapon.SetOwnerDUs(this);
+                if (!UnitController.IsPlayer) _weapon.SetActive(true); //We only want the player to not use the weapon during menu
+
+            }
         }
     }
 
@@ -350,10 +349,10 @@ public class Unit : MonoBehaviour
             AchievementSystem.instance.KillEnemy();
         }
 
-        if(this == Unit.Player)
+        if (this == Unit.Player)
         {
             SpeakerSound.UseSpeaker3D = false;
-            
+
         }
         Vector3 rnd = new Vector3();
         Vector2 r;
@@ -383,7 +382,7 @@ public class Unit : MonoBehaviour
 
         }
         //if(UnitAnimation != null) UnitAnimation.SetBool("Death", true);
-        if(InstantDestroy)Destroy(gameObject);
+        if (InstantDestroy) Destroy(gameObject);
     }
 
     private void LateUpdate()

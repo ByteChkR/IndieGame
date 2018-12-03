@@ -618,7 +618,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1654774511758616}
   m_LocalRotation: {x: -0.00000011337881, y: -0.67128074, z: 0.00000027685076, w: 0.7412032}
-  m_LocalPosition: {x: -0.018190064, y: 0.7559995, z: -0.96291167}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224985250916796278}
@@ -1001,12 +1001,13 @@ MonoBehaviour:
     ComboCost: 3
     cooldown: 3
     animState: 5
-  AbilityKeyBindings: 4301000044010000
+  ID: 1
   Coll: {fileID: 65420899673923788}
   Rb: {fileID: 54108732936845112}
   WeaponIS: {fileID: 114620360246895482}
   UseMultipleAttacks: 1
   AttackCount: 3
+  SpecialAttackAnimation: 0
   TurnTowardsTarget: 1
   GoldValue: 5
 --- !u!114 &114772077976882640
