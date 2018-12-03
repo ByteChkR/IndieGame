@@ -51,6 +51,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dd8965887f3c9a43b5fd2365e9d45e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  aImage: {fileID: 21300000, guid: 965cf9a63c3d41944aaab51291a9ea71, type: 3}
-  aName: Coiner
-  aLine: You picked up 10 coins.
+  aImage: {fileID: 21300000, guid: 0435373964a4f4945a926ab06b830166, type: 3}
+  aName: Coin Collector
+  aLine: You picked up 100 coins.
