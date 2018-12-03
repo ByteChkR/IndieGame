@@ -32,6 +32,7 @@ public class PlayerSpawn : MonoBehaviour
 
 
             CameraViewLock.instance.start = true;
+            
 
             a = false;
         }
