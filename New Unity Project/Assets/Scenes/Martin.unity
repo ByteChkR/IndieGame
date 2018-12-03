@@ -296,7 +296,7 @@ Prefab:
     - target: {fileID: 224828345685194126, guid: 54452b153dfc2c04dbd011eedf2e176c,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -31.999878
+      value: -31.999908
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54452b153dfc2c04dbd011eedf2e176c, type: 2}
@@ -437,6 +437,11 @@ Prefab:
       propertyPath: MenuCavasBackground
       value: 
       objectReference: {fileID: 1912357074}
+    - target: {fileID: 114877266423987142, guid: 7034720c3573af349840f9dcaa6bfe98,
+        type: 2}
+      propertyPath: DebugStart
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7034720c3573af349840f9dcaa6bfe98, type: 2}
   m_IsPrefabAsset: 0
@@ -477,6 +482,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4734212293110132, guid: b409512da4879e147a011ce1110be06a, type: 2}
       propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114368144122009008, guid: b409512da4879e147a011ce1110be06a,
+        type: 2}
+      propertyPath: WeaponID
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -731,6 +741,14 @@ Prefab:
       propertyPath: MenuCanvasBackground
       value: 
       objectReference: {fileID: 1912357074}
+    - target: {fileID: 1720080793532006, guid: cf150dd538c10d54ebce27ab8d04724a, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1123377524984848, guid: cf150dd538c10d54ebce27ab8d04724a, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf150dd538c10d54ebce27ab8d04724a, type: 2}
   m_IsPrefabAsset: 0

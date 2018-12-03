@@ -2,15 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerSpawner : Spawner
+public class PlayerSpawner:MonoBehaviour
 {
-    
+
+
+    public GameObject Unit;
     bool spawning = false;
     Animation anim;
     public GameObject[] Weapons;
     public static PlayerSpawner instance;
     public int WeaponID;
     public bool Spawned = false;
+    public GameObject pipe;
+    public string AnimationName;
+    public float DistanceAboveGround = 0.5f;
     // Use this for initialization
     private void Awake()
     {
