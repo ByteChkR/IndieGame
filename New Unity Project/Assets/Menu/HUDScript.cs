@@ -12,7 +12,7 @@ public class HUDScript : MonoBehaviour
     public float Combo = 0f;
     public int Gold = 0;
     public bool BossBarTest;
-    public float TestBossCurrentHP; 
+    public float TestBossCurrentHP;
     public float TestMaxBossHP;
     public Image HealthBar;
     public Image ComboBar;
@@ -77,7 +77,7 @@ public class HUDScript : MonoBehaviour
             NpcTwo.gameObject.SetActive(false);
             NpcThree.gameObject.SetActive(false);
         }
-        
+
     }
     void InitializeHudHealth(int pMaxHealth, int pHealth = 0)
     {
@@ -125,14 +125,14 @@ public class HUDScript : MonoBehaviour
 
     private void UpdateBossHealth()
     {
-        if(_boss != null)
+        if (_boss != null)
         {
             BossHealth.SetActive(true);
             _bossHealthNewScale = _boss.Stats.CurrentHealth / _boss.Stats.MaxHealth;
             if (_bossHealthNewScale < 0) _bossHealthNewScale = 0;
             BossHealthBar.transform.localScale = new Vector3(_bossHealthNewScale, 1, 1);
         }
-        else if(BossBarTest && _boss == null)
+        else if (BossBarTest && _boss == null)
         {
             BossHealth.SetActive(true);
             _bossHealthNewScale = TestBossCurrentHP / TestMaxBossHP;
@@ -158,4 +158,10 @@ public class HUDScript : MonoBehaviour
         ComboBar.transform.localScale = new Vector3(Unit.Player.Stats.CurrentCombo / Unit.Player.Stats.MaxCombo, 1, 1);
         UpdateBossHealth();
     }
+
+    public int GetNumberOfHelpedNPCs()
+    {
+        return _amountOfHelpedNpcs;
+    }
+    
 }
