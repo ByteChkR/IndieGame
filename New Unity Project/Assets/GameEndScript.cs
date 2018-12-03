@@ -15,7 +15,7 @@ public class GameEndScript : MonoBehaviour {
     public GameObject AchievementFour;
 
     // Use this for initialization
-    void Start () {
+    void Awake () {
         instance = this;                        //Creating Singleton
     }
 	
@@ -46,8 +46,8 @@ public class GameEndScript : MonoBehaviour {
     }
 
 
+
 	// Update is called once per frame
 	void LateUpdate () {
-        if (Unit.Player == null) ToGameOver();
 	}
 }
