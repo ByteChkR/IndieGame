@@ -445,7 +445,7 @@ Prefab:
     - target: {fileID: 114877266423987142, guid: 7034720c3573af349840f9dcaa6bfe98,
         type: 2}
       propertyPath: DebugStart
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7034720c3573af349840f9dcaa6bfe98, type: 2}
@@ -581,7 +581,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CameraTransformContainerPrefabs:
   - {fileID: 1575402651990936, guid: 04387e5d435a4144fad897f4a31a07b9, type: 2}
-  TravelTime: 10
+  TravelTime: 1
   start: 0
 --- !u!1001 &537387778
 Prefab:

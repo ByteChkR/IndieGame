@@ -30,6 +30,7 @@ public class Unit : MonoBehaviour
     public GameObject WeaponContainer;
     public int TeamID = 0;
     private bool Dead = false;
+    public bool InstantDestroy = false;
     //private int _selectedWeapon = 0;
     //public Weapon SelectedWeapon { get { return _weapons[_selectedWeapon]; } }
     public enum TriggerType
@@ -381,7 +382,7 @@ public class Unit : MonoBehaviour
 
         }
         //if(UnitAnimation != null) UnitAnimation.SetBool("Death", true);
-        //Destroy(gameObject);
+        if(InstantDestroy)Destroy(gameObject);
     }
 
     private void LateUpdate()
