@@ -47,6 +47,7 @@ public class Spawner : MonoBehaviour
     void TriggerSpawn()
     {
         Unit u = Instantiate(Unit, transform.position+groundOffset, transform.rotation).GetComponent<Unit>();
+        u.Agent.Warp(transform.position + groundOffset);
         Weapon w = Instantiate(Weapon, u.transform.position, Quaternion.identity, u.WeaponContainer.transform).GetComponent<Weapon>();
         u.PickupWeapon(w);
     }

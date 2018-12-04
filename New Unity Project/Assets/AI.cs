@@ -30,6 +30,7 @@ public class AI : MonoBehaviour, IController
     {
         get
         {
+            
             if (Target == null && Unit.Player != null)
             {
                 Target = Unit.Player.transform;
