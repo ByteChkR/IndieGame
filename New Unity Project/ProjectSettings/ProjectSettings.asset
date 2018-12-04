@@ -650,9 +650,9 @@ PlayerSettings:
     UNet: 1
   facebookSdkVersion: 7.9.4
   apiCompatibilityLevel: 2
-  cloudProjectId: 3eee2f18-2a03-400c-b11c-53ef0a37ffc4
-  projectName: New Unity Project
-  organizationId: bytechkr
+  cloudProjectId: 6417b187-8847-4ff1-af48-476178e6fd25
+  projectName: New Unity Project (1)
+  organizationId: silberstar
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0
