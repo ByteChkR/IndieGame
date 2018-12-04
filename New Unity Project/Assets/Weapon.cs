@@ -129,7 +129,6 @@ public class Weapon : MonoBehaviour
             {
                 if (Abilities[i].IsAvailable(Owner))
                 {
-
                     Vector3 targetDir;
                     if (TurnTowardsTarget)
                     {

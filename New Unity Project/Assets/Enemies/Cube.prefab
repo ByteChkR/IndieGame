@@ -216,7 +216,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1382934848206572}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.66, y: 20.7, z: -24.18}
+  m_LocalPosition: {x: -11.68, y: 20.7, z: -43.12}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4900582268538302}
@@ -407,6 +407,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d188b9ca1efe4ac40a2bb46ce9231144, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IgnoreUnitCollisions: 0
   Stats:
     _baseHealth: 2
     _baseMovementSpeed: 0
@@ -415,6 +416,7 @@ MonoBehaviour:
     MaxCombo: 0
     MaxMovementSpeed: 0
     OnlyDamagedWithSpecialAttacks: 0
+  deathAnim: {fileID: 0}
   UnitAnimation: {fileID: 111114691272427366}
   Agent: {fileID: 0}
   ParticleSystems: []
@@ -423,7 +425,10 @@ MonoBehaviour:
   GoldPrefab: {fileID: 1136768164843768, guid: aac181e834279be488ad830f1c633251, type: 2}
   rb: {fileID: 0}
   WeaponContainer: {fileID: 0}
+  BeforeDeathEffect: {fileID: 0}
   TeamID: 0
+  Dead: 0
+  InstantDestroy: 1
 --- !u!114 &114035837611722252
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -541,10 +546,14 @@ MonoBehaviour:
   Owner: -1
   OOwner: {fileID: 0}
   Abilities: []
-  AbilityKeyBindings: 
+  ID: 0
   Coll: {fileID: 0}
   Rb: {fileID: 0}
   WeaponIS: {fileID: 114181972912911124}
+  UseMultipleAttacks: 0
+  AttackCount: 1
+  SpecialAttackAnimation: 0
+  TurnTowardsTarget: 0
   GoldValue: 5
 --- !u!114 &114347026770803852
 MonoBehaviour:

@@ -7,6 +7,7 @@ using System.Linq;
 
 public class Ability : MonoBehaviour
 {
+    public float delayStart = 0;
     public bool DestroySourceOnEnd = false;
     public bool FixForPlayerModel = false;
     public static List<Ability> AliveAbilities = new List<Ability>();
@@ -117,8 +118,11 @@ public class Ability : MonoBehaviour
     {
         
         if (!Initialized) return;
-        if (Source != null && Collider != null) CheckAndResolveCollisions(Collider);
+        if (Source != null && Collider != null && delayStart <=0) CheckAndResolveCollisions(Collider);
+
+
         Unit.AnimationStates s = Source.GetAnimationState();
+        delayStart -= Time.deltaTime;
         t += Time.deltaTime;
         if ((UseMaxTime && t >= MaxTimeAlive))
         {
