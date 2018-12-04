@@ -39,14 +39,14 @@ public class GameEndScript : MonoBehaviour {
 
     public void ToWinScreen()
     {
-        if (AchievementSystem.instance.GetResultCoins()) AchievementOne.SetActive(true);            //Checking Achievements to display
-        else AchievementOne.SetActive(false);
-        if (AchievementSystem.instance.GetResultHealth()) AchievementTwo.SetActive(true);
-        else AchievementTwo.SetActive(false);
-        if (AchievementSystem.instance.GetResultKilling()) AchievementThree.SetActive(true);
-        else AchievementThree.SetActive(false);
-        if (AchievementSystem.instance.GetResultTime()) AchievementFour.SetActive(true);
-        else AchievementFour.SetActive(false);
+        if (AchievementSystem.instance.GetResultCoins()) AchievementOne.SetActive(false);            //Checking Achievements to display
+        else AchievementOne.SetActive(true);
+        if (AchievementSystem.instance.GetResultHealth()) AchievementTwo.SetActive(false);
+        else AchievementTwo.SetActive(true);
+        if (AchievementSystem.instance.GetResultKilling()) AchievementThree.SetActive(false);
+        else AchievementThree.SetActive(true);
+        if (AchievementSystem.instance.GetResultTime()) AchievementFour.SetActive(false);
+        else AchievementFour.SetActive(true);
 
         MainMenu.SetActive(false);                                                                  //Setting the right screens active
         OptionsMenu.SetActive(false);
