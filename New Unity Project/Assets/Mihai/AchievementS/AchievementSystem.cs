@@ -117,6 +117,7 @@ public class AchievementSystem : MonoBehaviour {
 
     private void DisplayAchievement(AchievementSet pAS)
     {
+        AudioManager.instance.PlaySoundEffect(AudioManager.SoundEffect.Achievement);
         _isOnScreen = true;
         _timeLeftOnScreen = _maxTimeOnScreen;
         achievementImage.sprite = pAS.aImage;

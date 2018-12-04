@@ -8,9 +8,9 @@ public class AudioManager : MonoBehaviour
     static public AudioManager instance;
 
     public enum SoundEffect {
-        PlayerHit, Click, GameOver, Explosion, EnemyHit, Achievement, Dash, NPC,
+        PlayerHit, Click, Explosion, EnemyHit, Achievement, Dash, NPC,
         Beam, PickUp, Buy, NotEnoughMoney, FirstBossWave, FirstBossSpecialAttack,
-        Glitch, LaserBeam, LaserCharge, Rocket, ElectricSound, FootSteps, SpiderFootSteps
+        Glitch, LaserBeam, LaserCharge, Rocket, ElectricSound, FootSteps, SpiderFootSteps, LightSwing, HeavySwing
     }
     public enum BackgroundMusic { Menu, Tutorial, Stage1, Boss1, Stage2, Boss2, Result }
 
@@ -24,9 +24,9 @@ public class AudioManager : MonoBehaviour
     public AudioSource SoundEffectSource;
 
     [Header("OneShots")]
-    public AudioClip Shoot;
-    public AudioClip PlayerHit, Click, GameOver, Explosion, EnemyHit, Achievement, Dash, NPC,
-        Beam, PickUp, Buy, NotEnoughMoney, FirstBossWave,FirstBossSpecialAttack, Glitch, LaserBeam, LaserCharge, Rocket, ElectricSound, FootSteps, SpiderFootSteps;
+    public AudioClip PlayerHit;
+    public AudioClip  Click, Explosion, EnemyHit, Achievement, Dash, NPC,
+        Beam, PickUp, Buy, NotEnoughMoney, FirstBossWave,FirstBossSpecialAttack, Glitch, LaserBeam, LaserCharge, Rocket, ElectricSound, FootSteps, SpiderFootSteps, LightSwing, HeavySwing;
 
 
     [Header("BackgroundClips")]
@@ -84,12 +84,6 @@ public class AudioManager : MonoBehaviour
 
             case SoundEffect.Click:
                 SoundEffectSource.PlayOneShot(Click);
-                break;
-
-            case SoundEffect.GameOver:
-
-                SoundEffectSource.PlayOneShot(GameOver);
-
                 break;
 
             case SoundEffect.Explosion:
@@ -172,6 +166,17 @@ public class AudioManager : MonoBehaviour
             case SoundEffect.SpiderFootSteps:
 
                 SoundEffectSource.PlayOneShot(SpiderFootSteps);
+
+                break;
+            // LightSwing, HeavySwing
+            case SoundEffect.LightSwing:
+
+                SoundEffectSource.PlayOneShot(LightSwing);
+
+                break;
+            case SoundEffect.HeavySwing:
+
+                SoundEffectSource.PlayOneShot(HeavySwing);
 
                 break;
         }
