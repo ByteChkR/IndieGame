@@ -401,7 +401,7 @@ public class Unit : MonoBehaviour
 
     private void OnDestroy()
     {
-        if (UnitController.IsPlayer)
+        if (UnitController.IsPlayer && GameEndScript.instance != null)
         {
             GameEndScript.instance.ToGameOver();
         }
