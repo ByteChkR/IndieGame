@@ -22,7 +22,7 @@ public class FirstBoss : MonoBehaviour,IController {
     public Transform player;
     private Rigidbody _rb;
     public enum FirstBossStates { Dash, RangedAttack, Trio, Special}
-    private FirstBossStates _firstBossState =FirstBossStates.Special;
+    private FirstBossStates _firstBossState =FirstBossStates.Dash;
     public Unit bossUnit;
 
     public GameObject widePrefab;
@@ -57,26 +57,28 @@ public class FirstBoss : MonoBehaviour,IController {
         {
             bossUnit = GetComponent<Unit>();
         }
-        if(player == null)
-        {
-            player = GameObject.FindGameObjectWithTag("Player").transform;
-        }
+            
        // _anim = GetComponent<Animator>();
         _rb = GetComponent<Rigidbody>();
 
-        if (HUDScript.instance != null)
-        {
-            HUDScript.instance.SetBoss(bossUnit);
-        }
+      
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-        if(Input.GetKeyDown(KeyCode.Alpha1))
+        if(player == null)
+        {
+            if (Unit.Player != null)
+            {
+                player = Unit.Player.transform;
+            }
+        }
+
+        /*if(Input.GetKeyDown(KeyCode.Alpha1))
         {
             GetStunned();
-        }
+        }*/
         if(player == null)
         {
             return;
@@ -86,6 +88,10 @@ public class FirstBoss : MonoBehaviour,IController {
             if( Vector3.Distance(player.position,transform.position)< activationRange)
             {
                 _isBossActive = true;
+                if (HUDScript.instance != null)
+                {
+                    HUDScript.instance.SetBoss(bossUnit);
+                }
             }
 
             return;

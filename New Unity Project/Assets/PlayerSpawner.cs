@@ -6,7 +6,7 @@ public class PlayerSpawner:MonoBehaviour
 {
 
 
-    public GameObject Unit;
+    public GameObject unit;
     bool spawning = false;
     Animation anim;
     public GameObject[] Weapons;
@@ -56,9 +56,13 @@ public class PlayerSpawner:MonoBehaviour
     Vector3 groundOffset;
     void TriggerSpawn()
     {
-        Unit u = Instantiate(Unit, transform.position+groundOffset, transform.rotation).GetComponent<Unit>();
-        Weapon w = Instantiate(Weapons[WeaponID], u.transform.position, Quaternion.identity, u.WeaponContainer.transform).GetComponent<Weapon>();
-        u.PickupWeapon(w);
+        if(Unit.Player == null)
+        {
+            Unit u = Instantiate(unit, transform.position + groundOffset, transform.rotation).GetComponent<Unit>();
+            Weapon w = Instantiate(Weapons[WeaponID], u.transform.position, Quaternion.identity, u.WeaponContainer.transform).GetComponent<Weapon>();
+            u.PickupWeapon(w);
+        }
+        
         Spawned = true;
     }
 }

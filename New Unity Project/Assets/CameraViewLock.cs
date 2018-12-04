@@ -6,7 +6,7 @@ public class CameraViewLock : MonoBehaviour
 {
     public static CameraViewLock instance;
     public bool FollowPlayer = true;
-    Vector3 _direction;
+    public Vector3 _direction;
     public Camera Cam;
     public float MinDistanceToPlayer = 17f;
     public float AddDistanceOnSpeed = 2f;
@@ -19,6 +19,7 @@ public class CameraViewLock : MonoBehaviour
     // Use this for initialization
     private void Awake()
     {
+        _direction = -transform.position;
         if (instance != null) Debug.LogError("CameraViewLockNeeds to be singleton. Make sure there is only one instance.");
         instance = this;
         lastSpeeds = new Queue<Vector3>();
@@ -28,7 +29,7 @@ public class CameraViewLock : MonoBehaviour
 
         if (Unit.Player != null)
         {
-            _direction = (transform.position - Unit.Player.transform.position);
+            //_direction = (transform.position - Unit.Player.transform.position);
             //MinDistanceToPlayer = _direction.magnitude;
             _direction.Normalize();
             init = true;
@@ -48,7 +49,7 @@ public class CameraViewLock : MonoBehaviour
 
         if(!init && Unit.Player != null)
         {
-            _direction = (transform.position - Unit.Player.transform.position);
+            //_direction = (transform.position - Unit.Player.transform.position);
             //MinDistanceToPlayer = _direction.magnitude;
             _direction.Normalize();
             init = true;

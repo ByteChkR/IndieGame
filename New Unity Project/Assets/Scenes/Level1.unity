@@ -194,6 +194,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114882027636051048, guid: 8fb505715d9829848b0bfd07547c33e4,
+        type: 2}
+      propertyPath: CameraIntroKey
+      value: CameraEnter2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8fb505715d9829848b0bfd07547c33e4, type: 2}
   m_IsPrefabAsset: 0

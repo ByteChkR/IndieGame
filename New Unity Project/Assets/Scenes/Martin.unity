@@ -355,6 +355,11 @@ Prefab:
       propertyPath: DebugStart
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114877266423987142, guid: 7034720c3573af349840f9dcaa6bfe98,
+        type: 2}
+      propertyPath: _lastWeaponID
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7034720c3573af349840f9dcaa6bfe98, type: 2}
   m_IsPrefabAsset: 0
@@ -395,11 +400,6 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4734212293110132, guid: b409512da4879e147a011ce1110be06a, type: 2}
       propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114368144122009008, guid: b409512da4879e147a011ce1110be06a,
-        type: 2}
-      propertyPath: WeaponID
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -485,7 +485,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 534669902}
   m_LocalRotation: {x: 0.35355338, y: -0.35355338, z: 0.1464466, w: 0.8535535}
-  m_LocalPosition: {x: 6.38, y: 9.89, z: -6.1}
+  m_LocalPosition: {x: 6.1, y: 9.89, z: -6.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -503,6 +503,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FollowPlayer: 1
+  _direction: {x: 0, y: 0, z: 0}
   Cam: {fileID: 534669904}
   MinDistanceToPlayer: 4
   AddDistanceOnSpeed: 1
@@ -535,7 +536,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CameraTransformContainerPrefabs:
   - {fileID: 1575402651990936, guid: 04387e5d435a4144fad897f4a31a07b9, type: 2}
-  TravelTime: 1
+  - {fileID: 1575402651990936, guid: 626b10d62b7a33a4d92a234fc9a20b8e, type: 2}
+  TravelTime: 10
   start: 0
 --- !u!1001 &537387778
 Prefab:

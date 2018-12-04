@@ -52,6 +52,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1916bf66012a52d4390910831f344b1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  delayStart: 1.4
   DestroySourceOnEnd: 0
   FixForPlayerModel: 0
   Collider: {fileID: 0}
@@ -64,16 +65,16 @@ MonoBehaviour:
   InvertKnockback: 0
   MoreOnMaxRange: 0
   CollType: 0
-  Damage: 10
+  Damage: 5
   UseMaxTime: 1
   UseStateChange: 0
-  MaxTimeAlive: 2
+  MaxTimeAlive: 1.6
   state: -1
   _animationName: AOEStun
   _animationSpeed: 1
   _onHitEffects: []
-  HitboxSize: {x: 0, y: 0, z: 0}
-  _inFrontOfPlayer: 1
+  HitboxSize: {x: 6, y: 0, z: 0}
+  _inFrontOfPlayer: 0
 --- !u!135 &135150924012787302
 SphereCollider:
   m_ObjectHideFlags: 1
