@@ -56,6 +56,7 @@ GameObject:
   - component: {fileID: 95271670114598746}
   - component: {fileID: 114100418144053206}
   - component: {fileID: 54844361880148342}
+  - component: {fileID: 65648186577204418}
   m_Layer: 0
   m_Name: BossDoor
   m_TagString: Untagged
@@ -285,8 +286,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1939819509636556}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -173.44, y: 313.99066, z: 60.55}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -173.6051, y: 313.95056, z: 60.7}
+  m_LocalScale: {x: 1.3491, y: 1, z: 1}
   m_Children:
   - {fileID: 4487058773563426}
   - {fileID: 4630090221546286}
@@ -674,6 +675,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &65648186577204418
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1105899583729870}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.7270484, y: 3.138794, z: 2.080049}
+  m_Center: {x: -9.197165, y: 1.069397, z: -0.5400245}
 --- !u!65 &65945615640018546
 BoxCollider:
   m_ObjectHideFlags: 1

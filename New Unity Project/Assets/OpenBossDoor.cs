@@ -20,11 +20,12 @@ public class OpenBossDoor : MonoBehaviour {
         _anim.SetFloat("speed", 1);
     }
 
-    private void OnCollisionEnter(Collision collision)
+
+    private void OnTriggerEnter(Collider other)
     {
-        if(collision.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player")
         {
-            if(HUDScript.instance.GetNumberOfHelpedNPCs() >2)
+            if (HUDScript.instance.GetNumberOfHelpedNPCs() > 2)
             {
                 OpenDoor();
             }
