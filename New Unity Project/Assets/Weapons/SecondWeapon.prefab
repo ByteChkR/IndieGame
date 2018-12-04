@@ -1004,12 +1004,13 @@ MonoBehaviour:
     cooldown: 3
     animState: 5
   ID: 1
+  WeaponIcon: {fileID: 21300000, guid: 4e4fee1e837db6d43b12147780d129e7, type: 3}
   Coll: {fileID: 65420899673923788}
   Rb: {fileID: 54108732936845112}
   WeaponIS: {fileID: 114620360246895482}
   UseMultipleAttacks: 1
   AttackCount: 3
-  SpecialAttackAnimation: 0
+  SpecialAttackAnimation: 1
   TurnTowardsTarget: 1
   GoldValue: 20
 --- !u!114 &114772077976882640

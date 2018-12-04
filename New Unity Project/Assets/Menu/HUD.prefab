@@ -1134,6 +1134,7 @@ MonoBehaviour:
   NpcOne: {fileID: 114724735113497948}
   NpcTwo: {fileID: 114678385996444840}
   NpcThree: {fileID: 114690109856242470}
+  WeaponIcon: {fileID: 114048620735733584}
 --- !u!114 &114678385996444840
 MonoBehaviour:
   m_ObjectHideFlags: 1

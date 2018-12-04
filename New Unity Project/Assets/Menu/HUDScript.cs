@@ -24,6 +24,7 @@ public class HUDScript : MonoBehaviour
     public Image NpcOne;
     public Image NpcTwo;
     public Image NpcThree;
+    public Image WeaponIcon;
 
     public static HUDScript instance;
 
@@ -51,6 +52,10 @@ public class HUDScript : MonoBehaviour
         Health = MaxHealth;
     }
 
+    public void UpdateWeaponIcon(Sprite pSprite)
+    {
+        WeaponIcon.sprite = pSprite;
+    }
     public void AddHelpedNpc()
     {
         if (_amountOfHelpedNpcs <= 3)
