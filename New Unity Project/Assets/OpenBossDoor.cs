@@ -20,6 +20,17 @@ public class OpenBossDoor : MonoBehaviour {
         _anim.SetFloat("speed", 1);
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "Player")
+        {
+            if(HUDScript.instance.GetNumberOfHelpedNPCs() >2)
+            {
+                OpenDoor();
+            }
+        }
+    }
+
     private void DeleteCollider()
     {
         Destroy(colliderObject);
