@@ -4200,7 +4200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6526fb473b282bc44a9699712e99b6c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Enemy: {fileID: 0}
+  Enemy: {fileID: 114026585623915922}
   HealthBar: {fileID: 114552984645805206}
 --- !u!136 &136923448478166742
 CapsuleCollider:
