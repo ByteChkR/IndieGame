@@ -27,6 +27,14 @@ public class GameEndScript : MonoBehaviour {
         GameOverScreen.SetActive(true);
         MenuCanvasBackground.SetActive(true);
         HUDScript.instance.ResetNpcStuff();
+        AdditiveLevelManager.instance.RemoveLevel(1);                                               //Unload Levels
+        AdditiveLevelManager.instance.RemoveLevel(2);
+    }
+
+    public void QuitGame()
+    {
+        Debug.Log("Quit");
+        Application.Quit();
     }
 
     public void ToWinScreen()

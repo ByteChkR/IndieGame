@@ -118,6 +118,7 @@ public class AdditiveLevelManager : MonoBehaviour
 
             yield return null;
         }
+        yield return new WaitForSeconds(0.5f);
         menuScreen.SetActive(true);
         loadingScreen.SetActive(false);
         optionsMenu.SetActive(false);
