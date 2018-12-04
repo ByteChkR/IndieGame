@@ -153,8 +153,7 @@ public class Unit : MonoBehaviour
     public void PickupWeapon(Weapon pWeapon)
     {
         pWeapon.DisableBuying();
-
-
+        if(pWeapon.WeaponIcon != null) HUDScript.instance.UpdateWeaponIcon(pWeapon.WeaponIcon);
 
         pWeapon.SetOwnerDUs(this);
         /*
