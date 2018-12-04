@@ -983,7 +983,8 @@ MonoBehaviour:
   Owner: -107864
   OOwner: {fileID: 0}
   Abilities:
-  - IsSpecial: 0
+  - hasAnimationEvent: 0
+    IsSpecial: 0
     Name: Melee Attack
     Description: 
     icon: {fileID: 0}
@@ -992,7 +993,8 @@ MonoBehaviour:
     ComboCost: 0
     cooldown: 1
     animState: 2
-  - IsSpecial: 1
+  - hasAnimationEvent: 0
+    IsSpecial: 1
     Name: Dash
     Description: 
     icon: {fileID: 0}
@@ -1009,7 +1011,7 @@ MonoBehaviour:
   AttackCount: 3
   SpecialAttackAnimation: 0
   TurnTowardsTarget: 1
-  GoldValue: 5
+  GoldValue: 20
 --- !u!114 &114772077976882640
 MonoBehaviour:
   m_ObjectHideFlags: 1
