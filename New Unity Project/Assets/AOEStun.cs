@@ -31,13 +31,15 @@ public class AOEStun : Ability
         if (CollType == ColliderTypes.Box)
         {
             (Collider as BoxCollider).size = HitboxSize;
-            if (_inFrontOfPlayer) (Collider as BoxCollider).center = Vector3.forward * HitboxSize.z / 2; //Move Hitbox right in front of caster
+            if (_inFrontOfPlayer) (Collider as BoxCollider).center = Vector3.forward * HitboxSize.z / 2 - Vector3.forward; //Move Hitbox right in front of caster
         }
         else if (CollType == ColliderTypes.Sphere)
         {
             (Collider as SphereCollider).radius = HitboxSize.x;
             if (_inFrontOfPlayer) (Collider as SphereCollider).center = Vector3.forward * HitboxSize.x / 2;
         }
+
+       
 
         
         //if (Source.UnitAnimation[_animationName] != null)

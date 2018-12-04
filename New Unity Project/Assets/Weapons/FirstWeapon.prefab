@@ -620,7 +620,7 @@ Transform:
   m_GameObject: {fileID: 1235037342247408}
   m_LocalRotation: {x: 0.00000010430811, y: 0.0000000707805, z: 0.000000017695125,
     w: 1}
-  m_LocalPosition: {x: 0.00000016274288, y: 0.00000044108918, z: -0.0000006090171}
+  m_LocalPosition: {x: -16.497503, y: 69.44007, z: -103.81059}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224728067456773124}
@@ -737,8 +737,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.503638, y: 0.18580729, z: 0.23142962}
-  m_Center: {x: 0.68387896, y: -0.0000011132398, z: -0.014847095}
+  m_Size: {x: 1.6721871, y: 0.93626404, z: 0.8022537}
+  m_Center: {x: 0.76815355, y: 0.009401202, z: -0.03724432}
 --- !u!114 &114048892907531790
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -861,23 +861,25 @@ MonoBehaviour:
   Owner: -823044
   OOwner: {fileID: 0}
   Abilities:
-  - IsSpecial: 0
+  - hasAnimationEvent: 0
+    IsSpecial: 0
     Name: Melee Attack
     Description: 
     icon: {fileID: 0}
     abilityInstance: {fileID: 114594336571885322, guid: 6a2757239111ab143b4565c0e0482616,
       type: 2}
     ComboCost: 0
-    cooldown: 0.5
+    cooldown: 0.3
     animState: 2
-  - IsSpecial: 1
+  - hasAnimationEvent: 0
+    IsSpecial: 1
     Name: AOE Stun
     Description: 
     icon: {fileID: 0}
     abilityInstance: {fileID: 114351747421703744, guid: d5bbe3d4e3b426f44880af83558a9655,
       type: 2}
     ComboCost: 3
-    cooldown: 1
+    cooldown: 1.3
     animState: 5
   ID: 0
   Coll: {fileID: 65854071982532468}

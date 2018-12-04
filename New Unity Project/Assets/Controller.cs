@@ -32,6 +32,7 @@ public class Controller : MonoBehaviour, IController
     public string _SavePath = ".\\controls.xml";
     public static string SavePath = ".\\controls.xml";
 
+    private Vector3 viewDir;
 
     private Rigidbody _rb;
     public Rigidbody Rb { get { return _rb; } }
@@ -50,8 +51,8 @@ public class Controller : MonoBehaviour, IController
             KeyCode.S,
             KeyCode.A,
             KeyCode.D,
-            KeyCode.J,
-            KeyCode.K,
+            KeyCode.Mouse0,
+            KeyCode.Mouse1,
             KeyCode.E
     };
 
@@ -94,6 +95,7 @@ public class Controller : MonoBehaviour, IController
     // Use this for initialization
     void Start()
     {
+        viewDir = transform.forward;
         _rb = GetComponent<Rigidbody>();
         _unit = GetComponent<Unit>();
         _movementOffset = Quaternion.Euler(MovementDegreeOffset);
@@ -160,11 +162,12 @@ public class Controller : MonoBehaviour, IController
         if (_rb.velocity == Vector3.zero)
         {
             speed = ForwardSpeed * _unit.Stats.CurrentMovementSpeed;
-            transform.forward = transform.forward;
+          // transform.forward = v.normalized * speed * 0.2f;
+            transform.forward =viewDir; //aici
         }
         else
         {
-            Vector3 n = MakeControlsHardlyRetarded ? new Vector3(_rb.velocity.x, 0, _rb.velocity.z).normalized : vDir;
+            Vector3 n = viewDir;
             transform.forward = n == Vector3.zero ? transform.forward : n;
 
             Debug.DrawRay(transform.position, _rb.velocity, Color.red);
@@ -205,15 +208,29 @@ public class Controller : MonoBehaviour, IController
         v = _movementOffset * v;
         //anim.SetFloat("Forward", 0);
 
-        if (v != Vector3.zero)
-        {
-            _unit.SetAnimationState(Unit.AnimationStates.WALKING);
-        }
-        else
-        {
-            _unit.SetAnimationState(Unit.AnimationStates.IDLE);
-        }
 
+        if (!_unit.UnitAnimation.GetCurrentAnimatorStateInfo(0).IsTag("yes"))
+            {
+            return;
+        }
+       
+            if (v != Vector3.zero)
+            {
+            if (!_unit.UnitAnimation.GetCurrentAnimatorStateInfo(0).IsName("Walking"))
+            {
+                _unit.SetAnimationState(Unit.AnimationStates.WALKING);
+            }
+                viewDir = v.normalized;
+            
+            }
+            else
+            {
+
+            if(!_unit.UnitAnimation.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+                _unit.SetAnimationState(Unit.AnimationStates.IDLE);
+
+            }
+       
 
         if (MakeControlsEventMoreRetarded)
         {
@@ -266,7 +283,7 @@ public class Controller : MonoBehaviour, IController
     {
         if (MakeControlsHardlyRetarded && !GetRelativeMousePos)
         {
-            return transform.forward;
+            return viewDir;
         }
         else
         {
@@ -281,8 +298,10 @@ public class Controller : MonoBehaviour, IController
             RaycastHit info;
             if (Physics.Raycast(r, out info, 1000, 1 << 9))
             {
-                return  (info.point - transform.position); //Position only because the camera is not a child object 
+                viewDir = (info.point - transform.position);
+                return viewDir; //Position only because the camera is not a child object 
             }
+            
             return -Vector3.one;
         }
     }

@@ -6,6 +6,7 @@ using System.Linq;
 [System.Serializable]
 public class AbstractAbility
 {
+    public bool hasAnimationEvent = false;
     public bool IsSpecial = false;
     public string Name;
     public string Description;
