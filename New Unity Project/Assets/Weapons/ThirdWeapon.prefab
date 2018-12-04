@@ -442,7 +442,8 @@ MonoBehaviour:
   Owner: -715792
   OOwner: {fileID: 0}
   Abilities:
-  - IsSpecial: 0
+  - hasAnimationEvent: 0
+    IsSpecial: 0
     Name: AOE Melee
     Description: 
     icon: {fileID: 0}
@@ -451,13 +452,14 @@ MonoBehaviour:
     ComboCost: 0
     cooldown: 2
     animState: 2
-  - IsSpecial: 1
+  - hasAnimationEvent: 0
+    IsSpecial: 1
     Name: 
     Description: 
     icon: {fileID: 0}
     abilityInstance: {fileID: 114351747421703744, guid: f48ba00987c0cde4f928380792e4c00b,
       type: 2}
-    ComboCost: 4
+    ComboCost: 5
     cooldown: 4
     animState: 5
   ID: 2
