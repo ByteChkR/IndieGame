@@ -10,7 +10,7 @@ public class LastBoss : MonoBehaviour,IController{
     public Transform looker;
     public GameObject InstanceiatorWithOffset;
     public enum LastBossStates { Attack1, Attack2, Attack3, Attack4}
-    private LastBossStates _firstBossState = LastBossStates.Attack4;
+    private LastBossStates _firstBossState = LastBossStates.Attack1;
     public Unit bossUnit;
     public Transform player;
     public float activationDistance;
