@@ -1179,11 +1179,14 @@ MonoBehaviour:
   Agent: {fileID: 0}
   ParticleSystems: []
   Checkpoint: {fileID: 0}
-  GoldReward: 20
+  GoldReward: 4
   GoldPrefab: {fileID: 1136768164843768, guid: aac181e834279be488ad830f1c633251, type: 2}
   rb: {fileID: 0}
   WeaponContainer: {fileID: 1539951431648014}
+  BeforeDeathEffect: {fileID: 0}
   TeamID: 0
+  Dead: 0
+  InstantDestroy: 0
 --- !u!114 &114199913035751346
 MonoBehaviour:
   m_ObjectHideFlags: 1
