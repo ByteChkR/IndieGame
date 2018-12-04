@@ -11,6 +11,7 @@ public class Weapon : MonoBehaviour
     public Unit OOwner;
     public List<AbstractAbility> Abilities;
     public int ID = 0;
+    public Sprite WeaponIcon;
     public List<KeyCode> AbilityKeyBindings
     {
         get
