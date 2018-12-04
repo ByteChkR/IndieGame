@@ -59,7 +59,6 @@ public class Unit : MonoBehaviour
 
     public void SetAnimationState(AnimationStates newState)
     {
-        Debug.Log(newState);
         if (UnitAnimation != null) UnitAnimation.SetInteger("state", (int)newState);
     }
 
@@ -119,7 +118,8 @@ public class Unit : MonoBehaviour
             bh.ActivateInfoBox();
             if (Input.GetKeyDown(Controller.interactions[(int)Controller.Interactions.PICKUP]) && bh.cost <= Stats.CurrentGold)
             {
-                Stats.ApplyValue(StatType.GOLD, -w.GoldValue, -1, false);
+                Debug.Log("try pickup");
+                Stats.ApplyValue(StatType.GOLD, -bh.cost, -1, false);
                 PickupHealth(bh);
             }
         }
@@ -147,6 +147,7 @@ public class Unit : MonoBehaviour
     public void PickupHealth(BuyableHealthScript buyableHealth)
     {
         Stats.ApplyValue(StatType.HP, buyableHealth.health, -1, false);
+        buyableHealth.DestroyOnPickup();
     }
 
     public void PickupWeapon(Weapon pWeapon)
@@ -165,7 +166,7 @@ public class Unit : MonoBehaviour
         pWeapon.transform.parent = WeaponContainer.transform;
         pWeapon.transform.position = WeaponContainer.transform.position;
         pWeapon.transform.rotation = WeaponContainer.transform.rotation;
-        pWeapon.transform.localScale = Vector3.one;
+        //pWeapon.transform.localScale = Vector3.one;
         /*
         if (_weapon == null)
         {

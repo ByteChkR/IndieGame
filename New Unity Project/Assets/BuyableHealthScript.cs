@@ -7,13 +7,11 @@ public class BuyableHealthScript : MonoBehaviour {
     public int cost;
     public int health;
     public HealthInfoScript healthInfoScript;
-    public Text prizeText;
 
-    void Awake()
+    public void DestroyOnPickup()
     {
-        prizeText.text = "Prize: " + cost;
+        Destroy(gameObject);
     }
-
     public void ActivateInfoBox()
     {
         healthInfoScript.gameObject.SetActive(true);
