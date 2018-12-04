@@ -59,7 +59,7 @@ public class LastBoss : MonoBehaviour,IController{
         }
         if (player == null)
         {
-            player = GameObject.FindGameObjectWithTag("Player").transform;
+            player =Unit.Player.transform;
         }
         HUDScript.instance.SetBoss(bossUnit);
         
