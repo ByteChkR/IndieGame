@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.5947542, g: 0.66668445, b: 0.8154649, a: 1}
+  m_IndirectSpecularColor: {r: 0.59478027, g: 0.6665515, b: 0.81540906, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -89,7 +89,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaIndirect: 2
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ShowResolutionOverlay: 1
-  m_LightingDataAsset: {fileID: 112000438, guid: e62212d9e964b6b4bbbda598d0eecbfb,
+  m_LightingDataAsset: {fileID: 112000440, guid: e62212d9e964b6b4bbbda598d0eecbfb,
     type: 2}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -113,7 +113,7 @@ NavMeshSettings:
     accuratePlacement: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 23800000, guid: 29246ff34f019074dbd7fc42bf99de2d, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 15b1b56e243125746a6f19742974d20d, type: 2}
 --- !u!1001 &1298590
 Prefab:
   m_ObjectHideFlags: 0
@@ -68195,7 +68195,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4777853244777094, guid: 2b364f3d560697442b18255d5ee18879, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 315.01
+      value: 314.56
       objectReference: {fileID: 0}
     - target: {fileID: 4777853244777094, guid: 2b364f3d560697442b18255d5ee18879, type: 2}
       propertyPath: m_LocalPosition.z
@@ -98123,7 +98123,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1497534379}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.009068028, y: -0.0019, z: 0.078529574}
+  m_LocalPosition: {x: -0.009068028, y: -0.0022, z: 0.078529574}
   m_LocalScale: {x: 115.08943, y: 11.992195, z: 130.31024}
   m_Children: []
   m_Father: {fileID: 92330315}
