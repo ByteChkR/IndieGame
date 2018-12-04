@@ -20,6 +20,11 @@ public class WeaponInfoScript : MonoBehaviour
 
     private int _goldCost;
 
+    private void Start()
+    {
+        _infoBox.transform.forward = -Camera.main.transform.forward;
+    }
+
     public void SetCost(int pGold)
     {
         _goldCost = pGold;
@@ -45,6 +50,6 @@ public class WeaponInfoScript : MonoBehaviour
 
     void LateUpdate()
     {
-        RotateInfoBox();
+       // RotateInfoBox();
     }
 }
