@@ -42,6 +42,7 @@ public class UnitStats
 
     public void Init()
     {
+        _currentGold = 0;
         _baseCombo = 0;
         _baseMovementSpeed = 1;
         _baseHealth = MaxHealth;

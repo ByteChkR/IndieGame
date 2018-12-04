@@ -399,6 +399,11 @@ public class Unit : MonoBehaviour
         if (!Dead && Stats.CurrentHealth <= 0) UnitDying();
     }
 
+    public void ResetStats()
+    {
+        Stats.ApplyValue(StatType.COMBO, 0, -1, false);
+    }
+
     private void OnDestroy()
     {
         if (UnitController.IsPlayer && GameEndScript.instance != null)

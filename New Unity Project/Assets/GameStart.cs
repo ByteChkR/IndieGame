@@ -8,6 +8,7 @@ public class GameStart : MonoBehaviour {
 	void Start () {
        
         AchievementSystem.instance.ResetSystem();
+        if (Unit.Player != null) Unit.Player.Stats.Init();
 	}
 	
 	// Update is called once per frame
