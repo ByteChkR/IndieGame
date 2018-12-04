@@ -468,7 +468,7 @@ MonoBehaviour:
   WeaponIS: {fileID: 114941982635926770}
   UseMultipleAttacks: 1
   AttackCount: 3
-  SpecialAttackAnimation: 0
+  SpecialAttackAnimation: 2
   TurnTowardsTarget: 1
   GoldValue: 5
 --- !u!114 &114673511916472384
