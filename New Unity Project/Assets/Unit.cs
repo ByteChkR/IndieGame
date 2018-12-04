@@ -353,7 +353,7 @@ public class Unit : MonoBehaviour
 
         if (this == Unit.Player)
         {
-            SpeakerSound.UseSpeaker3D = false;
+           // SpeakerSound.UseSpeaker3D = false;
 
         }
         Vector3 rnd = new Vector3();

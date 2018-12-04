@@ -28,7 +28,7 @@ public class PlayerSpawn : MonoBehaviour
             Unit.Player.transform.SetPositionAndRotation(transform.position, transform.rotation);
 
             Unit.Player.ToggleUnitMovement(true);
-            SpeakerSound.UseSpeaker3D = true;
+            //SpeakerSound.UseSpeaker3D = true;
 
 
             CameraViewLock.instance.start = true;
