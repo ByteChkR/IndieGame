@@ -52,7 +52,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -146,7 +146,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: fe2798714135d364baefc246a8f6cea8, type: 3}
+  m_audioClip: {fileID: 8300000, guid: b9475eea7316f3342acf88b6f3587f99, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -248,30 +248,33 @@ MonoBehaviour:
   BackgroundMusicVolume: 1
   BackgroundAudioSource: {fileID: 82763399910300124}
   SoundEffectSource: {fileID: 82410308944090178}
-  Shoot: {fileID: 0}
-  PlayerHit: {fileID: 8300000, guid: 558db36de28f46244895865d53b94580, type: 3}
-  Click: {fileID: 0}
-  VictorySound: {fileID: 0}
-  GameOver: {fileID: 0}
-  Explosion: {fileID: 8300000, guid: 0e81d0d004cdf154cb1ec344d3bd8a20, type: 3}
-  EnemyHit: {fileID: 8300000, guid: 20cc1a07b1bde89498dfd886946a1eb6, type: 3}
+  PlayerHit: {fileID: 8300000, guid: 1becb2f68d3cad649b897f26a08f3d18, type: 3}
+  Click: {fileID: 8300000, guid: 174815852743e484a978821e9e01d079, type: 3}
+  Explosion: {fileID: 8300000, guid: adbbc766a48107d40af4858250bc848f, type: 3}
+  EnemyHit: {fileID: 8300000, guid: 1becb2f68d3cad649b897f26a08f3d18, type: 3}
   Achievement: {fileID: 8300000, guid: 5a185bfbff5ed294f950d4b3d83ea78f, type: 3}
-  Dash: {fileID: 0}
-  NPC: {fileID: 0}
+  Dash: {fileID: 8300000, guid: 347faf518fd928946a0e539e21713d9d, type: 3}
+  NPC: {fileID: 8300000, guid: 0d29b930717e016428c56fc91fbbbf13, type: 3}
   Beam: {fileID: 0}
-  PickUp: {fileID: 0}
-  BossWave: {fileID: 0}
-  Click1: {fileID: 0}
-  Click2: {fileID: 0}
+  PickUp: {fileID: 8300000, guid: 41948817e15fa724da5e3ac53cf37f6f, type: 3}
+  Buy: {fileID: 8300000, guid: 1fc83f9d9ad53a946b94341f7f0de50a, type: 3}
+  NotEnoughMoney: {fileID: 8300000, guid: 8eae141dbc59834419235edbf697817a, type: 3}
+  FirstBossWave: {fileID: 8300000, guid: a692792b2c4530746a7345ab69de8318, type: 3}
+  FirstBossSpecialAttack: {fileID: 8300000, guid: 3023df28689f0a046946715244b41212,
+    type: 3}
+  Glitch: {fileID: 0}
   LaserBeam: {fileID: 0}
-  LaserCharge: {fileID: 0}
-  TutorialComplete: {fileID: 0}
-  ElectricSound: {fileID: 0}
-  Menu: {fileID: 8300000, guid: fe2798714135d364baefc246a8f6cea8, type: 3}
-  Tutorial: {fileID: 8300000, guid: c3323c1e5af156e4f83f8986449a52ae, type: 3}
-  Stage1: {fileID: 8300000, guid: 7ba61fdb3e214d74dacac1cb753f168d, type: 3}
+  LaserCharge: {fileID: 8300000, guid: 6d34500e8d9fa6641a842d87ec40d1f4, type: 3}
+  Rocket: {fileID: 8300000, guid: b81013058f4ceb444a14f326cb3c5fc9, type: 3}
+  ElectricSound: {fileID: 8300000, guid: 312d718e80dbcca48809d57f8316dfff, type: 3}
+  FootSteps: {fileID: 8300000, guid: 2bd44838a4f96814e846003c67b27eb6, type: 3}
+  SpiderFootSteps: {fileID: 8300000, guid: 2bd44838a4f96814e846003c67b27eb6, type: 3}
+  LightSwing: {fileID: 8300000, guid: 43d7ff8b87cbad2459dd77280e3a8cfd, type: 3}
+  HeavySwing: {fileID: 8300000, guid: 558db36de28f46244895865d53b94580, type: 3}
+  Menu: {fileID: 8300000, guid: b9475eea7316f3342acf88b6f3587f99, type: 3}
+  Stage1: {fileID: 8300000, guid: 8231df0166a0aa94da335c266487772f, type: 3}
   Boss1: {fileID: 8300000, guid: e23789d7acd2a2949b853bc362e6f3b3, type: 3}
-  Stage2: {fileID: 0}
-  Boss2: {fileID: 0}
-  Result: {fileID: 0}
-  GameOverLoop: {fileID: 8300000, guid: 57025e14a64627043ad6a71594cdd12e, type: 3}
+  Stage2: {fileID: 8300000, guid: ee5e78aade3a2c34c9f112acb1090df9, type: 3}
+  Boss2: {fileID: 8300000, guid: e23789d7acd2a2949b853bc362e6f3b3, type: 3}
+  Result: {fileID: 8300000, guid: 8231df0166a0aa94da335c266487772f, type: 3}
+  GameOverLoop: {fileID: 8300000, guid: c3323c1e5af156e4f83f8986449a52ae, type: 3}

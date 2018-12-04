@@ -12,7 +12,7 @@ public class AudioManager : MonoBehaviour
         Beam, PickUp, Buy, NotEnoughMoney, FirstBossWave, FirstBossSpecialAttack,
         Glitch, LaserBeam, LaserCharge, Rocket, ElectricSound, FootSteps, SpiderFootSteps, LightSwing, HeavySwing
     }
-    public enum BackgroundMusic { Menu, Tutorial, Stage1, Boss1, Stage2, Boss2, Result }
+    public enum BackgroundMusic { Menu, Stage1, Boss1, Stage2, Boss2, Result }
 
     [Header("VolumeMixer")]
     public float MasterVolume;
