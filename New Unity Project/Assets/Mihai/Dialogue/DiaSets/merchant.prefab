@@ -53,4 +53,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterImage: {fileID: 21300000, guid: b7a1b3ac20786b442874e9fb5423cbb5, type: 3}
   characterName: URM-550
-  line: Check out my stuff before you take the train
+  line: Check out my stuff before you take the train. You can buy by pressing E.

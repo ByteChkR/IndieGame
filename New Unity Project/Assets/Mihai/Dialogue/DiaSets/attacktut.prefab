@@ -53,5 +53,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterImage: {fileID: 21300000, guid: 69812bdfe1aa04947ba133cc810ad832, type: 3}
   characterName: Alexander
-  line: "We\u2019ll teach those robots a lesson. Use J for your simple attacks, break
-    the box to continue."
+  line: "We\u2019ll teach those robots a lesson. Use Left Click for your simple attacks,
+    try it on the dummies."
