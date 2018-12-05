@@ -411,10 +411,14 @@ public class Unit : MonoBehaviour
 
     private void OnDestroy()
     {
+
         if (UnitController.IsPlayer && GameEndScript.instance != null)
         {
+
             GameEndScript.instance.ToGameOver();
+
         }
+        
         ActiveUnits.Remove(gameObject.GetInstanceID());
     }
 

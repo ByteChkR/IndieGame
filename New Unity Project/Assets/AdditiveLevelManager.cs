@@ -35,10 +35,10 @@ public class AdditiveLevelManager : MonoBehaviour
     void Start()
     {
         GameObject playerGameObject = GameObject.FindGameObjectWithTag("Player");
-        if(playerGameObject!=null)
+        if (playerGameObject != null)
         {
 
-        player =playerGameObject.GetComponent<Unit>();
+            player = playerGameObject.GetComponent<Unit>();
         }
         UnityEngine.Debug.Assert(instance == null, "Instance singleton is already initialized.");
         instance = this;
@@ -76,7 +76,7 @@ public class AdditiveLevelManager : MonoBehaviour
 
     void OnUnloadComplete(AsyncOperation op)
     {
-        
+
     }
 
     public void ClearLevels()
@@ -128,7 +128,7 @@ public class AdditiveLevelManager : MonoBehaviour
             loadingScreen.transform.gameObject.SetActive(false);
             menuScreen.SetActive(false);
             MenuCavasBackground.SetActive(false);
-            
+
         }
 
 
@@ -142,17 +142,29 @@ public class AdditiveLevelManager : MonoBehaviour
 
     }
 
-    
-    public void Reset()
+
+    public void Reset(bool soft = true)
     {
         //IResettable[] resettableObjs = (IResettable[])GameObject.FindObjectsOfType<IResettable>());            
         //foreach (IResettable ir in resettableObjs)
         //{
         //    ir.Reset();
         //}
-        RemoveLevel(HighestLevel);
-        GameEndScript.instance.GameOverScreen.SetActive(false);
-        LoadLevel(HighestLevel);
+        
+
+        if (Unit.Player != null) Destroy(Unit.Player.gameObject);
+        if (!soft)
+        {
+            _lastWeaponID = 0;
+            LastGold = 0;
+            HighestLevel = 0;
+
+        }
+        else
+        {
+            LoadLevel(HighestLevel);
+        }
+
     }
-    
+
 }
