@@ -8329,7 +8329,7 @@ MonoBehaviour:
   IgnoreUnitCollisions: 0
   Stats:
     _baseHealth: 100
-    _baseMovementSpeed: 1
+    _baseMovementSpeed: 0.5
     _baseCombo: 0
     MaxHealth: 100
     MaxCombo: 10
@@ -8387,16 +8387,16 @@ MonoBehaviour:
   Backward: 115
   Left: 97
   Right: 100
-  ForwardSpeed: 80
-  BackwardSpeed: 80
-  StrafeSpeed: 114.9
+  ForwardSpeed: 50
+  BackwardSpeed: 50
+  StrafeSpeed: 80
   StrafeCutoff: 0.51
   WinScreen: {fileID: 0}
   GameOverScreen: {fileID: 0}
   MenuCanvas: {fileID: 0}
   _SavePath: .\controls.xml
   UseMousePositionForAim: 1
-  MaxVelocity: 10
+  MaxVelocity: 5
 --- !u!114 &114826624751824796
 MonoBehaviour:
   m_ObjectHideFlags: 1
