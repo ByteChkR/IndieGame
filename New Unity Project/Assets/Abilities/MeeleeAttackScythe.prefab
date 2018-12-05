@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4334799433876266}
   - component: {fileID: 114594336571885322}
   m_Layer: 0
-  m_Name: MeeleeAttack
+  m_Name: MeeleeAttackScythe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -51,6 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 910453c632ab69a4bbc9575161df26ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  delayStart: 0
   DestroySourceOnEnd: 0
   FixForPlayerModel: 1
   Collider: {fileID: 0}
@@ -63,7 +64,7 @@ MonoBehaviour:
   InvertKnockback: 0
   MoreOnMaxRange: 0
   CollType: 0
-  Damage: 1
+  Damage: 3
   UseMaxTime: 1
   UseStateChange: 1
   MaxTimeAlive: 0.61
