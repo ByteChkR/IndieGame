@@ -30,7 +30,7 @@ public class WeaponInfoScript : MonoBehaviour
         _goldCost = pGold;
         if (_goldCost > 0)
         {
-            _prize.text = "PRIZE: " + _goldCost;
+            _prize.text = "Price: " + _goldCost;
         }
         else
         {

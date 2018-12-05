@@ -26,7 +26,7 @@ public class HealthInfoScript : MonoBehaviour {
     void SetCost(int pCost)
     {
         _goldCost = pCost;
-        _prize.text = "Prize: " + _goldCost;
+        _prize.text = "Price: " + _goldCost;
     }
 
     void Awake()
