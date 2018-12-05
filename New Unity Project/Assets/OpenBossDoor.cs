@@ -35,5 +35,9 @@ public class OpenBossDoor : MonoBehaviour {
     private void DeleteCollider()
     {
         Destroy(colliderObject);
+        if(DialogueSystem.instance!= null)
+        {
+            DialogueSystem.instance.EndDialogue();
+        }
     }
 }
