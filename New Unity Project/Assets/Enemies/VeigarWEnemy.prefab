@@ -1869,6 +1869,7 @@ GameObject:
   - component: {fileID: 4719602246673568}
   - component: {fileID: 33215550417886940}
   - component: {fileID: 23342720790863068}
+  - component: {fileID: 114268661825465418}
   m_Layer: 0
   m_Name: BomberNoArms
   m_TagString: Untagged
@@ -4154,6 +4155,19 @@ MonoBehaviour:
   TeamID: 0
   Dead: 0
   InstantDestroy: 1
+--- !u!114 &114268661825465418
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1820940698151114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed168b96a81edc4438424f048f649a7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 0.05
+  speed: 3
 --- !u!114 &114347026770803852
 MonoBehaviour:
   m_ObjectHideFlags: 1
