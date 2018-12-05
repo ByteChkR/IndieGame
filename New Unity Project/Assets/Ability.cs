@@ -105,6 +105,13 @@ public class Ability : MonoBehaviour
         {
             Debug.Log("TEST");
             target.TriggerParticleEffect("hit");
+
+            AudioManager.instance.PlaySoundEffect(AudioManager.SoundEffect.PlayerHit);
+        }
+        else
+        {
+
+            AudioManager.instance.PlaySoundEffect(AudioManager.SoundEffect.EnemyHit);
         }
         if (KnockBackPower != 0)
         {
