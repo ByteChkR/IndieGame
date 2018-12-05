@@ -45,11 +45,11 @@ public class WeaponInfoScript : MonoBehaviour
 
     void RotateInfoBox()
     {
-        _infoBox.transform.rotation = Quaternion.Euler(45, -_weapon.transform.rotation.y - 45, 0);
+        _infoBox.transform.rotation.SetLookRotation(-Camera.main.transform.forward);
     }
 
     void LateUpdate()
     {
-       // RotateInfoBox();
+       RotateInfoBox();
     }
 }
