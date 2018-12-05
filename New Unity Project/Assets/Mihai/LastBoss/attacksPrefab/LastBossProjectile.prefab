@@ -219,6 +219,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 2
+  explosion: {fileID: 1246283949323960, guid: d0bd1a07869089e489b619575a7c9247, type: 2}
 --- !u!114 &114162492760512900
 MonoBehaviour:
   m_ObjectHideFlags: 1
