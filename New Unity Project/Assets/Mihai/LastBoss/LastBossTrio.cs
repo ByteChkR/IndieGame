@@ -15,6 +15,7 @@ public class LastBossTrio : MonoBehaviour {
     
 	// Use this for initialization
 	void Start () {
+        AudioManager.instance.PlaySoundEffect(AudioManager.SoundEffect.Rocket);
         _player = GameObject.FindGameObjectWithTag("Player");
         _lastBoss = GameObject.FindGameObjectWithTag("Boss");
         _rb = GetComponent<Rigidbody>();
