@@ -69,6 +69,7 @@ MonoBehaviour:
   UseStateChange: 0
   MaxTimeAlive: 0
   state: -1
+  soundEffect: 14
   _animationName: Teleport
   _animationSpeed: 2
   _onHitEffects: []

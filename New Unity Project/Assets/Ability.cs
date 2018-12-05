@@ -44,6 +44,7 @@ public class Ability : MonoBehaviour
     public bool UseStateChange = true;
     public float MaxTimeAlive;
     public Unit.AnimationStates state = Unit.AnimationStates.ANY;
+    public AudioManager.SoundEffect soundEffect = AudioManager.SoundEffect.NONE;
     private void Awake()
     {
         AliveAbilities.Add(this);
@@ -95,10 +96,23 @@ public class Ability : MonoBehaviour
 
         if (SelfStun) Source.UnitController.LockControls(true);
         Initialized = true;
+        AudioManager.instance.PlaySoundEffect(soundEffect);
     }
 
     public virtual void OnHit(Unit target)
     {
+        if (target.UnitController.IsPlayer)
+        {
+            Debug.Log("TEST");
+            target.TriggerParticleEffect("hit");
+
+            AudioManager.instance.PlaySoundEffect(AudioManager.SoundEffect.PlayerHit);
+        }
+        else
+        {
+
+            AudioManager.instance.PlaySoundEffect(AudioManager.SoundEffect.EnemyHit);
+        }
         if (KnockBackPower != 0)
         {
             Vector3 d = (target.transform.position - Source.transform.position);

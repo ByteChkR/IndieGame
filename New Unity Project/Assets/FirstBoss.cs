@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class FirstBoss : MonoBehaviour,IController {
 
+    public GameObject specialInvokeParticle;
+    public GameObject specialCircle;
+    public GameObject stunParticle;
+
+
+
     public float rotationInterpolationSpeed = 0.1f;
     public Transform looker;
     public Transform TrioPlace;
@@ -190,17 +196,20 @@ public class FirstBoss : MonoBehaviour,IController {
                     _canBeStunned = false;
                     break;
                 case FirstBossStates.RangedAttack:
+                    AudioManager.instance.PlaySoundEffect(AudioManager.SoundEffect.FirstBossWave);
                     _timeTillNextAttack = 3;
                     DoAnimation(2, 3);
                     _firstBossState = FirstBossStates.Trio;
                     _canDealDashDamage = false;
                     break;
                 case FirstBossStates.Trio:
+                    AudioManager.instance.PlaySoundEffect(AudioManager.SoundEffect.FirstBossWave);
                     _firstBossState = FirstBossStates.Special;
                     _timeTillNextAttack = 6;
                     DoAnimation(4, 5);
                     break;
                 case FirstBossStates.Special:
+                    Instantiate(specialInvokeParticle, transform.position, transform.rotation);
                     _timeTillNextAttack = 8;
                     _firstBossState = FirstBossStates.Dash;
                     _canBeStunned = true;
@@ -267,6 +276,7 @@ public class FirstBoss : MonoBehaviour,IController {
     private void DashToPlayer()
     {
         _rb.velocity = transform.forward * 80;
+        AudioManager.instance.PlaySoundEffect(AudioManager.SoundEffect.Dash);
     }
 
     private void TrioAttack()
@@ -297,6 +307,9 @@ public class FirstBoss : MonoBehaviour,IController {
             specialOffset += 15;
         }
 
+        AudioManager.instance.PlaySoundEffect(AudioManager.SoundEffect.FirstBossSpecialAttack);
+        Instantiate(specialCircle, transform.position, transform.rotation);
+
 
     }
 
@@ -317,7 +330,11 @@ public class FirstBoss : MonoBehaviour,IController {
             anim.SetInteger("frame", 5);
             _animationResetTime = 2;
             _timeTillNextAttack = 3;
+
+            Instantiate(stunParticle, transform.position + Vector3.up, transform.rotation);
+
         }
+
 
     }
 
