@@ -956,7 +956,7 @@ MonoBehaviour:
     Name: Melee Attack
     Description: 
     icon: {fileID: 0}
-    abilityInstance: {fileID: 114594336571885322, guid: 6a2757239111ab143b4565c0e0482616,
+    abilityInstance: {fileID: 114594336571885322, guid: bdd4cb3e1dda05e43ba376dab1136f6a,
       type: 2}
     ComboCost: 0
     cooldown: 1

@@ -64,7 +64,7 @@ MonoBehaviour:
   InvertKnockback: 0
   MoreOnMaxRange: 0
   CollType: 0
-  Damage: 3
+  Damage: 5
   UseMaxTime: 1
   UseStateChange: 1
   MaxTimeAlive: 0.61
