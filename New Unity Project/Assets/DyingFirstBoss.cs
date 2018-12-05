@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class DyingFirstBoss : MonoBehaviour {
 
-	// Use this for initialization
+    // Use this for initialization
+    public GameObject explosion;
 	void Start () {
 		
 	}
@@ -16,6 +17,8 @@ public class DyingFirstBoss : MonoBehaviour {
     private void DestroyBoss()
     {
         Destroy(gameObject);
+        AudioManager.instance.PlaySoundEffect(AudioManager.SoundEffect.Explosion);
+        Instantiate(explosion, transform.position, transform.rotation);
         GameObject.Find("BossDoorOpenMihai").transform.GetChild(0).GetComponent<OpenBossDoor>().OpenDoor();
     }
 }
