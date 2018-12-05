@@ -101,10 +101,11 @@ public class Ability : MonoBehaviour
 
     public virtual void OnHit(Unit target)
     {
+        target.TriggerParticleEffect("hit");
         if (target.UnitController.IsPlayer)
         {
             //Debug.Log("TEST");
-            target.TriggerParticleEffect("hit");
+
 
             AudioManager.instance.PlaySoundEffect(AudioManager.SoundEffect.PlayerHit);
         }
@@ -213,7 +214,7 @@ public class Ability : MonoBehaviour
         if (Source.gameObject.name == "Player" && unitsHit.Count > 0) Debug.Log(Unit.ActiveUnits[unitsHit[0]]);
 
         List<int> newUnits = unitsHit.Select(x => x).
-            Where(x => !UnitsHitSinceInit.Contains(x) && 
+            Where(x => !UnitsHitSinceInit.Contains(x) &&
             Unit.ActiveUnits.ContainsKey(x) && Unit.ActiveUnits[x].TeamID != Source.TeamID).
             ToList();
         newUnits.ForEach(x => OnHit(Unit.ActiveUnits[x]));
