@@ -55,6 +55,7 @@ GameObject:
   - component: {fileID: 4834880835416052}
   - component: {fileID: 198789456380958166}
   - component: {fileID: 199036984166618476}
+  - component: {fileID: 114232022542444962}
   m_Layer: 0
   m_Name: flash
   m_TagString: Untagged
@@ -84,7 +85,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1834821237938746}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.67, y: 0, z: 0}
+  m_LocalPosition: {x: -109.927155, y: 86.66143, z: 58.2325}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4837120827613550}
@@ -132,6 +133,18 @@ Transform:
   m_Father: {fileID: 4210395141687180}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!114 &114232022542444962
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1632287357390722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ae65f846e214064abe7dec6ffdb9cc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TimeLeft: 3
 --- !u!198 &198634669427594348
 ParticleSystem:
   m_ObjectHideFlags: 1
