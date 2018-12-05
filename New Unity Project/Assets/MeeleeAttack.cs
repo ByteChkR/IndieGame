@@ -52,7 +52,7 @@ public class MeeleeAttack : Ability
     {
         target.Stats.AddEffects(_onHitEffects.ToArray(), Source.gameObject.GetInstanceID());
         base.OnHit(target);
-        Debug.Log(target.gameObject.name);
+        //Debug.Log(target.gameObject.name);
         if (Source != null) Source.Stats.ApplyValue(Unit.StatType.COMBO, _comboGainPerHit, -1, false);
     }
 

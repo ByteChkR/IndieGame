@@ -76,7 +76,7 @@ public class Ability : MonoBehaviour
 
     public virtual void Initialize(int source, Vector3 target, Quaternion rot, bool isSpecial)
     {
-        
+
         SetSpecialAttack(this.isSpecial);
         this.TargetPos = target;
         this.TargetRot = rot;
@@ -92,7 +92,7 @@ public class Ability : MonoBehaviour
         //Debug.Assert(_collider != null, "Ability has no Collider");
 
         Source = Unit.ActiveUnits[source];
-        
+
 
         if (SelfStun) Source.UnitController.LockControls(true);
         Initialized = true;
@@ -103,7 +103,7 @@ public class Ability : MonoBehaviour
     {
         if (target.UnitController.IsPlayer)
         {
-            Debug.Log("TEST");
+            //Debug.Log("TEST");
             target.TriggerParticleEffect("hit");
 
             AudioManager.instance.PlaySoundEffect(AudioManager.SoundEffect.PlayerHit);
@@ -126,13 +126,13 @@ public class Ability : MonoBehaviour
     }
 
 
-    float t=0;
+    float t = 0;
     // Update is called once per frame
     public virtual void Update()
     {
-        
+
         if (!Initialized) return;
-        if (Source != null && Collider != null && delayStart <=0) CheckAndResolveCollisions(Collider);
+        if (Source != null && Collider != null && delayStart <= 0) CheckAndResolveCollisions(Collider);
 
 
         Unit.AnimationStates s = Source.GetAnimationState();
@@ -142,11 +142,11 @@ public class Ability : MonoBehaviour
         {
             Destroy(gameObject);
 
-            
+
         }
-        if((UseStateChange && state != Unit.AnimationStates.ANY && Source.GetAnimationState() != state))
+        if ((UseStateChange && state != Unit.AnimationStates.ANY && Source.GetAnimationState() != state))
         {
-            
+
             Destroy(gameObject);
         }
 
@@ -156,7 +156,7 @@ public class Ability : MonoBehaviour
     {
         if (Source != null)
         {
-            
+
             if (UnlockSelfStunOnDestroy) Source.UnitController.LockControls(false);
             if (DestroySourceOnEnd) Destroy(Source.gameObject);
             //Source.SetAnimationState(Unit.AnimationStates.IDLE);
@@ -194,7 +194,8 @@ public class Ability : MonoBehaviour
         .Where(x => x != Source.gameObject.GetInstanceID()).ToList();
 
         List<int> newUnits = unitsHit.Select(x => x).
-            Where(x => !UnitsHitSinceInit.Contains(x) && Unit.ActiveUnits[x].TeamID != Source.TeamID).
+            Where(x => !UnitsHitSinceInit.Contains(x) &&
+            Unit.ActiveUnits.ContainsKey(x) && Unit.ActiveUnits[x].TeamID != Source.TeamID).
             ToList();
 
         newUnits.ForEach(x => OnHit(Unit.ActiveUnits[x]));
@@ -212,7 +213,8 @@ public class Ability : MonoBehaviour
         if (Source.gameObject.name == "Player" && unitsHit.Count > 0) Debug.Log(Unit.ActiveUnits[unitsHit[0]]);
 
         List<int> newUnits = unitsHit.Select(x => x).
-            Where(x => !UnitsHitSinceInit.Contains(x) && Unit.ActiveUnits[x].TeamID != Source.TeamID).
+            Where(x => !UnitsHitSinceInit.Contains(x) && 
+            Unit.ActiveUnits.ContainsKey(x) && Unit.ActiveUnits[x].TeamID != Source.TeamID).
             ToList();
         newUnits.ForEach(x => OnHit(Unit.ActiveUnits[x]));
 

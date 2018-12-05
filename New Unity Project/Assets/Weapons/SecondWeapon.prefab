@@ -691,7 +691,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1664935337957516}
   m_LocalRotation: {x: 0.72794074, y: 0.63619244, z: -0.17028594, w: 0.19069396}
-  m_LocalPosition: {x: -0.008, y: -0.007, z: 0.023}
+  m_LocalPosition: {x: 0.0031, y: 0.0172, z: -0.0211}
   m_LocalScale: {x: 60, y: 60, z: 60}
   m_Children:
   - {fileID: 4347371811107788}
@@ -1025,7 +1025,7 @@ MonoBehaviour:
     Name: Melee Attack
     Description: 
     icon: {fileID: 0}
-    abilityInstance: {fileID: 114594336571885322, guid: 6a2757239111ab143b4565c0e0482616,
+    abilityInstance: {fileID: 114594336571885322, guid: bdd4cb3e1dda05e43ba376dab1136f6a,
       type: 2}
     ComboCost: 0
     cooldown: 1

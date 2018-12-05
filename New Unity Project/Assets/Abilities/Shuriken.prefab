@@ -232,7 +232,7 @@ MonoBehaviour:
   state: -1
   soundEffect: 17
   OnHitEffects: []
-  Speed: 0.2
+  Speed: 0.1
   TravelDistance: 20.1
   MaxTime: 1
 --- !u!198 &198350824644324250
