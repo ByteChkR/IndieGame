@@ -4,7 +4,7 @@ using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Diagnostics;
-
+using System;
 using System.Linq;
 public class AdditiveLevelManager : MonoBehaviour
 {
@@ -29,6 +29,22 @@ public class AdditiveLevelManager : MonoBehaviour
     public int HighestLoadedLevel()
     {
         return loadedLevels.Max(x => x.Key);
+    }
+
+
+    public void RefreshControlMapping()
+    {
+        Controller.LoadFromFile();
+        
+        for (int i = 0; i < Enum.GetValues(typeof(Controller.Interactions)).Length; i++)
+        {
+            KeycodeDisplay.onRefresh((Controller.Interactions)i);
+        }
+    }
+
+    private void Awake()
+    {
+        Controller.LoadFromFile();
     }
 
     // Use this for initialization
@@ -150,7 +166,7 @@ public class AdditiveLevelManager : MonoBehaviour
         //{
         //    ir.Reset();
         //}
-        
+
 
         if (Unit.Player != null) Destroy(Unit.Player.gameObject);
         if (!soft)

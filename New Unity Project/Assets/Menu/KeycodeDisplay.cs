@@ -9,15 +9,22 @@ public class KeycodeDisplay : MonoBehaviour {
     public Text keycodeText;
     public delegate void OnRefresh(Controller.Interactions inter);
     public static OnRefresh onRefresh;
-    private void Start()
+    private void Awake()
     {
         onRefresh += OnRefreshKeycode;
+    }
+
+    private void Start()
+    {
+
         keycodeText.text = GetKeycodeName(Controller.interactions[(int)interaction]);
     }
     void OnRefreshKeycode(Controller.Interactions inter)
     {
+        Debug.Log(interaction);
         if(inter == interaction)
         {
+            
             keycodeText.text = GetKeycodeName(Controller.interactions[(int)inter]);
         }
     }

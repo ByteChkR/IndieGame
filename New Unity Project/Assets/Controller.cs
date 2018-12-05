@@ -83,7 +83,7 @@ public class Controller : MonoBehaviour, IController
 
     }
 
-    public void LoadFromFile()
+    public static void LoadFromFile()
     {
         XmlSerializer xs = new XmlSerializer(typeof(KeyCode[]));
         if (!System.IO.File.Exists(SavePath)) SaveToFile(interactions);
@@ -105,7 +105,7 @@ public class Controller : MonoBehaviour, IController
     {
         DontDestroyOnLoad(gameObject);
         SavePath = _SavePath;
-        LoadFromFile();
+        //LoadFromFile();
     }
 
     private void OnDestroy()
