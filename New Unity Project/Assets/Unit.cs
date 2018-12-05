@@ -347,7 +347,7 @@ public class Unit : MonoBehaviour
 
     private void Update()
     {
-        if (UnitController.IsPlayer) AudioManager.instance.BackgroundAudioSource.volume = SpeakerSound.GetVolume(transform.position);
+       // if (UnitController.IsPlayer) AudioManager.instance.BackgroundAudioSource.volume = SpeakerSound.GetVolume(transform.position);
     }
     private void UnitDying()
     {
