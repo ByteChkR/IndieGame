@@ -1489,7 +1489,7 @@ MonoBehaviour:
     OnlyDamagedWithSpecialAttacks: 0
   deathAnim: {fileID: 0}
   UnitAnimation: {fileID: 0}
-  Agent: {fileID: 0}
+  Agent: {fileID: 195894701571416670}
   ParticleSystems: []
   Checkpoint: {fileID: 0}
   GoldReward: 5

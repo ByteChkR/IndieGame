@@ -1176,7 +1176,7 @@ MonoBehaviour:
     OnlyDamagedWithSpecialAttacks: 0
   deathAnim: {fileID: 1789416970732076, guid: 2bc873d12ca41e34087e7b1ee73de152, type: 2}
   UnitAnimation: {fileID: 95791459206690694}
-  Agent: {fileID: 0}
+  Agent: {fileID: 195894701571416670}
   ParticleSystems: []
   Checkpoint: {fileID: 0}
   GoldReward: 4
@@ -1427,7 +1427,7 @@ NavMeshAgent:
   m_AutoRepath: 1
   m_Height: 2
   m_BaseOffset: 1
-  m_WalkableMask: 4294967295
+  m_WalkableMask: 1
   m_ObstacleAvoidanceType: 4
 --- !u!222 &222095436501812460
 CanvasRenderer:
