@@ -70,6 +70,7 @@ MonoBehaviour:
   UseStateChange: 0
   MaxTimeAlive: 2
   state: -1
+  soundEffect: 6
   _animationName: 
   _animationSpeed: 0
   _onHitEffects: []

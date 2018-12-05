@@ -157,6 +157,7 @@ MonoBehaviour:
   UseStateChange: 0
   MaxTimeAlive: 0
   state: -1
+  soundEffect: 17
   OnHitEffects: []
   Speed: 0.2
   TravelDistance: 20.1

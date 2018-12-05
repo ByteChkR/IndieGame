@@ -173,6 +173,7 @@ MonoBehaviour:
   UseStateChange: 0
   MaxTimeAlive: 0
   state: -1
+  soundEffect: 17
   Effects: []
   Offset: {x: 0, y: 12, z: 0}
 --- !u!198 &198975686555332244

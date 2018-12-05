@@ -70,6 +70,7 @@ MonoBehaviour:
   UseStateChange: 0
   MaxTimeAlive: 1.6
   state: -1
+  soundEffect: 3
   _animationName: AOEStun
   _animationSpeed: 1
   _onHitEffects: []
