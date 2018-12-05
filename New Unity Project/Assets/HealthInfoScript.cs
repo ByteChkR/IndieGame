@@ -35,7 +35,8 @@ public class HealthInfoScript : MonoBehaviour {
     }
     void RotateInfoBox()
     {
-        _infoBox.transform.rotation = Quaternion.Euler(45, -_buyAbleHealth.transform.rotation.y - 45, 0);
+        _infoBox.transform.position = _buyAbleHealth.transform.position + Vector3.up * 2;
+        _infoBox.transform.forward = Camera.main.transform.forward;
     }
 
     // Update is called once per frame
