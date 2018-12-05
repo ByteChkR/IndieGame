@@ -18,6 +18,7 @@ public class FirstBossTeleport : MonoBehaviour {
     {
         if(other.tag == "Player")
         {
+            AdditiveLevelManager.instance.LastGold = other.GetComponent<Unit>().Stats.CurrentGold;
             AdditiveLevelManager.instance.RemoveLevel(1);
             AdditiveLevelManager.instance.LoadLevel(2);
         }

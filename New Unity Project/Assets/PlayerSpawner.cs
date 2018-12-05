@@ -59,6 +59,8 @@ public class PlayerSpawner:MonoBehaviour
         if(Unit.Player == null)
         {
             Unit u = Instantiate(unit, transform.position + groundOffset, transform.rotation).GetComponent<Unit>();
+            u.Stats.ApplyValue(Unit.StatType.GOLD, AdditiveLevelManager.instance.LastGold, -1, false);
+
             Weapon w = Instantiate(Weapons[WeaponID], u.transform.position, Quaternion.identity, u.WeaponContainer.transform).GetComponent<Weapon>();
             u.PickupWeapon(w);
         }
