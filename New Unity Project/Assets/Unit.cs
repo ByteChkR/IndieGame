@@ -241,7 +241,7 @@ public class Unit : MonoBehaviour
         ParticleSystems.Remove(ParticleSystems.First(x => x.Key == key));
     }
 
-    void TriggerParticleEffect(string key)
+    public void TriggerParticleEffect(string key)
     {
         foreach (ParticleSystemEntry ps in ParticleSystems)
         {
@@ -332,6 +332,11 @@ public class Unit : MonoBehaviour
 
             }
         }
+
+        foreach (ParticleSystemEntry pse in ParticleSystems)
+        {
+            pse.Value.Stop();
+        }
     }
 
     private void FixedUpdate()
@@ -384,12 +389,14 @@ public class Unit : MonoBehaviour
             da.Initialize(gameObject.GetInstanceID(), transform.position, transform.rotation, false);
             LockControls(true);
             rb.velocity = Vector3.zero;
-
+            
         }
+        if(!IsPlayer)TriggerParticleEffect("die");
+
         //if(UnitAnimation != null) UnitAnimation.SetBool("Death", true);
         if (InstantDestroy)
         {
-            if(BeforeDeathEffect !=null)
+            if(BeforeDeathEffect != null)
             {
                 Instantiate(BeforeDeathEffect, transform.position, transform.rotation);
             }

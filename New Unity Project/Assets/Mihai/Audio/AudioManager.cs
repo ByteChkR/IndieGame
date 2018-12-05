@@ -7,7 +7,7 @@ public class AudioManager : MonoBehaviour
     [HideInInspector]
     static public AudioManager instance;
 
-    public enum SoundEffect {
+    public enum SoundEffect {NONE,
         PlayerHit, Click, Explosion, EnemyHit, Achievement, Dash, NPC,
         Beam, PickUp, Buy, NotEnoughMoney, FirstBossWave, FirstBossSpecialAttack,
         Glitch, LaserBeam, LaserCharge, Rocket, ElectricSound, FootSteps, SpiderFootSteps, LightSwing, HeavySwing

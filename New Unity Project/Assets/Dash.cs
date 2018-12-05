@@ -53,6 +53,8 @@ public class Dash : Ability
         fwd.y = 0;
         fwd.Normalize();
 
+        Source.TriggerParticleEffect("dash");
+
         _endPos = _ddistance > _dashDistance ? Source.transform.position + fwd * CanDashToTarget(fwd, _dashDistance) : Source.transform.position + fwd * CanDashToTarget(fwd, _ddistance);
         mControlLockTime = MaxControlLockTime * (_pos - _endPos).magnitude / _dashDistance;
     }
@@ -64,7 +66,7 @@ public class Dash : Ability
         {
             foreach (RaycastHit raycastHit in cols)
             {
-                //if (raycastHit.collider.gameObject.layer == 10)
+                if (raycastHit.collider.gameObject.layer == 10)
                     return raycastHit.distance - 0.5f;
             }
         }
@@ -103,7 +105,13 @@ public class Dash : Ability
 
     public override void OnDestroy()
     {
-        Source.rb.velocity = Vector3.zero;
+        if (Source != null)
+        {
+
+            Source.rb.velocity = Vector3.zero;
+            Source.TriggerParticleEffect("dash");
+
+        }
         base.OnDestroy();
     }
 
