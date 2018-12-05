@@ -51,7 +51,9 @@ public class LastBoss : MonoBehaviour,IController{
 
     // Use this for initialization
     void Start () {
-        _anim = GetComponent<Animator>();
+        AudioManager.instance.PlaySoundEffect(AudioManager.SoundEffect.NPC);
+        AudioManager.instance.ChangeBackgroundMusic(AudioManager.BackgroundMusic.Boss2);
+       _anim = GetComponent<Animator>();
         _rb = GetComponent<Rigidbody>();
         if (bossUnit == null)
         {
@@ -105,6 +107,7 @@ public class LastBoss : MonoBehaviour,IController{
             switch (_firstBossState)
             {
                 case LastBossStates.Attack1:
+                    AudioManager.instance.PlaySoundEffect(AudioManager.SoundEffect.LaserCharge);
                     _timeTillNextAttack = 6;
                     InstanciateWithDelay(trioAttackPrefab, fireRight, 0.5f, Vector3.zero);
                     InstanciateWithDelay(trioAttackPrefab, fireLeft, 0.8f, Vector3.zero);
@@ -197,6 +200,7 @@ public class LastBoss : MonoBehaviour,IController{
                     
                     break;
                 case LastBossStates.Attack4:
+                    AudioManager.instance.PlaySoundEffect(AudioManager.SoundEffect.LaserCharge);
                     _timeTillNextAttack = 10;
 
                     InstanciateWithDelay(bounceAttack, fireRight, 0.5f, Vector3.zero);
