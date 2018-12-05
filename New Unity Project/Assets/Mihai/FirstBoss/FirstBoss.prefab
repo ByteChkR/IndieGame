@@ -710,8 +710,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1210421800613244}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -32.9982, y: 21.258, z: 6.2286186}
+  m_LocalRotation: {x: 0, y: 0.8817155, z: 0, w: 0.47178152}
+  m_LocalPosition: {x: -32.19, y: 21.33, z: 5.31}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4900608379697212}
@@ -721,7 +721,7 @@ Transform:
   - {fileID: 4288196722716680}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 123.7, z: 0}
 --- !u!4 &4845263732421730
 Transform:
   m_ObjectHideFlags: 1
@@ -828,7 +828,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 72eee0c13d16c6645a539e5d11606299, type: 3}
+  - {fileID: 2100000, guid: e04f5c1db054e39469d222815cc00375, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -993,7 +993,7 @@ MonoBehaviour:
   rotationInterpolationSpeed: 0.1
   looker: {fileID: 4053176530811560}
   TrioPlace: {fileID: 4071883839265746}
-  activationRange: 15
+  activationRange: 10
   TrioPrefab: {fileID: 1615804433756854, guid: d059d79854cb074468aec40cf101bba4, type: 2}
   player: {fileID: 0}
   bossUnit: {fileID: 0}
@@ -1063,7 +1063,7 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 38bb2d504bb12ea48a14306455b1cd62, type: 3}
+  - {fileID: 2100000, guid: e04f5c1db054e39469d222815cc00375, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

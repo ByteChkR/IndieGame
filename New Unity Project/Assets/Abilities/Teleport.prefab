@@ -51,6 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99c3ac82012ca9a4aabdd5550287eddc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  delayStart: 0
   DestroySourceOnEnd: 0
   FixForPlayerModel: 0
   Collider: {fileID: 0}

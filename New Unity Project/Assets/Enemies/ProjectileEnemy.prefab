@@ -1480,10 +1480,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IgnoreUnitCollisions: 0
   Stats:
-    _baseHealth: 0
+    _baseHealth: 3
     _baseMovementSpeed: 1
     _baseCombo: 0
-    MaxHealth: 50
+    MaxHealth: 3
     MaxCombo: 10
     MaxMovementSpeed: 3
     OnlyDamagedWithSpecialAttacks: 0
@@ -1499,7 +1499,7 @@ MonoBehaviour:
   BeforeDeathEffect: {fileID: 0}
   TeamID: 0
   Dead: 0
-  InstantDestroy: 0
+  InstantDestroy: 1
 --- !u!114 &114347026770803852
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -138,7 +138,7 @@ MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1272457770406108}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -388,7 +388,8 @@ MonoBehaviour:
   Owner: -1
   OOwner: {fileID: 0}
   Abilities:
-  - IsSpecial: 0
+  - hasAnimationEvent: 0
+    IsSpecial: 0
     Name: Melee
     Description: 
     icon: {fileID: 0}
@@ -397,7 +398,8 @@ MonoBehaviour:
     ComboCost: -1
     cooldown: 2
     animState: 2
-  - IsSpecial: 1
+  - hasAnimationEvent: 0
+    IsSpecial: 1
     Name: TP
     Description: 
     icon: {fileID: 0}
@@ -406,6 +408,8 @@ MonoBehaviour:
     ComboCost: 3
     cooldown: 2
     animState: 5
+  ID: 0
+  WeaponIcon: {fileID: 0}
   Coll: {fileID: 0}
   Rb: {fileID: 0}
   WeaponIS: {fileID: 114637282282049762}

@@ -274,8 +274,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1434615376851824}
-  m_LocalRotation: {x: -0, y: 0.8755048, z: -0, w: -0.4832094}
-  m_LocalPosition: {x: -1.79, y: 20.7, z: -39.98}
+  m_LocalRotation: {x: -0, y: 0.9610831, z: -0, w: 0.27625945}
+  m_LocalPosition: {x: -5.59, y: 20.7, z: -29.32}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4126800174005200}
@@ -283,7 +283,7 @@ Transform:
   - {fileID: 4733258723012992}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 237.79, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 147.92601, z: 0}
 --- !u!23 &23797687090268528
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -638,6 +638,7 @@ MonoBehaviour:
   OOwner: {fileID: 0}
   Abilities: []
   ID: 0
+  WeaponIcon: {fileID: 0}
   Coll: {fileID: 0}
   Rb: {fileID: 0}
   WeaponIS: {fileID: 114268160701458918}
@@ -787,8 +788,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed168b96a81edc4438424f048f649a7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 0.3
-  speed: 0.25
+  range: 0.24
+  speed: 1.8
 --- !u!114 &114861238862273156
 MonoBehaviour:
   m_ObjectHideFlags: 1

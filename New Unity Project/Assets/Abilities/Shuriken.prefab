@@ -108,6 +108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e992fae7c721da94b8787a214e398668, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  delayStart: 0
   DestroySourceOnEnd: 0
   FixForPlayerModel: 0
   Collider: {fileID: 0}
@@ -120,7 +121,7 @@ MonoBehaviour:
   InvertKnockback: 0
   MoreOnMaxRange: 0
   CollType: 0
-  Damage: 10
+  Damage: 1
   UseMaxTime: 0
   UseStateChange: 0
   MaxTimeAlive: 0

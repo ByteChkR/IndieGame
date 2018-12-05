@@ -1167,10 +1167,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IgnoreUnitCollisions: 0
   Stats:
-    _baseHealth: 3
+    _baseHealth: 2
     _baseMovementSpeed: 1
     _baseCombo: 0
-    MaxHealth: 3
+    MaxHealth: 2
     MaxCombo: 10
     MaxMovementSpeed: 3
     OnlyDamagedWithSpecialAttacks: 0
