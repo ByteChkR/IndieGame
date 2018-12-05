@@ -45,10 +45,11 @@ public class WeaponInfoScript : MonoBehaviour
 
     void RotateInfoBox()
     {
-        _infoBox.transform.rotation.SetLookRotation(-Camera.main.transform.forward);
+        _infoBox.transform.position = _weapon.transform.position + Vector3.up * 2;
+        _infoBox.transform.forward = Camera.main.transform.forward;
     }
 
-    void LateUpdate()
+    void Update()
     {
        RotateInfoBox();
     }
