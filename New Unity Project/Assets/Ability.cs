@@ -99,6 +99,11 @@ public class Ability : MonoBehaviour
 
     public virtual void OnHit(Unit target)
     {
+        if (target.UnitController.IsPlayer)
+        {
+            Debug.Log("TEST");
+            target.TriggerParticleEffect("hit");
+        }
         if (KnockBackPower != 0)
         {
             Vector3 d = (target.transform.position - Source.transform.position);
