@@ -96,6 +96,7 @@ public class FirstBoss : MonoBehaviour,IController {
                 _isBossActive = true;
                 if (HUDScript.instance != null)
                 {
+                    AudioManager.instance.ChangeBackgroundMusic(AudioManager.BackgroundMusic.Boss1);
                     HUDScript.instance.SetBoss(bossUnit);
                 }
             }

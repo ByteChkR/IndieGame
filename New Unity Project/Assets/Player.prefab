@@ -8389,7 +8389,7 @@ MonoBehaviour:
   Right: 100
   ForwardSpeed: 80
   BackwardSpeed: 80
-  StrafeSpeed: 114
+  StrafeSpeed: 140
   StrafeCutoff: 0.51
   WinScreen: {fileID: 0}
   GameOverScreen: {fileID: 0}
