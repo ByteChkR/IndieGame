@@ -187,7 +187,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!65 &65340663661933126
 BoxCollider:
@@ -301,7 +301,8 @@ MonoBehaviour:
   Owner: -1
   OOwner: {fileID: 0}
   Abilities:
-  - IsSpecial: 0
+  - hasAnimationEvent: 0
+    IsSpecial: 0
     Name: Basic Attack
     Description: 
     icon: {fileID: 0}
@@ -310,10 +311,15 @@ MonoBehaviour:
     ComboCost: 0
     cooldown: 2
     animState: 2
-  AbilityKeyBindings: 
+  ID: 0
+  WeaponIcon: {fileID: 0}
   Coll: {fileID: 0}
   Rb: {fileID: 0}
   WeaponIS: {fileID: 114232368348127074}
+  UseMultipleAttacks: 0
+  AttackCount: 1
+  SpecialAttackAnimation: 0
+  TurnTowardsTarget: 0
   GoldValue: 5
 --- !u!114 &114682246729523040
 MonoBehaviour:

@@ -176,6 +176,7 @@ public class Unit : MonoBehaviour
         DropWeapon();
         //_weapons[_selectedWeapon] = pWeapon;
         _weapon = pWeapon;
+        _weapon.SetActive(true);
 
     }
 
@@ -189,7 +190,9 @@ public class Unit : MonoBehaviour
         */
         _weapon.transform.parent = null;
         _weapon.SetOwnerForgetUnit(_weapon.gameObject.GetInstanceID());
+        _weapon.SetActive(false);
         _weapon = null;
+
     }
 
 

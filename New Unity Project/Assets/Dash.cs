@@ -64,7 +64,8 @@ public class Dash : Ability
         {
             foreach (RaycastHit raycastHit in cols)
             {
-                if (raycastHit.collider.gameObject.layer == 10) return raycastHit.distance - 0.5f;
+                //if (raycastHit.collider.gameObject.layer == 10)
+                    return raycastHit.distance - 0.5f;
             }
         }
         return distance;
