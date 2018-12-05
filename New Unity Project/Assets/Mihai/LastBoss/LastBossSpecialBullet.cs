@@ -8,6 +8,7 @@ public class LastBossSpecialBullet : MonoBehaviour {
     public  float maxTimeTochangeDirection;
     private float _currentTime = 0;
 	void Start () {
+        AudioManager.instance.PlaySoundEffect(AudioManager.SoundEffect.Rocket);
         _player = GameObject.FindGameObjectWithTag("Player").transform;
 	}
 	

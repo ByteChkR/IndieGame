@@ -251,7 +251,7 @@ MonoBehaviour:
   PlayerHit: {fileID: 8300000, guid: 1becb2f68d3cad649b897f26a08f3d18, type: 3}
   Click: {fileID: 8300000, guid: 174815852743e484a978821e9e01d079, type: 3}
   Explosion: {fileID: 8300000, guid: adbbc766a48107d40af4858250bc848f, type: 3}
-  EnemyHit: {fileID: 8300000, guid: 1becb2f68d3cad649b897f26a08f3d18, type: 3}
+  EnemyHit: {fileID: 8300000, guid: 67ad8e7fb1507b7409a9fafc6c480433, type: 3}
   Achievement: {fileID: 8300000, guid: 5a185bfbff5ed294f950d4b3d83ea78f, type: 3}
   Dash: {fileID: 8300000, guid: 347faf518fd928946a0e539e21713d9d, type: 3}
   NPC: {fileID: 8300000, guid: 0d29b930717e016428c56fc91fbbbf13, type: 3}
