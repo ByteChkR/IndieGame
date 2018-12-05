@@ -26,6 +26,7 @@ public class GameEndScript : MonoBehaviour {
         OptionsMenu.SetActive(false);
         GameOverScreen.SetActive(true);
         MenuCanvasBackground.SetActive(true);
+        AudioManager.instance.GameOverScreen();
         HUDScript.instance.ResetNpcStuff();
         AdditiveLevelManager.instance.RemoveLevel(1);                                               //Unload Levels
         AdditiveLevelManager.instance.RemoveLevel(2);
@@ -48,6 +49,7 @@ public class GameEndScript : MonoBehaviour {
         if (AchievementSystem.instance.GetResultTime()) AchievementFour.SetActive(false);
         else AchievementFour.SetActive(true);
 
+        AudioManager.instance.ChangeBackgroundMusic(AudioManager.BackgroundMusic.Result);
         MainMenu.SetActive(false);                                                                  //Setting the right screens active
         OptionsMenu.SetActive(false);
         WinScreen.SetActive(true);
