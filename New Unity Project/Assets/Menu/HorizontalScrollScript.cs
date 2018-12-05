@@ -34,11 +34,11 @@ public class HorizontalScrollScript : MonoBehaviour, IHorizontalySelectable
         _currentIndex = currentResolutionIndex;
         resolutionText.text = _options[_currentIndex];
 
-        Debug.Log(_options.Count);
-        for(int i = 0; i < _options.Count; i++)
-        {
-            Debug.Log(_options[i]);
-        }
+        //Debug.Log(_options.Count);
+        //for(int i = 0; i < _options.Count; i++)
+        //{
+        //    Debug.Log(_options[i]);
+        //}
 
     }
 
