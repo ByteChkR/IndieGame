@@ -37,7 +37,7 @@ public class CloudMover : MonoBehaviour
     {
         foreach (Transform t in clouds)
         {
-            t.position += Direction * Speed;
+            t.position += Direction * Speed*Time.deltaTime;
             Vector3 t1 = t.position - transform.position;
             Debug.Log(t1.magnitude);
             if (t1.x >= Rows * DistanceBetweenRows) t1.x = 0;
