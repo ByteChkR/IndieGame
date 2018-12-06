@@ -33,6 +33,9 @@ public class Coin : Ability
             if(Target.gameObject.tag == "Player")
             {
                 AchievementSystem.instance.PickUpCoin();
+               
+                    AudioManager.instance.PlaySoundEffect(AudioManager.SoundEffect.Buy);
+                
             }
             Target.Stats.ApplyValue(Unit.StatType.GOLD, 1,-1,false);
             Destroy(gameObject);
@@ -57,10 +60,7 @@ public class Coin : Ability
     public override void OnHit(Unit target)
     {
         
-        if(target == Unit.Player)
-        {
-            AudioManager.instance.PlaySoundEffect(AudioManager.SoundEffect.Buy);
-        }
+        
         base.OnHit(target);
         
     }
