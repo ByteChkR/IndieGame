@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Clouds
-  m_Shader: {fileID: 4800000, guid: e829bb4eaa1700d4c913ce2bbd55530f, type: 3}
+  m_Shader: {fileID: 4800000, guid: 0e4bc389addea3844a360fc3636846b7, type: 3}
   m_ShaderKeywords: ADVAMBIENT_ON ADVFOG_ON SHADOW_ON
   m_LightmapFlags: 5
   m_EnableInstancingVariants: 0
@@ -19,7 +19,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _AdvFog:
-        m_Texture: {fileID: 8400000, guid: 20eea454658bb52499691343d8c321db, type: 2}
+        m_Texture: {fileID: 2800000, guid: 4ad9527e59b6df34d9bd6b0121d43cdc, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -47,7 +47,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Lighting:
-        m_Texture: {fileID: 8400000, guid: cb13909e034289843908d46b35785e4a, type: 2}
+        m_Texture: {fileID: 2800000, guid: 884e3fe499ba59b47b36bbe4cc41196f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
