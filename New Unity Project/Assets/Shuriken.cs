@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Shuriken : Ability
 {
-
+    public GameObject explosion;
     public List<AbstractEffect> OnHitEffects;
     public float Speed = 1f;
     public float TravelDistance = 5f;
@@ -44,7 +44,11 @@ public class Shuriken : Ability
     public override void OnHit(Unit target)
     {
         target.Stats.AddEffects(OnHitEffects.ToArray(), Source.gameObject.GetInstanceID());
-
+        if( target == Unit.Player)
+        {
+            Instantiate(explosion, transform.position, transform.rotation);
+            AudioManager.instance.PlaySoundEffect(AudioManager.SoundEffect.Explosion);
+        }
         base.OnHit(target);
     }
     public override void OnDestroy()

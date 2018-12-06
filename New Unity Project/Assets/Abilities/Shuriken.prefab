@@ -305,6 +305,7 @@ MonoBehaviour:
   MaxTimeAlive: 0
   state: -1
   soundEffect: 17
+  explosion: {fileID: 1246283949323960, guid: d0bd1a07869089e489b619575a7c9247, type: 2}
   OnHitEffects: []
   Speed: 0.1
   TravelDistance: 20.1

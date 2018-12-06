@@ -5,6 +5,7 @@ using UnityEngine;
 public class KogMawR : Ability
 {
 
+    public GameObject exposion;
     public AbstractEffect[] Effects;
     public Vector3 Offset;
 
@@ -32,6 +33,12 @@ public class KogMawR : Ability
     }
     public override void OnHit(Unit target)
     {
+        if(target == Unit.Player)
+        {
+            Instantiate(exposion, transform.position, transform.rotation);
+            AudioManager.instance.PlaySoundEffect(AudioManager.SoundEffect.Explosion);
+            
+        }
         base.OnHit(target);
         target.Stats.AddEffects(Effects, Source.gameObject.GetInstanceID());
     }

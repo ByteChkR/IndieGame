@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SejuR : Ability
 {
-
+    public GameObject explosion;
     private bool _firstHit = true;
     public List<AbstractEffect> OnHitEffects;
     public float Speed = 1f;
@@ -58,5 +58,12 @@ public class SejuR : Ability
             target.Stats.AddEffect(Stun, Source.gameObject.GetInstanceID());
         }
         target.Stats.AddEffects(OnHitEffects.ToArray(), Source.gameObject.GetInstanceID());
+
+        if(target == Unit.Player)
+        {
+            Instantiate(explosion, transform.position, transform.rotation);
+            AudioManager.instance.PlaySoundEffect(AudioManager.SoundEffect.Explosion);
+        }
+
     }
 }

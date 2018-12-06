@@ -247,6 +247,7 @@ MonoBehaviour:
   MaxTimeAlive: 0
   state: -1
   soundEffect: 17
+  exposion: {fileID: 1246283949323960, guid: d0bd1a07869089e489b619575a7c9247, type: 2}
   Effects: []
   Offset: {x: 0, y: 12, z: 0}
 --- !u!198 &198975686555332244
