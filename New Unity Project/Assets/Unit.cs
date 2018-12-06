@@ -107,20 +107,38 @@ public class Unit : MonoBehaviour
         if (IsPlayer && null != (w = (coll.collider.GetComponent<Weapon>())))
         {
             w.ActivateInfoBox();
-            if (Input.GetKeyDown(Controller.interactions[(int)Controller.Interactions.PICKUP]) && w.IsOnGround && w.GoldValue <= Stats.CurrentGold)
+            if (Input.GetKeyDown(Controller.interactions[(int)Controller.Interactions.PICKUP]))
             {
-                Stats.ApplyValue(StatType.GOLD, -w.GoldValue, -1, false);
-                PickupWeapon(w);
+                if (w.IsOnGround && w.GoldValue <= Stats.CurrentGold)
+                {
+                    Stats.ApplyValue(StatType.GOLD, -w.GoldValue, -1, false);
+                    PickupWeapon(w);
+                    AudioManager.instance.PlaySoundEffect(AudioManager.SoundEffect.Buy);
+                }
+
+                else
+                {
+                    AudioManager.instance.PlaySoundEffect(AudioManager.SoundEffect.NotEnoughMoney);
+                }
             }
         }
         if (IsPlayer && null != (bh = (coll.collider.GetComponent<BuyableHealthScript>())))
         {
             bh.ActivateInfoBox();
-            if (Input.GetKeyDown(Controller.interactions[(int)Controller.Interactions.PICKUP]) && bh.cost <= Stats.CurrentGold)
+            if (Input.GetKeyDown(Controller.interactions[(int)Controller.Interactions.PICKUP]) )
             {
-                Debug.Log("try pickup");
-                Stats.ApplyValue(StatType.GOLD, -bh.cost, -1, false);
-                PickupHealth(bh);
+
+                if (bh.cost <= Stats.CurrentGold)
+                {
+                    Debug.Log("try pickup");
+                    Stats.ApplyValue(StatType.GOLD, -bh.cost, -1, false);
+                    PickupHealth(bh);
+                    AudioManager.instance.PlaySoundEffect(AudioManager.SoundEffect.Buy);
+                }
+                else
+                {
+                    AudioManager.instance.PlaySoundEffect(AudioManager.SoundEffect.NotEnoughMoney);
+                }
             }
         }
     }
