@@ -57,6 +57,10 @@ public class Coin : Ability
     public override void OnHit(Unit target)
     {
         
+        if(target == Unit.Player)
+        {
+            AudioManager.instance.PlaySoundEffect(AudioManager.SoundEffect.Buy);
+        }
         base.OnHit(target);
         
     }
